@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtUp.WebApi", "ArtUp.WebApi\ArtUp.WebApi.csproj", "{7C2CFC9C-4931-476B-9E25-617522B98333}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtUp.DataAccess", "ArtUp.DataAccess\ArtUp.DataAccess.csproj", "{214694BA-0299-4448-9A88-85795219F48F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7C2CFC9C-4931-476B-9E25-617522B98333}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C2CFC9C-4931-476B-9E25-617522B98333}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C2CFC9C-4931-476B-9E25-617522B98333}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C2CFC9C-4931-476B-9E25-617522B98333}.Release|Any CPU.Build.0 = Release|Any CPU
+		{214694BA-0299-4448-9A88-85795219F48F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{214694BA-0299-4448-9A88-85795219F48F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{214694BA-0299-4448-9A88-85795219F48F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{214694BA-0299-4448-9A88-85795219F48F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
