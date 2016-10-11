@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ArtUp.DataAccess.Entities.Enums;
+using System;
 using System.Collections.Generic;
 
 namespace ArtUp.DataAccess.Entities
@@ -9,6 +10,11 @@ namespace ArtUp.DataAccess.Entities
         /// Title of the project
         /// </summary>
         public string Title { get; set; }
+
+        /// <summary>
+        /// Main picture of the project
+        /// </summary>
+        public string Avatar { get; set; }
 
         /// <summary>
         /// Amount of collected money
@@ -36,6 +42,11 @@ namespace ArtUp.DataAccess.Entities
         public string FullDescription { get; set; }
 
         /// <summary>
+        /// Current state of the project (draft, etc.)
+        /// </summary>
+        public ProjectState ProjectState { get; set; }
+
+        /// <summary>
         /// Category of the project (Art, etc.)
         /// </summary>
         public int? CategoryId { get; set; }
@@ -61,5 +72,27 @@ namespace ArtUp.DataAccess.Entities
         /// Colelction of user's donations for this project
         /// </summary>
         public virtual ICollection<UserDonation> UserDonations { get; set; }
+
+        #region Personal organizer's data
+        public string Name { get; set; }
+
+        public string Surname { get; set; }
+
+        public string MiddleName { get; set; }
+
+        public DateTime DateOfBirth { get; set; }
+
+        public DocumentType DocumentType { get; set; }
+
+        public string PasspotNumberSeries { get; set; }
+
+        public string PersonalPassportNumber { get; set; }
+
+        public string WhoAndWhereIssued { get; set; }
+
+        public string Adress { get; set; }
+
+        public string PhoneNumber { get; set; }
+        #endregion
     }
 }

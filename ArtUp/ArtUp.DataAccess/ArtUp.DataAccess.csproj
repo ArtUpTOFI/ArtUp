@@ -30,7 +30,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -40,22 +53,44 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataContext\ArtUpData.cs" />
+    <Compile Include="DataContext\ArtUpDataContextEF.cs" />
+    <Compile Include="DataContext\IArtUpData.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\Comment.cs" />
+    <Compile Include="Entities\Enums\DocumentType.cs" />
+    <Compile Include="Entities\Enums\ProjectState.cs" />
     <Compile Include="Entities\Gift.cs" />
     <Compile Include="Entities\Project.cs" />
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\UserDonation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Instances\CategoryRepository.cs" />
+    <Compile Include="Repositories\Instances\CommentRepository.cs" />
+    <Compile Include="Repositories\Instances\GiftRepository.cs" />
+    <Compile Include="Repositories\Interfaces\ICategoryRepository.cs" />
+    <Compile Include="Repositories\Interfaces\ICommentRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IGiftRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IProjectRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IRoleRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IUserDonationRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IUserRepository.cs" />
+    <Compile Include="Repositories\Instances\ProjectRepository.cs" />
+    <Compile Include="Repositories\Instances\RoleRepository.cs" />
+    <Compile Include="Repositories\Instances\UserDonationRepository.cs" />
+    <Compile Include="Repositories\Instances\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Common\Logging\" />
-    <Folder Include="DataContext\" />
     <Folder Include="DataInitializers\" />
     <Folder Include="Helpers\" />
-    <Folder Include="Repositories\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

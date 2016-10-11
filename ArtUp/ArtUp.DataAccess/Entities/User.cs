@@ -36,6 +36,11 @@ namespace ArtUp.DataAccess.Entities
         public string About { get; set; }
 
         /// <summary>
+        /// User's profile picture/photo
+        /// </summary>
+        public string Avatar { get; set; }
+
+        /// <summary>
         /// User's location (city, country, etc.)
         /// </summary>
         public string Location { get; set; }
