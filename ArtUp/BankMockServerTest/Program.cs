@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ArtUp.BankMockServer.Common;
 using ArtUp.BankMockServer;
+using ArtUp.BankMockServer.Services.Concrete;
 
 namespace BankMockServerTest
 {
@@ -18,6 +19,15 @@ namespace BankMockServerTest
 
             Console.WriteLine(a.ToString());
             Console.WriteLine(z.TestString);
+
+            var inst = InstanseCreator<UserApiService>.GetInstance();
+            var service = inst as UserApiService;
+
+            var list = service.GetAllAccounts();
+
+            foreach (var s in list)
+                Console.WriteLine(s.FirstName);
+
             Console.ReadLine();
         }
     }

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using ArtUp.BankMockServer.Common;
+using ArtUp.BankMockServer.Entities;
+using ArtUp.BankMockServer.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +9,18 @@ using System.Threading.Tasks;
 
 namespace ArtUp.BankMockServer.Services.Concrete
 {
-    class UserApiService
+    public class UserApiService
     {
+        private IUnitOfWork database;
+        public UserApiService()
+        {
+            var inst = InstanseCreator<UnitOfWork>.GetInstance("BankContext");
+            database = inst as IUnitOfWork;
+        }
+
+        public IEnumerable<Account> GetAllAccounts()
+        {
+            return database.Accounts.GetAll();
+        }
     }
 }
