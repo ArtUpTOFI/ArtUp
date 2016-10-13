@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtUp.DataAccess", "ArtUp.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtUp.BankMockServer", "ArtUp.BankMockServer\ArtUp.BankMockServer.csproj", "{1E440E32-8CF7-4657-9406-78469BADD5A9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankMockServerTest", "BankMockServerTest\BankMockServerTest.csproj", "{7A4FA610-8D17-4A64-BEE7-3027268199AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{1E440E32-8CF7-4657-9406-78469BADD5A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E440E32-8CF7-4657-9406-78469BADD5A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E440E32-8CF7-4657-9406-78469BADD5A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A4FA610-8D17-4A64-BEE7-3027268199AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A4FA610-8D17-4A64-BEE7-3027268199AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A4FA610-8D17-4A64-BEE7-3027268199AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A4FA610-8D17-4A64-BEE7-3027268199AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
