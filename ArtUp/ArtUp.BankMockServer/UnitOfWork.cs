@@ -15,7 +15,7 @@ namespace ArtUp.BankMockServer
         private BankContext db;
         private AccountRepository accountRepository;
         private CardRepository cardRepository;
-        private TrasactionRepository transactionRepository;
+        private TransactionRepository transactionRepository;
 
         public UnitOfWork(string connectionString)
         {
@@ -46,7 +46,7 @@ namespace ArtUp.BankMockServer
             get
             {
                 if (transactionRepository == null)
-                    transactionRepository = new TrasactionRepository(db);
+                    transactionRepository = new TransactionRepository(db);
                 return transactionRepository;
             }
         }

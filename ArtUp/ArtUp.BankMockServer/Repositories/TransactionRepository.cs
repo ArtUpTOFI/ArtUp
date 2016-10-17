@@ -9,11 +9,11 @@ using ArtUp.BankMockServer.Context;
 
 namespace ArtUp.BankMockServer.Repositories
 {
-    public class TrasactionRepository : IRepository<Transaction>
+    public class TransactionRepository : IRepository<Transaction>
     {
         private BankContext db;
 
-        public TrasactionRepository(BankContext c)
+        public TransactionRepository(BankContext c)
         {
             db = c;
         }

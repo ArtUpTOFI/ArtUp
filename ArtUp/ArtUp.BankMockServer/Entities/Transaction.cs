@@ -10,7 +10,7 @@ namespace ArtUp.BankMockServer.Entities
     {
         public int Id { get; set; }
 
-        public Guid AccountId { get; set; }
+        public int AccountId { get; set; }
 
         public string TargetAccountId { get; set; }
 
