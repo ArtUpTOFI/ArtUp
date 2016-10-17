@@ -23,6 +23,10 @@ namespace BankMockServerTest
             var inst = InstanseCreator<UserApiService>.GetInstance();
             var service = inst as UserApiService;
 
+            //var uof = new UnitOfWork("BankContext");
+
+            //Console.WriteLine(uof.Accounts.GetAll().First().ToString());
+
             var list = service.GetAllAccounts();
 
             foreach (var s in list)

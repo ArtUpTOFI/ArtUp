@@ -14,7 +14,7 @@ namespace ArtUp.BankMockServer.Services.Concrete
         private IUnitOfWork database;
         public UserApiService()
         {
-            var inst = InstanseCreator<UnitOfWork>.GetInstance("BankContext");
+            var inst = InstanseCreator<UnitOfWork>.GetInstance("BankConnection");
             database = inst as IUnitOfWork;
         }
 
