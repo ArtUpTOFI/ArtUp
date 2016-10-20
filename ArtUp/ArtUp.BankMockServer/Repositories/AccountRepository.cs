@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ArtUp.BankMockServer.Entities;
 using ArtUp.BankMockServer.Context;
+using System.Data.Entity;
 
 namespace ArtUp.BankMockServer.Repositories
 {
@@ -20,6 +21,7 @@ namespace ArtUp.BankMockServer.Repositories
         public void Create(Account item)
         {
             db.Accounts.Add(item);
+            db.SaveChanges();
         }
 
         public void Delete(int id)
@@ -44,22 +46,30 @@ namespace ArtUp.BankMockServer.Repositories
 
         public Account GetByNumber(string number)
         {
-            return db.Accounts.Where(n => n.Nubmer == number).First();
+            return db.Accounts.Where(n => n.Nubmer == number).FirstOrDefault();
         }
 
-        public bool TransferToAccount(float money)
+        public bool ToWithdrawMoneyFromAccount(Account account, float amount)
         {
-            throw new NotImplementedException();
+            var ac = Get(account.Id);
+            ac.Money -= amount;
+            Update(ac);
+            var res = db.SaveChanges();
+            return res > 0 ? true : false;
+        }
+
+        public bool TransferMoneyToAccount(Account account, float amount)
+        {
+            var ac = Get(account.Id);
+            ac.Money += amount;
+            Update(ac);
+            var res = db.SaveChanges();
+            return res > 0 ? true : false;
         }
 
         public void Update(Account item)
         {
-            throw new NotImplementedException();
-        }
-
-        public bool WithdrawFromAccount(float moeny)
-        {
-            throw new NotImplementedException();
+            db.Entry(item).State = EntityState.Modified;
         }
     }
 }

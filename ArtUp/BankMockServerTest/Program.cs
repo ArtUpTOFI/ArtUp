@@ -30,7 +30,42 @@ namespace BankMockServerTest
             var list = service.GetAllAccounts();
 
             foreach (var s in list)
-                Console.WriteLine(s.FirstName);
+                Console.WriteLine(s.FirstName + " " + s.Money.ToString());
+
+            //Transfer from account 1 to account 2
+
+            var result = service.CreateTransaction("2221111111113", "1111111111113", 20); 
+            Console.WriteLine(result.Item1.ToString() + result.Item2);
+            var list2 = service.GetAllAccounts();
+
+            foreach (var s in list)
+                Console.WriteLine(s.FirstName + " " + s.Money.ToString());
+
+            //_____________________________________
+
+            //Transfer from card  to account 
+
+            var result1 = service.CreateTransaction("1234567890123456", "2221111111113", 123, "9/20", "Yauheni", "Bychkouski", 5);
+            Console.WriteLine(result1.Item1.ToString() + result1.Item2);
+
+            var list3 = service.GetAllAccounts();
+
+            foreach (var s in list)
+                Console.WriteLine(s.FirstName + " " + s.Money.ToString());
+
+            //_____________________________________
+
+            //Transfer from card  to account (false)
+
+            var result2 = service.CreateTransaction("2224567890123456", "2221111111113", 123, "20", "Yauheni", "Bychkouski", 5);
+            Console.WriteLine(result2.Item1.ToString() + result2.Item2);
+
+            var list4 = service.GetAllAccounts();
+
+            foreach (var s in list)
+                Console.WriteLine(s.FirstName + " " + s.Money.ToString());
+
+            //_____________________________________
 
             Console.ReadLine();
         }
