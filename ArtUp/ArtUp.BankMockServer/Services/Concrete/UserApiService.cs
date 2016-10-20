@@ -23,25 +23,57 @@ namespace ArtUp.BankMockServer.Services.Concrete
         public Tuple<bool, string> CreateTransaction(string accountNumber, string targetAccountNumber, float amount)
         {
             var account = database.Accounts.GetByNumber(accountNumber);
-            if(CheckAmount(account, amount))
+            bool withdrowResult = false, transferResult = false;
+            if ( account != null && CheckAmount(account, amount))
             {
                 var targetAccount = database.Accounts.GetByNumber(targetAccountNumber);
-                lock(mainLock)
+                if (targetAccount != null)
                 {
-                    account.Money -= amount;
-                    targetAccount.Money += amount;
+                    lock (mainLock)
+                    {
+                        withdrowResult = database.Accounts.ToWithdrawMoneyFromAccount(account, amount);
+                        transferResult = database.Accounts.TransferMoneyToAccount(targetAccount, amount);
+                    }
+                    if (withdrowResult == true && transferResult == true)
+                        return new Tuple<bool, string>(true, "OK");
+                    return new Tuple<bool, string>(false, "Error with transaction");
+                }
+                return new Tuple<bool, string>(false, "Incorrect target account");
+            }
+            else
+            {
+                return new Tuple<bool, string>(false, "Malo deneg!!!");
+            }
+        }
+        public Tuple<bool, string> CreateTransaction(string cardNumber, string targetAccountNumber, int CVV2, string EndDate, string FirstName, string LastName, float amount)
+        {
+            var card = database.Cards.GetcardByNumber(cardNumber);
+            if(card != null && card.CVV2 == CVV2 && card.EndDate == EndDate && card.FirstName == FirstName && card.LastName == LastName)
+            {
+                var account = database.Accounts.Get(card.AccountId.Value);
+                bool withdrowResult = false, transferResult = false;
+                if (account != null && CheckAmount(account, amount))
+            {
+                var targetAccount = database.Accounts.GetByNumber(targetAccountNumber);
+                    if (targetAccount != null)
+                    {
+                        lock (mainLock)
+                {
+                            withdrowResult = database.Accounts.ToWithdrawMoneyFromAccount(account, amount);
+                            transferResult = database.Accounts.TransferMoneyToAccount(targetAccount, amount);
+                }
+                        if (withdrowResult == true && transferResult == true)
+                            return new Tuple<bool, string>(true, "OK");
+                        return new Tuple<bool, string>(false, "Error with transaction");
+            }
+                    return new Tuple<bool, string>(false, "iNCORRECT TARGET ACCOUNT");
+        }
+                else
+        {
+                    return new Tuple<bool, string>(false, "Malo deneg!!!");
                 }
             }
-
-            var result = new Tuple<bool, string>(true, "OK");
-            return result;
-        }
-        public Tuple<bool, string> CreateTransaction(string cardNumber, string targetAccountNumber, int CVV2, string EndDate, string FirstName, string LastName, string billingAdress, float amount)
-        {
-            var account = database.Accounts.Get();
-
-            var result = new Tuple<bool, string>(true, "OK");
-            return result;
+            return new Tuple<bool, string>(false, "Incorrect card attributes");
         }
 
 

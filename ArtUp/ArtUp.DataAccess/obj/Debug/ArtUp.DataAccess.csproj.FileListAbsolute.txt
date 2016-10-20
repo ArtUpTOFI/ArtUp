@@ -1,0 +1,12 @@
+D:\Download\Android example\ArtUp\ArtUp\ArtUp.DataAccess\bin\Debug\ArtUp.DataAccess.dll.config
+D:\Download\Android example\ArtUp\ArtUp\ArtUp.DataAccess\bin\Debug\ArtUp.DataAccess.dll
+D:\Download\Android example\ArtUp\ArtUp\ArtUp.DataAccess\bin\Debug\ArtUp.DataAccess.pdb
+D:\Download\Android example\ArtUp\ArtUp\ArtUp.DataAccess\bin\Debug\EntityFramework.dll
+D:\Download\Android example\ArtUp\ArtUp\ArtUp.DataAccess\bin\Debug\EntityFramework.SqlServer.dll
+D:\Download\Android example\ArtUp\ArtUp\ArtUp.DataAccess\bin\Debug\Ninject.dll
+D:\Download\Android example\ArtUp\ArtUp\ArtUp.DataAccess\bin\Debug\EntityFramework.xml
+D:\Download\Android example\ArtUp\ArtUp\ArtUp.DataAccess\bin\Debug\EntityFramework.SqlServer.xml
+D:\Download\Android example\ArtUp\ArtUp\ArtUp.DataAccess\bin\Debug\Ninject.xml
+D:\Download\Android example\ArtUp\ArtUp\ArtUp.DataAccess\obj\Debug\ArtUp.DataAccess.csprojResolveAssemblyReference.cache
+D:\Download\Android example\ArtUp\ArtUp\ArtUp.DataAccess\obj\Debug\ArtUp.DataAccess.dll
+D:\Download\Android example\ArtUp\ArtUp\ArtUp.DataAccess\obj\Debug\ArtUp.DataAccess.pdb

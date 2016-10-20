@@ -1,0 +1,10 @@
+D:\Download\Android example\ArtUp\ArtUp\ArtUp.BankMockServer\bin\Debug\ArtUp.BankMockServer.dll.config
+D:\Download\Android example\ArtUp\ArtUp\ArtUp.BankMockServer\bin\Debug\ArtUp.BankMockServer.dll
+D:\Download\Android example\ArtUp\ArtUp\ArtUp.BankMockServer\bin\Debug\ArtUp.BankMockServer.pdb
+D:\Download\Android example\ArtUp\ArtUp\ArtUp.BankMockServer\bin\Debug\EntityFramework.dll
+D:\Download\Android example\ArtUp\ArtUp\ArtUp.BankMockServer\bin\Debug\EntityFramework.SqlServer.dll
+D:\Download\Android example\ArtUp\ArtUp\ArtUp.BankMockServer\bin\Debug\EntityFramework.xml
+D:\Download\Android example\ArtUp\ArtUp\ArtUp.BankMockServer\bin\Debug\EntityFramework.SqlServer.xml
+D:\Download\Android example\ArtUp\ArtUp\ArtUp.BankMockServer\obj\Debug\ArtUp.BankMockServer.csprojResolveAssemblyReference.cache
+D:\Download\Android example\ArtUp\ArtUp\ArtUp.BankMockServer\obj\Debug\ArtUp.BankMockServer.dll
+D:\Download\Android example\ArtUp\ArtUp\ArtUp.BankMockServer\obj\Debug\ArtUp.BankMockServer.pdb

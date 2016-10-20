@@ -44,7 +44,7 @@ namespace ArtUp.BankMockServer.Repositories
 
         public Card GetcardByNumber(string Nubmer)
         {
-            return db.Cards.Where(n => n.Number == Nubmer).First();
+            return db.Cards.Where(n => n.Number == Nubmer).FirstOrDefault();
         }
 
         public void Update(Card item)
