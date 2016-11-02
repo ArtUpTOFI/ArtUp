@@ -2,6 +2,7 @@
 using ArtUp.DataAccess.Entities;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -10,7 +11,7 @@ namespace ArtUp.DataAccess.Repositories
     public class ProjectRepository : IProjectRepository
     {
         private ArtUpDataContextEF _context;
-
+        
         public ProjectRepository(ArtUpDataContextEF context)
         {
             _context = context;
@@ -18,32 +19,34 @@ namespace ArtUp.DataAccess.Repositories
 
         public void Create(Project entity)
         {
-            throw new NotImplementedException();
+            _context.Projects.Add(entity);
         }
 
-        public void Delete(Project entity)
+        public void Delete(int id)
         {
-            throw new NotImplementedException();
+            Project project = _context.Projects.Find(id);
+            if (project != null)
+                _context.Projects.Remove(project);
         }
 
         public IEnumerable<Project> Find(Expression<Func<Project, bool>> filter)
         {
-            throw new NotImplementedException();
+            return _context.Projects.Where(filter).ToList();
         }
 
         public Project Get(int id)
         {
-            throw new NotImplementedException();
+            return _context.Projects.Find(id);
         }
 
         public IQueryable<Project> GetAll()
         {
-            throw new NotImplementedException();
+            return _context.Projects;
         }
 
         public void Update(Project entity)
         {
-            throw new NotImplementedException();
+            _context.Entry(entity).State = EntityState.Modified;
         }
     }
 }

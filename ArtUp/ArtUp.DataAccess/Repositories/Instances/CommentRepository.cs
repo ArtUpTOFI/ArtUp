@@ -2,6 +2,7 @@
 using ArtUp.DataAccess.Entities;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -18,32 +19,34 @@ namespace ArtUp.DataAccess.Repositories
 
         public void Create(Comment entity)
         {
-            throw new NotImplementedException();
+            _context.Comments.Add(entity);
         }
 
-        public void Delete(Comment entity)
+        public void Delete(int id)
         {
-            throw new NotImplementedException();
+            Comment comment = _context.Comments.Find(id);
+            if (comment != null)
+                _context.Comments.Remove(comment);
         }
 
         public IEnumerable<Comment> Find(Expression<Func<Comment, bool>> filter)
         {
-            throw new NotImplementedException();
+            return _context.Comments.Where(filter).ToList();
         }
 
         public Comment Get(int id)
         {
-            throw new NotImplementedException();
+            return _context.Comments.Find(id);
         }
 
         public IQueryable<Comment> GetAll()
         {
-            throw new NotImplementedException();
+            return _context.Comments;
         }
 
         public void Update(Comment entity)
         {
-            throw new NotImplementedException();
+            _context.Entry(entity).State = EntityState.Modified;
         }
     }
 }

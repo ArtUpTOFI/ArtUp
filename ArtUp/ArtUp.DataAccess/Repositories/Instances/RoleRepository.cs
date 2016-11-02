@@ -2,6 +2,7 @@
 using ArtUp.DataAccess.Entities;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -10,7 +11,7 @@ namespace ArtUp.DataAccess.Repositories
     public class RoleRepository : IRoleRepository
     {
         private ArtUpDataContextEF _context;
-
+        
         public RoleRepository(ArtUpDataContextEF context)
         {
             _context = context;
@@ -18,32 +19,34 @@ namespace ArtUp.DataAccess.Repositories
 
         public void Create(Role entity)
         {
-            throw new NotImplementedException();
+            _context.Roles.Add(entity);
         }
 
-        public void Delete(Role entity)
+        public void Delete(int id)
         {
-            throw new NotImplementedException();
+            Role role = _context.Roles.Find(id);
+            if (role != null)
+                _context.Roles.Remove(role);
         }
 
         public IEnumerable<Role> Find(Expression<Func<Role, bool>> filter)
         {
-            throw new NotImplementedException();
+            return _context.Roles.Where(filter).ToList();
         }
 
         public Role Get(int id)
         {
-            throw new NotImplementedException();
+            return _context.Roles.Find(id);
         }
 
         public IQueryable<Role> GetAll()
         {
-            throw new NotImplementedException();
+            return _context.Roles;
         }
 
         public void Update(Role entity)
         {
-            throw new NotImplementedException();
+            _context.Entry(entity).State = EntityState.Modified;
         }
     }
 }

@@ -5,89 +5,84 @@ namespace ArtUp.DataAccess.DataContext
 {
     public class ArtUpData: IArtUpData
     {
-        private ICategoryRepository _categories;
-        private ICommentRepository _comments;
-        private IGiftRepository _gifts;
-        private IProjectRepository _projects;
-        private IRoleRepository _roles;
-        private IUserDonationRepository _userDonations;
-        private IUserRepository _users;
+        private CategoryRepository _categories;
+        private CommentRepository _comments;
+        private GiftRepository _gifts;
+        private ProjectRepository _projects;
+        private RoleRepository _roles;
+        private UserDonationRepository _userDonations;
+        private UserRepository _users;
 
-        public ArtUpDataContextEF Context { get; }        
+        private ArtUpDataContextEF context = new ArtUpDataContextEF();       
 
         private bool _disposed = false;
 
-        public ArtUpData(ArtUpDataContextEF context)
-        {
-            Context = context;
-        }
-
-        public ICategoryRepository Categories
+        public CategoryRepository Categories
         {
             get
             {
                 if (_categories == null)
-                    _categories = new CategoryRepository(Context);
+                    _categories = new CategoryRepository(context);
                 return _categories;
             }
         }
 
-        public ICommentRepository Comments
+        public CommentRepository Comments
         {
             get
             {
                 if (_comments == null)
-                    _comments = new CommentRepository(Context);
+                    _comments = new CommentRepository(context);
                 return _comments;
             }
         }
 
-        public IGiftRepository Gifts
+        public GiftRepository Gifts
         {
             get
             {
                 if (_gifts == null)
-                    _gifts = new GiftRepository(Context);
+                    _gifts = new GiftRepository(context);
                 return _gifts;
             }
         }
 
-        public IProjectRepository Projects
+        public ProjectRepository Projects
         {
             get
             {
                 if (_projects == null)
-                    _projects = new ProjectRepository(Context);
+                    _projects = new ProjectRepository(context);
                 return _projects;
             }
         }
 
-        public IRoleRepository Roles
+        public RoleRepository Roles
         {
             get
             {
                 if (_roles == null)
-                    _roles = new RoleRepository(Context);
+                    _roles = new RoleRepository(context);
                 return _roles;
             }
         }
 
-        public IUserDonationRepository UserDonations
+        public UserDonationRepository UserDonations
         {
             get
             {
                 if (_userDonations == null)
-                    _userDonations = new UserDonationRepository(Context);
+                    _userDonations = new UserDonationRepository(context);
                 return _userDonations;
             }
         }
 
-        public IUserRepository Users
+        public UserRepository Users
         {
             get
             {
                 if (_users == null)
-                    _users = new UserRepository(Context);
+                    _users = new UserRepository(context);
                 return _users;
             }
         }
@@ -98,7 +93,7 @@ namespace ArtUp.DataAccess.DataContext
             {
                 if (disposing)
                 {
-                    Context.Dispose();
+                    context.Dispose();
                 }
                 _disposed = true;
             }
@@ -112,8 +107,8 @@ namespace ArtUp.DataAccess.DataContext
 
         public void SaveAll()
         {
-            if (Context != null)
-                Context.SaveChanges();
+            if (context != null)
+                context.SaveChanges();
         }
     }
 }

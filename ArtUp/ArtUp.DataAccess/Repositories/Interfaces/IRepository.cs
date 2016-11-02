@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 
 namespace ArtUp.DataAccess.Repositories
 {
-    public interface IRepository<Entity> where Entity: BaseEntity
+    public interface IRepository<Entity> where Entity: class
     {
         IQueryable<Entity> GetAll();
 
@@ -16,7 +16,7 @@ namespace ArtUp.DataAccess.Repositories
 
         void Create(Entity entity);
 
-        void Delete(Entity entity);
+        void Delete(int id);
 
         void Update(Entity entity);
     }

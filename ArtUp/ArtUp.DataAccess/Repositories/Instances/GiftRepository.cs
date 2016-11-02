@@ -2,6 +2,7 @@
 using ArtUp.DataAccess.Entities;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -18,32 +19,34 @@ namespace ArtUp.DataAccess.Repositories
 
         public void Create(Gift entity)
         {
-            throw new NotImplementedException();
+            _context.Gifts.Add(entity);
         }
 
-        public void Delete(Gift entity)
+        public void Delete(int id)
         {
-            throw new NotImplementedException();
+            Gift gift = _context.Gifts.Find(id);
+            if (gift != null)
+                _context.Gifts.Remove(gift);
         }
 
         public IEnumerable<Gift> Find(Expression<Func<Gift, bool>> filter)
         {
-            throw new NotImplementedException();
+            return _context.Gifts.Where(filter).ToList();
         }
 
         public Gift Get(int id)
         {
-            throw new NotImplementedException();
+            return _context.Gifts.Find(id);
         }
 
         public IQueryable<Gift> GetAll()
         {
-            throw new NotImplementedException();
+            return _context.Gifts;
         }
 
         public void Update(Gift entity)
         {
-            throw new NotImplementedException();
+            _context.Entry(entity).State = EntityState.Modified;
         }
     }
 }

@@ -5,6 +5,8 @@ namespace ArtUp.DataAccess.DataContext
 {
     public class ArtUpDataContextEF: DbContext
     {
+        public ArtUpDataContextEF(): base("DefaultConnection") { }
+
         public DbSet<User> Users { get; set; }
 
         public DbSet<UserDonation> UserDonations { get; set; }

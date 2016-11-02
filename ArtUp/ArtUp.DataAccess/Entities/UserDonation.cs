@@ -31,5 +31,15 @@ namespace ArtUp.DataAccess.Entities
         /// </summary>
         public int? GiftId { get; set; }
         public virtual Gift Gift { get; set; }
+
+        /// <summary>
+        /// Number of an account or a card 
+        /// </summary>
+        public string AccountNumber { get; set; }
+
+        /// <summary>
+        /// Determines if this account number is a card number or not
+        /// </summary>
+        public bool IsCardNumber { get; set; }
     }
 }

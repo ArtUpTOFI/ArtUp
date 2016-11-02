@@ -2,6 +2,7 @@
 using ArtUp.DataAccess.Entities;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -10,40 +11,42 @@ namespace ArtUp.DataAccess.Repositories
     public class UserRepository : IUserRepository
     {
         private ArtUpDataContextEF _context;
-
-        public UserRepository(ArtUpDataContextEF context)
+        
+        public  UserRepository(ArtUpDataContextEF context)
         {
             _context = context;
         }
 
         public void Create(User entity)
         {
-            throw new NotImplementedException();
+            _context.Users.Add(entity);
         }
 
-        public void Delete(User entity)
+        public void Delete(int id)
         {
-            throw new NotImplementedException();
+            User user = _context.Users.Find(id);
+            if (user != null)
+                _context.Users.Remove(user);
         }
 
         public IEnumerable<User> Find(Expression<Func<User, bool>> filter)
         {
-            throw new NotImplementedException();
+            return _context.Users.Where(filter).ToList();
         }
 
         public User Get(int id)
         {
-            throw new NotImplementedException();
+            return _context.Users.Find(id);
         }
 
         public IQueryable<User> GetAll()
         {
-            throw new NotImplementedException();
+            return _context.Users;
         }
 
         public void Update(User entity)
         {
-            throw new NotImplementedException();
+            _context.Entry(entity).State = EntityState.Modified;
         }
     }
 }

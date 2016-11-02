@@ -56,6 +56,7 @@
     <Compile Include="DataContext\ArtUpData.cs" />
     <Compile Include="DataContext\ArtUpDataContextEF.cs" />
     <Compile Include="DataContext\IArtUpData.cs" />
+    <Compile Include="DataInitializers\DevDBInitializer.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\Comment.cs" />
@@ -85,7 +86,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Common\Logging\" />
-    <Folder Include="DataInitializers\" />
     <Folder Include="Helpers\" />
   </ItemGroup>
   <ItemGroup>

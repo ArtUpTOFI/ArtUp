@@ -10,7 +10,6 @@ namespace ArtUp.WebApi.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
-
     public static class NinjectWebCommon 
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
@@ -61,6 +60,7 @@ namespace ArtUp.WebApi.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            //DependencyResolver.SetResolver(new IoC.NinjectDependencyResolver(kernel));
         }        
     }
 }
