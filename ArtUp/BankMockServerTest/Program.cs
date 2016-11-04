@@ -34,7 +34,7 @@ namespace BankMockServerTest
 
             //Transfer from account 1 to account 2
 
-            var result = service.CreateTransaction("2221111111113", "1111111111113", 20); 
+            var result = service.CreateTransaction("2221111111113", "1111111111113", 5); 
             Console.WriteLine(result.Item1.ToString() + result.Item2);
             var list2 = service.GetAllAccounts();
 
@@ -45,7 +45,7 @@ namespace BankMockServerTest
 
             //Transfer from card  to account 
 
-            var result1 = service.CreateTransaction("1234567890123456", "2221111111113", 123, "9/20", "Yauheni", "Bychkouski", 5);
+            var result1 = service.CreateTransaction("1234567890123456", "2221111111113", 123, "9/20", "Yauheni", "Bychkouski",30);
             Console.WriteLine(result1.Item1.ToString() + result1.Item2);
 
             var list3 = service.GetAllAccounts();
