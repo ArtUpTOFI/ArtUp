@@ -6,5 +6,9 @@ namespace ArtUp.WebApi.Services
     public interface IProjectService
     {
         IEnumerable<Comment> GetCommentsByProject(int projectId);
+
+        IEnumerable<Project> GetAllProjects();
+
+        Project Get(int projectId);
     }
 }

@@ -84,3 +84,5 @@ D:\Download\Android example\ArtUp\ArtUp\ArtUp.WebApi\bin\System.Web.Http.Owin.xm
 D:\Download\Android example\ArtUp\ArtUp\ArtUp.WebApi\obj\Debug\ArtUp.WebApi.csprojResolveAssemblyReference.cache
 D:\Download\Android example\ArtUp\ArtUp\ArtUp.WebApi\obj\Debug\ArtUp.WebApi.dll
 D:\Download\Android example\ArtUp\ArtUp\ArtUp.WebApi\obj\Debug\ArtUp.WebApi.pdb
+D:\Download\Android example\ArtUp\ArtUp\ArtUp.WebApi\bin\AutoMapper.dll
+D:\Download\Android example\ArtUp\ArtUp\ArtUp.WebApi\bin\AutoMapper.xml
