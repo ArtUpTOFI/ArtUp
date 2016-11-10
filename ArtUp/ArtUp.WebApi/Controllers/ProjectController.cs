@@ -23,20 +23,32 @@ namespace ArtUp.WebApi.Controllers
         //api/Project/2
         public ProjectViewModel Get(int id)
         {
-            Mapper.Initialize(Config);
             var proj = Mapper.Map<Project, ProjectViewModel>(_projectService.Get(id));
-            //return _projectService.GetCommentsByProject(id).Select(c => c.Text).ToList();
             return proj;
         }
 
         public IEnumerable<ProjectViewModel> Get()
         {
-            Mapper.Initialize(Config);
-            var pr = _projectService.Get(1);
-            var p = _projectService.GetAllProjects();
             var ps = Mapper.Map<IEnumerable<Project>, List<ProjectViewModel>>(_projectService.GetAllProjects());
             return ps;
         }
+
+        //TODO: Change type Category to json
+        [System.Web.Http.HttpGet]
+        public IEnumerable<ProjectViewModel> GetProjectsByCategory(Category category)
+        {
+            var projs = Mapper.Map<IEnumerable<Project>, List<ProjectViewModel>>(_projectService.GetByCategory(category));
+            return projs;
+        }
+
+        //TODO: Change type bool to json
+        [System.Web.Http.HttpGet]
+        public IEnumerable<ProjectViewModel> GetProjectsBySuccess(bool isSuccess)
+        {
+            var projs = Mapper.Map<IEnumerable<Project>, List<ProjectViewModel>>(_projectService.GetBySuccess(isSuccess));
+            return projs;
+        }
+
 
         private static void Config(IMapperConfigurationExpression cfg)
         {

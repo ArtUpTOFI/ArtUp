@@ -106,7 +106,7 @@ namespace ArtUp.DataAccess.DataInitializers
                     Adress = "Minsk, 9",
                     Avatar = "title_1.png",
                     CategoryId = 2,
-                    CurrentMoney = 5900,
+                    CurrentMoney = 6900,
                     DateOfBirth = new DateTime(1990, 5, 19),
                     DocumentType = Entities.Enums.DocumentType.Passport,
                     Duration = TimeSpan.FromHours(3),

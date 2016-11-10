@@ -10,5 +10,9 @@ namespace ArtUp.WebApi.Services
         IEnumerable<Project> GetAllProjects();
 
         Project Get(int projectId);
+
+        IEnumerable<Project> GetByCategory(Category categoty);
+
+        IEnumerable<Project> GetBySuccess(bool isSuccess);
     }
 }
