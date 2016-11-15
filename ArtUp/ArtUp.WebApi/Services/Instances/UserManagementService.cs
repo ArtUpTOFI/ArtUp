@@ -33,5 +33,10 @@ namespace ArtUp.WebApi.Services.Instances
                 _dataBase.SaveAll();
             }
         }
+
+        public User GetByName(string name)
+        {
+            return _dataBase.Users.Find(u => u.Email == name).FirstOrDefault();
+        }
     }
 }
