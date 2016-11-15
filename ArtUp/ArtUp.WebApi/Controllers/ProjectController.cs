@@ -20,6 +20,7 @@ namespace ArtUp.WebApi.Controllers
             Mapper.Initialize(Config);
         }
 
+        //[System.Web.Http.Authorize]
         //api/Project/2
         public ProjectViewModel Get(int id)
         {
