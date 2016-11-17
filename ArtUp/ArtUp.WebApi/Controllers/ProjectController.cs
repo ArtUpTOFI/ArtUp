@@ -7,19 +7,27 @@ using AutoMapper;
 
 using ArtUp.DataAccess.Entities;
 using ArtUp.WebApi.Models;
+using ArtUp.WebApi.Services.Instances;
+using ArtUp.WebApi.Services.Interfaces;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace ArtUp.WebApi.Controllers
 {
     public class ProjectController : ApiController
     {
         ProjectService _projectService;
+        private IUserManagementService _userManagementService;
 
         public ProjectController()
         {
+            _userManagementService = new UserManagementService();
             _projectService = new ProjectService();
             Mapper.Initialize(Config);
         }
 
+        //[System.Web.Http.Authorize]
         //api/Project/2
         public ProjectViewModel Get(int id)
         {
@@ -43,12 +51,24 @@ namespace ArtUp.WebApi.Controllers
 
         //TODO: Change type bool to json
         [System.Web.Http.HttpGet]
-        public IEnumerable<ProjectViewModel> GetProjectsBySuccess(bool isSuccess)
+        public IEnumerable<ProjectViewModel> GetProjectsBySuccess(string isSuccess)
         {
-            var projs = Mapper.Map<IEnumerable<Project>, List<ProjectViewModel>>(_projectService.GetBySuccess(isSuccess));
-            return projs;
+            if (isSuccess.Equals("true"))
+            {
+                var projs =
+                    Mapper.Map<IEnumerable<Project>, List<ProjectViewModel>>(_projectService.GetBySuccess(true));
+                return projs;
+            }
+            return null;
         }
 
+        [System.Web.Http.HttpGet]
+        public IEnumerable<ProjectViewModel> GetUserProject()
+        {
+            var id = User.Identity.GetUserId();
+            var result = Mapper.Map<IEnumerable<Project>, List<ProjectViewModel>>(_projectService.GetUserProjects(_userManagementService.GetByName(User.Identity.Name).Id));
+            return result;
+        }
 
         private static void Config(IMapperConfigurationExpression cfg)
         {

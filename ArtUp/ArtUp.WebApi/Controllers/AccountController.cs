@@ -16,6 +16,8 @@ using Microsoft.Owin.Security.OAuth;
 using ArtUp.WebApi.Models;
 using ArtUp.WebApi.Providers;
 using ArtUp.WebApi.Results;
+using ArtUp.WebApi.Services.Instances;
+using ArtUp.WebApi.Services.Interfaces;
 
 namespace ArtUp.WebApi.Controllers
 {
@@ -26,8 +28,11 @@ namespace ArtUp.WebApi.Controllers
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;
 
+        private IUserManagementService _userManagementService;
+
         public AccountController()
         {
+            _userManagementService = new UserManagementService();
         }
 
         public AccountController(ApplicationUserManager userManager,
@@ -336,6 +341,8 @@ namespace ArtUp.WebApi.Controllers
             {
                 return GetErrorResult(result);
             }
+
+            _userManagementService.CreateUser(model.Email, model.Password);
 
             return Ok();
         }

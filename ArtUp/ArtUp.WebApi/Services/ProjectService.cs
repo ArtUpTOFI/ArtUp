@@ -38,6 +38,11 @@ namespace ArtUp.WebApi.Services
                 : data.Projects.Find(p => p.RequiredMoney > p.CurrentMoney).ToList();
         }
 
+        public IEnumerable<Project> GetUserProjects(int userId)
+        {
+            return data.Projects.Find(p => p.UserId == userId).ToList();
+        }
+
         public IEnumerable<Comment> GetCommentsByProject(int projectId)
         {
             return data.Comments.Find(comment => comment.ProjectId == projectId).ToList();
