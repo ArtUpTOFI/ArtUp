@@ -42,10 +42,5 @@ namespace ArtUp.WebApi.Services
         {
             return data.Projects.Find(p => p.UserId == userId).ToList();
         }
-
-        public IEnumerable<Comment> GetCommentsByProject(int projectId)
-        {
-            return data.Comments.Find(comment => comment.ProjectId == projectId).ToList();
-        }
     }
 }

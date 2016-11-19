@@ -17,18 +17,20 @@ namespace ArtUp.WebApi.Controllers
 {
     public class ProjectController : ApiController
     {
-        ProjectService _projectService;
-        private IUserManagementService _userManagementService;
+        IProjectService _projectService;
+        IUserManagementService _userManagementService;
 
         public ProjectController()
         {
             _userManagementService = new UserManagementService();
             _projectService = new ProjectService();
+
             Mapper.Initialize(Config);
         }
 
         //[System.Web.Http.Authorize]
         //api/Project/2
+        [System.Web.Http.HttpGet]
         public ProjectViewModel Get(int id)
         {
             var proj = Mapper.Map<Project, ProjectViewModel>(_projectService.Get(id));
@@ -62,6 +64,11 @@ namespace ArtUp.WebApi.Controllers
             return null;
         }
 
+        private static void Config(IMapperConfigurationExpression cfg)
+        {
+            cfg.CreateMap<Project, ProjectViewModel>();
+        }
+
         //[System.Web.Http.HttpGet]
         //public IEnumerable<ProjectViewModel> GetUserProject()
         //{
@@ -69,10 +76,5 @@ namespace ArtUp.WebApi.Controllers
         //    var result = Mapper.Map<IEnumerable<Project>, List<ProjectViewModel>>(_projectService.GetUserProjects(_userManagementService.GetByName(User.Identity.Name).Id));
         //    return result;
         //}
-
-        private static void Config(IMapperConfigurationExpression cfg)
-        {
-            cfg.CreateMap<Project, ProjectViewModel>();
-        }
     }
 }
