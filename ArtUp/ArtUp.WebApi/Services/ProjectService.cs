@@ -26,9 +26,9 @@ namespace ArtUp.WebApi.Services
             return data.Projects.GetAll().ToList();
         }
 
-        public IEnumerable<Project> GetByCategory(Category categoty)
+        public IEnumerable<Project> GetByCategory(string categoty)
         {
-            return data.Projects.Find(p => p.Category == categoty).ToList();
+            return data.Projects.Find(p => p.Category.Title == categoty).ToList();
         }
 
         public IEnumerable<Project> GetBySuccess(bool isSuccess)

@@ -35,15 +35,15 @@ namespace ArtUp.WebApi.Controllers
             return proj;
         }
 
+        [System.Web.Http.HttpGet]
         public IEnumerable<ProjectViewModel> Get()
         {
             var ps = Mapper.Map<IEnumerable<Project>, List<ProjectViewModel>>(_projectService.GetAllProjects());
             return ps;
         }
 
-        //TODO: Change type Category to json
         [System.Web.Http.HttpGet]
-        public IEnumerable<ProjectViewModel> GetProjectsByCategory(Category category)
+        public IEnumerable<ProjectViewModel> GetProjectsByCategory(string category)
         {
             var projs = Mapper.Map<IEnumerable<Project>, List<ProjectViewModel>>(_projectService.GetByCategory(category));
             return projs;
@@ -62,13 +62,13 @@ namespace ArtUp.WebApi.Controllers
             return null;
         }
 
-        [System.Web.Http.HttpGet]
-        public IEnumerable<ProjectViewModel> GetUserProject()
-        {
-            var id = User.Identity.GetUserId();
-            var result = Mapper.Map<IEnumerable<Project>, List<ProjectViewModel>>(_projectService.GetUserProjects(_userManagementService.GetByName(User.Identity.Name).Id));
-            return result;
-        }
+        //[System.Web.Http.HttpGet]
+        //public IEnumerable<ProjectViewModel> GetUserProject()
+        //{
+        //    var id = User.Identity.GetUserId();
+        //    var result = Mapper.Map<IEnumerable<Project>, List<ProjectViewModel>>(_projectService.GetUserProjects(_userManagementService.GetByName(User.Identity.Name).Id));
+        //    return result;
+        //}
 
         private static void Config(IMapperConfigurationExpression cfg)
         {

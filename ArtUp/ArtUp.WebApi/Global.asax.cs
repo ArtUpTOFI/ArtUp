@@ -11,7 +11,7 @@ namespace ArtUp.WebApi
     {
         protected void Application_Start()
         {
-            Database.SetInitializer(new DevDBInitializer());
+            //Database.SetInitializer(new DevDBInitializer());
 
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
