@@ -16,6 +16,11 @@ namespace ArtUp.WebApi.Services
             data = new ArtUpData();
         }
 
+        public void CreateProject(Project project)
+        {
+            data.Projects.Create(project);
+        }
+
         public Project Get(int projectId)
         {
             return data.Projects.Get(projectId);
@@ -41,6 +46,11 @@ namespace ArtUp.WebApi.Services
         public IEnumerable<Project> GetUserProjects(int userId)
         {
             return data.Projects.Find(p => p.UserId == userId).ToList();
+        }
+
+        public void UpdateProject(Project project)
+        {
+            data.Projects.Update(project);
         }
     }
 }

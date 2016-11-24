@@ -1,5 +1,6 @@
 ﻿using ArtUp.DataAccess.Entities;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 
 namespace ArtUp.WebApi.Services
 {
@@ -14,5 +15,9 @@ namespace ArtUp.WebApi.Services
         IEnumerable<Project> GetBySuccess(bool isSuccess);
 
         IEnumerable<Project> GetUserProjects(int userId);
+
+        void UpdateProject(Project project);
+
+        void CreateProject(Project project);
     }
 }

@@ -35,7 +35,18 @@ namespace ArtUp.BankMockServer.Services.Concrete
                         transferResult = database.Accounts.TransferMoneyToAccount(targetAccount, amount);
                     }
                     if (withdrowResult == true && transferResult == true)
+                    {
+                        var transaction = new Transaction
+                        {
+                            Money = amount,
+                            TargetAccountId = targetAccount.Id.ToString(),
+                            AccountId = account.Id,
+                            TransactionDate = DateTime.Now
+                        };
+
+                        database.Transactions.Create(transaction);
                         return new Tuple<bool, string>(true, "OK");
+                    }
                     return new Tuple<bool, string>(false, "Error with transaction");
                 }
                 return new Tuple<bool, string>(false, "Incorrect target account");
@@ -63,7 +74,19 @@ namespace ArtUp.BankMockServer.Services.Concrete
                             transferResult = database.Accounts.TransferMoneyToAccount(targetAccount, amount);
                 }
                         if (withdrowResult == true && transferResult == true)
+                        {
+                            var transaction = new Transaction
+                            {
+                                Card = cardNumber,
+                                Money = amount,
+                                TargetAccountId = targetAccount.Id.ToString(),
+                                AccountId = account.Id,
+                                TransactionDate = DateTime.Now
+                            };
+
+                            database.Transactions.Create(transaction);
                             return new Tuple<bool, string>(true, "OK");
+                        }
                         return new Tuple<bool, string>(false, "Error with transaction");
             }
                     return new Tuple<bool, string>(false, "iNCORRECT TARGET ACCOUNT");
@@ -101,6 +124,11 @@ namespace ArtUp.BankMockServer.Services.Concrete
         {
             var targetAccount = database.Accounts.GetByNumber(number);
             return database.Transactions.Find(t =>t.AccountId == targetAccount.Id);
+        }
+
+        public IEnumerable<Transaction> GetAllTransactions()
+        {
+            return database.Transactions.GetAll();
         }
 
         private bool CheckAmount(Account account, float amount)

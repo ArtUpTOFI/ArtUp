@@ -68,6 +68,25 @@ namespace BankMockServerTest
             //_____________________________________
 
             Console.ReadLine();
+
+
+
+            //string data = null;
+            //HttpClient client = new HttpClient();
+
+            //client.BaseAddress = new Uri("http://localhost:59429/Data/");
+            //client.DefaultRequestHeaders.Accept.Clear();
+            //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            //HttpResponseMessage response = await client.GetAsync("Data.json");
+            //if (response.IsSuccessStatusCode)
+            //{
+            //    data = await response.Content.ReadAsStringAsync();
+            //}
+
+            //var result = Newtonsoft.Json.JsonConvert.DeserializeObject<Event>(data);
+
+            //Event res = await RequestData();
         }
     }
 

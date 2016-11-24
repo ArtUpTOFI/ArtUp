@@ -20,6 +20,7 @@ namespace ArtUp.BankMockServer.Repositories
         public void Create(Transaction item)
         {
             db.Transactions.Add(item);
+            db.SaveChanges();
         }
 
         public void Delete(int id)

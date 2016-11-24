@@ -16,7 +16,7 @@ namespace ArtUp.BankMockServer.Entities
 
         public DateTime TransactionDate { get; set; }
 
-        public int Money { get; set; }
+        public float Money { get; set; }
 
         public string Card { get; set; }
     }
