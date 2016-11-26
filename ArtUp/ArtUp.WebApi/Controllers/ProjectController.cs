@@ -28,13 +28,11 @@ namespace ArtUp.WebApi.Controllers
             Mapper.Initialize(Config);
         }
 
-        //[System.Web.Http.Authorize]
-        //api/Project/2
         [System.Web.Http.HttpGet]
         public ProjectViewModel Get(int id)
         {
-            var proj = Mapper.Map<Project, ProjectViewModel>(_projectService.Get(id));
-            return proj;
+            //var proj = Mapper.Map<Project, ProjectViewModel>(_projectService.Get(Id));
+            return _projectService.Get(id);
         }
 
         [System.Web.Http.HttpGet]

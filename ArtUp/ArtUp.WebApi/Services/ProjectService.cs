@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using ArtUp.DataAccess.Entities;
 using ArtUp.DataAccess.DataContext;
+using ArtUp.WebApi.Models;
 
 namespace ArtUp.WebApi.Services
 {
@@ -16,9 +17,22 @@ namespace ArtUp.WebApi.Services
             data = new ArtUpData();
         }
 
-        public Project Get(int projectId)
+        public ProjectViewModel Get(int projectId)
         {
-            return data.Projects.Get(projectId);
+            var project = data.Projects.Get(projectId);
+            return new ProjectViewModel()
+            {
+                Id = project.Id,
+                Title = project.Title,
+                Avatar = project.Avatar,
+                CurrentMoney = project.CurrentMoney,
+                Duration = project.Duration,
+                FullDescription = project.FullDescription,
+                Name = project.Name,
+                RequiredMoney = project.RequiredMoney,
+                ShortDescription = project.ShortDescription,
+                Surname = project.Surname
+            };
         }
 
         public IEnumerable<Project> GetAllProjects()

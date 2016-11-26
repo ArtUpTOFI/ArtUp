@@ -22,6 +22,7 @@ namespace ArtUp.WebApi.Services.Instances
             var allCategories = data.Categories.GetAll()
                 .Select(c => new CategoryViewModel()
                 {
+                    Id = c.Id,
                     Title = c.Title,
                     Count = c.Projects.Count()
                 });

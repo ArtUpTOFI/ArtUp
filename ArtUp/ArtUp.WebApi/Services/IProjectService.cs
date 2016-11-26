@@ -1,4 +1,5 @@
 ﻿using ArtUp.DataAccess.Entities;
+using ArtUp.WebApi.Models;
 using System.Collections.Generic;
 
 namespace ArtUp.WebApi.Services
@@ -7,7 +8,7 @@ namespace ArtUp.WebApi.Services
     {
         IEnumerable<Project> GetAllProjects();
 
-        Project Get(int projectId);
+        ProjectViewModel Get(int projectId);
 
         IEnumerable<Project> GetByCategory(string categoty);
 

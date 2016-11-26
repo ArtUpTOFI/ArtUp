@@ -7,6 +7,8 @@ namespace ArtUp.WebApi.Models
 {
     public class ProjectViewModel
     {
+        public int Id { get; set; }
+
         public string Title { get; set; }
 
         /// <summary>

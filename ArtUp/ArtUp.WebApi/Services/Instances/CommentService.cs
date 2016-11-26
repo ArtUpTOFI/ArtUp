@@ -26,7 +26,7 @@ namespace ArtUp.WebApi.Services.Instances
                     Date = c.Date,
                     Author = data.Users.Get(c.UserId ?? 0).Email
                 });
-            return comments;
+            return comments.OrderByDescending(c => c.Date);
         }
     }
 }
