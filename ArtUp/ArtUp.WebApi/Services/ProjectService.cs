@@ -17,22 +17,14 @@ namespace ArtUp.WebApi.Services
             data = new ArtUpData();
         }
 
-        public ProjectViewModel Get(int projectId)
+        public void CreateProject(Project project)
         {
-            var project = data.Projects.Get(projectId);
-            return new ProjectViewModel()
-            {
-                Id = project.Id,
-                Title = project.Title,
-                Avatar = project.Avatar,
-                CurrentMoney = project.CurrentMoney,
-                Duration = project.Duration,
-                FullDescription = project.FullDescription,
-                Name = project.Name,
-                RequiredMoney = project.RequiredMoney,
-                ShortDescription = project.ShortDescription,
-                Surname = project.Surname
-            };
+            data.Projects.Create(project);
+        }
+
+        public Project Get(int projectId)
+        {
+            return data.Projects.Get(projectId);
         }
 
         public IEnumerable<Project> GetAllProjects()
@@ -55,6 +47,11 @@ namespace ArtUp.WebApi.Services
         public IEnumerable<Project> GetUserProjects(int userId)
         {
             return data.Projects.Find(p => p.UserId == userId).ToList();
+        }
+
+        public void UpdateProject(Project project)
+        {
+            data.Projects.Update(project);
         }
     }
 }

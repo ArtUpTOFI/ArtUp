@@ -44,5 +44,11 @@ namespace ArtUp.BankMockUI.Controllers
 
             return View(model);
         }
+
+        public ActionResult GetAllTransactions()
+        {
+            var tList = service.GetAllTransactions();
+            return View(tList);
+        }
     }
 }
