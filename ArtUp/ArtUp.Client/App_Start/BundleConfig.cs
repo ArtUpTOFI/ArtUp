@@ -26,6 +26,13 @@ namespace ArtUp.Client
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/Scripts/Obuh").Include(
+                        "~/Scripts/jquery.easing.1.3.min.js",
+                        "~/Scripts/jquery.sticky.js",
+                        "~/Scripts/owl.carousel.min.js",
+                        "~/Scripts/main.js"
+                ));
         }
     }
 }
