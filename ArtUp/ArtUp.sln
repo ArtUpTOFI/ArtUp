@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtUp.WebApi", "ArtUp.WebApi\ArtUp.WebApi.csproj", "{7C2CFC9C-4931-476B-9E25-617522B98333}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtUp.BankMockUI", "ArtUp.BankMockUI\ArtUp.BankMockUI.csproj", "{6A83F0C6-6C0D-44D8-A45C-52093F313A25}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtUp.MockUI", "ArtUp.MockUI\ArtUp.MockUI.csproj", "{EECEF4B5-4673-45B8-BDCE-798CC13A104C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtUp.Client", "ArtUp.Client\ArtUp.Client.csproj", "{EF3E0377-3F65-4D4B-90BF-85872C942240}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{EECEF4B5-4673-45B8-BDCE-798CC13A104C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EECEF4B5-4673-45B8-BDCE-798CC13A104C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EECEF4B5-4673-45B8-BDCE-798CC13A104C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF3E0377-3F65-4D4B-90BF-85872C942240}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF3E0377-3F65-4D4B-90BF-85872C942240}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF3E0377-3F65-4D4B-90BF-85872C942240}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF3E0377-3F65-4D4B-90BF-85872C942240}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

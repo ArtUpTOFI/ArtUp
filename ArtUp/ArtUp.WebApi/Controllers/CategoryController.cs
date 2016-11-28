@@ -7,9 +7,11 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace ArtUp.WebApi.Controllers
 {
+    [EnableCors(origins: "file:///C:/Users/Антон/Downloads", headers: "*", methods: "*")]
     public class CategoryController : ApiController
     {
         ICategoryService _categoryService;

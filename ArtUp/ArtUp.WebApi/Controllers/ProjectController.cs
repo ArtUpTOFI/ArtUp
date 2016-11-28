@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using System.Web.Mvc;
-using AutoMapper;
+//using AutoMapper;
 
 using ArtUp.DataAccess.Entities;
 using ArtUp.WebApi.Models;
@@ -25,7 +25,7 @@ namespace ArtUp.WebApi.Controllers
             _userManagementService = new UserManagementService();
             _projectService = new ProjectService();
 
-            Mapper.Initialize(Config);
+            //Mapper.Initialize(Config);
         }
 
         [System.Web.Http.HttpGet]
@@ -35,37 +35,37 @@ namespace ArtUp.WebApi.Controllers
             return _projectService.Get(id);
         }
 
-        [System.Web.Http.HttpGet]
-        public IEnumerable<ProjectViewModel> Get()
-        {
-            var ps = Mapper.Map<IEnumerable<Project>, List<ProjectViewModel>>(_projectService.GetAllProjects());
-            return ps;
-        }
+        //[System.Web.Http.HttpGet]
+        //public IEnumerable<ProjectViewModel> Get()
+        //{
+        //    var ps = Mapper.Map<IEnumerable<Project>, List<ProjectViewModel>>(_projectService.GetAllProjects());
+        //    return ps;
+        //}
 
-        [System.Web.Http.HttpGet]
-        public IEnumerable<ProjectViewModel> GetProjectsByCategory(string category)
-        {
-            var projs = Mapper.Map<IEnumerable<Project>, List<ProjectViewModel>>(_projectService.GetByCategory(category));
-            return projs;
-        }
+        //[System.Web.Http.HttpGet]
+        //public IEnumerable<ProjectViewModel> GetProjectsByCategory(string category)
+        //{
+        //    var projs = Mapper.Map<IEnumerable<Project>, List<ProjectViewModel>>(_projectService.GetByCategory(category));
+        //    return projs;
+        //}
 
         //TODO: Change type bool to json
-        [System.Web.Http.HttpGet]
-        public IEnumerable<ProjectViewModel> GetProjectsBySuccess(string isSuccess)
-        {
-            if (isSuccess.Equals("true"))
-            {
-                var projs =
-                    Mapper.Map<IEnumerable<Project>, List<ProjectViewModel>>(_projectService.GetBySuccess(true));
-                return projs;
-            }
-            return null;
-        }
+        //[System.Web.Http.HttpGet]
+        //public IEnumerable<ProjectViewModel> GetProjectsBySuccess(string isSuccess)
+        //{
+        //    if (isSuccess.Equals("true"))
+        //    {
+        //        var projs =
+        //            Mapper.Map<IEnumerable<Project>, List<ProjectViewModel>>(_projectService.GetBySuccess(true));
+        //        return projs;
+        //    }
+        //    return null;
+        //}
 
-        private static void Config(IMapperConfigurationExpression cfg)
-        {
-            cfg.CreateMap<Project, ProjectViewModel>();
-        }
+        //private static void Config(IMapperConfigurationExpression cfg)
+        //{
+        //    cfg.CreateMap<Project, ProjectViewModel>();
+        //}
 
         //[System.Web.Http.HttpGet]
         //public IEnumerable<ProjectViewModel> GetUserProject()
