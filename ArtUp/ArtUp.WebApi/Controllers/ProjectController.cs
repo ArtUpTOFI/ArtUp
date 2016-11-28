@@ -32,7 +32,7 @@ namespace ArtUp.WebApi.Controllers
         public ProjectViewModel Get(int id)
         {
             //var proj = Mapper.Map<Project, ProjectViewModel>(_projectService.Get(Id));
-            return _projectService.Get(id);
+            return null;
         }
 
         //[System.Web.Http.HttpGet]

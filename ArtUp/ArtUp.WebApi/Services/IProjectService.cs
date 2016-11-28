@@ -9,7 +9,7 @@ namespace ArtUp.WebApi.Services
     {
         IEnumerable<Project> GetAllProjects();
 
-        ProjectViewModel Get(int projectId);
+        Project Get(int projectId);
 
         IEnumerable<Project> GetByCategory(string categoty);
 
