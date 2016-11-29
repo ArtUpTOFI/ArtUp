@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Common\InstanseCreator.cs" />
     <Compile Include="Context\BankContext.cs" />
+    <Compile Include="Data\ExternalData.cs" />
     <Compile Include="Entities\Account.cs" />
     <Compile Include="Entities\Card.cs" />
     <Compile Include="Entities\Transaction.cs" />
@@ -64,7 +65,9 @@
     <Compile Include="Repositories\AccountRepository.cs" />
     <Compile Include="Repositories\CardRepository.cs" />
     <Compile Include="Repositories\TransactionRepository.cs" />
+    <Compile Include="Services\Concrete\SecurityService.cs" />
     <Compile Include="Services\Concrete\UserApiService.cs" />
+    <Compile Include="Services\Intarfaces\ISecurityService.cs" />
     <Compile Include="Services\Intarfaces\IUserApiService.cs" />
     <Compile Include="UnitOfWork.cs" />
   </ItemGroup>
