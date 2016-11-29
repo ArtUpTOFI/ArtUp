@@ -107,5 +107,25 @@ namespace ArtUp.Client.Services
                 Title = p.Title
             }).ToList(); ;
         }
+
+        public IEnumerable<ProjectViewModel> GetProjectsOnMainPaige()
+        {
+            return
+                data.Projects.Find(p => p.CurrentMoney > p.RequiredMoney)
+                    .Take(6)
+                    .Select(p => new ProjectViewModel()
+                    {
+                        Avatar = p.Avatar,
+                        CurrentMoney = p.CurrentMoney,
+                        Duration = p.Duration,
+                        FullDescription = p.FullDescription,
+                        Id = p.Id,
+                        Name = p.Name,
+                        RequiredMoney = p.RequiredMoney,
+                        ShortDescription = p.ShortDescription,
+                        Surname = p.Surname,
+                        Title = p.Title
+                    }).ToList();
+        }
     }
 }

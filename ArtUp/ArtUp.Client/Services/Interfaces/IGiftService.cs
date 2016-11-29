@@ -10,5 +10,7 @@ namespace ArtUp.Client.Services.Interfaces
     public interface IGiftService
     {
         IEnumerable<GiftViewModel> GetGifts(int projectId);
+
+        void CreateGift(GiftViewModel model);
     }
 }

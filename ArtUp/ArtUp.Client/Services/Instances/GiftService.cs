@@ -5,6 +5,7 @@ using System.Web;
 using ArtUp.DataAccess.DataContext;
 using ArtUp.Client.Services.Interfaces;
 using ArtUp.Client.Models;
+using ArtUp.DataAccess.Entities;
 
 namespace ArtUp.CLient.Services.Instances
 {
@@ -29,6 +30,18 @@ namespace ArtUp.CLient.Services.Instances
                 });
 
             return gifts;
+        }
+
+        public void CreateGift(GiftViewModel model)
+        {
+            var newGift = new Gift
+            {
+                MoneyAmount = model.MoneyAmount,
+                Number = model.TotalCount,
+                Description = model.Description,
+                ProjectId = model.ProjectId
+            };
+            data.Gifts.Create(newGift);
         }
     }
 }

@@ -179,9 +179,13 @@
     <Compile Include="Models\GiftViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\PaymentAccountData.cs" />
+    <Compile Include="Models\PaymentBankData.cs" />
+    <Compile Include="Models\PaymentCardData.cs" />
     <Compile Include="Models\ProjectViewModel.cs" />
     <Compile Include="Models\UserDonationViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\SecurityDataService.cs" />
     <Compile Include="Services\Instances\CategoryService.cs" />
     <Compile Include="Services\Instances\CommentService.cs" />
     <Compile Include="Services\Instances\GiftService.cs" />

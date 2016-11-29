@@ -14,5 +14,7 @@ namespace ArtUp.Client.Models
         public int TotalCount { get; set; }
 
         public string Description { get; set; }
+
+        public int ProjectId { get; set; }
     }
 }
