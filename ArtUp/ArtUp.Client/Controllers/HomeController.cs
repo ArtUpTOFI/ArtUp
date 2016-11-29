@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ArtUp.Client.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,13 @@ namespace ArtUp.Client.Controllers
 {
     public class HomeController : Controller
     {
+        IProjectService _projectService;
+
+        public HomeController()
+        {
+            _projectService = new ProjectService();
+        }
+
         public ActionResult Index()
         {
             return View();
@@ -24,6 +32,14 @@ namespace ArtUp.Client.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Category(string category)
+        {
+            ViewBag.Category = category;
+            ViewBag.Projects = _projectService.GetByCategory(category);
             return View();
         }
     }
