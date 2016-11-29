@@ -123,78 +123,21 @@
                 <div class="latest-product">
                     <h2 class="section-title">Лучшие проекты</h2>
                     <div class="product-carousel">
-                        <div class="single-project">
-                            <div class="product-f-image">
-                                <img src="/Content/img/project-1.jpg" alt="">
-                                <div class="product-hover">
-                                    <a href="single-project.html" class="add-to-cart-link"><i class="fa fa-link"></i> Подробнее</a>
+                        @foreach (var project in ViewBag.BestProjects)
+                        {
+                            <div class="single-project">
+                                <div class="product-f-image">
+                                    <img src="/Content/img/@project.Avatar" alt="">
+                                    <div class="product-hover">
+                                        <a href="single-project.html" class="add-to-cart-link"><i class="fa fa-link"></i> Подробнее</a>
+                                    </div>
+                                </div>
+                                <h2><a href="single-project.html">@project.Title</a></h2>
+                                <div class="product-carousel-price">
+                                    <ins>надо @project.RequiredMoney</ins> <del>собрали @project.CurrentMoney</del>
                                 </div>
                             </div>
-                            <h2><a href="single-project.html">Очередной проект, обречённый на провал</a></h2>
-                            <div class="product-carousel-price">
-                                <ins>надо $9999</ins> <del>собрали $14.88</del>
-                            </div>
-                        </div>
-                        <div class="single-project">
-                            <div class="product-f-image">
-                                <img src="/Content/img/project-2.jpg" alt="">
-                                <div class="product-hover">
-                                    <a href="single-project.html" class="add-to-cart-link"><i class="fa fa-link"></i> Подробнее</a>
-                                </div>
-                            </div>
-                            <h2><a href="single-project.html">очередной проект, обречённый на провал </a></h2>
-                            <div class="product-carousel-price">
-                                <ins>надо $9999</ins> <del>собрали $14.88</del>
-                            </div>
-                        </div>
-                        <div class="single-project">
-                            <div class="product-f-image">
-                                <img src="/Content/img/project-3.jpg" alt="">
-                                <div class="product-hover">
-                                    <a href="single-project.html" class="add-to-cart-link"><i class="fa fa-link"></i> Подробнее</a>
-                                </div>
-                            </div>
-                            <h2><a href="single-project.html">Очередной проект, обречённый на провал</a></h2>
-                            <div class="product-carousel-price">
-                                <ins>надо $9999</ins> <del>собрали $14.88</del>
-                            </div>
-                        </div>
-                        <div class="single-project">
-                            <div class="product-f-image">
-                                <img src="/Content/img/project-4.jpg" alt="">
-                                <div class="product-hover">
-                                    <a href="single-project.html" class="add-to-cart-link"><i class="fa fa-link"></i> Подробнее</a>
-                                </div>
-                            </div>
-                            <h2><a href="single-project.html">Очередной проект, обречённый на провал</a></h2>
-                            <div class="product-carousel-price">
-                                <ins>надо $9999</ins> <del>собрали $14.88</del>
-                            </div>
-                        </div>
-                        <div class="single-project">
-                            <div class="product-f-image">
-                                <img src="/Content/img/project-5.jpg" alt="">
-                                <div class="product-hover">
-                                    <a href="single-project.html" class="add-to-cart-link"><i class="fa fa-link"></i> Подробнее</a>
-                                </div>
-                            </div>
-                            <h2><a href="single-project.html">очередной проект, обречённый на провал</a></h2>
-                            <div class="product-carousel-price">
-                                <ins>надо $9999</ins> <del>собрали $14.88</del>
-                            </div>
-                        </div>
-                        <div class="single-project">
-                            <div class="product-f-image">
-                                <img src="/Content/img/project-6.jpg" alt="">
-                                <div class="product-hover">
-                                    <a href="single-project.html" class="add-to-cart-link"><i class="fa fa-link"></i> Подробнее</a>
-                                </div>
-                            </div>
-                            <h2><a href="single-project.html">очередной проект, обречённый на провал</a></h2>
-                            <div class="product-carousel-price">
-                                <ins>надо $9999</ins> <del>собрали $14.88</del>
-                            </div>
-                        </div>
+                        }
                     </div>
                 </div>
             </div>
@@ -282,48 +225,23 @@
                 <div class="single-project-widget">
                     <h2 class="product-wid-title">Успешные</h2>
                     <a href="#" class="wid-view-more">Смотреть Все</a>
-                    <div class="single-wid-product">
-                        <a href="single-project.html"><img src="/Content/img/project-thumb-4.jpg" alt="" class="product-thumb"></a>
-                        <h2><a href="single-project.html">Очередной проект, обречённый на провал</a></h2>
-                        <div class="product-wid-rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
+                    @foreach (var project in ViewBag.BestProjectsBottom)
+                    {
+                        <div class="single-wid-product">
+                            <a href="single-project.html"><img src="/Content/img/@project.Avatar" alt="" class="product-thumb"></a>
+                            <h2><a href="single-project.html">@project.Title</a></h2>
+                            <div class="product-wid-rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="product-wid-price">
+                                <ins>надо @project.RequiredMoney</ins> <del>собрали @project.CurrentMoney</del>
+                            </div>
                         </div>
-                        <div class="product-wid-price">
-                            <ins>надо $9999</ins> <del>собрали $14.88</del>
-                        </div>
-                    </div>
-                    <div class="single-wid-product">
-                        <a href="single-project.html"><img src="/Content/img/project-thumb-1.jpg" alt="" class="product-thumb"></a>
-                        <h2><a href="single-project.html">очередной проект, обречённый на провал</a></h2>
-                        <div class="product-wid-rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <div class="product-wid-price">
-                            <ins>надо $9999</ins> <del>собрали $14.88</del>
-                        </div>
-                    </div>
-                    <div class="single-wid-product">
-                        <a href="single-project.html"><img src="/Content/img/project-thumb-2.jpg" alt="" class="product-thumb"></a>
-                        <h2><a href="single-project.html">очередной проект, обречённый на провал</a></h2>
-                        <div class="product-wid-rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <div class="product-wid-price">
-                            <ins>надо $9999</ins> <del>собрали $14.88</del>
-                        </div>
-                    </div>
+                    }
                 </div>
             </div>
             <div class="col-md-4">

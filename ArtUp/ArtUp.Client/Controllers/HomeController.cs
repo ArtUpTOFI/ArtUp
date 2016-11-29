@@ -18,6 +18,8 @@ namespace ArtUp.Client.Controllers
 
         public ActionResult Index()
         {
+            ViewBag.BestProjects = _projectService.GetProjectsOnMainPaige();
+            ViewBag.BestProjectsBottom = _projectService.GetBySuccess(true).Take(3);
             return View();
         }
 

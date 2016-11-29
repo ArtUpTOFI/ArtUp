@@ -14,7 +14,7 @@ namespace ArtUp.Client
     {
         protected void Application_Start()
         {
-            //Database.SetInitializer(new DevDBInitializer());
+            Database.SetInitializer(new DevDBInitializer());
 
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
