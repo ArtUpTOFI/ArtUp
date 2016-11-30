@@ -1,0 +1,100 @@
+﻿@using ArtUp.Client.Helpers
+@{
+    ViewBag.Title = "Project";
+}
+
+<div class="single-project-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-content-right">
+                    <div class="product-breadcroumb">
+                        <a href="/Home/Index">Дом</a>
+                        <a href="/Home/Category?category=@ViewBag.Project.Category">@Html.ToRusName((string)ViewBag.Project.Category)</a>
+                        <a href="/Home/Project/@ViewBag.Project.Id">@ViewBag.Project.Title</a>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="product-images">
+                                <div class="product-main-img">
+                                    <img style="width:100%" src="/Content/img/@ViewBag.Project.Avatar" alt="">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="product-inner">
+                                <h2 class="product-name">@ViewBag.Project.Title</h2>
+                                <div class="product-inner-price">
+                                    <ins>надо @ViewBag.Project.RequiredMoney</ins> <del>собрали @ViewBag.Project.CurrentMoney, потрачено</del>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel">
+                        <ul class="product-tab" role="tablist">
+                            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Описание</a></li>
+                            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Отзывы</a></li>
+                            <li role="presentation"><a href="#sponsors" aria-controls="sponsors" role="tab" data-toggle="tab">Спонсоры</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade in active" id="home">
+                                <h2>Описание</h2>
+                                <p>@ViewBag.Project.FullDescription</p>
+                                <p>Mauris placerat vitae lorem gravida viverra. Mauris in fringilla ex. Nulla facilisi. Etiam scelerisque tincidunt quam facilisis lobortis. In malesuada pulvinar neque a consectetur. Nunc aliquam gravida purus, non malesuada sem accumsan in. Morbi vel sodales libero.</p>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="profile">
+                                <h2>Отзывы</h2>
+                                <div class="submit-review">
+                                    <p><label for="name">Имя</label> <input name="name" type="text"></p>
+                                    <p><label for="email">Имейл</label> <input name="email" type="email"></p>
+                                    <div class="rating-chooser">
+                                        <p>Зацени</p>
+                                        <div class="rating-wrap-post">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                    </div>
+                                    <p><label for="review">Чё по чём</label> <textarea name="review" id="" cols="30" rows="10"></textarea></p>
+                                    <p><input type="submit" value="Клац"></p>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade in" id="sponsors">
+                                <h2>Спонсоры</h2>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tristique, diam in consequat iaculis, est purus iaculis mauris, imperdiet facilisis ante ligula at nulla. Quisque volutpat nulla risus, id maximus ex aliquet ut. Suspendisse potenti. Nulla varius lectus id turpis dignissim porta. Quisque magna arcu, blandit quis felis vehicula, feugiat gravida diam. Nullam nec turpis ligula. Aliquam quis blandit elit, ac sodales nisl. Aliquam eget dolor eget elit malesuada aliquet. In varius lorem lorem, semper bibendum lectus lobortis ac.</p>
+                                <p>Mauris placerat vitae lorem gravida viverra. Mauris in fringilla ex. Nulla facilisi. Etiam scelerisque tincidunt quam facilisis lobortis. In malesuada pulvinar neque a consectetur. Nunc aliquam gravida purus, non malesuada sem accumsan in. Morbi vel sodales libero.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="related-products-wrapper">
+                        <h2 class="related-products-title">Похожие проекты</h2>
+                        <div class="related-products-carousel">
+                            @foreach (var project in ViewBag.SimilarProjects)
+                            {
+                                <div class="single-project">
+                                    <div class="product-f-image">
+                                        <img src="/Content/img/@project.Avatar" alt="">
+                                        <div class="product-hover">
+                                            <a href="/Home/Project/@project.Id" class="add-to-cart-link"><i class="fa fa-link"></i> Подробнее</a>
+                                        </div>
+                                    </div>
+                                    <h2><a href="/Home/Project/@project.Id">@project.Title</a></h2>
+                                    <div class="product-carousel-price">
+                                        <ins>надо @project.RequiredMoney</ins> <del>собрали @project.CurrentMoney</del>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

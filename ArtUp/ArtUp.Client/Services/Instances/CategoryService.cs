@@ -17,6 +17,16 @@ namespace ArtUp.Client.Services.Instances
             data = new ArtUpData();
         }
 
+        public CategoryViewModel Get(int categoryId)
+        {
+            var category = data.Categories.Get(categoryId);
+            return new CategoryViewModel()
+            {
+                Id = category.Id,
+                Title = category.Title
+            };
+        }
+
         public IEnumerable<CategoryViewModel> GetCategories()
         {
             var allCategories = data.Categories.GetAll()

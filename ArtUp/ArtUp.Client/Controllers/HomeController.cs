@@ -1,4 +1,6 @@
 ﻿using ArtUp.Client.Services;
+using ArtUp.Client.Services.Instances;
+using ArtUp.Client.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +12,12 @@ namespace ArtUp.Client.Controllers
     public class HomeController : Controller
     {
         IProjectService _projectService;
+        ICategoryService _categoryService;
 
         public HomeController()
         {
             _projectService = new ProjectService();
+            _categoryService = new CategoryService();
         }
 
         public ActionResult Index()
@@ -42,6 +46,15 @@ namespace ArtUp.Client.Controllers
         {
             ViewBag.Category = category;
             ViewBag.Projects = _projectService.GetByCategory(category);
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Project(int id)
+        {
+            var project = _projectService.Get(id);
+            ViewBag.Project = project;
+            ViewBag.SimilarProjects = _projectService.GetByCategory(project.Category).Take(6);
             return View();
         }
     }

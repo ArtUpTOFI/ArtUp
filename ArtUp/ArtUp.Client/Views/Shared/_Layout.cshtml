@@ -139,7 +139,6 @@
                             <li><a href="#">Соглашение</a></li>
                             <li><a href="#">Правила</a></li>
                             <li><a href="#">FAQ</a></li>
-                            @*<li><a href="#">FUCK YOU TOO</a></li>*@
                         </ul>
                     </div>
                 </div>
@@ -148,12 +147,11 @@
                     <div class="footer-menu">
                         <h2 class="footer-wid-title">Категории</h2>
                         <ul>
-                            <li><a href="category.html">Музыка</a></li>
-                            <li><a href="category.html">Литература</a></li>
-                            <li><a href="category.html">Кино и видео</a></li>
-                            <li><a href="category.html">Фотография</a></li>
-                            <li><a href="category.html">Живопись</a></li>
-                            @*<li><a href="category.html">Ты пидор</a></li>*@
+                            <li><a href="/Home/Category?category=music">Музыка</a></li>
+                            <li><a href="/Home/Category?category=literature">Литература</a></li>
+                            <li><a href="/Home/Category?category=movie">Кино и видео</a></li>
+                            <li><a href="/Home/Category?category=photo">Фотография</a></li>
+                            <li><a href="/Home/Category?category=art">Живопись</a></li>
                         </ul>
                     </div>
                 </div>
@@ -209,10 +207,5 @@
 
     <!-- Main Script -->
     <script src="~/Scripts/main.js"></script>
-
-    @*@Scripts.Render("~/bundles/Obuh")
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)*@
 </body>
 </html>

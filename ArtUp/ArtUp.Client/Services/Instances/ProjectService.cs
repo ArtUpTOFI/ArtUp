@@ -31,7 +31,8 @@ namespace ArtUp.Client.Services
                 Name = project.Name,
                 RequiredMoney = project.RequiredMoney,
                 ShortDescription = project.ShortDescription,
-                Surname = project.Surname
+                Surname = project.Surname,
+                Category = data.Categories.Get(project.CategoryId.Value).Title
             };
         }
 

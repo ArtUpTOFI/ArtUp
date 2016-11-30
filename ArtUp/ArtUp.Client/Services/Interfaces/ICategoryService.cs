@@ -10,5 +10,7 @@ namespace ArtUp.Client.Services.Interfaces
     public interface ICategoryService
     {
         IEnumerable<CategoryViewModel> GetCategories();
+
+        CategoryViewModel Get(int categoryId);
     }
 }
