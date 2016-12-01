@@ -30,6 +30,20 @@
                                 <div class="product-inner-price">
                                     <ins>надо @ViewBag.Project.RequiredMoney</ins> <del>собрали @ViewBag.Project.CurrentMoney, потрачено</del>
                                 </div>
+                                @if (Request.IsAuthenticated)
+                                {
+                                    <input type="submit" value="Поддержать">
+                                }
+                                else
+                                {
+                                    <p><a href="/Account/Register">Зарегистрируйтесь</a>, чтобы поддержать проект</p>
+                                }
+                                <h4>Подарки поддержавшим:</h4>
+                                @foreach (var gift in ViewBag.Gifts)
+                                {
+                                    <p>@gift.Description: @gift.MoneyAmount</p>
+                                }
+
                             </div>
                         </div>
                     </div>
@@ -46,12 +60,12 @@
                                 <p>Mauris placerat vitae lorem gravida viverra. Mauris in fringilla ex. Nulla facilisi. Etiam scelerisque tincidunt quam facilisis lobortis. In malesuada pulvinar neque a consectetur. Nunc aliquam gravida purus, non malesuada sem accumsan in. Morbi vel sodales libero.</p>
                             </div>
                             <div role="tabpanel" class="tab-pane fade" id="profile">
-                                <h2>Отзывы</h2>
+                                <h2>Комментарии</h2>
                                 <div class="submit-review">
                                     <p><label for="name">Имя</label> <input name="name" type="text"></p>
-                                    <p><label for="email">Имейл</label> <input name="email" type="email"></p>
+                                    <p><label for="email">Адрес почты</label> <input name="email" type="email"></p>
                                     <div class="rating-chooser">
-                                        <p>Зацени</p>
+                                        <p>Оценить</p>
                                         <div class="rating-wrap-post">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
@@ -60,8 +74,8 @@
                                             <i class="fa fa-star"></i>
                                         </div>
                                     </div>
-                                    <p><label for="review">Чё по чём</label> <textarea name="review" id="" cols="30" rows="10"></textarea></p>
-                                    <p><input type="submit" value="Клац"></p>
+                                    <p><label for="review">Текст комментария</label> <textarea name="review" id="" cols="30" rows="10"></textarea></p>
+                                    <p><input type="submit" value="Оставить"></p>
                                 </div>
                             </div>
                             <div role="tabpanel" class="tab-pane fade in" id="sponsors">

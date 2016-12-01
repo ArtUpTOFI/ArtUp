@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNet.Identity
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -39,8 +40,16 @@
                 <div class="col-md-8">
                     <div class="user-menu">
                         <ul>
-                            <li><a href="~/Account/Login"><i class="fa fa-user"></i>Войти</a></li>
-                            <li><a href="#"><i class="fa fa-heart"></i>Мои проекты</a></li>
+                            @if (Request.IsAuthenticated)
+                            {
+                                <li><a href="#"><i class="fa fa-user"></i>Здравствуйте, @User.Identity.GetUserName()</a></li>
+                                <li><a href="#"><i class="fa fa-heart"></i>Мои проекты</a></li>
+                            }
+                            else
+                            {
+                                <li><a href="~/Account/Login"><i class="fa fa-user"></i>Войти</a></li>
+                                <li><a href="~/Account/Register"><i class="fa fa-heart"></i>Зарегистрироваться</a></li>
+                            }
                         </ul>
                     </div>
                 </div>

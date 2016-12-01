@@ -29,7 +29,7 @@ namespace ArtUp.CLient.Services.Instances
                     //AvailableCount = g.Number
                 });
 
-            return gifts;
+            return gifts.OrderBy(g => g.MoneyAmount);
         }
 
         public void CreateGift(GiftViewModel model)

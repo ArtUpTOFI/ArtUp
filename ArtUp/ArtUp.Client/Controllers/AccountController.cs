@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ArtUp.Client.Models;
+using ArtUp.Client.Services.Interfaces;
+using ArtUp.Client.Services.Instances;
 
 namespace ArtUp.Client.Controllers
 {
@@ -18,8 +20,11 @@ namespace ArtUp.Client.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
+        private IUserManagementService _userManagementService;
+
         public AccountController()
         {
+            _userManagementService = new UserManagementService();
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -156,7 +161,8 @@ namespace ArtUp.Client.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    _userManagementService.CreateUser(model.Email, model.Password);
+
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
