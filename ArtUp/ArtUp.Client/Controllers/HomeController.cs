@@ -62,6 +62,12 @@ namespace ArtUp.Client.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult Donate(int id)
+        {
+            ViewBag.Gifts = _giftService.GetGifts(id);
+            return View();
+        }
         //public ActionResult Comments()
         //{
         //    return PartialView();

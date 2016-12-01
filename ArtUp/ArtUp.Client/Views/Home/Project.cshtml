@@ -32,7 +32,7 @@
                                 </div>
                                 @if (Request.IsAuthenticated)
                                 {
-                                    <input type="submit" value="Поддержать">
+                                    <a href="/Home/Donate/@ViewBag.Project.Id"><input type="submit" value="Поддержать"></a>
                                 }
                                 else
                                 {

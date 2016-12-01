@@ -285,6 +285,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\Category.cshtml" />
     <Content Include="Views\Home\Project.cshtml" />
+    <Content Include="Views\Home\Donate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

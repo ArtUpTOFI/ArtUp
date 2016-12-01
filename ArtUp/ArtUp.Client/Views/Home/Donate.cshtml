@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "Donate";
+}
+
+<div class="product-big-title-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-bit-title text-center">
+                    <h2>Поддержать проект</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="single-project-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            <input type="number" placeholder="Сумма"/>
+            @foreach (var gift in ViewBag.Gifts)
+            {
+                @gift.Description<p>:</p> @gift.MoneyAmount
+                <input type="radio" />
+            }
+            <input type="submit" value="Перейти к оплате"/>
+        </div>
+
+
+    </div>
+</div>
+
+

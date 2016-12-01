@@ -244,7 +244,7 @@ namespace ArtUp.DataAccess.DataInitializers
                 },
                 new Project()
                 {
-                    Id = 5,
+                    Id = 8,
                     Title = "STARTUP))))))))",
                     RequiredMoney = 6000,
                     Adress = "Minsk, 9",
@@ -281,12 +281,12 @@ namespace ArtUp.DataAccess.DataInitializers
                 new Gift() { Id = 1, Description = "Sigature", MoneyAmount = 10, Number = 1, ProjectId = 1 },
                 new Gift() { Id = 2, Description = "CD with songs", MoneyAmount = 20, Number = 2, ProjectId = 2 },
                 new Gift() { Id = 3, Description = "Thanks", MoneyAmount = 10, Number = 1, ProjectId = 2 },
-                new Gift() { Id = 3, Description = "ThankS", MoneyAmount = 20, Number = 1, ProjectId = 3 },
-                new Gift() { Id = 3, Description = "ThanKs", MoneyAmount = 10, Number = 1, ProjectId = 3 },
-                new Gift() { Id = 3, Description = "Thankssssss", MoneyAmount = 10, Number = 1, ProjectId = 4 },
-                new Gift() { Id = 3, Description = "Thaaaaanks", MoneyAmount = 10, Number = 1, ProjectId = 4 },
-                new Gift() { Id = 3, Description = "Thhhhhhhanks", MoneyAmount = 10, Number = 1, ProjectId = 4 },
-                new Gift() { Id = 3, Description = "Thanks man", MoneyAmount = 10, Number = 1, ProjectId = 5 }
+                new Gift() { Id = 4, Description = "ThankS", MoneyAmount = 20, Number = 1, ProjectId = 3 },
+                new Gift() { Id = 5, Description = "ThanKs", MoneyAmount = 10, Number = 1, ProjectId = 3 },
+                new Gift() { Id = 6, Description = "Thankssssss", MoneyAmount = 10, Number = 1, ProjectId = 4 },
+                new Gift() { Id = 7, Description = "Thaaaaanks", MoneyAmount = 10, Number = 1, ProjectId = 4 },
+                new Gift() { Id = 8, Description = "Thhhhhhhanks", MoneyAmount = 10, Number = 1, ProjectId = 4 },
+                new Gift() { Id = 9, Description = "Thanks man", MoneyAmount = 10, Number = 1, ProjectId = 5 }
             });
 
             context.UserDonations.AddRange(new List<UserDonation>()
