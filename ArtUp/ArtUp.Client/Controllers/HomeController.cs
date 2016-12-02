@@ -27,6 +27,7 @@ namespace ArtUp.Client.Controllers
         {
             ViewBag.BestProjects = _projectService.GetProjectsOnMainPaige();
             ViewBag.BestProjectsBottom = _projectService.GetBySuccess(true).Take(3);
+            ViewBag.NewProjects = _projectService.GetNewProjects().Take(3);
             return View();
         }
 

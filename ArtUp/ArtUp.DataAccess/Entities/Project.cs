@@ -22,6 +22,11 @@ namespace ArtUp.DataAccess.Entities
         public decimal CurrentMoney { get; set; }
 
         /// <summary>
+        /// Date when project was created
+        /// </summary>
+        public DateTime CreationDate { get; set; }
+
+        /// <summary>
         /// Required amount of money for success
         /// </summary>
         public decimal RequiredMoney { get; set; }

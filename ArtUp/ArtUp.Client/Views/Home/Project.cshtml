@@ -41,7 +41,7 @@
                                 <h4>Подарки поддержавшим:</h4>
                                 @foreach (var gift in ViewBag.Gifts)
                                 {
-                                    <p>@gift.Description: @gift.MoneyAmount</p>
+                                    <p>@gift.Description: @gift.MoneyAmount, (@gift.CurrentCount of @gift.AvailableCount)</p>
                                 }
 
                             </div>

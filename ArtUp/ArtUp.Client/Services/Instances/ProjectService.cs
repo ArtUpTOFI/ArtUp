@@ -25,6 +25,7 @@ namespace ArtUp.Client.Services
                 Id = project.Id,
                 Title = project.Title,
                 Avatar = project.Avatar,
+                CreationDate = project.CreationDate,
                 CurrentMoney = project.CurrentMoney,
                 Duration = project.Duration,
                 FullDescription = project.FullDescription,
@@ -42,6 +43,7 @@ namespace ArtUp.Client.Services
             {
                 Avatar = p.Avatar,
                 CurrentMoney = p.CurrentMoney,
+                CreationDate = p.CreationDate,
                 Duration = p.Duration,
                 FullDescription = p.FullDescription,
                 Id = p.Id,
@@ -60,6 +62,7 @@ namespace ArtUp.Client.Services
             {
                 Avatar = p.Avatar,
                 CurrentMoney = p.CurrentMoney,
+                CreationDate = p.CreationDate,
                 Duration = p.Duration,
                 FullDescription = p.FullDescription,
                 Id = p.Id,
@@ -81,6 +84,7 @@ namespace ArtUp.Client.Services
                 Avatar = p.Avatar,
                 CurrentMoney = p.CurrentMoney,
                 Duration = p.Duration,
+                CreationDate = p.CreationDate,
                 FullDescription = p.FullDescription,
                 Id = p.Id,
                 Name = p.Name,
@@ -98,6 +102,7 @@ namespace ArtUp.Client.Services
             {
                 Avatar = p.Avatar,
                 CurrentMoney = p.CurrentMoney,
+                CreationDate = p.CreationDate,
                 Duration = p.Duration,
                 FullDescription = p.FullDescription,
                 Id = p.Id,
@@ -118,6 +123,7 @@ namespace ArtUp.Client.Services
                     {
                         Avatar = p.Avatar,
                         CurrentMoney = p.CurrentMoney,
+                        CreationDate = p.CreationDate,
                         Duration = p.Duration,
                         FullDescription = p.FullDescription,
                         Id = p.Id,
@@ -127,6 +133,26 @@ namespace ArtUp.Client.Services
                         Surname = p.Surname,
                         Title = p.Title
                     }).ToList();
+        }
+
+        public IEnumerable<ProjectViewModel> GetNewProjects()
+        {
+            var bound = DateTime.Now.Date - TimeSpan.FromDays(7);
+            return data.Projects.Find(p => p.CreationDate > bound)
+                .Select(p => new ProjectViewModel()
+                {
+                    Avatar = p.Avatar,
+                    CurrentMoney = p.CurrentMoney,
+                    CreationDate = p.CreationDate,
+                    Duration = p.Duration,
+                    FullDescription = p.FullDescription,
+                    Id = p.Id,
+                    Name = p.Name,
+                    RequiredMoney = p.RequiredMoney,
+                    ShortDescription = p.ShortDescription,
+                    Surname = p.Surname,
+                    Title = p.Title
+                });
         }
     }
 }

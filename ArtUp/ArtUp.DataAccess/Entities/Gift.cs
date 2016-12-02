@@ -10,9 +10,14 @@ namespace ArtUp.DataAccess.Entities
         public decimal MoneyAmount { get; set; }
 
         /// <summary>
-        /// Current count of gifts
+        /// Current count of chosen gifts
         /// </summary>
-        public int Number { get; set; }
+        public int CurrentCount { get; set; }
+
+        /// <summary>
+        /// Maximum available count of the gift
+        /// </summary>
+        public int AvailableCount { get; set; }
 
         /// <summary>
         /// Description of the gift

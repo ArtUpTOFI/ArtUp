@@ -15,6 +15,8 @@ namespace ArtUp.Client.Models
         /// Main picture of the project
         /// </summary>
         public string Avatar { get; set; }
+        
+        public DateTime CreationDate { get; set; }
 
         /// <summary>
         /// Amount of collected money

@@ -81,6 +81,7 @@ namespace ArtUp.DataAccess.DataInitializers
                     RequiredMoney = 10000,
                     Adress = "Minsk, 666",
                     Avatar = "project-1.jpg",
+                    CreationDate = new DateTime(2016, 12, 1),
                     CategoryId = 1,
                     CurrentMoney = 11000,
                     DateOfBirth = new DateTime(1995, 3, 3),
@@ -105,6 +106,7 @@ namespace ArtUp.DataAccess.DataInitializers
                     RequiredMoney = 6000,
                     Adress = "Minsk, 9",
                     Avatar = "project-2.jpg",
+                    CreationDate = new DateTime(2016, 11, 27),
                     CategoryId = 2,
                     CurrentMoney = 6900,
                     DateOfBirth = new DateTime(1990, 5, 19),
@@ -129,6 +131,7 @@ namespace ArtUp.DataAccess.DataInitializers
                     RequiredMoney = 6000,
                     Adress = "Minsk, 9",
                     Avatar = "project-3.jpg",
+                    CreationDate = new DateTime(2016, 10, 1),
                     CategoryId = 2,
                     CurrentMoney = 5900,
                     DateOfBirth = new DateTime(1990, 5, 19),
@@ -153,6 +156,7 @@ namespace ArtUp.DataAccess.DataInitializers
                     RequiredMoney = 6000,
                     Adress = "Minsk, 9",
                     Avatar = "project-4.jpg",
+                    CreationDate = new DateTime(2016, 12, 1),
                     CategoryId = 2,
                     CurrentMoney = 6900,
                     DateOfBirth = new DateTime(1990, 5, 19),
@@ -177,6 +181,7 @@ namespace ArtUp.DataAccess.DataInitializers
                     RequiredMoney = 6000,
                     Adress = "Minsk, 9",
                     Avatar = "project-5.jpg",
+                    CreationDate = new DateTime(2016, 9, 1),
                     CategoryId = 2,
                     CurrentMoney = 6900,
                     DateOfBirth = new DateTime(1990, 5, 19),
@@ -203,6 +208,7 @@ namespace ArtUp.DataAccess.DataInitializers
                     Avatar = "project-3.jpg",
                     CategoryId = 2,
                     CurrentMoney = 6900,
+                    CreationDate = new DateTime(2016, 10, 1),
                     DateOfBirth = new DateTime(1990, 5, 19),
                     DocumentType = Entities.Enums.DocumentType.Passport,
                     Duration = TimeSpan.FromHours(3),
@@ -225,6 +231,7 @@ namespace ArtUp.DataAccess.DataInitializers
                     RequiredMoney = 6000,
                     Adress = "Minsk, 9",
                     Avatar = "project-4.jpg",
+                    CreationDate = new DateTime(2015, 12, 1),
                     CategoryId = 2,
                     CurrentMoney = 7500,
                     DateOfBirth = new DateTime(1990, 5, 19),
@@ -249,6 +256,7 @@ namespace ArtUp.DataAccess.DataInitializers
                     RequiredMoney = 6000,
                     Adress = "Minsk, 9",
                     Avatar = "project-2.jpg",
+                    CreationDate = new DateTime(2016, 11, 15),
                     CategoryId = 2,
                     CurrentMoney = 8000,
                     DateOfBirth = new DateTime(1990, 5, 19),
@@ -278,15 +286,15 @@ namespace ArtUp.DataAccess.DataInitializers
 
             context.Gifts.AddRange(new List<Gift>()
             {
-                new Gift() { Id = 1, Description = "Sigature", MoneyAmount = 10, Number = 1, ProjectId = 1 },
-                new Gift() { Id = 2, Description = "CD with songs", MoneyAmount = 20, Number = 2, ProjectId = 2 },
-                new Gift() { Id = 3, Description = "Thanks", MoneyAmount = 10, Number = 1, ProjectId = 2 },
-                new Gift() { Id = 4, Description = "ThankS", MoneyAmount = 20, Number = 1, ProjectId = 3 },
-                new Gift() { Id = 5, Description = "ThanKs", MoneyAmount = 10, Number = 1, ProjectId = 3 },
-                new Gift() { Id = 6, Description = "Thankssssss", MoneyAmount = 10, Number = 1, ProjectId = 4 },
-                new Gift() { Id = 7, Description = "Thaaaaanks", MoneyAmount = 10, Number = 1, ProjectId = 4 },
-                new Gift() { Id = 8, Description = "Thhhhhhhanks", MoneyAmount = 10, Number = 1, ProjectId = 4 },
-                new Gift() { Id = 9, Description = "Thanks man", MoneyAmount = 10, Number = 1, ProjectId = 5 }
+                new Gift() { Id = 1, Description = "Sigature", MoneyAmount = 10, CurrentCount = 1, AvailableCount = 10, ProjectId = 1 },
+                new Gift() { Id = 2, Description = "CD with songs", MoneyAmount = 20, CurrentCount = 2, AvailableCount = 10, ProjectId = 2 },
+                new Gift() { Id = 3, Description = "Thanks", MoneyAmount = 10, CurrentCount = 1, AvailableCount = 10, ProjectId = 2 },
+                new Gift() { Id = 4, Description = "ThankS", MoneyAmount = 20, CurrentCount = 1, AvailableCount = 10, ProjectId = 3 },
+                new Gift() { Id = 5, Description = "ThanKs", MoneyAmount = 10, CurrentCount = 1, AvailableCount = 10, ProjectId = 3 },
+                new Gift() { Id = 6, Description = "Thankssssss", MoneyAmount = 10, CurrentCount = 1, AvailableCount = 10, ProjectId = 4 },
+                new Gift() { Id = 7, Description = "Thaaaaanks", MoneyAmount = 10, CurrentCount = 1, AvailableCount = 10, ProjectId = 4 },
+                new Gift() { Id = 8, Description = "Thhhhhhhanks", MoneyAmount = 10, CurrentCount = 1, AvailableCount = 10, ProjectId = 4 },
+                new Gift() { Id = 9, Description = "Thanks man", MoneyAmount = 10, CurrentCount = 1, AvailableCount = 10, ProjectId = 5 }
             });
 
             context.UserDonations.AddRange(new List<UserDonation>()

@@ -25,8 +25,8 @@ namespace ArtUp.CLient.Services.Instances
                 {
                     MoneyAmount = g.MoneyAmount,
                     Description = g.Description,
-                    TotalCount = g.Number,
-                    //AvailableCount = g.Number
+                    CurrentCount = g.CurrentCount,
+                    AvailableCount = g.AvailableCount,
                 });
 
             return gifts.OrderBy(g => g.MoneyAmount);
@@ -37,8 +37,9 @@ namespace ArtUp.CLient.Services.Instances
             var newGift = new Gift
             {
                 MoneyAmount = model.MoneyAmount,
-                Number = model.TotalCount,
+                CurrentCount = model.CurrentCount,
                 Description = model.Description,
+                AvailableCount = model.AvailableCount,
                 ProjectId = model.ProjectId
             };
             data.Gifts.Create(newGift);

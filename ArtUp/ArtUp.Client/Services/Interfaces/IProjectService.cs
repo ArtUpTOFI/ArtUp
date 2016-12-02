@@ -16,5 +16,7 @@ namespace ArtUp.Client.Services
         IEnumerable<ProjectViewModel> GetUserProjects(int userId);
 
         IEnumerable<ProjectViewModel> GetProjectsOnMainPaige();
+
+        IEnumerable<ProjectViewModel> GetNewProjects();
     }
 }

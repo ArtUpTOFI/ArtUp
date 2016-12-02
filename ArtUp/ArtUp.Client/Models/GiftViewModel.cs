@@ -9,9 +9,9 @@ namespace ArtUp.Client.Models
     {
         public decimal MoneyAmount { get; set; }
 
-        //public int AvailableCount { get; set; }
+        public int AvailableCount { get; set; }
 
-        public int TotalCount { get; set; }
+        public int CurrentCount { get; set; }
 
         public string Description { get; set; }
 
