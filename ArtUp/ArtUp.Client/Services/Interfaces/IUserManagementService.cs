@@ -12,5 +12,8 @@ namespace ArtUp.Client.Services.Interfaces
         void CreateUser(string login, string password);
 
         User GetByName(string name);
+
+        //bad method, later should be replaced
+        int GetCurrentUser(string email);
     }
 }

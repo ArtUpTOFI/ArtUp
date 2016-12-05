@@ -10,5 +10,7 @@ namespace ArtUp.Client.Services.Interfaces
     public interface IUserDonationService
     {
         IEnumerable<UserDonationViewModel> GetDonations(int projectId);
+
+        IEnumerable<ProjectUserDonation> GetProjectsWithDonations(int userId);
     }
 }

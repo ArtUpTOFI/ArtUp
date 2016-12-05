@@ -43,8 +43,13 @@
                             @if (Request.IsAuthenticated)
                             {
                                 <li><a href="#"><i class="fa fa-user"></i>Здравствуйте, @User.Identity.GetUserName()</a></li>
-                                <li><a href="#"><i class="fa fa-heart"></i>Мои проекты</a></li>
-                                <li><a href="#"><i class="fa fa-heart"></i>Cоздать проект</a></li>
+                                <li><a href="/Home/MyProjects"><i class="fa fa-heart"></i>Мои проекты</a></li>
+                                <li><a href="/Home/CreateProject"><i class="fa fa-heart"></i>Cоздать проект</a></li>
+                                <li><a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-user"></i>Выйти</a></li>
+                                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                }
                             }
                             else
                             {

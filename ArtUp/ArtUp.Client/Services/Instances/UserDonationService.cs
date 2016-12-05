@@ -30,5 +30,32 @@ namespace ArtUp.Client.Services.Instances
 
             return donations;
         }
+
+        public IEnumerable<ProjectUserDonation> GetProjectsWithDonations(int userId)
+        {
+            var donationProjects = data.UserDonations
+                .Find(d => d.UserId == userId)
+                .GroupBy(d => d.ProjectId)
+                .Select(g => {
+                    var project = data.Projects.Get(g.First().ProjectId.Value);
+                    return new ProjectUserDonation()
+                    {
+                        Project = new ProjectViewModel()
+                        {
+                            Avatar = project.Avatar,
+                            Title = project.Title,
+                            CreationDate = project.CreationDate,
+                            RequiredMoney = project.RequiredMoney,
+                            CurrentMoney = project.CurrentMoney,
+                            Duration = project.Duration,
+                            ShortDescription = project.ShortDescription,
+                            FullDescription = project.FullDescription
+                        },
+                        DonationTotal = g.Sum(d => d.Amount)
+                    };
+                });
+
+            return donationProjects;
+        }
     }
 }

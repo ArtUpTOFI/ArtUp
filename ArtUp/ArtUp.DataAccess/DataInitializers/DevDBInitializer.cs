@@ -303,6 +303,11 @@ namespace ArtUp.DataAccess.DataInitializers
                 new UserDonation() { Id = 2, Amount = 20, DonationDate = DateTime.Today, AccountNumber = "12345757543546", IsCardNumber = false, GiftId = 2, ProjectId = 2, UserId = 1 },
                 new UserDonation() { Id = 3, Amount = 20, DonationDate = DateTime.Today, AccountNumber = "12305768793456", IsCardNumber = false, GiftId = 2, ProjectId = 2, UserId = 3 },
                 new UserDonation() { Id = 4, Amount = 11, DonationDate = DateTime.Today, AccountNumber = "12345757543546", IsCardNumber = false, GiftId = 3, ProjectId = 2, UserId = 2 },
+                new UserDonation() { Id = 5, Amount = 16, DonationDate = DateTime.Today, AccountNumber = "12345757543546", IsCardNumber = false, GiftId = 4, ProjectId = 3, UserId = 2 },
+                new UserDonation() { Id = 6, Amount = 9, DonationDate = DateTime.Today, AccountNumber = "12345757543546", IsCardNumber = false, GiftId = 5, ProjectId = 3, UserId = 1 },
+                new UserDonation() { Id = 7, Amount = 2, DonationDate = DateTime.Today, AccountNumber = "12345757543546", IsCardNumber = false, GiftId = 7, ProjectId = 4, UserId = 2 },
+                new UserDonation() { Id = 8, Amount = 1, DonationDate = DateTime.Today, AccountNumber = "12345757543546", IsCardNumber = false, GiftId = 9, ProjectId = 5, UserId = 1 },
+                new UserDonation() { Id = 9, Amount = 30, DonationDate = DateTime.Today, AccountNumber = "12305768793456", IsCardNumber = false, GiftId = 9, ProjectId = 5, UserId = 3 }
             });
 
             context.SaveChanges();

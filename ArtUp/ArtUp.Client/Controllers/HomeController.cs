@@ -15,12 +15,16 @@ namespace ArtUp.Client.Controllers
         IProjectService _projectService;
         ICategoryService _categoryService;
         IGiftService _giftService;
+        IUserDonationService _userDonationService;
+        IUserManagementService _userManagementService;
 
         public HomeController()
         {
             _projectService = new ProjectService();
             _categoryService = new CategoryService();
             _giftService = new GiftService();
+            _userDonationService = new UserDonationService();
+            _userManagementService = new UserManagementService();
         }
 
         public ActionResult Index()
@@ -67,6 +71,21 @@ namespace ArtUp.Client.Controllers
         public ActionResult Donate(int id)
         {
             ViewBag.Gifts = _giftService.GetGifts(id);
+            return View();
+        }
+
+        [Authorize]
+        public ActionResult CreateProject()
+        {
+            return View();
+        }
+
+        [Authorize]
+        public ActionResult MyProjects()
+        {
+            var donationProjects = _userDonationService.GetProjectsWithDonations(
+                _userManagementService.GetCurrentUser(User.Identity.Name));
+            ViewBag.MyDonationProjects = donationProjects.Any() ? donationProjects : null;
             return View();
         }
         //public ActionResult Comments()

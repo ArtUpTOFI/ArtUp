@@ -38,5 +38,11 @@ namespace ArtUp.Client.Services.Instances
         {
             return _dataBase.Users.Find(u => u.Email == name).FirstOrDefault();
         }
+
+        //bad method, should be replaced later
+        public int GetCurrentUser(string email)
+        {
+            return _dataBase.Users.Find(u => u.Email == email && !u.IsActive).FirstOrDefault().Id; //should be active
+        }
     }
 }

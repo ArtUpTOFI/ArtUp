@@ -21,6 +21,11 @@ namespace ArtUp.DataAccess.Entities
         public DateTime RegistrationDate { get; set; }
 
         /// <summary>
+        /// Flag of this user's account status
+        /// </summary>
+        public bool IsActive { get; set; }
+
+        /// <summary>
         /// User's name
         /// </summary>
         public string Name { get; set; }

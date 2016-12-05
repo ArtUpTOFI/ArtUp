@@ -183,6 +183,7 @@
     <Compile Include="Models\PaymentAccountData.cs" />
     <Compile Include="Models\PaymentBankData.cs" />
     <Compile Include="Models\PaymentCardData.cs" />
+    <Compile Include="Models\ProjectUserDonation.cs" />
     <Compile Include="Models\ProjectViewModel.cs" />
     <Compile Include="Models\UserDonationViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -286,6 +287,8 @@
     <Content Include="Views\Home\Category.cshtml" />
     <Content Include="Views\Home\Project.cshtml" />
     <Content Include="Views\Home\Donate.cshtml" />
+    <Content Include="Views\Home\CreateProject.cshtml" />
+    <Content Include="Views\Home\MyProjects.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
