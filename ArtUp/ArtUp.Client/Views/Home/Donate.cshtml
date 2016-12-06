@@ -2,34 +2,267 @@
 @{
     ViewBag.Title = "Donate";
 }
+@*Custom css from Obukh, some inconsistency appeared*@
+<style>
+ol, ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.form-list > li {
+    margin-bottom: 10px;
+}
+label.required em, span.required em, p.required {
+    content: ' *';
+    color: #df280a;
+}
+.main-container {
+    font-family: "Helvetica Neue", Verdana, Arial, sans-serif;
+    color: #434343;
+    font-size: 12px;
+    line-height: 1.5;
+    position: relative;
+    max-width: 1260px;
+    margin: 0 auto;
+    padding: 30px;
+    font-family: "Helvetica Neue", Verdana, Arial, sans-serif;
+}
+.main-container h1 {
+    font-size: 24px;
+}
+.main-container h2 {
+    font-size: 20px;
+}
+.main-container  .page-title {
+    text-transform: uppercase;
+    font-weight: 600;
+    border-bottom: 1px solid #ededed;
+    padding-bottom: 3px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+.form-list .field, .form-list .wide, .form-list .control {
+    margin-bottom: 10px;
+}
+.main-container form input[type="text"],
+.main-container form input[type="email"],
+.main-container form input[type="password"]
+{
+    padding: 3px 5px;
+    width: 400px;
+}
+.pay-main .inner_section {
+    position: relative;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-top: 4px solid transparent;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    background-color: #e7f9f5;
+    -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+.pay-main .pay__left, .pay-main .pay__right {
+    padding-left: 0;
+}
+.pay-main hr {
+    border-top: 1px solid #8a9;
+}
+.pay-main .donate__status {
+    margin-top: -15px;
+}
+.pay-main .section__body__left {
+    display: inline-block;
+}
+</style>
 
-<div class="product-big-title-area">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="product-bit-title text-center">
-                    <h2>Поддержать проект</h2>
-                </div>
+<div class="container">
+    <div class="main-container pay-main">
+        <div class="pay__head">
+            <h1 class="heading pay__heading">Поддержать проект «<a class="pay__heading__link" href="/#">Аранжировка песни хирурга Вячеслава Игнатенко</a>»</h1>
+        </div>
+        <div class="pay__body cf">
+            <div class="pay__left col-md-8">
+                <form method="post" action="/pay-step2?type=pay-step2" id="form-pay-step1" class="js-payment-form" novalidate="novalidate">
+                    <input id="js-payment-type" type="hidden" name="type" value="mpi">
+                    <input type="hidden" name="project_id" value="86006">
+                    <input type="hidden" name="compensation_id" value="">
+                    <section class="inner_section">
+                        <div class="inner_section__head">
+                            <h2 class="heading--small section__heading--small">Введите сумму</h2>
+                        </div>
+                        <div class="section__body">
+                            <div class="input-wrap invalid-hide-triangle">
+                                <input type="text" alt="money" name="sum" class="input input--with-postfix" id="sum-block-update" placeholder="Сумма" value="">
+                                <span class="input-postfix">руб.</span>
+                            </div>
+                            <p class="create-desc">Минимальная сумма взноса – 1 руб. Автор проекта приложит максимум усилий для предоставления подарков. Подарки могут быть предоставлены третьими лицами.</p>
+                        </div>
+                        <div class="section__foot">
+                            <div class="input-check-wrap donate__input-wrap input-check-wrap">
+                                <input id="js-donate-list-input" class="input-check" type="checkbox" name="view_flag" value="1">
+                                <label for="js-donate-list-input" class="input-check-txt">Не отображать меня в публичном списке спонсоров</label>
+                                <span class="tooltip pay__tooltip__link">?<span class="tooltip__content">Речь идет о публичном списке спонсоров, который выводится на странице проекта. Нажмите на «галочку», чтобы ваше имя не выводилось в этом списке. Обратите внимание на то, что автор проекта в любом случае будет знать, кто поддержал его проект.</span></span>
+                            </div>
+                            <div class="input-check-wrap donate__input-wrap input-check-wrap tooltip__wrap">
+                                <input id="js-no-gift-input" class="input-check" type="checkbox" name="no_gift" value="1">
+                                <label for="js-no-gift-input" class="input-check-txt">Отказаться от подарка</label>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="inner_section">
+                        <div class="inner_section__head">
+                            <h3 class="pay__gifts__heading">Выберите подарок</h3>
+                        </div>
+
+
+                        <section class="pay-gifts">
+                            <div class="inner_section__head">
+                                <div class="section__body__left">
+                                    <div class="input-radio-wrap hide-label">
+                                        <input id="js-radio-86007" type="radio" name="donate" class="input-radio" data-gift-cost="2" value="86007">
+                                        <label for="js-radio-86007" class="input-radio-txt"></label>
+                                    </div>
+                                </div>
+                                <div class="section__body__left">
+                                    <div class="donate__value">
+                                        <strong class="donate__strong">2</strong>
+                                        <span class="donate__txt">руб.</span>
+                                    </div>
+                                </div>
+                                <div class="section__body__right">
+                                    <p class="donate__description">
+                                        Благодарность в социальных сетях.
+
+                                        (это так немного и так много: 1$ или стоимость одной чашки кофе... Или целая песня благодаря общей сумме спонсорской помощи.)
+                                    </p>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="pay-gifts">
+                            <div class="inner_section__head">
+                                <div class="section__body__left">
+                                    <div class="input-radio-wrap hide-label">
+                                        <input id="js-radio-87230" type="radio" name="donate" class="input-radio" data-gift-cost="200" value="87230">
+                                        <label for="js-radio-87230" class="input-radio-txt"></label>
+                                    </div>
+                                </div>
+                                <div class="section__body__left">
+                                    <div class="donate__value">
+                                        <strong class="donate__strong">200</strong>
+                                        <span class="donate__txt">руб.</span>
+                                    </div>
+                                </div>
+                                <div class="section__body__right">
+                                    <p class="donate__description">
+                                        Организуем и проведём для Вас и Ваших друзей (максимум 6 человек) медицинский квест по городу. В процессе квеста Вам нужно будет разгадывать медицинские загадки, посещать медицинские учреждения и даже проводить медицинские манипуляции...
+                                        Продолжительность 2 часа.
+                                        Будет интересно.
+                                    </p>
+                                    <hr class="section__divider">
+                                    <div class="donate__status"><svg xmlns="http://www.w3.org/2000/svg" class="project__gift-icon-wrap" width="22" height="24" viewBox="0 0 22 24"><path fill="none" class="project__gift-icon" stroke-width="2" d="M2.0015 8.0185c0 .7436.487 1.43085 1.277 1.80305l6.445 3.0323c.79.3722 1.764.3722 2.554 0l6.445-3.0323c.79-.3722 1.276-1.05946 1.276-1.80305m-7.721-5.658c-.79-.456-1.764-.456-2.554 0l-6.445 3.716c-.79.455-1.277 1.297-1.277 2.208v7.431c0 .911.487 1.753 1.277 2.209l6.445 3.715c.79.456 1.764.456 2.554 0l6.445-3.715c.79-.456 1.276-1.298 1.276-2.209v-7.431c0-.911-.486-1.753-1.276-2.208l-6.445-3.716z"></path></svg><span class="gift__available">осталось <span class="js-available-gifts">10</span> из <span class="js-all-gifts">10</span> подарков</span></div>
+                                </div>
+                            </div>
+                        </section>
+
+
+                        <section class="pay-gifts">
+                            <div class="inner_section__head">
+                                <div class="section__body__left">
+                                    <div class="input-radio-wrap hide-label">
+                                        <input id="js-radio-87231" type="radio" name="donate" class="input-radio" data-gift-cost="1000" value="87231">
+                                        <label for="js-radio-87231" class="input-radio-txt"></label>
+                                    </div>
+                                </div>
+                                <div class="section__body__left">
+                                    <div class="donate__value">
+                                        <strong class="donate__strong">1 000</strong>
+                                        <span class="donate__txt">руб.</span>
+                                    </div>
+                                </div>
+                                <div class="section__body__right">
+                                    <p class="donate__description">
+                                        Песня про дарителя. Написание стихов и музыки на любую тему, указанную дарителем. Запись DEMO-версии песни на диск.
+                                        Аранжировка и студийная запись осуществляется дарителем самостоятельно.
+                                        (подходит и для корпоративных дарителей - можно записать гимн компании)
+                                    </p>
+                                    <hr class="section__divider">
+                                    <div class="donate__status"><svg xmlns="http://www.w3.org/2000/svg" class="project__gift-icon-wrap" width="22" height="24" viewBox="0 0 22 24"><path fill="none" class="project__gift-icon" stroke-width="2" d="M2.0015 8.0185c0 .7436.487 1.43085 1.277 1.80305l6.445 3.0323c.79.3722 1.764.3722 2.554 0l6.445-3.0323c.79-.3722 1.276-1.05946 1.276-1.80305m-7.721-5.658c-.79-.456-1.764-.456-2.554 0l-6.445 3.716c-.79.455-1.277 1.297-1.277 2.208v7.431c0 .911.487 1.753 1.277 2.209l6.445 3.715c.79.456 1.764.456 2.554 0l6.445-3.715c.79-.456 1.276-1.298 1.276-2.209v-7.431c0-.911-.486-1.753-1.276-2.208l-6.445-3.716z"></path></svg><span class="gift__available">осталось <span class="js-available-gifts">2</span> из <span class="js-all-gifts">2</span> подарков</span></div>
+                                </div>
+                            </div>
+                        </section>
+                    </section>
+                </form>
+                <section class="inner_section">
+                    <div class="buttons-set">
+                        <button type="submit" class="button" title="Продолжить" name="send" id="send2"><span><span>Продолжить</span></span></button>
+                    </div>
+                    <div class="section__field--bottom">
+                        <p class="section__txt">Нажимая “Продолжить”, вы принимаете <a href="#">условия дарения</a>.</p>
+                    </div>
+                </section>
+            </div>
+            <div class="pay__right col-md-4" style="margin-bottom: 20px;">
+                <section class="inner_section">
+                    <div class="buttons-set">
+                        <button type="submit" class="button" title="Продолжить" name="send" id="send3"><span><span>Продолжить</span></span></button>
+                    </div>
+                    <div class="section__field">
+                        <p class="section__txt">Нажимая “Продолжить”, вы принимаете <a href="#" class="link info__link js-open-donation-contract">условия дарения</a>.</p>
+                    </div>
+                </section>
+
+                <section class="inner_section">
+                    <div class="create__head">
+                        <h2 class="heading--small create__heading--small">Помощь</h2>
+                    </div>
+
+                    <div class="create__body">
+                        <details class="details details--small">
+                            <summary class="summary summary--small">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" class="summary-icon summary-icon--small" preserveAspectRatio="xMidYMid" viewBox="0 0 8 14">
+                                    <path fill-rule="evenodd" d="M1 1l5.398 5.714L1 12.429" class="cls-arrow-aquarium--round"></path>
+                                </svg>
+                                Как мне перечислить деньги
+                            </summary>
+                            <div class="details-content">
+                                <div class="details-content-txt">
+                                    Деньги можно перечислить, используя платежные карты белорусских и иностранных банков.
+                                    Вы также можете воспользоваться платежной системой ЕРИП, которая позволяет перечислить
+                                    деньги с помощью Инфокиосков, банковских касс, Интернет-банкинга, SMS-банкинга, электронных денег
+                                    <a class="link" target="_blank" href="http://wmtransfer.by/default.asp">WebMoney</a>,
+                                    <a class="link" target="_blank" href="https://ssl.easypay.by/">EasyPay</a>,
+                                    <a class="link" target="_blank" href="https://www.belqi.by/belqi/!iSOU.StaticPage?name=agreement">belqi</a>,
+                                    <a class="link" target="_blank" href="http://www.ipay.by/">iPay</a>.
+                                </div>
+                            </div>
+                        </details>
+                        <details class="details details--small">
+                            <summary class="summary summary--small">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" class="summary-icon summary-icon--small" preserveAspectRatio="xMidYMid" viewBox="0 0 8 14">
+                                    <path fill-rule="evenodd" d="M1 1l5.398 5.714L1 12.429" class="cls-arrow-aquarium--round"></path>
+                                </svg>
+                                Когда и как я получу подарок?
+                            </summary>
+                            <div class="details-content">
+                                <div class="details-content-txt">
+                                    Для уточнения сроков получения подарка вам необходимо лично связаться с автором проекта.
+                                    Зачастую подарок является следствием успешной реализации проекта.
+                                </div>
+                            </div>
+                        </details>
+                    </div>
+
+                    <div class="create__foot">
+                        <hr class="create-status-divider">
+                        <div class="create-question">
+                            <a href="javascript:void(0)" class="link create__link js-open-feedback-popup">Задать вопрос</a>
+                        </div>
+                    </div>
+                </section>
+
             </div>
         </div>
     </div>
 </div>
-
-<div class="single-project-area">
-    <div class="zigzag-bottom"></div>
-    <div class="container">
-        <div class="row">
-            <input type="number" placeholder="Сумма"/>
-            @foreach (var gift in ViewBag.Gifts)
-            {
-                @gift.Description<p>:</p> @gift.MoneyAmount
-                <input type="radio" />
-            }
-            <input type="submit" value="Перейти к оплате"/>
-        </div>
-
-
-    </div>
-</div>
-
-
