@@ -71,6 +71,7 @@ namespace ArtUp.Client.Controllers
         public ActionResult Donate(int id)
         {
             ViewBag.Gifts = _giftService.GetGifts(id);
+            ViewBag.Project = _projectService.Get(id);
             return View();
         }
 
