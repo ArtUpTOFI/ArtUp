@@ -98,8 +98,9 @@ label.required em, span.required em, p.required {
                                 <input id="js-payment-type" type="hidden" name="type" value="mpi">
                                 @*<input type="hidden" name="project_id" value="86006">*@
                                 @*<input type="hidden" name="compensation_id" value="">*@
-                                @Html.HiddenFor(m => m.ProjectId, new { @value = ViewBag.Project.Id})
-                                @Html.HiddenFor(m => m.UserId, new { @value = ViewBag.UserId })
+                                @*@Html.HiddenFor(m => m.ProjectId, new { @value = ViewBag.Project.Id})*@
+                                @Html.Hidden("ProjectId", (int)ViewBag.Project.Id)
+                                @Html.Hidden("UserId", (int)ViewBag.UserId)
                                 <section class="inner_section">
                                     <div class="inner_section__head">
                                         <h2 class="heading--small section__heading--small">Введите сумму</h2>
@@ -137,7 +138,7 @@ label.required em, span.required em, p.required {
                                                     <div class="input-radio-wrap hide-label">
                                                         @*<input id="GiftId" type="radio" name="donate" class="input-radio" data-gift-cost="2" value="@gift.Id">*@
                                                         @*@Html.RadioButtonFor(m => m.GiftId , new { @id = "js-radio-86007", @class = "input-radio", @value = gift.Id })*@
-                                                        @*@Html.RadioButton("GiftId", gift.Id)*@
+                                                        @Html.RadioButton("GiftId", (int)gift.Id)
                                                         <label for="js-radio-86007" class="input-radio-txt"></label>
                                                     </div>
                                                 </div>

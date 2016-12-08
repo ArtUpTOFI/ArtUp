@@ -31,6 +31,7 @@ namespace ArtUp.Client.Services.Instances
                 ProjectId = donation.ProjectId,
                 UserId = donation.UserId
             });
+            data.SaveAll();
             return true;
         }
 

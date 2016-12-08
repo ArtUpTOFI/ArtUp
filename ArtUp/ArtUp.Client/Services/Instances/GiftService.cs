@@ -27,6 +27,8 @@ namespace ArtUp.CLient.Services.Instances
                     Description = g.Description,
                     CurrentCount = g.CurrentCount,
                     AvailableCount = g.AvailableCount,
+                    Id = g.Id,
+                    ProjectId = g.ProjectId.Value
                 });
 
             return gifts.OrderBy(g => g.MoneyAmount);
@@ -43,6 +45,7 @@ namespace ArtUp.CLient.Services.Instances
                 ProjectId = model.ProjectId
             };
             data.Gifts.Create(newGift);
+            data.SaveAll();
         }
     }
 }
