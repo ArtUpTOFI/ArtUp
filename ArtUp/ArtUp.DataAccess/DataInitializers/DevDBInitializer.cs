@@ -299,15 +299,15 @@ namespace ArtUp.DataAccess.DataInitializers
 
             context.UserDonations.AddRange(new List<UserDonation>()
             {
-                new UserDonation() { Id = 1, Amount = 14, DonationDate = DateTime.Today, AccountNumber = "1298 4574 1235 2323", IsCardNumber = true, GiftId = 1, ProjectId = 1, UserId = 1 },
-                new UserDonation() { Id = 2, Amount = 20, DonationDate = DateTime.Today, AccountNumber = "12345757543546", IsCardNumber = false, GiftId = 2, ProjectId = 2, UserId = 1 },
-                new UserDonation() { Id = 3, Amount = 20, DonationDate = DateTime.Today, AccountNumber = "12305768793456", IsCardNumber = false, GiftId = 2, ProjectId = 2, UserId = 3 },
-                new UserDonation() { Id = 4, Amount = 11, DonationDate = DateTime.Today, AccountNumber = "12345757543546", IsCardNumber = false, GiftId = 3, ProjectId = 2, UserId = 2 },
-                new UserDonation() { Id = 5, Amount = 16, DonationDate = DateTime.Today, AccountNumber = "12345757543546", IsCardNumber = false, GiftId = 4, ProjectId = 3, UserId = 2 },
-                new UserDonation() { Id = 6, Amount = 9, DonationDate = DateTime.Today, AccountNumber = "12345757543546", IsCardNumber = false, GiftId = 5, ProjectId = 3, UserId = 1 },
-                new UserDonation() { Id = 7, Amount = 2, DonationDate = DateTime.Today, AccountNumber = "12345757543546", IsCardNumber = false, GiftId = 7, ProjectId = 4, UserId = 2 },
-                new UserDonation() { Id = 8, Amount = 1, DonationDate = DateTime.Today, AccountNumber = "12345757543546", IsCardNumber = false, GiftId = 9, ProjectId = 5, UserId = 1 },
-                new UserDonation() { Id = 9, Amount = 30, DonationDate = DateTime.Today, AccountNumber = "12305768793456", IsCardNumber = false, GiftId = 9, ProjectId = 5, UserId = 3 }
+                new UserDonation() { Id = 1, Amount = 14, DonationDate = DateTime.Today, AccountNumber = "1298 4574 1235 2323", GiftId = 1, ProjectId = 1, UserId = 1, CardDate = "12/20", CardHolder = "VISA GOLD MEMBER", CVV = 777},
+                new UserDonation() { Id = 2, Amount = 20, DonationDate = DateTime.Today, AccountNumber = "12345757543546", GiftId = 2, ProjectId = 2, UserId = 1, CardDate = "12/20", CardHolder = "VASYA", CVV = 776 },
+                new UserDonation() { Id = 3, Amount = 20, DonationDate = DateTime.Today, AccountNumber = "12305768793456", GiftId = 2, ProjectId = 2, UserId = 3, CardDate = "12/20", CardHolder = "VISA GOLD MEMBER", CVV = 775 },
+                new UserDonation() { Id = 4, Amount = 11, DonationDate = DateTime.Today, AccountNumber = "12345757543546", GiftId = 3, ProjectId = 2, UserId = 2, CardDate = "2/20", CardHolder = "VISA GOLD MEMBER", CVV = 774 },
+                new UserDonation() { Id = 5, Amount = 16, DonationDate = DateTime.Today, AccountNumber = "12345757543546", GiftId = 4, ProjectId = 3, UserId = 2, CardDate = "12/20", CardHolder = "VOLODYA", CVV = 773 },
+                new UserDonation() { Id = 6, Amount = 9, DonationDate = DateTime.Today, AccountNumber = "12345757543546", GiftId = 5, ProjectId = 3, UserId = 1, CardDate = "14/20", CardHolder = "VISA GOLD MEMBER", CVV = 772 },
+                new UserDonation() { Id = 7, Amount = 2, DonationDate = DateTime.Today, AccountNumber = "12345757543546", GiftId = 7, ProjectId = 4, UserId = 2, CardDate = "10/20", CardHolder = "PETR", CVV = 771 },
+                new UserDonation() { Id = 8, Amount = 1, DonationDate = DateTime.Today, AccountNumber = "12345757543546", GiftId = 9, ProjectId = 5, UserId = 1, CardDate = "11/19", CardHolder = "VISA GOLD MEMBER", CVV = 770 },
+                new UserDonation() { Id = 9, Amount = 30, DonationDate = DateTime.Today, AccountNumber = "12305768793456", GiftId = 9, ProjectId = 5, UserId = 3, CardDate = "12/19", CardHolder = "VISA GOLD MEMBER", CVV = 778 }
             });
 
             context.SaveChanges();

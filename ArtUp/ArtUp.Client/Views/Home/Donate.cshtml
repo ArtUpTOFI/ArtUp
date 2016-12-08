@@ -1,4 +1,4 @@
-﻿
+﻿@model ArtUp.Client.Models.UserDonationViewModel
 @{
     ViewBag.Title = "Donate";
 }
@@ -76,19 +76,6 @@ label.required em, span.required em, p.required {
 }
 </style>
 
-@*<div role="tabpanel">
-    <ul class="product-tab" role="tablist">
-        <li role="presentation" class="active"><a href="#gift" aria-controls="gift" role="tab" data-toggle="tab">Сумма и подарок</a></li>
-        <li role="presentation"><a href="#creds" aria-controls="creds" role="tab" data-toggle="tab">Данные платежа</a></li>
-    </ul>
-    <div class="tab-content">
-        <div role="tabpanel" class="tab-pane fade in active" id="gift">
-        </div>
-        <div role="tabpanel" class="tab-pane fade" id="creds">
-        </div>
-    </div>
-</div>*@
-
 <div class="container">
     <div class="main-container pay-main">
         <div class="pay__head">
@@ -97,25 +84,30 @@ label.required em, span.required em, p.required {
 
         <div role="tabpanel">
             <ul class="product-tab" role="tablist">
-                <li role="presentation" class="active"><a href="#gift" aria-controls="gift" role="tab" data-toggle="tab">Сумма и подарок</a></li>
-                <li role="presentation"><a href="#creds" aria-controls="creds" role="tab" data-toggle="tab">Данные платежа</a></li>
+                <li role="presentation" class="active" id="first-tab"><a href="#gift" aria-controls="gift" role="tab" data-toggle="tab">Сумма и подарок</a></li>
+                <li role="presentation" id="second-tab"><a href="#creds" aria-controls="creds" role="tab" data-toggle="tab">Данные платежа</a></li>
             </ul>
             <div class="pay__body cf">
                 <div class="pay__left col-md-8">
                     
-                    <form method="post" action="/pay-step2?type=pay-step2" id="form-pay-step1" class="js-payment-form" novalidate="novalidate">
+                    @*<form method="post" action="/pay-step2?type=pay-step2" id="form-pay-step1" class="js-payment-form" novalidate="novalidate">*@
+                    @using (Html.BeginForm("Donate", "Home", FormMethod.Post, new { @id = "form-pay-step1", @class = "js-payment-form", @novalidate = "novalidate" }))
+                    {
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane fade in active" id="gift">
                                 <input id="js-payment-type" type="hidden" name="type" value="mpi">
-                                <input type="hidden" name="project_id" value="86006">
-                                <input type="hidden" name="compensation_id" value="">
+                                @*<input type="hidden" name="project_id" value="86006">*@
+                                @*<input type="hidden" name="compensation_id" value="">*@
+                                @Html.HiddenFor(m => m.ProjectId, new { @value = ViewBag.Project.Id})
+                                @Html.HiddenFor(m => m.UserId, new { @value = ViewBag.UserId })
                                 <section class="inner_section">
                                     <div class="inner_section__head">
                                         <h2 class="heading--small section__heading--small">Введите сумму</h2>
                                     </div>
                                     <div class="section__body">
                                         <div class="input-wrap invalid-hide-triangle">
-                                            <input type="text" alt="money" name="sum" class="input input--with-postfix" id="sum-block-update" placeholder="Сумма" value="">
+                                            @*<input type="text" alt="money" name="sum" class="input input--with-postfix" id="sum-block-update" placeholder="Сумма" value="">*@
+                                            @Html.TextBoxFor(m => m.Amount, new { @alt = "money", @name = "sum", @class = "input input--with-postfix", @id = "sum-block-update", @placeholder = "Сумма", @value = "" })
                                             <span class="input-postfix">руб.</span>
                                         </div>
                                         <p class="create-desc">Минимальная сумма взноса – 1 руб. Автор проекта приложит максимум усилий для предоставления подарков. Подарки могут быть предоставлены третьими лицами.</p>
@@ -123,13 +115,13 @@ label.required em, span.required em, p.required {
                                     <div class="section__foot">
                                         <div class="input-check-wrap donate__input-wrap input-check-wrap">
                                             <input id="js-donate-list-input" class="input-check" type="checkbox" name="view_flag" value="1">
-                                            <label for="js-donate-list-input" class="input-check-txt">Не отображать меня в публичном списке спонсоров</label>
+                                            <label for="js-donate-list-input" class="input-check-txt">Отказаться от подарка</label>
                                             <span class="tooltip pay__tooltip__link">?<span class="tooltip__content">Речь идет о публичном списке спонсоров, который выводится на странице проекта. Нажмите на «галочку», чтобы ваше имя не выводилось в этом списке. Обратите внимание на то, что автор проекта в любом случае будет знать, кто поддержал его проект.</span></span>
                                         </div>
-                                        <div class="input-check-wrap donate__input-wrap input-check-wrap tooltip__wrap">
-                                            <input id="js-no-gift-input" class="input-check" type="checkbox" name="no_gift" value="1">
-                                            <label for="js-no-gift-input" class="input-check-txt">Отказаться от подарка</label>
-                                        </div>
+                                        @*<div class="input-check-wrap donate__input-wrap input-check-wrap tooltip__wrap">
+                                                <input id="js-no-gift-input" class="input-check" type="checkbox" name="no_gift" value="1">
+                                                <label for="js-no-gift-input" class="input-check-txt">Отказаться от подарка</label>
+                                            </div>*@
                                     </div>
                                 </section>
                                 <section class="inner_section">
@@ -143,7 +135,9 @@ label.required em, span.required em, p.required {
                                             <div class="inner_section__head">
                                                 <div class="section__body__left">
                                                     <div class="input-radio-wrap hide-label">
-                                                        <input id="js-radio-86007" type="radio" name="donate" class="input-radio" data-gift-cost="2" value="86007">
+                                                        @*<input id="GiftId" type="radio" name="donate" class="input-radio" data-gift-cost="2" value="@gift.Id">*@
+                                                        @*@Html.RadioButtonFor(m => m.GiftId , new { @id = "js-radio-86007", @class = "input-radio", @value = gift.Id })*@
+                                                        @*@Html.RadioButton("GiftId", gift.Id)*@
                                                         <label for="js-radio-86007" class="input-radio-txt"></label>
                                                     </div>
                                                 </div>
@@ -163,102 +157,39 @@ label.required em, span.required em, p.required {
                                             </div>
                                         </section>
                                     }
-
-                                    @*<section class="pay-gifts">
-                                        <div class="inner_section__head">
-                                            <div class="section__body__left">
-                                                <div class="input-radio-wrap hide-label">
-                                                    <input id="js-radio-86007" type="radio" name="donate" class="input-radio" data-gift-cost="2" value="86007">
-                                                    <label for="js-radio-86007" class="input-radio-txt"></label>
-                                                </div>
-                                            </div>
-                                            <div class="section__body__left">
-                                                <div class="donate__value">
-                                                    <strong class="donate__strong">2</strong>
-                                                    <span class="donate__txt">руб.</span>
-                                                </div>
-                                            </div>
-                                            <div class="section__body__right">
-                                                <p class="donate__description">
-                                                    Благодарность в социальных сетях.
-
-                                                    (это так немного и так много: 1$ или стоимость одной чашки кофе... Или целая песня благодаря общей сумме спонсорской помощи.)
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </section>
-
-                                    <section class="pay-gifts">
-                                        <div class="inner_section__head">
-                                            <div class="section__body__left">
-                                                <div class="input-radio-wrap hide-label">
-                                                    <input id="js-radio-87230" type="radio" name="donate" class="input-radio" data-gift-cost="200" value="87230">
-                                                    <label for="js-radio-87230" class="input-radio-txt"></label>
-                                                </div>
-                                            </div>
-                                            <div class="section__body__left">
-                                                <div class="donate__value">
-                                                    <strong class="donate__strong">200</strong>
-                                                    <span class="donate__txt">руб.</span>
-                                                </div>
-                                            </div>
-                                            <div class="section__body__right">
-                                                <p class="donate__description">
-                                                    Организуем и проведём для Вас и Ваших друзей (максимум 6 человек) медицинский квест по городу. В процессе квеста Вам нужно будет разгадывать медицинские загадки, посещать медицинские учреждения и даже проводить медицинские манипуляции...
-                                                    Продолжительность 2 часа.
-                                                    Будет интересно.
-                                                </p>
-                                                <hr class="section__divider">
-                                                <div class="donate__status"><svg xmlns="http://www.w3.org/2000/svg" class="project__gift-icon-wrap" width="22" height="24" viewBox="0 0 22 24"><path fill="none" class="project__gift-icon" stroke-width="2" d="M2.0015 8.0185c0 .7436.487 1.43085 1.277 1.80305l6.445 3.0323c.79.3722 1.764.3722 2.554 0l6.445-3.0323c.79-.3722 1.276-1.05946 1.276-1.80305m-7.721-5.658c-.79-.456-1.764-.456-2.554 0l-6.445 3.716c-.79.455-1.277 1.297-1.277 2.208v7.431c0 .911.487 1.753 1.277 2.209l6.445 3.715c.79.456 1.764.456 2.554 0l6.445-3.715c.79-.456 1.276-1.298 1.276-2.209v-7.431c0-.911-.486-1.753-1.276-2.208l-6.445-3.716z"></path></svg><span class="gift__available">осталось <span class="js-available-gifts">10</span> из <span class="js-all-gifts">10</span> подарков</span></div>
-                                            </div>
-                                        </div>
-                                    </section>
-
-
-                                    <section class="pay-gifts">
-                                        <div class="inner_section__head">
-                                            <div class="section__body__left">
-                                                <div class="input-radio-wrap hide-label">
-                                                    <input id="js-radio-87231" type="radio" name="donate" class="input-radio" data-gift-cost="1000" value="87231">
-                                                    <label for="js-radio-87231" class="input-radio-txt"></label>
-                                                </div>
-                                            </div>
-                                            <div class="section__body__left">
-                                                <div class="donate__value">
-                                                    <strong class="donate__strong">1 000</strong>
-                                                    <span class="donate__txt">руб.</span>
-                                                </div>
-                                            </div>
-                                            <div class="section__body__right">
-                                                <p class="donate__description">
-                                                    Песня про дарителя. Написание стихов и музыки на любую тему, указанную дарителем. Запись DEMO-версии песни на диск.
-                                                    Аранжировка и студийная запись осуществляется дарителем самостоятельно.
-                                                    (подходит и для корпоративных дарителей - можно записать гимн компании)
-                                                </p>
-                                                <hr class="section__divider">
-                                                <div class="donate__status"><svg xmlns="http://www.w3.org/2000/svg" class="project__gift-icon-wrap" width="22" height="24" viewBox="0 0 22 24"><path fill="none" class="project__gift-icon" stroke-width="2" d="M2.0015 8.0185c0 .7436.487 1.43085 1.277 1.80305l6.445 3.0323c.79.3722 1.764.3722 2.554 0l6.445-3.0323c.79-.3722 1.276-1.05946 1.276-1.80305m-7.721-5.658c-.79-.456-1.764-.456-2.554 0l-6.445 3.716c-.79.455-1.277 1.297-1.277 2.208v7.431c0 .911.487 1.753 1.277 2.209l6.445 3.715c.79.456 1.764.456 2.554 0l6.445-3.715c.79-.456 1.276-1.298 1.276-2.209v-7.431c0-.911-.486-1.753-1.276-2.208l-6.445-3.716z"></path></svg><span class="gift__available">осталось <span class="js-available-gifts">2</span> из <span class="js-all-gifts">2</span> подарков</span></div>
-                                            </div>
-                                        </div>
-                                    </section>*@
                                 </section>
                             </div>
-                            <div role="tabpanel" class="tab-pane fade" id="creds"><p>test</p></div>
+                            <div role="tabpanel" class="tab-pane fade" id="creds">
+                                <p>test</p>
+                                @*<input type="text" placeholder="Номер карты"/>
+                                    <input type="text" placeholder="Имя на карте"/>
+                                    <input type="text" placeholder="Срок действия" />
+                                    <input type="text" placeholder="CVV код"/>*@
+                                
+                                @Html.TextBoxFor(m => m.CardNumber, new { @placeholder = "Номер карты" })
+                                @Html.TextBoxFor(m => m.CardHolder, new { @placeholder = "Имя на карте" })
+                                @Html.TextBoxFor(m => m.CardDate, new { @placeholder = "Срок действия" })
+                                @Html.TextBoxFor(m => m.CVV, new { @placeholder = "Cvv код" })
+                            </div>
                         </div>
-                    </form>
-                    <section class="inner_section">
-                        <div class="buttons-set">
-                            <button type="submit" class="button" title="Продолжить" name="send" id="send2"><span><span>Продолжить</span></span></button>
-                        </div>
-                        <div class="section__field--bottom">
-                            <p class="section__txt">Нажимая “Продолжить”, вы принимаете <a href="#">условия дарения</a>.</p>
-                        </div>
-                    </section>
+
+                        <section class="inner_section">
+                            <div class="buttons-set">
+                                <button type="submit" class="button" title="Продолжить" name="send" id="send2"><span><span>Поддержать</span></span></button>
+                            </div>
+                            <div class="section__field--bottom">
+                                <p class="section__txt">Нажимая “Поддержать”, вы принимаете <a href="#">условия дарения</a>.</p>
+                            </div>
+                        </section>
+                    }
+                        
+                    @*</form>*@
                     
                 </div>
                 <div class="pay__right col-md-4" style="margin-bottom: 20px;">
                     <section class="inner_section">
                         <div class="buttons-set">
-                            <button type="submit" class="button" title="Продолжить" name="send" id="send3"><span><span>Продолжить</span></span></button>
+                            <a href="#creds" aria-controls="creds" role="tab" data-toggle="tab"><button type="submit" class="button" title="Продолжить" name="send" id="send3"><span><span>Данные платежа</span></span></button></a>
                         </div>
                         <div class="section__field">
                             <p class="section__txt">Нажимая “Продолжить”, вы принимаете <a href="#" class="link info__link js-open-donation-contract">условия дарения</a>.</p>

@@ -289,6 +289,7 @@
     <Content Include="Views\Home\Donate.cshtml" />
     <Content Include="Views\Home\CreateProject.cshtml" />
     <Content Include="Views\Home\MyProjects.cshtml" />
+    <Content Include="Views\Home\SuccessfulDonation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

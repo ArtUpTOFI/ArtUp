@@ -37,9 +37,15 @@ namespace ArtUp.DataAccess.Entities
         /// </summary>
         public string AccountNumber { get; set; }
 
-        /// <summary>
-        /// Determines if this account number is a card number or not
-        /// </summary>
-        public bool IsCardNumber { get; set; }
+        ///// <summary>
+        ///// Determines if this account number is a card number or not
+        ///// </summary>
+        //public bool IsCardNumber { get; set; }
+
+        public string CardHolder { get; set; }
+
+        public string CardDate { get; set; }
+
+        public int CVV { get; set; }
     }
 }

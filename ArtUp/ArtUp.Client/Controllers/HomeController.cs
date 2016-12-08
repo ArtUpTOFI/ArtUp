@@ -1,4 +1,5 @@
-﻿using ArtUp.Client.Services;
+﻿using ArtUp.Client.Models;
+using ArtUp.Client.Services;
 using ArtUp.Client.Services.Instances;
 using ArtUp.Client.Services.Interfaces;
 using ArtUp.CLient.Services.Instances;
@@ -68,10 +69,26 @@ namespace ArtUp.Client.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult Donate(int id)
         {
             ViewBag.Gifts = _giftService.GetGifts(id);
             ViewBag.Project = _projectService.Get(id);
+            ViewBag.UserId = _userManagementService.GetCurrentUser(User.Identity.Name);
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult Donate(UserDonationViewModel model)
+        {
+            _userDonationService.CreateDonation(model);
+            return RedirectToAction("SuccessfulDonation");
+        }
+
+        [Authorize]
+        public ActionResult SuccessfulDonation()
+        {
             return View();
         }
 

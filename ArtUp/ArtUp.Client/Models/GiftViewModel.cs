@@ -7,6 +7,8 @@ namespace ArtUp.Client.Models
 {
     public class GiftViewModel
     {
+        public int Id { get; set; }
+
         public decimal MoneyAmount { get; set; }
 
         public int AvailableCount { get; set; }

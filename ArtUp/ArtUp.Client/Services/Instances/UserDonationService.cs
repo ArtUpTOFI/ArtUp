@@ -17,6 +17,23 @@ namespace ArtUp.Client.Services.Instances
             data = new ArtUpData();
         }
 
+        public bool CreateDonation(UserDonationViewModel donation)
+        {
+            data.UserDonations.Create(new DataAccess.Entities.UserDonation()
+            {
+                AccountNumber = donation.CardNumber,
+                Amount = donation.Amount,
+                CardDate = donation.CardDate,
+                CardHolder = donation.CardHolder,
+                CVV = donation.CVV,
+                DonationDate = DateTime.Now,
+                GiftId = donation.GiftId,
+                ProjectId = donation.ProjectId,
+                UserId = donation.UserId
+            });
+            return true;
+        }
+
         public IEnumerable<UserDonationViewModel> GetDonations(int projectId)
         {
             var donations = data.UserDonations
