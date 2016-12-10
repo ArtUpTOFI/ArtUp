@@ -17,6 +17,18 @@ namespace ArtUp.CLient.Services.Instances
             data = new ArtUpData();
         }
 
+        public void CreateComment(CommentViewModel comment)
+        {
+            data.Comments.Create(new DataAccess.Entities.Comment()
+            {
+                Date = DateTime.Now,
+                UserId = comment.UserId,
+                ProjectId = comment.ProjectId,
+                Text = comment.Text
+            });
+            data.SaveAll();
+        }
+
         public IEnumerable<CommentViewModel> GetComments(int projectId)
         {
             var comments = data.Comments.Find(c => c.ProjectId == projectId)

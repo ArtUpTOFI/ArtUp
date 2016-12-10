@@ -21,5 +21,9 @@ namespace ArtUp.Client.Models
         /// Name of the author
         /// </summary>
         public string Author { get; set; }
+
+        public int ProjectId { get; set; }
+
+        public int UserId { get; set; }
     }
 }

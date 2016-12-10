@@ -18,6 +18,7 @@ namespace ArtUp.Client.Controllers
         IGiftService _giftService;
         IUserDonationService _userDonationService;
         IUserManagementService _userManagementService;
+        ICommentService _commentService;
 
         public HomeController()
         {
@@ -26,6 +27,7 @@ namespace ArtUp.Client.Controllers
             _giftService = new GiftService();
             _userDonationService = new UserDonationService();
             _userManagementService = new UserManagementService();
+            _commentService = new CommentService();
         }
 
         public ActionResult Index()
@@ -63,8 +65,11 @@ namespace ArtUp.Client.Controllers
         {
             var project = _projectService.Get(id);
             ViewBag.Project = project;
+            ViewBag.UserId = _userManagementService.GetCurrentUser(User.Identity.Name);
             ViewBag.SimilarProjects = _projectService.GetByCategory(project.Category).Take(6);
             ViewBag.Gifts = _giftService.GetGifts(id);
+            ViewBag.Donations = _userDonationService.GetDonations(id);
+            ViewBag.Comments = _commentService.GetComments(id);
             return View();
         }
 
@@ -84,6 +89,15 @@ namespace ArtUp.Client.Controllers
         {
             _userDonationService.CreateDonation(model);
             return RedirectToAction("SuccessfulDonation");
+        }
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult LeaveComment(CommentViewModel model)
+        {
+            
+            _commentService.CreateComment(model);
+            return RedirectToAction("Project", "Home", new { @id = model.ProjectId});
         }
 
         [Authorize]

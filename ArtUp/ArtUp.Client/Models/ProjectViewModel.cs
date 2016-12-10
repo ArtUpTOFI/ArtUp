@@ -48,5 +48,7 @@ namespace ArtUp.Client.Models
         public string Surname { get; set; }
 
         public string Category { get; set; }
+
+        public int UserId { get; set; }
     }
 }

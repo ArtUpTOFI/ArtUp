@@ -10,5 +10,7 @@ namespace ArtUp.Client.Services.Interfaces
     public interface ICommentService
     {
         IEnumerable<CommentViewModel> GetComments(int projectId);
+
+        void CreateComment(CommentViewModel comment);
     }
 }
