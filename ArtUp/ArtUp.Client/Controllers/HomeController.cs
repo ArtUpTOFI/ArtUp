@@ -19,6 +19,7 @@ namespace ArtUp.Client.Controllers
         IUserDonationService _userDonationService;
         IUserManagementService _userManagementService;
         ICommentService _commentService;
+        ISearchService _searchService;
 
         public HomeController()
         {
@@ -28,6 +29,7 @@ namespace ArtUp.Client.Controllers
             _userDonationService = new UserDonationService();
             _userManagementService = new UserManagementService();
             _commentService = new CommentService();
+            _searchService = new SearchService();
         }
 
         public ActionResult Index()
@@ -65,7 +67,10 @@ namespace ArtUp.Client.Controllers
         {
             var project = _projectService.Get(id);
             ViewBag.Project = project;
-            ViewBag.UserId = _userManagementService.GetCurrentUser(User.Identity.Name);
+            if (Request.IsAuthenticated)
+            {
+                ViewBag.UserId = _userManagementService.GetCurrentUser(User.Identity.Name);
+            }
             ViewBag.SimilarProjects = _projectService.GetByCategory(project.Category).Take(6);
             ViewBag.Gifts = _giftService.GetGifts(id);
             ViewBag.Donations = _userDonationService.GetDonations(id);
@@ -98,6 +103,24 @@ namespace ArtUp.Client.Controllers
             
             _commentService.CreateComment(model);
             return RedirectToAction("Project", "Home", new { @id = model.ProjectId});
+        }
+
+        public PartialViewResult Search()
+        {
+            return PartialView();
+        }
+
+        [HttpPost]
+        public ActionResult SearchResults(MainSearchViewModel model)
+        {
+            return RedirectToAction("SearchResults", "Home", new { @query = model.Query });
+        }
+
+        [HttpGet]
+        public ActionResult SearchResults(string query)
+        {
+            ViewBag.Results = _searchService.SearchFromMain(query);
+            return View();
         }
 
         [Authorize]

@@ -179,6 +179,7 @@
     <Compile Include="Models\CommentViewModel.cs" />
     <Compile Include="Models\GiftViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\MainSearchViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PaymentAccountData.cs" />
     <Compile Include="Models\PaymentBankData.cs" />
@@ -192,12 +193,14 @@
     <Compile Include="Services\Instances\CommentService.cs" />
     <Compile Include="Services\Instances\GiftService.cs" />
     <Compile Include="Services\Instances\ProjectService.cs" />
+    <Compile Include="Services\Instances\SearchService.cs" />
     <Compile Include="Services\Instances\UserDonationService.cs" />
     <Compile Include="Services\Instances\UserManagementService.cs" />
     <Compile Include="Services\Interfaces\ICategoryService.cs" />
     <Compile Include="Services\Interfaces\ICommentService.cs" />
     <Compile Include="Services\Interfaces\IGiftService.cs" />
     <Compile Include="Services\Interfaces\IProjectService.cs" />
+    <Compile Include="Services\Interfaces\ISearchService.cs" />
     <Compile Include="Services\Interfaces\IUserDonationService.cs" />
     <Compile Include="Services\Interfaces\IUserManagementService.cs" />
     <Compile Include="Startup.cs" />
@@ -290,6 +293,8 @@
     <Content Include="Views\Home\CreateProject.cshtml" />
     <Content Include="Views\Home\MyProjects.cshtml" />
     <Content Include="Views\Home\SuccessfulDonation.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
+    <Content Include="Views\Home\SearchResults.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
