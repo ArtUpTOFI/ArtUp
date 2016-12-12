@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ArtUp.DataAccess.Entities;
+using ArtUp.Client.Models;
 
 namespace ArtUp.Client.Services.Interfaces
 {
@@ -15,5 +16,11 @@ namespace ArtUp.Client.Services.Interfaces
 
         //bad method, later should be replaced
         int GetCurrentUser(string email);
+
+        IEnumerable<UserViewModel> GetAllUsers();
+
+        void DeactiveUser(int userId);
+
+        UserViewModel GetUser(int id);
     }
 }

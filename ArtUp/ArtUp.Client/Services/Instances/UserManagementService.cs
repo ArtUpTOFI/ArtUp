@@ -6,6 +6,7 @@ using ArtUp.DataAccess.DataContext;
 using ArtUp.DataAccess.Entities;
 using ArtUp.DataAccess.Repositories;
 using ArtUp.Client.Services.Interfaces;
+using ArtUp.Client.Models;
 
 namespace ArtUp.Client.Services.Instances
 {
@@ -43,6 +44,47 @@ namespace ArtUp.Client.Services.Instances
         public int GetCurrentUser(string email)
         {
             return _dataBase.Users.Find(u => u.Email == email && !u.IsActive).FirstOrDefault().Id; //should be active
+        }
+
+        public IEnumerable<UserViewModel> GetAllUsers()
+        {
+            return _dataBase.Users.GetAll().Select(u => new UserViewModel()
+            {
+                Id = u.Id,
+                Email = u.Email,
+                Avatar = u.Avatar,
+                Name = u.Name,
+                Surname = u.Surname,
+                IsActive = u.IsActive,
+                RegistrationDate = u.RegistrationDate,
+                Location = u.Location,
+                About = u.About
+            }).ToList();
+        }
+
+        public void DeactiveUser(int userId)
+        {
+            var user = _dataBase.Users.Get(userId);
+            user.IsActive = !user.IsActive;
+            _dataBase.Users.Update(user);
+            _dataBase.SaveAll();
+        }
+
+        public UserViewModel GetUser(int id)
+        {
+            var u = _dataBase.Users.Get(id);
+            return new UserViewModel
+            {
+                Id = u.Id,
+                Email = u.Email,
+                IsActive = u.IsActive,
+                About = u.About,
+                Avatar = u.Avatar,
+                Location = u.Location,
+                Name = u.Name,
+                RegistrationDate = u.RegistrationDate,
+                Surname = u.Surname
+            };
         }
     }
 }

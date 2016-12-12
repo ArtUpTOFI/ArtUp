@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ArtUp.DataAccess.Entities.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -50,5 +51,8 @@ namespace ArtUp.Client.Models
         public string Category { get; set; }
 
         public int UserId { get; set; }
+
+        public ProjectState ProjectState { get; set; }
+
     }
 }

@@ -52,7 +52,8 @@ namespace ArtUp.Client.Services
                 RequiredMoney = p.RequiredMoney,
                 ShortDescription = p.ShortDescription,
                 Surname = p.Surname,
-                Title = p.Title
+                Title = p.Title,
+                ProjectState = p.ProjectState
             }).ToList();
         }
 
