@@ -298,7 +298,7 @@
     <Content Include="Views\Home\CreateProject.cshtml" />
     <Content Include="Views\Home\MyProjects.cshtml" />
     <Content Include="Views\Home\SuccessfulDonation.cshtml" />
-    <Content Include="Views\Home\Search.cshtml" />
+    <Content Include="Views\Shared\_Search.cshtml" />
     <Content Include="Views\Home\SearchResults.cshtml" />
     <Content Include="Views\UserManagement\Users.cshtml" />
     <Content Include="Views\UserManagement\GetUser.cshtml" />

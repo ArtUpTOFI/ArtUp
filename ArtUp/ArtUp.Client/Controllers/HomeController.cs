@@ -107,7 +107,7 @@ namespace ArtUp.Client.Controllers
 
         public PartialViewResult Search()
         {
-            return PartialView();
+            return PartialView("_Search");
         }
 
         [HttpPost]

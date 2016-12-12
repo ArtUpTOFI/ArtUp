@@ -1,5 +1,6 @@
 ﻿using ArtUp.Client.Models;
 using ArtUp.Client.Services;
+using ArtUp.Client.Services.Instances;
 using ArtUp.Client.Services.Interfaces;
 using ArtUp.DataAccess.Entities.Enums;
 using System;
@@ -14,6 +15,13 @@ namespace ArtUp.Client.Controllers
     {
         IProjectService _projectService;
         IUserManagementService _userManagementService;
+
+        public UserManagementController()
+        {
+            _projectService = new ProjectService();
+            _userManagementService = new UserManagementService();
+        }
+
         // GET: UserManagement
         public ActionResult Index()
         {

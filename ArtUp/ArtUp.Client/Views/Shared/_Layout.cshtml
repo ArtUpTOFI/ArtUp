@@ -89,15 +89,15 @@
                 </div>
                 <div class="col-sm-6">
                     <div class="single-sidebar">
-                        @*<form class="search" action="">
+                        <form class="search" action="">
                             <div class="col-sm-10">
-                                <input type="text" placeholder="Найти проект">
+                                <input type="text" placeholder="Найти проект" id="search-query">
                             </div>
                             <div class="col-sm-2">
-                                <input type="submit" value="Найти">
+                                <a href="" id="find-link"><input type="submit" value="Найти" id="find-projects"></a>
                             </div>
-                        </form>*@
-                        @Html.Partial("Search")
+                        </form>
+                        @*@Html.Partial("~/Views/Shared/_Search.cshtml", ViewBag.)*@
                     </div>
                 </div>
             </div>
