@@ -1,4 +1,5 @@
-﻿using ArtUp.DataAccess.Entities;
+﻿using ArtUp.DataAccess.DataInitializers;
+using ArtUp.DataAccess.Entities;
 using System.Data.Entity;
 
 namespace ArtUp.DataAccess.DataContext
@@ -6,6 +7,11 @@ namespace ArtUp.DataAccess.DataContext
     public class ArtUpDataContextEF: DbContext
     {
         public ArtUpDataContextEF(): base("ArtUpConnection") { }
+
+        //static ArtUpDataContextEF()
+        //{
+        //    Database.SetInitializer<ArtUpDataContextEF>(new DevDBInitializer());
+        //}
 
         public DbSet<User> Users { get; set; }
 

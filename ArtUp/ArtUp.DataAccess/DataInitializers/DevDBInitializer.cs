@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ArtUp.DataAccess.DataInitializers
 {
-    public class DevDBInitializer: DropCreateDatabaseAlways<ArtUpDataContextEF>
+    public class DevDBInitializer: DropCreateDatabaseIfModelChanges<ArtUpDataContextEF>
     {
         protected override void Seed(ArtUpDataContextEF context)
         {
@@ -119,7 +119,7 @@ namespace ArtUp.DataAccess.DataInitializers
                     PersonalPassportNumber = "1235B3249C75",
                     PhoneNumber = "9084012",
                     Surname = "Tseretelli",
-                    ProjectState = Entities.Enums.ProjectState.Draft,
+                    ProjectState = Entities.Enums.ProjectState.Approved,
                     WhoAndWhereIssued = "Ruvd Minska",
                     ShortDescription = "New Microsoft",
                     UserId = 2
@@ -144,7 +144,7 @@ namespace ArtUp.DataAccess.DataInitializers
                     PersonalPassportNumber = "1235B3249C75",
                     PhoneNumber = "9084012",
                     Surname = "Tseretelli",
-                    ProjectState = Entities.Enums.ProjectState.Draft,
+                    ProjectState = Entities.Enums.ProjectState.Approved,
                     WhoAndWhereIssued = "Ruvd Minska",
                     ShortDescription = "New Microsoft",
                     UserId = 2
@@ -169,7 +169,7 @@ namespace ArtUp.DataAccess.DataInitializers
                     PersonalPassportNumber = "1235B3249C75",
                     PhoneNumber = "9084012",
                     Surname = "Tseretelli",
-                    ProjectState = Entities.Enums.ProjectState.Draft,
+                    ProjectState = Entities.Enums.ProjectState.PendingApproval,
                     WhoAndWhereIssued = "Ruvd Minska",
                     ShortDescription = "New Microsoft",
                     UserId = 2
@@ -194,7 +194,7 @@ namespace ArtUp.DataAccess.DataInitializers
                     PersonalPassportNumber = "1235B3249C75",
                     PhoneNumber = "9084012",
                     Surname = "Tseretelli",
-                    ProjectState = Entities.Enums.ProjectState.Draft,
+                    ProjectState = Entities.Enums.ProjectState.PendingApproval,
                     WhoAndWhereIssued = "Ruvd Minska",
                     ShortDescription = "New Microsoft",
                     UserId = 2
@@ -219,7 +219,7 @@ namespace ArtUp.DataAccess.DataInitializers
                     PersonalPassportNumber = "1235B3249C75",
                     PhoneNumber = "9084012",
                     Surname = "Tseretelli",
-                    ProjectState = Entities.Enums.ProjectState.Draft,
+                    ProjectState = Entities.Enums.ProjectState.PendingApproval,
                     WhoAndWhereIssued = "Ruvd Minska",
                     ShortDescription = "New Microsoft",
                     UserId = 2
@@ -244,7 +244,7 @@ namespace ArtUp.DataAccess.DataInitializers
                     PersonalPassportNumber = "1235B3249C75",
                     PhoneNumber = "9084012",
                     Surname = "Tseretelli",
-                    ProjectState = Entities.Enums.ProjectState.Draft,
+                    ProjectState = Entities.Enums.ProjectState.Rejected,
                     WhoAndWhereIssued = "Ruvd Minska",
                     ShortDescription = "New Microsoft",
                     UserId = 2
@@ -269,7 +269,7 @@ namespace ArtUp.DataAccess.DataInitializers
                     PersonalPassportNumber = "1235B3249C75",
                     PhoneNumber = "9084012",
                     Surname = "Tseretelli",
-                    ProjectState = Entities.Enums.ProjectState.Draft,
+                    ProjectState = Entities.Enums.ProjectState.Rejected,
                     WhoAndWhereIssued = "Ruvd Minska",
                     ShortDescription = "New Microsoft",
                     UserId = 2

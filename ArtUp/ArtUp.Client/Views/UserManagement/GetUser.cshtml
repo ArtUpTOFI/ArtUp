@@ -1,22 +1,13 @@
 ﻿@model ArtUp.Client.Models.UserViewModel
 
 @{
-    ViewBag.Title = "GetUser";
+    ViewBag.Title = "Пользователь";
 }
 
-<h2>GetUser</h2>
+<h2>Пользователь @Model.Email</h2>
 
 <div>
-    <h4>UserViewModel</h4>
-    <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.RegistrationDate)
@@ -77,6 +68,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "DeactiveUser", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Deactive", "DeactiveUser", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Users")
 </p>

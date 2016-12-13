@@ -156,5 +156,23 @@ namespace ArtUp.Client.Services
                     Title = p.Title
                 });
         }
+
+        public void ApproveProject(int id)
+        {
+            var project = data.Projects.Get(id);
+            project.ProjectState = DataAccess.Entities.Enums.ProjectState.Approved;
+
+            data.Projects.Update(project);
+            data.SaveAll();
+        }
+
+        public void RejectProject(int id)
+        {
+            var project = data.Projects.Get(id);
+            project.ProjectState = DataAccess.Entities.Enums.ProjectState.Rejected;
+
+            data.Projects.Update(project);
+            data.SaveAll();
+        }
     }
 }

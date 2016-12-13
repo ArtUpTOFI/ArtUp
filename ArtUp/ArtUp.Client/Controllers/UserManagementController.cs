@@ -36,9 +36,9 @@ namespace ArtUp.Client.Controllers
 
         public ActionResult GetUser(int id)
         {
-            ViewBag.User = _userManagementService.GetUser(id);
+            var User = _userManagementService.GetUser(id);
 
-            return View();
+            return View(User);
         }
 
         public ActionResult DeactiveUser(int id)
@@ -60,6 +60,20 @@ namespace ArtUp.Client.Controllers
             ViewBag.allProjects = projectsViewModel;
 
             return View();
+        }
+
+        public ActionResult ApproveProject(int id)
+        {
+            _projectService.ApproveProject(id);
+
+            return RedirectToAction("Project", "Home", new { id = id });
+        }
+
+        public ActionResult RejectProject(int id)
+        {
+            _projectService.RejectProject(id);
+
+            return RedirectToAction("Project", "Home", new { id = id });
         }
     }
 }

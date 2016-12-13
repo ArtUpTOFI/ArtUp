@@ -18,5 +18,9 @@ namespace ArtUp.Client.Services
         IEnumerable<ProjectViewModel> GetProjectsOnMainPaige();
 
         IEnumerable<ProjectViewModel> GetNewProjects();
+
+        void ApproveProject(int id);
+
+        void RejectProject(int id);
     }
 }
