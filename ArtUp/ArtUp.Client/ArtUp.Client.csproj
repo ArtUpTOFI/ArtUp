@@ -302,6 +302,7 @@
     <Content Include="Views\Home\SearchResults.cshtml" />
     <Content Include="Views\UserManagement\Users.cshtml" />
     <Content Include="Views\UserManagement\GetUser.cshtml" />
+    <Content Include="Views\Home\Filter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

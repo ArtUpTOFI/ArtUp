@@ -37,6 +37,7 @@ namespace ArtUp.Client.Controllers
             ViewBag.BestProjects = _projectService.GetProjectsOnMainPaige();
             ViewBag.BestProjectsBottom = _projectService.GetBySuccess(true).Take(3);
             ViewBag.NewProjects = _projectService.GetNewProjects().Take(3);
+            ViewBag.AllProjects = _projectService.GetAllProjects().Take(3);
             return View();
         }
 
@@ -59,6 +60,14 @@ namespace ArtUp.Client.Controllers
         {
             ViewBag.Category = category;
             ViewBag.Projects = _projectService.GetByCategory(category);
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Filter(string filter)
+        {
+            ViewBag.Filter = filter;
+            ViewBag.ProjectList = _projectService.GetByFilter(filter);
             return View();
         }
 

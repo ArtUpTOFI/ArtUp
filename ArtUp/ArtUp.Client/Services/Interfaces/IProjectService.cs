@@ -11,6 +11,8 @@ namespace ArtUp.Client.Services
 
         IEnumerable<ProjectViewModel> GetByCategory(string categoty);
 
+        IEnumerable<ProjectViewModel> GetByFilter(string filter);
+
         IEnumerable<ProjectViewModel> GetBySuccess(bool isSuccess);
 
         IEnumerable<ProjectViewModel> GetUserProjects(int userId);
