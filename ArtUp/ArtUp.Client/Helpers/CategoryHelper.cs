@@ -28,6 +28,15 @@ namespace ArtUp.Client.Helpers
                 case "art":
                     result = "Живопись";
                     break;
+                case "new":
+                    result = "Новые проекты";
+                    break;
+                case "all":
+                    result = "Все проекты";
+                    break;
+                case "best":
+                    result = "Успешные проекты";
+                    break;
             }
             return new MvcHtmlString(result);
         }

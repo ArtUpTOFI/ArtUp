@@ -27,7 +27,8 @@ namespace ArtUp.Client.Services.Instances
                     Password = password,
                     Email = login,
                     RegistrationDate = DateTime.Now,
-                    RoleId = 2
+                    RoleId = 2,
+                    IsActive = true,
                 };
 
                 _dataBase.Users.Create(nu);
@@ -43,7 +44,7 @@ namespace ArtUp.Client.Services.Instances
         //bad method, should be replaced later
         public int GetCurrentUser(string email)
         {
-            return _dataBase.Users.Find(u => u.Email == email && !u.IsActive).FirstOrDefault().Id; //should be active
+            return _dataBase.Users.Find(u => u.Email == email && u.IsActive).FirstOrDefault().Id;
         }
 
         public IEnumerable<UserViewModel> GetAllUsers()

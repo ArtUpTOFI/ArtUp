@@ -174,5 +174,20 @@ namespace ArtUp.Client.Services
             data.Projects.Update(project);
             data.SaveAll();
         }
+
+        public IEnumerable<ProjectViewModel> GetByFilter(string filter)
+        {
+            switch (filter)
+            {
+                case "new":
+                    return GetNewProjects();
+                case "all":
+                    return GetAllProjects();
+                case "best":
+                    return GetBySuccess(true);
+            }
+
+            return null;
+        }
     }
 }
