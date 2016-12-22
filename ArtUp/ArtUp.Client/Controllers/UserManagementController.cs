@@ -15,11 +15,12 @@ namespace ArtUp.Client.Controllers
     {
         IProjectService _projectService;
         IUserManagementService _userManagementService;
-
+        IPlatformDetailsService _platformService;
         public UserManagementController()
         {
             _projectService = new ProjectService();
             _userManagementService = new UserManagementService();
+            _platformService = new PlatformDetailsService();
         }
 
         // GET: UserManagement
@@ -28,12 +29,14 @@ namespace ArtUp.Client.Controllers
             return View();
         }
 
+        //[Authorize (Roles = "Admin")]
         public ActionResult Users()
         {
             var res = _userManagementService.GetAllUsers();
             return View(res);
         }
 
+        //[Authorize (Roles = "Admin")]
         public ActionResult GetUser(int id)
         {
             var User = _userManagementService.GetUser(id);
@@ -41,6 +44,7 @@ namespace ArtUp.Client.Controllers
             return View(User);
         }
 
+        //[Authorize (Roles = "Admin")]
         public ActionResult DeactiveUser(int id)
         {
             _userManagementService.DeactiveUser(id);
@@ -48,6 +52,7 @@ namespace ArtUp.Client.Controllers
             return RedirectToAction("GetUser", "UserManagement", new { id = id });
         }
 
+        //[Authorize (Roles = "Admin")]
         public ActionResult GetProjects()
         {
             var allProjects = _projectService.GetAllProjects();
@@ -62,6 +67,7 @@ namespace ArtUp.Client.Controllers
             return View();
         }
 
+        //[Authorize (Roles = "Admin")]
         public ActionResult ApproveProject(int id)
         {
             _projectService.ApproveProject(id);
@@ -69,11 +75,27 @@ namespace ArtUp.Client.Controllers
             return RedirectToAction("Project", "Home", new { id = id });
         }
 
+        //[Authorize (Roles = "Admin")]
         public ActionResult RejectProject(int id)
         {
             _projectService.RejectProject(id);
 
             return RedirectToAction("Project", "Home", new { id = id });
+        }
+
+        //[Authorize (Roles = "Admin")]
+        public ActionResult GetSettings()
+        {
+            var data = _platformService.GetSettings();
+
+            return View(data);
+        }
+
+        [HttpPost]
+        public ActionResult GetSettings(PlatformDetailsViewModel model)
+        {
+            _platformService.SetSetting(model);
+            return View();
         }
     }
 }

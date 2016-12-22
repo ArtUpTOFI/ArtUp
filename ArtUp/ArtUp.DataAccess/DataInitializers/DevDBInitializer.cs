@@ -69,6 +69,19 @@ namespace ArtUp.DataAccess.DataInitializers
                     RegistrationDate = DateTime.Today,
                     RoleId = 2,
                     Surname = "Ivanovich"
+                },
+                new User()
+                {
+                    Id = 4,
+                    Email = "admin@mail.com",
+                    Password = "123Aaa!",
+                    About = "Main odmen!",
+                    Avatar = "Odmen.png",
+                    Location = "New york",
+                    Name = "Big",
+                    RegistrationDate = DateTime.Today,
+                    RoleId = 1,
+                    Surname = "Brother"
                 }
             });
 

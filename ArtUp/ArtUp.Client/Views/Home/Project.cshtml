@@ -39,6 +39,12 @@
                                 {
                                     <p><a href="/Account/Register">Зарегистрируйтесь</a>, чтобы поддержать проект</p>
                                 }
+                                @if (User.IsInRole("Admin") && ViewBag.IsApproved)
+                                {
+                                    <p><a href="/UserManagement/ApproveProject">Аппрувнуть проект</a></p>
+                                    <p><a href="/UserManagement/RejectProject">Откинуть проект</a></p>
+                                }
+
                                 <h4>Подарки поддержавшим:</h4>
                                 @foreach (var gift in ViewBag.Gifts)
                                 {

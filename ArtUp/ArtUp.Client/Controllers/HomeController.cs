@@ -3,6 +3,7 @@ using ArtUp.Client.Services;
 using ArtUp.Client.Services.Instances;
 using ArtUp.Client.Services.Interfaces;
 using ArtUp.CLient.Services.Instances;
+using ArtUp.DataAccess.Entities.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -75,6 +76,8 @@ namespace ArtUp.Client.Controllers
             ViewBag.Gifts = _giftService.GetGifts(id);
             ViewBag.Donations = _userDonationService.GetDonations(id);
             ViewBag.Comments = _commentService.GetComments(id);
+            if (project.ProjectState == ProjectState.PendingApproval)
+                ViewBag.IsApproved = true;
             return View();
         }
 
