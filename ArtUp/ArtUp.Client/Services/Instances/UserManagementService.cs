@@ -27,7 +27,8 @@ namespace ArtUp.Client.Services.Instances
                     Password = password,
                     Email = login,
                     RegistrationDate = DateTime.Now,
-                    RoleId = 2
+                    RoleId = 2,
+                    IsActive = true,
                 };
 
                 _dataBase.Users.Create(nu);

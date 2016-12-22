@@ -84,6 +84,12 @@ namespace ArtUp.Client.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    if (!_userManagementService.GetByName(model.Email).IsActive)
+                    {
+                        ModelState.AddModelError("", "Админ вас заблочил в общем, сори");
+                        AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+                        return View(model);
+                    } 
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
