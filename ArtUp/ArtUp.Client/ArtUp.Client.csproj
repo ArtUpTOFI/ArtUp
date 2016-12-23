@@ -186,6 +186,7 @@
     <Compile Include="Models\PaymentAccountData.cs" />
     <Compile Include="Models\PaymentBankData.cs" />
     <Compile Include="Models\PaymentCardData.cs" />
+    <Compile Include="Models\PlatformDetailsViewModel.cs" />
     <Compile Include="Models\ProjectUserDonation.cs" />
     <Compile Include="Models\ProjectViewModel.cs" />
     <Compile Include="Models\UserDonationViewModel.cs" />
@@ -195,6 +196,7 @@
     <Compile Include="Services\Instances\CategoryService.cs" />
     <Compile Include="Services\Instances\CommentService.cs" />
     <Compile Include="Services\Instances\GiftService.cs" />
+    <Compile Include="Services\Instances\PlatformDetailsService.cs" />
     <Compile Include="Services\Instances\ProjectService.cs" />
     <Compile Include="Services\Instances\SearchService.cs" />
     <Compile Include="Services\Instances\UserDonationService.cs" />
@@ -202,6 +204,7 @@
     <Compile Include="Services\Interfaces\ICategoryService.cs" />
     <Compile Include="Services\Interfaces\ICommentService.cs" />
     <Compile Include="Services\Interfaces\IGiftService.cs" />
+    <Compile Include="Services\Interfaces\IPlatformDetailsService.cs" />
     <Compile Include="Services\Interfaces\IProjectService.cs" />
     <Compile Include="Services\Interfaces\ISearchService.cs" />
     <Compile Include="Services\Interfaces\IUserDonationService.cs" />
