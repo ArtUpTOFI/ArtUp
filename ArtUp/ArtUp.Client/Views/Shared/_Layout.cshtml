@@ -50,12 +50,17 @@
                                 {
                                     @Html.AntiForgeryToken()
                                 }
+                                @*@if (User.IsInRole("Admin"))*@
+                                @* { *@
+                                @*<li><a href="/UserManagement/Index"><i class="fa fa-user"></i>Кабинет администратора</a></li>*@
+                                @* } *@
                             }
                             else
                             {
                                 <li><a href="~/Account/Login"><i class="fa fa-user"></i>Войти</a></li>
                                 <li><a href="~/Account/Register"><i class="fa fa-heart"></i>Зарегистрироваться</a></li>
-                            }
+                            }                            
+                            <li><a href="/UserManagement/Index"><i class="fa fa-user"></i>Кабинет администратора</a></li>                            
                         </ul>
                     </div>
                 </div>
@@ -123,12 +128,6 @@
                         <li><a href="/Home/Category?category=movie">Кино и видео</a></li>
                         <li><a href="/Home/Category?category=photo">Фотография</a></li>
                         <li><a href="/Home/Category?category=art">Живопись</a></li>
-                        @*@if (User.IsInRole("Admin"))*@
-                            @* { *@
-                            <li><a href="/UserManagement/Index">Кабинет администратора</a></li>
-                            @* } *@
-
-                    </ul>
                 </div>
             </div>
         </div>

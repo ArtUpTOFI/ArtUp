@@ -94,6 +94,27 @@ namespace ArtUp.Client.Controllers
         [HttpPost]
         public ActionResult GetSettings(PlatformDetailsViewModel model)
         {
+            if(!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "Неверные данные");
+                return View();
+            }
+            if (model.IncomeTax < 0 || model.IncomeTax > 99)
+            {
+                ModelState.AddModelError("", "Неверно введен налог");
+                return View();
+            }
+            if (model.PlatformComission < 0 || model.PlatformComission > 99)
+            {
+                ModelState.AddModelError("", "Неверно введен процент комиссии");
+                return View();
+            }
+            if (model.MaxFreeAmount < 0)
+            {
+                ModelState.AddModelError("", "Неверно введена сумма");
+                return View();
+            }
+
             _platformService.SetSetting(model);
             return View();
         }
