@@ -1,4 +1,4 @@
-﻿
+﻿@model ArtUp.Client.Models.ProjectViewModel
 @{
     ViewBag.Title = "CreateProject";
 }
@@ -103,896 +103,666 @@
 
 
 <div role="tabpanel">
+@using (Html.BeginForm("CreateProject", "Home", FormMethod.Post))
+{
     <ul class="product-tab" role="tablist">
         <li role="presentation" class="active"><a href="#general" aria-controls="general" role="tab" data-toggle="tab">Оcновное</a></li>
         <li role="presentation"><a href="#gifts" aria-controls="gifts" role="tab" data-toggle="tab">Подарки</a></li>
         <li role="presentation"><a href="#description" aria-controls="description" role="tab" data-toggle="tab">Описание</a></li>
         <li role="presentation"><a href="#personal" aria-controls="personal" role="tab" data-toggle="tab">Контакты</a></li>
-        <li style="width:230px"><button type="submit" formmethod="POST" formaction="/project/update?id=88548&amp;status=1" class="nb-btn create__nav__btn create__nav__btn-more--inactive">Отправить на модерацию </button></li>
+        <li style="width:230px"><input type="submit" class="nb-btn create__nav__btn create__nav__btn-more--inactive" value="Отправить на модерацию"/></li>
     </ul>
     <div class="tab-content">
-        <div role="tabpanel" class="tab-pane fade in active" id="general">
-            <h2>Основная информация о проекте</h2>
-            <div class="new-project__left col-md-8">
-                <section class="nb-create create--title project-edit-form nb-create--valid">
-                    <div class="nb-create__head">
-                        <h2 class="nb-heading--small create__heading--small">Название проекта</h2>
-                    </div>
-                    <div class="nb-create__body">
-                        <div class="nb-input-wrap nb-create__input-wrap">
-                            <input id="js-project-title" type="text" name="project[name]" param="name" maxlength="60" class="nb-input js-ajax-project-update-info" placeholder="Введите название проекта" value="daw" aria-required="true" aria-invalid="false">
-                        </div>
-                        <p class="nb-create-desc">Название должно быть лаконичным, уникальным и запоминающимся. Будьте уверены в том, что название проекта отражает его суть.</p>
-                    </div>
-                </section>
-                <section class="nb-create create--description project-edit-form nb-create--valid">
-                    <div class="nb-create__head">
-                        <h2 class="nb-heading--small create__heading--small">Краткое описание проекта</h2>
-                    </div>
-                    <div class="nb-create__body">
-                        <div class="nb-textarea-wrap">
-                            <textarea id="js-description-text" class="nb-textarea" placeholder="Коротко расскажите о проекте" name="project[description_short]" param="description_short" aria-required="true">dwdawa</textarea>
-                            <span class="nb-textarea-count"><span class="js-description-entered">6</span> / 160 символов</span>
-                        </div>
-                        <p class="nb-create-desc">Опишите в одном предложении цель вашего проекта.</p>
-                    </div>
-                </section>
-                <section class="nb-create create--category project-edit-form">
-                    <div class="nb-create__head">
-                        <h2 class="nb-heading--small create__heading--small">Категория проекта</h2>
-                    </div>
-                    <div class="nb-create__body">
-                        <div class="nb-dd-toggle-wrap js-dd-select-box">
-
-                            <div class="nb-dd-toggle js-toggle-dd">
-                                <span class="nb-dd-toggle-txt js-toggle-dd-txt nb-dd-toggle-txt--default">Выберите категорию</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="9" class="nb-dd-arrow-icon" preserveAspectRatio="xMidYMid" viewBox="0 0 13 9"><path fill-rule="evenodd" d="M12.003 1L6.502 6.592 1 1" class="cls-dd-arrow-Aqua"></path></svg>
-                            </div>
-
-                            <select class="nb-dd-default js-dd-select js-ajax-project-update-info nb-input--invalid" name="project[category_id]" param="category_id" aria-required="true">
-                                <option class="js-dd-option" selected="" value="">Выберите категорию</option>
-                                <option class="js-dd-option" value="20">Дизайн</option>
-                                <option class="js-dd-option" value="21">Еда</option>
-                                <option class="js-dd-option" value="22">Игры</option>
-                                <option class="js-dd-option" value="23">Искусство</option>
-                                <option class="js-dd-option" value="24">Литература</option>
-                                <option class="js-dd-option" value="25">Музыка</option>
-                                <option class="js-dd-option" value="26">Наука и Образование</option>
-                                <option class="js-dd-option" value="27">Ремесло</option>
-                                <option class="js-dd-option" value="28">Социальные проекты</option>
-                                <option class="js-dd-option" value="29">Спорт</option>
-                                <option class="js-dd-option" value="30">Театр</option>
-                                <option class="js-dd-option" value="31">Технологии</option>
-                                <option class="js-dd-option" value="32">Фильмы и Видео</option>
-                                <option class="js-dd-option" value="33">Фотография</option>
-                                <option class="js-dd-option" value="34">Другое</option>
-                            </select>
-
-                            <ul class="nb-dd nb-dd--hidden js-dd-menu">
-                                <li class="nb-dd-item">
-                                    <div data-value="" class="dd-item-link js-dd-menu-item dd-item-link--default dd-item-link--selected js-default-select-value">
-                                        <span class="">Выберите категорию</span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="9" class="nb-dd-arrow-icon" preserveAspectRatio="xMidYMid" viewBox="0 0 13 9"><path fill-rule="evenodd" d="M.992 6.606l5.501-5.592 5.502 5.592" class="cls-dd-arrow-Aqua"></path></svg>
-                                    </div>
-                                </li>
-                                <li class="nb-dd-items">
-                                    <ul class="nb-dd-items__list">
-                                        <li class="nb-dd-item"><div data-value="20" class="dd-item-link js-true-select-value js-dd-menu-item">Дизайн</div></li>
-                                        <li class="nb-dd-item"><div data-value="21" class="dd-item-link js-true-select-value js-dd-menu-item">Еда</div></li>
-                                        <li class="nb-dd-item"><div data-value="22" class="dd-item-link js-true-select-value js-dd-menu-item">Игры</div></li>
-                                        <li class="nb-dd-item"><div data-value="23" class="dd-item-link js-true-select-value js-dd-menu-item">Искусство</div></li>
-                                        <li class="nb-dd-item"><div data-value="24" class="dd-item-link js-true-select-value js-dd-menu-item">Литература</div></li>
-                                        <li class="nb-dd-item"><div data-value="25" class="dd-item-link js-true-select-value js-dd-menu-item">Музыка</div></li>
-                                        <li class="nb-dd-item"><div data-value="26" class="dd-item-link js-true-select-value js-dd-menu-item">Наука и Образование</div></li>
-                                        <li class="nb-dd-item"><div data-value="27" class="dd-item-link js-true-select-value js-dd-menu-item">Ремесло</div></li>
-                                        <li class="nb-dd-item"><div data-value="28" class="dd-item-link js-true-select-value js-dd-menu-item">Социальные проекты</div></li>
-                                        <li class="nb-dd-item"><div data-value="29" class="dd-item-link js-true-select-value js-dd-menu-item">Спорт</div></li>
-                                        <li class="nb-dd-item"><div data-value="30" class="dd-item-link js-true-select-value js-dd-menu-item">Театр</div></li>
-                                        <li class="nb-dd-item"><div data-value="31" class="dd-item-link js-true-select-value js-dd-menu-item">Технологии</div></li>
-                                        <li class="nb-dd-item"><div data-value="32" class="dd-item-link js-true-select-value js-dd-menu-item">Фильмы и Видео</div></li>
-                                        <li class="nb-dd-item"><div data-value="33" class="dd-item-link js-true-select-value js-dd-menu-item">Фотография</div></li>
-                                        <li class="nb-dd-item"><div data-value="34" class="dd-item-link js-true-select-value js-dd-menu-item">Другое</div></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-                <section class="nb-create create--location js-section-location project-edit-form">
-                    <div id="js-create-map" class="nb-create__map-bg" style="display: none;">
-
-                    </div>
-                    <div class="nb-create__head nb-create-location__head">
-                        <h2 class="nb-heading--small create__heading--small">Локация проекта</h2>
-                    </div>
-                    <div class="nb-create__body">
-                        <div class="nb-dd-toggle-wrap js-dd-select-box">
-                            <div class="nb-dd-toggle js-toggle-dd">
-                                <span class="nb-dd-toggle-txt js-toggle-dd-txt nb-dd-toggle-txt--default">Выберите город</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="9" class="nb-dd-arrow-icon" preserveAspectRatio="xMidYMid" viewBox="0 0 13 9"><path fill-rule="evenodd" d="M12.003 1L6.502 6.592 1 1" class="cls-dd-arrow-Aqua"></path></svg>
-                            </div>
-
-                            <select class="nb-dd-default js-dd-select js-ajax-project-update-info nb-input--invalid" name="project[location]" param="location" aria-required="true">
-                                <option class="js-dd-option" selected="" value="">Выберите город</option>
-                                <option class="js-dd-option" value="Минск">Минск</option>
-                                <option class="js-dd-option" value="Брест">Брест</option>
-                                <option class="js-dd-option" value="Витебск">Витебск</option>
-                                <option class="js-dd-option" value="Гомель">Гомель</option>
-                                <option class="js-dd-option" value="Гродно">Гродно</option>
-                                <option class="js-dd-option" value="Могилев">Могилев</option>
-                                <option class="js-dd-option" value="Барановичи">Барановичи</option>
-                                <option class="js-dd-option" value="Барань">Барань</option>
-                                <option class="js-dd-option" value="Белоозёрск">Белоозёрск</option>
-                                <option class="js-dd-option" value="Берёза">Берёза</option>
-                                <option class="js-dd-option" value="Березино">Березино</option>
-                                <option class="js-dd-option" value="Берёзовка">Берёзовка</option>
-                                <option class="js-dd-option" value="Бобруйск">Бобруйск</option>
-                                <option class="js-dd-option" value="Борисов">Борисов</option>
-                                <option class="js-dd-option" value="Буда-Кошелёво">Буда-Кошелёво</option>
-                                <option class="js-dd-option" value="Быхов">Быхов</option>
-                                <option class="js-dd-option" value="Василевичи">Василевичи</option>
-                                <option class="js-dd-option" value="Верхнедвинск">Верхнедвинск</option>
-                                <option class="js-dd-option" value="Ветка">Ветка</option>
-                                <option class="js-dd-option" value="Вилейка">Вилейка</option>
-                                <option class="js-dd-option" value="Волковыск">Волковыск</option>
-                                <option class="js-dd-option" value="Воложин">Воложин</option>
-                                <option class="js-dd-option" value="Высокое">Высокое</option>
-                                <option class="js-dd-option" value="Ганцевичи">Ганцевичи</option>
-                                <option class="js-dd-option" value="Глубокое">Глубокое</option>
-                                <option class="js-dd-option" value="Горки">Горки</option>
-                                <option class="js-dd-option" value="Городок">Городок</option>
-                                <option class="js-dd-option" value="Давид-Городок">Давид-Городок</option>
-                                <option class="js-dd-option" value="Дзержинск">Дзержинск</option>
-                                <option class="js-dd-option" value="Дисна">Дисна</option>
-                                <option class="js-dd-option" value="Добруш">Добруш</option>
-                                <option class="js-dd-option" value="Докшицы">Докшицы</option>
-                                <option class="js-dd-option" value="Дрогичин">Дрогичин</option>
-                                <option class="js-dd-option" value="Дубровно">Дубровно</option>
-                                <option class="js-dd-option" value="Дятлово">Дятлово</option>
-                                <option class="js-dd-option" value="Ельск">Ельск</option>
-                                <option class="js-dd-option" value="Жабинка">Жабинка</option>
-                                <option class="js-dd-option" value="Житковичи">Житковичи</option>
-                                <option class="js-dd-option" value="Жлобин">Жлобин</option>
-                                <option class="js-dd-option" value="Жодино">Жодино</option>
-                                <option class="js-dd-option" value="Заславль">Заславль</option>
-                                <option class="js-dd-option" value="Иваново">Иваново</option>
-                                <option class="js-dd-option" value="Ивацевичи">Ивацевичи</option>
-                                <option class="js-dd-option" value="Ивье">Ивье</option>
-                                <option class="js-dd-option" value="Калинковичи">Калинковичи</option>
-                                <option class="js-dd-option" value="Каменец">Каменец</option>
-                                <option class="js-dd-option" value="Кировск">Кировск</option>
-                                <option class="js-dd-option" value="Клецк">Клецк</option>
-                                <option class="js-dd-option" value="Климовичи">Климовичи</option>
-                                <option class="js-dd-option" value="Кличев">Кличев</option>
-                                <option class="js-dd-option" value="Кобрин">Кобрин</option>
-                                <option class="js-dd-option" value="Копыль">Копыль</option>
-                                <option class="js-dd-option" value="Коссово">Коссово</option>
-                                <option class="js-dd-option" value="Костюковичи">Костюковичи</option>
-                                <option class="js-dd-option" value="Кричев">Кричев</option>
-                                <option class="js-dd-option" value="Крупки">Крупки</option>
-                                <option class="js-dd-option" value="Лепель">Лепель</option>
-                                <option class="js-dd-option" value="Лида">Лида</option>
-                                <option class="js-dd-option" value="Логойск">Логойск</option>
-                                <option class="js-dd-option" value="Лунинец">Лунинец</option>
-                                <option class="js-dd-option" value="Любань">Любань</option>
-                                <option class="js-dd-option" value="Ляховичи">Ляховичи</option>
-                                <option class="js-dd-option" value="Малорита">Малорита</option>
-                                <option class="js-dd-option" value="Марьина Горка">Марьина Горка</option>
-                                <option class="js-dd-option" value="Микашевичи">Микашевичи</option>
-                                <option class="js-dd-option" value="Миоры">Миоры</option>
-                                <option class="js-dd-option" value="Молодечно">Молодечно</option>
-                                <option class="js-dd-option" value="Москва">Москва</option>
-                                <option class="js-dd-option" value="Мосты">Мосты</option>
-                                <option class="js-dd-option" value="Мстиславль">Мстиславль</option>
-                                <option class="js-dd-option" value="Мядель">Мядель</option>
-                                <option class="js-dd-option" value="Наровля">Наровля</option>
-                                <option class="js-dd-option" value="Несвиж">Несвиж</option>
-                                <option class="js-dd-option" value="Новогрудок">Новогрудок</option>
-                                <option class="js-dd-option" value="Новолукомль">Новолукомль</option>
-                                <option class="js-dd-option" value="Новополоцк">Новополоцк</option>
-                                <option class="js-dd-option" value="Орша">Орша</option>
-                                <option class="js-dd-option" value="Осиповичи">Осиповичи</option>
-                                <option class="js-dd-option" value="Ошмяны">Ошмяны</option>
-                                <option class="js-dd-option" value="Петриков">Петриков</option>
-                                <option class="js-dd-option" value="Пинск">Пинск</option>
-                                <option class="js-dd-option" value="Полоцк">Полоцк</option>
-                                <option class="js-dd-option" value="Поставы">Поставы</option>
-                                <option class="js-dd-option" value="Пружаны">Пружаны</option>
-                                <option class="js-dd-option" value="Речица">Речица</option>
-                                <option class="js-dd-option" value="Рогачёв">Рогачёв</option>
-                                <option class="js-dd-option" value="Санкт-Петербург">Санкт-Петербург</option>
-                                <option class="js-dd-option" value="Светлогорск">Светлогорск</option>
-                                <option class="js-dd-option" value="Свислочь">Свислочь</option>
-                                <option class="js-dd-option" value="Сенно">Сенно</option>
-                                <option class="js-dd-option" value="Скидель">Скидель</option>
-                                <option class="js-dd-option" value="Славгород">Славгород</option>
-                                <option class="js-dd-option" value="Слоним">Слоним</option>
-                                <option class="js-dd-option" value="Слуцк">Слуцк</option>
-                                <option class="js-dd-option" value="Смолевичи">Смолевичи</option>
-                                <option class="js-dd-option" value="Сморгонь">Сморгонь</option>
-                                <option class="js-dd-option" value="Солигорск">Солигорск</option>
-                                <option class="js-dd-option" value="Старые Дороги">Старые Дороги</option>
-                                <option class="js-dd-option" value="Столбцы">Столбцы</option>
-                                <option class="js-dd-option" value="Столин">Столин</option>
-                                <option class="js-dd-option" value="Толочин">Толочин</option>
-                                <option class="js-dd-option" value="Туров">Туров</option>
-                                <option class="js-dd-option" value="Узда">Узда</option>
-                                <option class="js-dd-option" value="Фаниполь">Фаниполь</option>
-                                <option class="js-dd-option" value="Хойники">Хойники</option>
-                                <option class="js-dd-option" value="Чаусы">Чаусы</option>
-                                <option class="js-dd-option" value="Чашники">Чашники</option>
-                                <option class="js-dd-option" value="Червень">Червень</option>
-                                <option class="js-dd-option" value="Чериков">Чериков</option>
-                                <option class="js-dd-option" value="Чечерск">Чечерск</option>
-                                <option class="js-dd-option" value="Шклов">Шклов</option>
-                                <option class="js-dd-option" value="Щучин">Щучин</option>
-                            </select>
-
-                            <ul class="nb-dd nb-dd--hidden js-dd-menu">
-                                <li class="nb-dd-item">
-                                    <div data-value="" class="dd-item-link js-dd-menu-item dd-item-link--default dd-item-link--selected js-default-select-value">
-                                        <span class="">Выберите город</span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="9" class="nb-dd-arrow-icon" preserveAspectRatio="xMidYMid" viewBox="0 0 13 9"><path fill-rule="evenodd" d="M.992 6.606l5.501-5.592 5.502 5.592" class="cls-dd-arrow-Aqua"></path></svg>
-                                    </div>
-                                </li>
-                                <li class="nb-dd-items">
-                                    <ul class="nb-dd-items__list">
-                                        <li class="nb-dd-item"><div data-value="Минск" class="dd-item-link js-true-select-value js-dd-menu-item">Минск</div></li>
-                                        <li class="nb-dd-item"><div data-value="Брест" class="dd-item-link js-true-select-value js-dd-menu-item">Брест</div></li>
-                                        <li class="nb-dd-item"><div data-value="Витебск" class="dd-item-link js-true-select-value js-dd-menu-item">Витебск</div></li>
-                                        <li class="nb-dd-item"><div data-value="Гомель" class="dd-item-link js-true-select-value js-dd-menu-item">Гомель</div></li>
-                                        <li class="nb-dd-item"><div data-value="Гродно" class="dd-item-link js-true-select-value js-dd-menu-item">Гродно</div></li>
-                                        <li class="nb-dd-item"><div data-value="Могилев" class="dd-item-link js-true-select-value js-dd-menu-item">Могилев</div></li>
-                                        <li class="nb-dd-item"><div data-value="Барановичи" class="dd-item-link js-true-select-value js-dd-menu-item">Барановичи</div></li>
-                                        <li class="nb-dd-item"><div data-value="Барань" class="dd-item-link js-true-select-value js-dd-menu-item">Барань</div></li>
-                                        <li class="nb-dd-item"><div data-value="Белоозёрск" class="dd-item-link js-true-select-value js-dd-menu-item">Белоозёрск</div></li>
-                                        <li class="nb-dd-item"><div data-value="Берёза" class="dd-item-link js-true-select-value js-dd-menu-item">Берёза</div></li>
-                                        <li class="nb-dd-item"><div data-value="Березино" class="dd-item-link js-true-select-value js-dd-menu-item">Березино</div></li>
-                                        <li class="nb-dd-item"><div data-value="Берёзовка" class="dd-item-link js-true-select-value js-dd-menu-item">Берёзовка</div></li>
-                                        <li class="nb-dd-item"><div data-value="Бобруйск" class="dd-item-link js-true-select-value js-dd-menu-item">Бобруйск</div></li>
-                                        <li class="nb-dd-item"><div data-value="Борисов" class="dd-item-link js-true-select-value js-dd-menu-item">Борисов</div></li>
-                                        <li class="nb-dd-item"><div data-value="Буда-Кошелёво" class="dd-item-link js-true-select-value js-dd-menu-item">Буда-Кошелёво</div></li>
-                                        <li class="nb-dd-item"><div data-value="Быхов" class="dd-item-link js-true-select-value js-dd-menu-item">Быхов</div></li>
-                                        <li class="nb-dd-item"><div data-value="Василевичи" class="dd-item-link js-true-select-value js-dd-menu-item">Василевичи</div></li>
-                                        <li class="nb-dd-item"><div data-value="Верхнедвинск" class="dd-item-link js-true-select-value js-dd-menu-item">Верхнедвинск</div></li>
-                                        <li class="nb-dd-item"><div data-value="Ветка" class="dd-item-link js-true-select-value js-dd-menu-item">Ветка</div></li>
-                                        <li class="nb-dd-item"><div data-value="Вилейка" class="dd-item-link js-true-select-value js-dd-menu-item">Вилейка</div></li>
-                                        <li class="nb-dd-item"><div data-value="Волковыск" class="dd-item-link js-true-select-value js-dd-menu-item">Волковыск</div></li>
-                                        <li class="nb-dd-item"><div data-value="Воложин" class="dd-item-link js-true-select-value js-dd-menu-item">Воложин</div></li>
-                                        <li class="nb-dd-item"><div data-value="Высокое" class="dd-item-link js-true-select-value js-dd-menu-item">Высокое</div></li>
-                                        <li class="nb-dd-item"><div data-value="Ганцевичи" class="dd-item-link js-true-select-value js-dd-menu-item">Ганцевичи</div></li>
-                                        <li class="nb-dd-item"><div data-value="Глубокое" class="dd-item-link js-true-select-value js-dd-menu-item">Глубокое</div></li>
-                                        <li class="nb-dd-item"><div data-value="Горки" class="dd-item-link js-true-select-value js-dd-menu-item">Горки</div></li>
-                                        <li class="nb-dd-item"><div data-value="Городок" class="dd-item-link js-true-select-value js-dd-menu-item">Городок</div></li>
-                                        <li class="nb-dd-item"><div data-value="Давид-Городок" class="dd-item-link js-true-select-value js-dd-menu-item">Давид-Городок</div></li>
-                                        <li class="nb-dd-item"><div data-value="Дзержинск" class="dd-item-link js-true-select-value js-dd-menu-item">Дзержинск</div></li>
-                                        <li class="nb-dd-item"><div data-value="Дисна" class="dd-item-link js-true-select-value js-dd-menu-item">Дисна</div></li>
-                                        <li class="nb-dd-item"><div data-value="Добруш" class="dd-item-link js-true-select-value js-dd-menu-item">Добруш</div></li>
-                                        <li class="nb-dd-item"><div data-value="Докшицы" class="dd-item-link js-true-select-value js-dd-menu-item">Докшицы</div></li>
-                                        <li class="nb-dd-item"><div data-value="Дрогичин" class="dd-item-link js-true-select-value js-dd-menu-item">Дрогичин</div></li>
-                                        <li class="nb-dd-item"><div data-value="Дубровно" class="dd-item-link js-true-select-value js-dd-menu-item">Дубровно</div></li>
-                                        <li class="nb-dd-item"><div data-value="Дятлово" class="dd-item-link js-true-select-value js-dd-menu-item">Дятлово</div></li>
-                                        <li class="nb-dd-item"><div data-value="Ельск" class="dd-item-link js-true-select-value js-dd-menu-item">Ельск</div></li>
-                                        <li class="nb-dd-item"><div data-value="Жабинка" class="dd-item-link js-true-select-value js-dd-menu-item">Жабинка</div></li>
-                                        <li class="nb-dd-item"><div data-value="Житковичи" class="dd-item-link js-true-select-value js-dd-menu-item">Житковичи</div></li>
-                                        <li class="nb-dd-item"><div data-value="Жлобин" class="dd-item-link js-true-select-value js-dd-menu-item">Жлобин</div></li>
-                                        <li class="nb-dd-item"><div data-value="Жодино" class="dd-item-link js-true-select-value js-dd-menu-item">Жодино</div></li>
-                                        <li class="nb-dd-item"><div data-value="Заславль" class="dd-item-link js-true-select-value js-dd-menu-item">Заславль</div></li>
-                                        <li class="nb-dd-item"><div data-value="Иваново" class="dd-item-link js-true-select-value js-dd-menu-item">Иваново</div></li>
-                                        <li class="nb-dd-item"><div data-value="Ивацевичи" class="dd-item-link js-true-select-value js-dd-menu-item">Ивацевичи</div></li>
-                                        <li class="nb-dd-item"><div data-value="Ивье" class="dd-item-link js-true-select-value js-dd-menu-item">Ивье</div></li>
-                                        <li class="nb-dd-item"><div data-value="Калинковичи" class="dd-item-link js-true-select-value js-dd-menu-item">Калинковичи</div></li>
-                                        <li class="nb-dd-item"><div data-value="Каменец" class="dd-item-link js-true-select-value js-dd-menu-item">Каменец</div></li>
-                                        <li class="nb-dd-item"><div data-value="Кировск" class="dd-item-link js-true-select-value js-dd-menu-item">Кировск</div></li>
-                                        <li class="nb-dd-item"><div data-value="Клецк" class="dd-item-link js-true-select-value js-dd-menu-item">Клецк</div></li>
-                                        <li class="nb-dd-item"><div data-value="Климовичи" class="dd-item-link js-true-select-value js-dd-menu-item">Климовичи</div></li>
-                                        <li class="nb-dd-item"><div data-value="Кличев" class="dd-item-link js-true-select-value js-dd-menu-item">Кличев</div></li>
-                                        <li class="nb-dd-item"><div data-value="Кобрин" class="dd-item-link js-true-select-value js-dd-menu-item">Кобрин</div></li>
-                                        <li class="nb-dd-item"><div data-value="Копыль" class="dd-item-link js-true-select-value js-dd-menu-item">Копыль</div></li>
-                                        <li class="nb-dd-item"><div data-value="Коссово" class="dd-item-link js-true-select-value js-dd-menu-item">Коссово</div></li>
-                                        <li class="nb-dd-item"><div data-value="Костюковичи" class="dd-item-link js-true-select-value js-dd-menu-item">Костюковичи</div></li>
-                                        <li class="nb-dd-item"><div data-value="Кричев" class="dd-item-link js-true-select-value js-dd-menu-item">Кричев</div></li>
-                                        <li class="nb-dd-item"><div data-value="Крупки" class="dd-item-link js-true-select-value js-dd-menu-item">Крупки</div></li>
-                                        <li class="nb-dd-item"><div data-value="Лепель" class="dd-item-link js-true-select-value js-dd-menu-item">Лепель</div></li>
-                                        <li class="nb-dd-item"><div data-value="Лида" class="dd-item-link js-true-select-value js-dd-menu-item">Лида</div></li>
-                                        <li class="nb-dd-item"><div data-value="Логойск" class="dd-item-link js-true-select-value js-dd-menu-item">Логойск</div></li>
-                                        <li class="nb-dd-item"><div data-value="Лунинец" class="dd-item-link js-true-select-value js-dd-menu-item">Лунинец</div></li>
-                                        <li class="nb-dd-item"><div data-value="Любань" class="dd-item-link js-true-select-value js-dd-menu-item">Любань</div></li>
-                                        <li class="nb-dd-item"><div data-value="Ляховичи" class="dd-item-link js-true-select-value js-dd-menu-item">Ляховичи</div></li>
-                                        <li class="nb-dd-item"><div data-value="Малорита" class="dd-item-link js-true-select-value js-dd-menu-item">Малорита</div></li>
-                                        <li class="nb-dd-item"><div data-value="Марьина Горка" class="dd-item-link js-true-select-value js-dd-menu-item">Марьина Горка</div></li>
-                                        <li class="nb-dd-item"><div data-value="Микашевичи" class="dd-item-link js-true-select-value js-dd-menu-item">Микашевичи</div></li>
-                                        <li class="nb-dd-item"><div data-value="Миоры" class="dd-item-link js-true-select-value js-dd-menu-item">Миоры</div></li>
-                                        <li class="nb-dd-item"><div data-value="Молодечно" class="dd-item-link js-true-select-value js-dd-menu-item">Молодечно</div></li>
-                                        <li class="nb-dd-item"><div data-value="Москва" class="dd-item-link js-true-select-value js-dd-menu-item">Москва</div></li>
-                                        <li class="nb-dd-item"><div data-value="Мосты" class="dd-item-link js-true-select-value js-dd-menu-item">Мосты</div></li>
-                                        <li class="nb-dd-item"><div data-value="Мстиславль" class="dd-item-link js-true-select-value js-dd-menu-item">Мстиславль</div></li>
-                                        <li class="nb-dd-item"><div data-value="Мядель" class="dd-item-link js-true-select-value js-dd-menu-item">Мядель</div></li>
-                                        <li class="nb-dd-item"><div data-value="Наровля" class="dd-item-link js-true-select-value js-dd-menu-item">Наровля</div></li>
-                                        <li class="nb-dd-item"><div data-value="Несвиж" class="dd-item-link js-true-select-value js-dd-menu-item">Несвиж</div></li>
-                                        <li class="nb-dd-item"><div data-value="Новогрудок" class="dd-item-link js-true-select-value js-dd-menu-item">Новогрудок</div></li>
-                                        <li class="nb-dd-item"><div data-value="Новолукомль" class="dd-item-link js-true-select-value js-dd-menu-item">Новолукомль</div></li>
-                                        <li class="nb-dd-item"><div data-value="Новополоцк" class="dd-item-link js-true-select-value js-dd-menu-item">Новополоцк</div></li>
-                                        <li class="nb-dd-item"><div data-value="Орша" class="dd-item-link js-true-select-value js-dd-menu-item">Орша</div></li>
-                                        <li class="nb-dd-item"><div data-value="Осиповичи" class="dd-item-link js-true-select-value js-dd-menu-item">Осиповичи</div></li>
-                                        <li class="nb-dd-item"><div data-value="Ошмяны" class="dd-item-link js-true-select-value js-dd-menu-item">Ошмяны</div></li>
-                                        <li class="nb-dd-item"><div data-value="Петриков" class="dd-item-link js-true-select-value js-dd-menu-item">Петриков</div></li>
-                                        <li class="nb-dd-item"><div data-value="Пинск" class="dd-item-link js-true-select-value js-dd-menu-item">Пинск</div></li>
-                                        <li class="nb-dd-item"><div data-value="Полоцк" class="dd-item-link js-true-select-value js-dd-menu-item">Полоцк</div></li>
-                                        <li class="nb-dd-item"><div data-value="Поставы" class="dd-item-link js-true-select-value js-dd-menu-item">Поставы</div></li>
-                                        <li class="nb-dd-item"><div data-value="Пружаны" class="dd-item-link js-true-select-value js-dd-menu-item">Пружаны</div></li>
-                                        <li class="nb-dd-item"><div data-value="Речица" class="dd-item-link js-true-select-value js-dd-menu-item">Речица</div></li>
-                                        <li class="nb-dd-item"><div data-value="Рогачёв" class="dd-item-link js-true-select-value js-dd-menu-item">Рогачёв</div></li>
-                                        <li class="nb-dd-item"><div data-value="Санкт-Петербург" class="dd-item-link js-true-select-value js-dd-menu-item">Санкт-Петербург</div></li>
-                                        <li class="nb-dd-item"><div data-value="Светлогорск" class="dd-item-link js-true-select-value js-dd-menu-item">Светлогорск</div></li>
-                                        <li class="nb-dd-item"><div data-value="Свислочь" class="dd-item-link js-true-select-value js-dd-menu-item">Свислочь</div></li>
-                                        <li class="nb-dd-item"><div data-value="Сенно" class="dd-item-link js-true-select-value js-dd-menu-item">Сенно</div></li>
-                                        <li class="nb-dd-item"><div data-value="Скидель" class="dd-item-link js-true-select-value js-dd-menu-item">Скидель</div></li>
-                                        <li class="nb-dd-item"><div data-value="Славгород" class="dd-item-link js-true-select-value js-dd-menu-item">Славгород</div></li>
-                                        <li class="nb-dd-item"><div data-value="Слоним" class="dd-item-link js-true-select-value js-dd-menu-item">Слоним</div></li>
-                                        <li class="nb-dd-item"><div data-value="Слуцк" class="dd-item-link js-true-select-value js-dd-menu-item">Слуцк</div></li>
-                                        <li class="nb-dd-item"><div data-value="Смолевичи" class="dd-item-link js-true-select-value js-dd-menu-item">Смолевичи</div></li>
-                                        <li class="nb-dd-item"><div data-value="Сморгонь" class="dd-item-link js-true-select-value js-dd-menu-item">Сморгонь</div></li>
-                                        <li class="nb-dd-item"><div data-value="Солигорск" class="dd-item-link js-true-select-value js-dd-menu-item">Солигорск</div></li>
-                                        <li class="nb-dd-item"><div data-value="Старые Дороги" class="dd-item-link js-true-select-value js-dd-menu-item">Старые Дороги</div></li>
-                                        <li class="nb-dd-item"><div data-value="Столбцы" class="dd-item-link js-true-select-value js-dd-menu-item">Столбцы</div></li>
-                                        <li class="nb-dd-item"><div data-value="Столин" class="dd-item-link js-true-select-value js-dd-menu-item">Столин</div></li>
-                                        <li class="nb-dd-item"><div data-value="Толочин" class="dd-item-link js-true-select-value js-dd-menu-item">Толочин</div></li>
-                                        <li class="nb-dd-item"><div data-value="Туров" class="dd-item-link js-true-select-value js-dd-menu-item">Туров</div></li>
-                                        <li class="nb-dd-item"><div data-value="Узда" class="dd-item-link js-true-select-value js-dd-menu-item">Узда</div></li>
-                                        <li class="nb-dd-item"><div data-value="Фаниполь" class="dd-item-link js-true-select-value js-dd-menu-item">Фаниполь</div></li>
-                                        <li class="nb-dd-item"><div data-value="Хойники" class="dd-item-link js-true-select-value js-dd-menu-item">Хойники</div></li>
-                                        <li class="nb-dd-item"><div data-value="Чаусы" class="dd-item-link js-true-select-value js-dd-menu-item">Чаусы</div></li>
-                                        <li class="nb-dd-item"><div data-value="Чашники" class="dd-item-link js-true-select-value js-dd-menu-item">Чашники</div></li>
-                                        <li class="nb-dd-item"><div data-value="Червень" class="dd-item-link js-true-select-value js-dd-menu-item">Червень</div></li>
-                                        <li class="nb-dd-item"><div data-value="Чериков" class="dd-item-link js-true-select-value js-dd-menu-item">Чериков</div></li>
-                                        <li class="nb-dd-item"><div data-value="Чечерск" class="dd-item-link js-true-select-value js-dd-menu-item">Чечерск</div></li>
-                                        <li class="nb-dd-item"><div data-value="Шклов" class="dd-item-link js-true-select-value js-dd-menu-item">Шклов</div></li>
-                                        <li class="nb-dd-item"><div data-value="Щучин" class="dd-item-link js-true-select-value js-dd-menu-item">Щучин</div></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-                <section class="nb-create create--media project-edit-form">
-                    <div class="nb-create__head">
-                        <h2 class="nb-heading--small create__heading--small">Обложка проекта и видео</h2>
-                    </div>
-                    <div class="nb-create__body nb-create-media__body">
-                        <div class="nb-create__media--img js-create-media">
-                            <div class="nb-create__media__img-wrap_project_image">
-                                <img src="/assets/img/create_img_bg.jpg" width="620" height="467" alt="placeholder image" class="nb-create__media__img">
-                            </div>
-                            <p id="status-upload-image"></p>
-                            <div class="nb-create__media__caption--bottom">
-                                <div class="nb-create__media__caption__btn-wrap">
-                                    <button class="nb-btn nb-btn--add-media create__btn--add-media">Добавить обложку</button>
-                                </div>
-                                <div class="nb-create__media__caption__txt--img">Это основное изображение вашего проекта.<br>JPG, PNG, GIF, BMP / Формат: 4х3 / Лимит: 5 Мб</div>
-                            </div>
-                            <input id="js-image-link-hidden" class="js-ajax-project-update-info" type="hidden" name="project[image]" param="image" value="" aria-required="true">
-                        </div>
-                        <div class="nb-create__media--video">
-                            <div class="nb-create__media__video-preview">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="44" height="26" class="video-icon--create" preserveAspectRatio="xMidYMid" viewBox="0 0 44 26"><path fill-rule="evenodd" d="M4.15 1h35.7C41.58985 1 43 2.4650909 43 4.27272727V21.7272727C43 23.5349091 41.58985 25 39.85 25H4.15C2.41015 25 1 23.5349091 1 21.7272727V4.27272727C1 2.4650909 2.41015 1 4.15 1z" class="cls-border-gray9"></path><path fill-rule="evenodd" d="M27 13l-8 4V9l8 4z" class="cls-triangle-gray9"></path></svg>
-                                <img class="video-preview" src="/assets/img/create_img_bg.jpg" alt="">
-                            </div>
-                            <div class="nb-create__media__caption">
-                                <button type="button" data-show="#add-video" class="nb-btn nb-btn--add-media js-open-video js-video-button">Добавить видео</button>
-                                <div class="nb-create__media__caption__txt--video">Проекты с видео имеют больше шансов на успех!<br>Добавьте ссылку с YouTube или Vimeo.</div>
-                                <input id="js-preview-video-image" class="js-ajax-project-update-info" type="hidden" name="project[preview_url]" param="preview_url" value="">
-                                <input id="js-video-link" class="js-ajax-project-update-info" type="hidden" name="project[video_url]" param="video_url" value="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="nb-create__foot">
-                        <hr class="nb-create-media-divider">
-                        <div class="nb-create-question">
-                            <a class="nb-link nb-create__link js-open-video js-open-video-popup" data-src="https://www.youtube.com/embed/wgEzP6uUvco" data-show="#view-video" data-video-name="Как снять видео" style="cursor:pointer">Как записать хорошее видео?</a>
-                        </div>
-                    </div>
-                </section>
-                <section class="nb-create create--fund project-edit-form">
-                    <div class="nb-create__head">
-                        <h2 class="nb-heading--small create__heading--small">Бюджет и продолжительность кампании</h2>
-                    </div>
-                    <div class="nb-create__body">
-                        <div class="nb-create__fund cf">
-                            <div class="nb-create__money">
-                                <div class="nb-input-wrap">
-                                    <input type="text" id="js-project-money" name="project[needed_sum]" param="needed_sum" class="nb-input nb-input--with-postfix" placeholder="Введите сумму" value="" aria-required="true">
-                                    <span class="nb-input-postfix">руб.</span>
-                                </div>
-                            </div>
-                            <div class="nb-create__time">
-                                <div class="nb-input-wrap">
-                                    <input type="text" id="js-dd-time-proj" name="project[days_count]" param="days_count" alt="integer" class="nb-input js-ajax-project-update-info" placeholder="Дней" value="" aria-required="true">
-                                </div>
-                            </div>
-                            <div class="nb-create__time-caption">
-                                <span class="nb-create__time-txt">от 1 до 180 дней</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="nb-create__foot">
-                        <div class="nb-create-fund__info cf">
-                            <div class="nb-create-fund__commission">
-                                <strong class="nb-create-fund__value">0 руб.</strong>
-                                <span class="nb-create-fund__txt">Комиссионный сбор (12%)</span>
-                                <span class="nb-tooltip pay__tooltip__link">?<span class="nb-tooltip__content">Комиссионный сбор включает общую комиссию Улья, банка и платежной системы. Комиссия взимается со всей собранной суммы ТОЛЬКО в случае успешного окончания краудфандинговой кампании.</span></span>
-                            </div>
-                            <div class="nb-create-fund__income-tax">
-                                <strong class="nb-create-fund__value">0 руб.</strong>
-                                <span class="nb-create-fund__txt">Подоходный налог (13%)</span>
-                                <span class="nb-tooltip pay__tooltip__link">?<span class="nb-tooltip__content">Подоходный налог, взимаемый государством, составляет 13%. Стоит учитывать, что сумма в 4 947 руб. налогом не облагается. Уплату налога следует производить самостоятельно.</span></span>
-                            </div>
-                            <div class="nb-create-fund__final-sum">
-                                <strong class="nb-create-fund__value nb-create-fund__value--final">≈ <span class="js-create-final-sum">0</span> руб.</strong>
-                                <span class="nb-tooltip pay__tooltip__link">?<span class="nb-tooltip__content">Данный подсчет является приблизительным. Итоговая сумма может отличаться от указанной.</span></span>
-                            </div>
-                        </div>
-                        <hr class="nb-create-media-divider">
-                        <p class="nb-create-desc">Мы рекомендуем указывать минимальную сумму, необходимую для реализации проекта. Улей использует модель «все или ничего», а это значит, что для получение средств вам обязательно необходимо собрать от 100% и выше.<br><br>Обращаем ваше внимание на то, что Улей берет комиссию только с успешных проектов.</p>
-                    </div>
-                </section>
-            </div>
-            <div class="new-project__right col-md-4">
-                <section class="nb-create">
-                    <div class="nb-create__head">
-                        <p class="nb-create-status">
-                            Последнее сохранение
-                            <time class="js-date-temp-version" datetime="08.12.2016 15:35:10">
-                                08 декабря 2016 в 15:35:10
-                            </time>
-                        </p>
-                    </div>
-                    <div class="nb-create__body cf">
-                        <a href="javascript:void(0);" class="edit__btn--save js-save-project-info">Сохранить</a><a href="javascript:void(0);" class="edit__btn--preview js-save-project-info-and-preview">Предпросмотр</a>
-                    </div>
-                </section>	<section class="nb-create create--project">
-                    <div class="nb-create__head nb-create-project__head">
-                    </div>
-                    <div class="nb-create__body nb-create-project__body">
-                        <div class="nb-card__preview">
-                            <img width="300" height="225" class="nb-card__img" src="/assets/img/card_tmp_bg.jpg" alt="daw">
-                        </div>
-                        <div class="nb-card__content">
-                            <div class="nb-card__body">
-                                <h3 class="nb-card__head" id="js-cart-tmp-project-name">daw</h3>
-                                <p class="nb-card__text">
-                                    <span class="nb-card__text__tmp" id="js-cart-tmp-description">dwdawa</span>
-                                </p>
-                            </div>
-                            <div class="nb-card__author"><a href="/client?id=" class="nb-card__author-name">Евгений Обуховский</a><span class="nb-card__author-location" id="js-card-tmp-location">Локация проекта</span></div>
-                            <div class="nb-card__foot">
-                                <progress class="nb-progress" value="0" max="">
-                                    <!-- fallback for progressbar, use if ie-->
-                                </progress>		<div class="nb-card__res cf">
-                                    <div class="nb-card__res__compl">
-                                        <strong class="nb-card__res__strong">0 руб.</strong>
-                                        <div class="nb-card__res__txt">Собрано (0%)</div>
-                                    </div>
-                                    <div class="nb-card__res__left">
-                                        <strong class="nb-card__res__strong"><span class="js-card-left-days" id="js-card-tmp-left-days">0</span> дней</strong>
-                                        <div class="nb-card__res__txt">Осталось</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="nb-create__foot nb-create-project__foot">
-                    </div>
-                </section>
-
-                <section class="nb-create create--help">
-                    <div class="nb-create__head">
-                        <h2 class="nb-heading--small create__heading--small">Помощь</h2>
-                    </div>
-
-                    <div class="nb-create__body">
-                        <details class="nb-details nb-details--small">
-                            <summary class="nb-summary nb-summary--small">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" class="nb-summary-icon nb-summary-icon--small" preserveAspectRatio="xMidYMid" viewBox="0 0 8 14">
-                                    <path fill-rule="evenodd" d="M1 1l5.398 5.714L1 12.429" class="cls-arrow-aquarium--round"></path>
-                                </svg>
-                                Как мне создать хороший проект?
-                            </summary>
-                            <div class="nb-details-content">
-                                <div class="nb-details-content-txt">
-                                    Мы подготовили для вас курс «Обучение краудфандингу», изучив который, вы
-                                    без проблем сможете привлечь финансирование с помощью «Улья».
-                                    <a href="/project/create/info?page=main" target="_blank" class="nb-link nb-create__link">Перейти к обучению</a>.
-                                </div>
-                            </div>
-                        </details>
-                        <details class="nb-details nb-details--small">
-                            <summary class="nb-summary nb-summary--small">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" class="nb-summary-icon nb-summary-icon--small" preserveAspectRatio="xMidYMid" viewBox="0 0 8 14">
-                                    <path fill-rule="evenodd" d="M1 1l5.398 5.714L1 12.429" class="cls-arrow-aquarium--round"></path>
-                                </svg>
-                                Зачем записывать видео?
-                            </summary>
-                            <div class="nb-details-content">
-                                <div class="nb-details-content-txt">
-                                    Видео-обращение значительно повысит ваши шансы на успех. Это эффективный
-                                    инструмент, который позволит лично обратиться к потенциальным спонсорам,
-                                    рассказать о проекте и призвать к действию.
-                                </div>
-                            </div>
-                        </details>
-                    </div>
-
-                    <div class="nb-create__foot">
-                        <hr class="nb-create-status-divider">
-                        <div class="nb-create-question">
-                            <a href="javascript:void(0)" class="nb-link nb-create__link js-open-feedback-popup">Задать вопрос</a>
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </div>
-        <div role="tabpanel" class="tab-pane fade" id="gifts">
-            <h2>Добавление подарков</h2>
-            <div class="new-project__left col-md-8">
-                <div class="new-project__temp-gift js-project-temp-gift">
-                    <section class="nb-section pay-gifts__section js-temp-gift">
-
+            <div role="tabpanel" class="tab-pane fade in active" id="general">
+                <h2>Основная информация о проекте</h2>
+                <div class="new-project__left col-md-8">
+                    <section class="nb-create create--title project-edit-form nb-create--valid">
                         <div class="nb-create__head">
-                            <h2 class="nb-heading--small create__heading--small">Новый подарок</h2>
+                            <h2 class="nb-heading--small create__heading--small">Название проекта</h2>
                         </div>
                         <div class="nb-create__body">
-                            <div class="nb-create__gift-sum">
-                                <div class="nb-input-wrap create__gift-sum__input-wrap">
-                                    <input type="text" class="nb-input nb-input--with-postfix" id="js-gift-sum-input" alt="money" placeholder="Сумма вознаграждения" value="">
-                                    <span class="nb-input-postfix">руб.</span>
-                                </div>
-                                <span class="nb-tooltip create__gift-sum__tooltip__link">?<span class="nb-tooltip__content">Здесь необходимо ввести сумму, которой будет соответствовать ваш подарок.</span></span>
+                            <div class="nb-input-wrap nb-create__input-wrap">
+                                @Html.Hidden("UserId", (int)ViewBag.UserId)
+                                @Html.TextBoxFor(m => m.Title, new { @placeholder = "Введите название проекта" })
+                                @*<input id="js-project-title" type="text" name="project[name]" param="name" maxlength="60" class="nb-input js-ajax-project-update-info" placeholder="Введите название проекта" value="daw" aria-required="true" aria-invalid="false">*@
                             </div>
-                            <div class="nb-create__gift-description">
-                                <div class="nb-textarea-wrap">
-                                    <textarea class="nb-textarea" id="js-gift-description-textarea" placeholder="Описание подарка"></textarea>
-                                </div>
-                            </div>
-                            <div class="nb-input-check-wrap donate__input-wrap nb-input-check-wrap">
-                                <input id="js-gift-count-limit-input" class="nb-input-check" type="checkbox" name="view_flag" onclick="show_hideGiftCountInput(this);" value="1">
-                                <label for="js-gift-count-limit-input" class="nb-input-check-txt">Ограничить количество подарков</label>
-                            </div>
-                            <div class="nb-create__gift-limit" style="display: none">
-                                <div class="nb-input-wrap create__gift-limit__input-wrap">
-                                    <input type="text" class="nb-input nb-input--with-postfix" id="js-gift-count-input" alt="integer" placeholder="Лимит подарков" value="">
-                                </div>
-                            </div>
-                            <button type="button" onclick="addGift();" class="nb-btn nb-btn--add-media create-gift__btn--add-media">Добавить подарок</button>
+                            <p class="nb-create-desc">Название должно быть лаконичным, уникальным и запоминающимся. Будьте уверены в том, что название проекта отражает его суть.</p>
                         </div>
-
                     </section>
-                    <div class="new-project__gifts js-project-gifts">
-                    </div>
-                    <input type="hidden" id="js-hidden-input-gifts-count" name="all-gifts-count" value="0" aria-required="true">
-                </div>
-            </div>
-            <div class="new-project__right col-md-4">
-                <section class="nb-create">
-                    <div class="nb-create__head">
-                        <p class="nb-create-status">
-                            Последнее сохранение
-                            <time class="js-date-temp-version" datetime="08.12.2016 16:35:36">
-                                08 декабря 2016 в 16:35:36
-                            </time>
-                        </p>
-                    </div>
-                    <div class="nb-create__body cf">
-                        <a href="javascript:void(0);" class="edit__btn--save js-save-project-info">Сохранить</a><a href="javascript:void(0);" class="edit__btn--preview js-save-project-info-and-preview">Предпросмотр</a>
-                    </div>
-                </section>	    <section class="nb-create create--help">
-                    <div class="nb-create__head">
-                        <h2 class="nb-heading--small create__heading--small">Помощь</h2>
-                    </div>
-
-                    <div class="nb-create__body">
-                        <details class="nb-details nb-details--small">
-                            <summary class="nb-summary nb-summary--small">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" class="nb-summary-icon nb-summary-icon--small" preserveAspectRatio="xMidYMid" viewBox="0 0 8 14">
-                                    <path fill-rule="evenodd" d="M1 1l5.398 5.714L1 12.429" class="cls-arrow-aquarium--round"></path>
-                                </svg>
-                                Зачем нужны подарки?
-                            </summary>
-                            <div class="nb-details-content">
-                                <div class="nb-details-content-txt">
-                                    Подарки являются очень важной составляющей краудфандинга. В большинстве
-                                    случаев именно ради подарков спонсоры будут перечислять вам средства.
-                                </div>
-                            </div>
-                        </details>
-                        <details class="nb-details nb-details--small">
-                            <summary class="nb-summary nb-summary--small">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" class="nb-summary-icon nb-summary-icon--small" preserveAspectRatio="xMidYMid" viewBox="0 0 8 14">
-                                    <path fill-rule="evenodd" d="M1 1l5.398 5.714L1 12.429" class="cls-arrow-aquarium--round"></path>
-                                </svg>
-                                Какие подарки лучше указывать?
-                            </summary>
-                            <div class="nb-details-content">
-                                <div class="nb-details-content-txt">
-                                    Специально для вас мы подготовили рекомендации для составления
-                                    списка интересных и востребованных подарков.
-                                    <a href="/project/create/info?page=3" target="_blank" class="nb-link nb-create__link">Перейти к рекомендациям</a>.
-                                </div>
-                            </div>
-                        </details>
-                    </div>
-
-                    <div class="nb-create__foot">
-                        <hr class="nb-create-status-divider">
-                        <div class="nb-create-question">
-                            <a href="javascript:void(0)" class="nb-link nb-create__link js-open-feedback-popup">Задать вопрос</a>
+                    <section class="nb-create create--description project-edit-form nb-create--valid">
+                        <div class="nb-create__head">
+                            <h2 class="nb-heading--small create__heading--small">Краткое описание проекта</h2>
                         </div>
-                    </div>
-                </section>
-            </div>
-        </div>
-        <div role="tabpanel" class="tab-pane fade in" id="description">
-            <h2>Подробное описание проекта</h2>
-            <div class="new-project__left col-md-8">
-                <section class="nb-create create--full-description project-edit-form">
-                    <div class="nb-create__head">
-                        <h2 class="nb-heading--small create__heading--small">Описание проекта</h2>
-                    </div>
-                    <h1>пока что нету нихуя тут</h1>
-                    <div class="nb-create__body section__body--full-description">
-                        <div class="nb-textarea-wrap">
-                            <div class="redactor-box"><ul class="redactor-toolbar" id="redactor-toolbar-0" style="position: relative; width: auto; top: 0px; left: 0px; visibility: visible;"><li><a href="#" class="re-icon re-bold" rel="bold" tabindex="-1"></a></li><li><a href="#" class="re-icon re-italic" rel="italic" tabindex="-1"></a></li><li><a href="#" class="re-icon re-heading3 html-redactor-btn" rel="heading3" tabindex="-1"><span>Заголовок</span></a></li><li><a href="#" class="re-icon re-link" rel="link" tabindex="-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 18"><path class="cls-6" fill-rule="evenodd" d="M22.725 8.788l-6.437 6.6c-.647.665-1.496.996-2.346.996-.85 0-1.7-.33-2.346-.994l-2.9-2.976c-.627-.642-.972-1.497-.972-2.406 0-.908.345-1.763.972-2.406l.716-.887L10.94 8.02l-.78.956c-.31.326-.45.668-.45 1.032 0 .365.14.707.39.964l2.902 2.976c.52.532 1.363.532 1.88 0l6.438-6.6c.518-.533.518-1.398 0-1.93l-2.9-2.975c-.504-.515-1.38-.516-1.882 0l-1.088.952-1.287-1.553 1.03-.896c.566-.587 1.4-.94 2.285-.94.886 0 1.72.353 2.346.996l2.9 2.975c1.294 1.326 1.294 3.485 0 4.81zm-6.747-.822c0 .908-.345 1.763-.972 2.405l-1.11.95-1.267-1.57 1.04-.88c.18-.193.32-.536.32-.9 0-.365-.14-.707-.39-.965L10.7 4.03c-.52-.533-1.364-.533-1.88 0l-6.44 6.6c-.25.257-.39.6-.39.964 0 .366.14.708.39.966l2.9 2.975c.51.52 1.33.53 1.85.03l.727-.92L9.4 15.928l-.764.968c-.022.028-.046.054-.07.08-.647.663-1.497.994-2.346.994-.85 0-1.7-.33-2.345-.994L.975 14c-.625-.645-.97-1.5-.97-2.41 0-.907.344-1.76.97-2.404l6.438-6.6c1.293-1.328 3.397-1.327 4.69-.002l2.902 2.976c.627.642.972 1.497.972 2.406z"></path></svg></a></li><li><a href="#" class="re-icon re-orderedlist" rel="orderedlist" tabindex="-1"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="14" viewBox="0 0 22 14"><path class="cls-6" fill-rule="evenodd" d="M5 14v-2h17v2H5zm0-7h17v2H5V7zm0-5h17v2H5V2zM0 14v-1h2v-1h1v2H0zm1-3H0v-1h3v1H2v1H1v-1zm0-2H0V8h1V7h1v1h1v1H1zM0 6V5h3v2H2V6H0zm1-2H0V3h1V2H0V1h1V0h1v3h1v1H1z"></path></svg></a></li><li><a href="#" class="re-icon re-unorderedlist" rel="unorderedlist" tabindex="-1"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="13" viewBox="0 0 22 13"><path class="cls-6" fill-rule="evenodd" d="M5 13v-2h17v2H5zm0-7h17v2H5V6zm0-5h17v2H5V1zm-5 9h3v3H0v-3zm0-5h3v3H0V5zm0-5h3v3H0V0z"></path></svg></a></li><li><a href="#" class="re-icon re-image" rel="image" tabindex="-1"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" viewBox="0 0 20 16"><path class="cls-6" fill-rule="evenodd" d="M17.876 16H2.124C.95 16 0 15.05 0 13.876V2.124C0 .95.95 0 2.124 0h15.752C19.05 0 20 .95 20 2.124v11.752C20 15.05 19.05 16 17.876 16zM18 2.124c0-.07-.055-.124-.124-.124H2.124C2.056 2 2 2.055 2 2.124v11.752c0 .068.056.124.124.124h1.644l10.267-8.397L18 8.57V2.123zm0 8.943l-3.91-2.925L6.927 14h10.95c.068 0 .123-.056.123-.124v-2.81zM6.035 8.047c-1.11 0-2.012-.9-2.012-2.012 0-1.11.9-2.012 2.012-2.012 1.11 0 2.012.9 2.012 2.012 0 1.11-.9 2.012-2.012 2.012z"></path></svg></a></li><li><a href="#" class="re-icon re-video" rel="video" tabindex="-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="16" viewBox="0 0 24 16"><path class="cls-6" fill-rule="evenodd" d="M24 1.118l-7 3.24V2.123C17 .95 16.05 0 14.876 0H2.124C.95 0 0 .95 0 2.124v11.752C0 15.05.95 16 2.124 16h12.752C16.05 16 17 15.05 17 13.876V11.76L24 15V1.118zm-9 12.758c0 .068-.055.124-.124.124H2.124C2.056 14 2 13.944 2 13.876V2.124c0-.07.056-.124.124-.124h12.752c.07 0 .124.055.124.124v11.752zm7-2.005l-5-2.31v-3l5-2.31v7.623z"></path></svg></a></li><li><a href="#" class="re-icon re-iframe" rel="iframe" tabindex="-1"><span>Issuu iframe</span></a></li></ul><div class="redactor-editor" contenteditable="true" dir="ltr" placeholder="Пара сотен слов о вашем проекте" style="min-height: 480px;"><p>&#8203;</p></div><textarea id="editor" class="nb-textarea create-full-description__textarea js-ajax-project-update-info" name="project[description_full]" placeholder="Пара сотен слов о вашем проекте" aria-required="true" dir="ltr" style="display: none;"></textarea></div>
-                        </div>
-                        <p class="nb-create-desc">Используйте описание проекта для того, чтобы подробнее рассказать о том, что и как вы собираетесь сделать. Добавьте картинки, фотографии и видео, чтобы более наглядно представить проект.</p>
-                    </div>
-                </section>
-                <section class="nb-create create--faq">
-                    <div class="nb-create__head">
-                        <h2 class="nb-heading--small create__heading--small">Частые вопросы</h2>
-                    </div>
-                    <div class="nb-create__body nb-create__faq">
-                        <div class="nb-input-wrap nb-create__input-wrap_faq create-full-description__question">
-                            <input id="js-full-desc-question" type="text" class="nb-input" placeholder="Введите вопрос">
-                        </div>
-                        <div class="nb-textarea-wrap nb-create-full-description__answer" style="bottom: 10px">
-                            <textarea id="js-full-desc-answer" class="nb-textarea" placeholder="Введите ответ"></textarea>
-                        </div>
-                        <button type="button" onclick="addFAQ();" class="nb-btn nb-btn--add-media create-full-description__btn--add-media add-faq-btn">Добавить вопрос</button>
-                        <hr class="nb-create-media-divider nb-create-media-summary-divider" style="display: none">
-                    </div>
-                    <div class="nb-create__foot">
-
-                    </div>
-                </section>
-            </div>
-            <div class="new-project__right col-md-4">
-                <section class="nb-create">
-                    <div class="nb-create__head">
-                        <p class="nb-create-status">
-                            Последнее сохранение
-                            <time class="js-date-temp-version" datetime="08.12.2016 16:36:47">
-                                08 декабря 2016 в 16:36:47
-                            </time>
-                        </p>
-                    </div>
-                    <div class="nb-create__body cf">
-                        <a href="javascript:void(0);" class="edit__btn--save js-save-project-info">Сохранить</a><a href="javascript:void(0);" class="edit__btn--preview js-save-project-info-and-preview">Предпросмотр</a>
-                    </div>
-                </section>	    <section class="nb-create create--help">
-                    <div class="nb-create__head">
-                        <h2 class="nb-heading--small create__heading--small">Помощь</h2>
-                    </div>
-
-                    <div class="nb-create__body">
-                        <details class="nb-details nb-details--small">
-                            <summary class="nb-summary nb-summary--small">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" class="nb-summary-icon nb-summary-icon--small" preserveAspectRatio="xMidYMid" viewBox="0 0 8 14">
-                                    <path fill-rule="evenodd" d="M1 1l5.398 5.714L1 12.429" class="cls-arrow-aquarium--round"></path>
-                                </svg>
-                                Что должно быть в описании?
-                            </summary>
-                            <div class="nb-details-content">
-                                <div class="nb-details-content-txt">
-                                    Специально для вас мы подготовили рекомендации для написания грамотного
-                                    и эффективного описания.
-                                    <a href="/project/create/info?page=2" target="_blank" class="nb-link nb-create__link">Перейти к рекомендациям</a>.
-                                </div>
+                        <div class="nb-create__body">
+                            <div class="nb-textarea-wrap">
+                                @Html.TextAreaFor(m => m.ShortDescription, new { @placeholder = "Коротко расскажите о проекте" })
+                                @*<textarea id="js-description-text" class="nb-textarea" placeholder="Коротко расскажите о проекте" name="project[description_short]" param="description_short" aria-required="true">dwdawa</textarea>*@
+                                <span class="nb-textarea-count"><span class="js-description-entered">6</span> / 160 символов</span>
                             </div>
-                        </details>
-                        <details class="nb-details nb-details--small">
-                            <summary class="nb-summary nb-summary--small">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" class="nb-summary-icon nb-summary-icon--small" preserveAspectRatio="xMidYMid" viewBox="0 0 8 14">
-                                    <path fill-rule="evenodd" d="M1 1l5.398 5.714L1 12.429" class="cls-arrow-aquarium--round"></path>
-                                </svg>
-                                Что такое «Частые вопросы»?
-                            </summary>
-                            <div class="nb-details-content">
-                                <div class="nb-details-content-txt">
-                                    «Частые вопросы» – это блок, в котором вы можете заранее ответить на
-                                    наиболее очевидные вопросы, которые могут возникнуть у потенциальных спонсоров в процессе знакомства с вашим проектом.
-                                </div>
-                            </div>
-                        </details>
-                    </div>
-
-                    <div class="nb-create__foot">
-                        <hr class="nb-create-status-divider">
-                        <div class="nb-create-question">
-                            <a href="javascript:void(0)" class="nb-link nb-create__link js-open-feedback-popup">Задать вопрос</a>
+                            <p class="nb-create-desc">Опишите в одном предложении цель вашего проекта.</p>
                         </div>
-                    </div>
-                </section>
-            </div>
-        </div>
-        <div role="tabpanel" class="tab-pane fade in" id="personal">
-            <h2>Личные данные организатора</h2>
-            <div class="new-project__left col-md-8">
-                <section class="nb-create create--personal project-edit-form ">
-                    <div class="nb-create__head">
-                        <h2 class="nb-heading--small section__heading--small">Личные данные</h2>
-                        <p class="nb-create-desc create__head__desc">Чтобы Улей мог заключить с вами договор, необходимо заполнить паспортные данные. Информация, которую вы передаете в Улей, является конфиденциальной и не подлежит разглашению.</p>
-                    </div>
-                    <div class="nb-create__body">
-                        <hr class="popup__divider settings__divider">
-                        <div class="nb-section__field">
-                            <div class="nb-input-wrap nb-section__field">
-                                <input id="js-settings-surname" type="text" name="user[last_name]" param="last_name" class="nb-input js-ajax-client-update-info" placeholder="Фамилия" value="Обуховский" aria-required="true">
-                            </div>
+                    </section>
+                    <section class="nb-create create--category project-edit-form">
+                        <div class="nb-create__head">
+                            <h2 class="nb-heading--small create__heading--small">Категория проекта</h2>
                         </div>
-                        <div class="nb-section__field cf">
-                            <div class="nb-input-wrap settings__input-wrap--name">
-                                <input id="js-settings-name" type="text" name="user[first_name]" param="first_name" class="nb-input js-ajax-client-update-info" placeholder="Имя" value="Евгений" aria-required="true">
-                            </div>
-                            <div class="nb-input-wrap settings__input-wrap--fname">
-                                <input id="js-settings-fname" type="text" name="user[patronymic]" param="patronymic" class="nb-input js-ajax-client-update-info" placeholder="Отчество" value="" aria-required="true">
-                            </div>
-                        </div>
-                        <div class="nb-section__field">
-                            <div class="nb-input-wrap nb-input-wrap-date js-get-dob-wrap">
-                                <input required="" id="datetimepicker" type="text" name="user[dt_birth]" param="dt_birth" placeholder="Дата рождения" class="nb-input nb-input-date js-ajax-client-update-info" value="" aria-required="true">
-                                <svg class="nb-input__icon-date" xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path class="cls-calendar" fill-rule="evenodd" d="M20 17H0V1h2V0h2v1h12V0h2v1h2v16zM18 3H2v12h16V3zM7 8H5V6h2v2zm0 4H5v-2h2v2zm4-4H9V6h2v2zm0 4H9v-2h2v2zm4-4h-2V6h2v2zm0 4h-2v-2h2v2z"></path></svg>
-                            </div>
-                        </div>
-                        <hr class="popup__divider settings__divider">
-                        <div class="nb-section__field">
+                        <div class="nb-create__body">
                             <div class="nb-dd-toggle-wrap js-dd-select-box">
 
                                 <div class="nb-dd-toggle js-toggle-dd">
-                                    <span class="nb-dd-toggle-txt js-toggle-dd-txt nb-dd-toggle-txt--default">Выберите тип документа</span>
+                                    <span class="nb-dd-toggle-txt js-toggle-dd-txt nb-dd-toggle-txt--default">Выберите категорию</span>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="13" height="9" class="nb-dd-arrow-icon" preserveAspectRatio="xMidYMid" viewBox="0 0 13 9"><path fill-rule="evenodd" d="M12.003 1L6.502 6.592 1 1" class="cls-dd-arrow-Aqua"></path></svg>
                                 </div>
 
-                                <select id="js-type-docs-client-info" class="nb-dd-default js-dd-select js-ajax-client-update-info" name="user[type_doc_id]" param="type_doc_id" aria-required="true">
-                                    <option class="js-dd-option" selected="" value="">Выберите тип документа</option>
-                                    <option class="js-dd-option" value="35">ПАСПОРТ</option>
-                                    <option class="js-dd-option" value="36">ВИД НА ЖИТЕЛЬСТВО</option>
-                                    <option class="js-dd-option" value="37">УДОСТОВЕРЕНИЕ БЕЖЕНЦА</option>
-                                </select>
+                                @Html.DropDownListFor(m => m.Category, new List<SelectListItem>()
+                                {
+                                    new SelectListItem() { Text = "Музыка"},
+                                    new SelectListItem() { Text = "Литература"},
+                                    new SelectListItem() { Text = "Кино и видео"},
+                                    new SelectListItem() { Text = "Фотография"},
+                                    new SelectListItem() { Text = "Живопись"},
+                                })
 
                                 <ul class="nb-dd nb-dd--hidden js-dd-menu">
                                     <li class="nb-dd-item">
-                                        <div data-value="" class="dd-item-link js-dd-menu-item dd-item-link--default dd-item-link--selected js-default-select-in-many-input-block">
-                                            <span class="">Выберите тип документа</span>
+                                        <div data-value="" class="dd-item-link js-dd-menu-item dd-item-link--default dd-item-link--selected js-default-select-value">
+                                            <span class="">Выберите категорию</span>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="13" height="9" class="nb-dd-arrow-icon" preserveAspectRatio="xMidYMid" viewBox="0 0 13 9"><path fill-rule="evenodd" d="M.992 6.606l5.501-5.592 5.502 5.592" class="cls-dd-arrow-Aqua"></path></svg>
                                         </div>
-                                    </li>
-                                    <li class="nb-dd-items">
-                                        <ul class="nb-dd-items__list">
-                                            <li class="nb-dd-item"><div data-value="35" class="dd-item-link js-true-select-in-many-input-block js-dd-menu-item">ПАСПОРТ</div></li>
-                                            <li class="nb-dd-item"><div data-value="36" class="dd-item-link js-true-select-in-many-input-block js-dd-menu-item">ВИД НА ЖИТЕЛЬСТВО</div></li>
-                                            <li class="nb-dd-item"><div data-value="37" class="dd-item-link js-true-select-in-many-input-block js-dd-menu-item">УДОСТОВЕРЕНИЕ БЕЖЕНЦА</div></li>
-                                        </ul>
                                     </li>
                                 </ul>
                             </div>
                         </div>
-                        <div class="nb-section__field">
-                            <div class="nb-input-wrap">
-                                <input id="js-settings-series-and-number-doc" type="text" name="user[doc_series]" param="doc_series" class="nb-input js-ajax-client-update-info" placeholder="Серия и номер" value="" aria-required="true">
-                                <label for="js-settings-series-and-number-doc" class="nb-input-label">Пример: MР1234567</label>
-                            </div>
-                        </div>
-                        <div class="nb-section__field">
-                            <div class="nb-input-wrap">
-                                <input id="js-settings-personal-num" type="text" name="user[personal_num]" param="personal_num" class="nb-input js-ajax-client-update-info" placeholder="Личный номер" value="" aria-required="true">
-                                <label for="js-settings-personal-num" class="nb-input-label">Пример: 1234567A002PB9</label>
-                            </div>
-                        </div>
-                        <div class="nb-section__field">
-                            <div class="nb-input-wrap nb-create__input-wrap">
-                                <input id="js-settings-document-issued" type="text" name="user[doc_who_issued]" param="doc_who_issued" class="nb-input js-ajax-client-update-info" placeholder="Кем и когда выдан" value="" aria-required="true">
-                                <label for="js-settings-document-issued" class="nb-input-label">Пример: Советское РУВД г.Минска, выдан 22.04.2015</label>
-                            </div>
-                        </div>
-                        <div class="nb-section__field">
-                            <div class="nb-input-wrap nb-create__input-wrap">
-                                <input id="js-settings-passport-address" type="text" name="user[registration]" param="registration" class="nb-input js-ajax-client-update-info" placeholder="Адрес регистрации" value="" aria-required="true">
-                                <label for="js-settings-passport-address" class="nb-input-label">Пример: г.Минск, ул. Е. Полоцкой, д.3, кв. 16</label>
-                            </div>
-                        </div>
-                        <div class="nb-section__field">
-                            <div class="nb-input-wrap nb-create__input-wrap">
-                                <input id="js-settings-phone" type="text" name="user[phone]" param="phone" class="nb-input js-ajax-client-update-info" placeholder="Контактный номер" value="" aria-required="true">
-                                <label for="js-settings-phone" class="nb-input-label">Пример: +375 (29) 123 45 67</label>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-            <div class="new-project__right col-md-4">
-                <section class="nb-create">
-                    <div class="nb-create__head">
-                        <p class="nb-create-status">
-                            Последнее сохранение
-                            <time class="js-date-temp-version" datetime="08.12.2016 16:36:47">
-                                08 декабря 2016 в 16:36:47
-                            </time>
-                        </p>
-                    </div>
-                    <div class="nb-create__body cf">
-                        <a href="javascript:void(0);" class="edit__btn--save js-save-project-info">Сохранить</a><a href="javascript:void(0);" class="edit__btn--preview js-save-project-info-and-preview">Предпросмотр</a>
-                    </div>
-                </section>	    <section class="nb-create create--help">
-                    <div class="nb-create__head">
-                        <h2 class="nb-heading--small create__heading--small">Помощь</h2>
-                    </div>
+                    </section>
+                    <section class="nb-create create--location js-section-location project-edit-form">
+                        <div id="js-create-map" class="nb-create__map-bg" style="display: none;">
 
-                    <div class="nb-create__body">
-                        <details class="nb-details nb-details--small">
-                            <summary class="nb-summary nb-summary--small">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" class="nb-summary-icon nb-summary-icon--small" preserveAspectRatio="xMidYMid" viewBox="0 0 8 14">
-                                    <path fill-rule="evenodd" d="M1 1l5.398 5.714L1 12.429" class="cls-arrow-aquarium--round"></path>
-                                </svg>
-                                Зачем вводить номер счета?
-                            </summary>
-                            <div class="nb-details-content">
-                                <div class="nb-details-content-txt">
-                                    Номер счета необходим для перечисления средств в случае успеха вашей
-                                    краудфандинговой кампании.
-                                </div>
-                            </div>
-                        </details>
-                        <details class="nb-details nb-details--small">
-                            <summary class="nb-summary nb-summary--small">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" class="nb-summary-icon nb-summary-icon--small" preserveAspectRatio="xMidYMid" viewBox="0 0 8 14">
-                                    <path fill-rule="evenodd" d="M1 1l5.398 5.714L1 12.429" class="cls-arrow-aquarium--round"></path>
-                                </svg>
-                                Зачем вводить паспортные данные?
-                            </summary>
-                            <div class="nb-details-content">
-                                <div class="nb-details-content-txt">
-                                    Для публикации проекта и сбора средств вам необходимо заключить
-                                    договоры с «Ульем» и ОАО «Белгазпромбанком». Ваши данные необходимы
-                                    для формирования договоров.
-                                </div>
-                            </div>
-                        </details>
-                        <details class="nb-details nb-details--small">
-                            <summary class="nb-summary nb-summary--small">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" class="nb-summary-icon nb-summary-icon--small" preserveAspectRatio="xMidYMid" viewBox="0 0 8 14">
-                                    <path fill-rule="evenodd" d="M1 1l5.398 5.714L1 12.429" class="cls-arrow-aquarium--round"></path>
-                                </svg>
-                                Кому доступны мои данные?
-                            </summary>
-                            <div class="nb-details-content">
-                                <div class="nb-details-content-txt">
-                                    Ваши данные будут использоваться исключительно для вашей идентификации и
-                                    формирования договоров. Доступ третьих лиц к вашим данным исключен.
-                                </div>
-                            </div>
-                        </details>
-                    </div>
-
-                    <div class="nb-create__foot">
-                        <hr class="nb-create-status-divider">
-                        <div class="nb-create-question">
-                            <a href="javascript:void(0)" class="nb-link nb-create__link js-open-feedback-popup">Задать вопрос</a>
                         </div>
-                    </div>
-                </section>
+                        <div class="nb-create__head nb-create-location__head">
+                            <h2 class="nb-heading--small create__heading--small">Локация проекта</h2>
+                        </div>
+                        <div class="nb-create__body">
+                            <div class="nb-dd-toggle-wrap js-dd-select-box">
+                                <div class="nb-dd-toggle js-toggle-dd">
+                                    <span class="nb-dd-toggle-txt js-toggle-dd-txt nb-dd-toggle-txt--default">Выберите город</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="9" class="nb-dd-arrow-icon" preserveAspectRatio="xMidYMid" viewBox="0 0 13 9"><path fill-rule="evenodd" d="M12.003 1L6.502 6.592 1 1" class="cls-dd-arrow-Aqua"></path></svg>
+                                </div>
+                                @Html.DropDownListFor(m => m.Location, new List<SelectListItem>() {
+                                    new SelectListItem() { Text = "Минск" },
+                                    new SelectListItem() { Text = "Магилеу" }
+                                })
+                                
+
+                                <ul class="nb-dd nb-dd--hidden js-dd-menu">
+                                    <li class="nb-dd-item">
+                                        <div data-value="" class="dd-item-link js-dd-menu-item dd-item-link--default dd-item-link--selected js-default-select-value">
+                                            <span class="">Выберите город</span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="9" class="nb-dd-arrow-icon" preserveAspectRatio="xMidYMid" viewBox="0 0 13 9"><path fill-rule="evenodd" d="M.992 6.606l5.501-5.592 5.502 5.592" class="cls-dd-arrow-Aqua"></path></svg>
+                                        </div>
+                                    </li>
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="nb-create create--media project-edit-form">
+                        <div class="nb-create__head">
+                            <h2 class="nb-heading--small create__heading--small">Обложка проекта и видео</h2>
+                        </div>
+                        <div class="nb-create__body nb-create-media__body">
+                            <div class="nb-create__media--img js-create-media">
+                                <div class="nb-create__media__img-wrap_project_image">
+                                    <img src="~/Content/img/nophoto.jpg" width="620" height="467" alt="placeholder image" class="nb-create__media__img">
+                                </div>
+                                <p id="status-upload-image"></p>
+                                <div class="nb-create__media__caption--bottom">
+                                    <div class="nb-create__media__caption__btn-wrap">
+                                        <button class="nb-btn nb-btn--add-media create__btn--add-media">Добавить обложку</button>
+                                    </div>
+                                    <div class="nb-create__media__caption__txt--img">Это основное изображение вашего проекта.<br>JPG, PNG, GIF, BMP / Формат: 4х3 / Лимит: 5 Мб</div>
+                                </div>
+                                <input id="js-image-link-hidden" class="js-ajax-project-update-info" type="hidden" name="project[image]" param="image" value="" aria-required="true">
+                            </div>
+                            <div class="nb-create__media--video">
+                                <div class="nb-create__media__video-preview">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="44" height="26" class="video-icon--create" preserveAspectRatio="xMidYMid" viewBox="0 0 44 26"><path fill-rule="evenodd" d="M4.15 1h35.7C41.58985 1 43 2.4650909 43 4.27272727V21.7272727C43 23.5349091 41.58985 25 39.85 25H4.15C2.41015 25 1 23.5349091 1 21.7272727V4.27272727C1 2.4650909 2.41015 1 4.15 1z" class="cls-border-gray9"></path><path fill-rule="evenodd" d="M27 13l-8 4V9l8 4z" class="cls-triangle-gray9"></path></svg>
+                                    <img class="video-preview" src="/assets/img/create_img_bg.jpg" alt="">
+                                </div>
+                                <div class="nb-create__media__caption">
+                                    <button type="button" data-show="#add-video" class="nb-btn nb-btn--add-media js-open-video js-video-button">Добавить видео</button>
+                                    <div class="nb-create__media__caption__txt--video">Проекты с видео имеют больше шансов на успех!<br>Добавьте ссылку с YouTube или Vimeo.</div>
+                                    <input id="js-preview-video-image" class="js-ajax-project-update-info" type="hidden" name="project[preview_url]" param="preview_url" value="">
+                                    <input id="js-video-link" class="js-ajax-project-update-info" type="hidden" name="project[video_url]" param="video_url" value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="nb-create__foot">
+                            <hr class="nb-create-media-divider">
+                            <div class="nb-create-question">
+                                <a class="nb-link nb-create__link js-open-video js-open-video-popup" data-src="https://www.youtube.com/embed/wgEzP6uUvco" data-show="#view-video" data-video-name="Как снять видео" style="cursor:pointer">Как записать хорошее видео?</a>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="nb-create create--fund project-edit-form">
+                        <div class="nb-create__head">
+                            <h2 class="nb-heading--small create__heading--small">Бюджет и продолжительность кампании</h2>
+                        </div>
+                        <div class="nb-create__body">
+                            <div class="nb-create__fund cf">
+                                <div class="nb-create__money">
+                                    <div class="nb-input-wrap">
+                                        @Html.TextBoxFor(m => m.RequiredMoney)
+                                        @*<input type="text" id="js-project-money" name="project[needed_sum]" param="needed_sum" class="nb-input nb-input--with-postfix" placeholder="Введите сумму" value="" aria-required="true">*@
+                                        <span class="nb-input-postfix">руб.</span>
+                                    </div>
+                                </div>
+                                <div class="nb-create__time">
+                                    <div class="nb-input-wrap">
+                                        @Html.TextBoxFor(m => m.Duration)
+                                        @*<input type="text" id="js-dd-time-proj" name="project[days_count]" param="days_count" alt="integer" class="nb-input js-ajax-project-update-info" placeholder="Дней" value="" aria-required="true">*@
+                                    </div>
+                                </div>
+                                <div class="nb-create__time-caption">
+                                    <span class="nb-create__time-txt">от 1 до 180 дней</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="nb-create__foot">
+                            <div class="nb-create-fund__info cf">
+                                <div class="nb-create-fund__commission">
+                                    <strong class="nb-create-fund__value">0 руб.</strong>
+                                    <span class="nb-create-fund__txt">Комиссионный сбор (12%)</span>
+                                    <span class="nb-tooltip pay__tooltip__link">?<span class="nb-tooltip__content">Комиссионный сбор включает общую комиссию Улья, банка и платежной системы. Комиссия взимается со всей собранной суммы ТОЛЬКО в случае успешного окончания краудфандинговой кампании.</span></span>
+                                </div>
+                                <div class="nb-create-fund__income-tax">
+                                    <strong class="nb-create-fund__value">0 руб.</strong>
+                                    <span class="nb-create-fund__txt">Подоходный налог (13%)</span>
+                                    <span class="nb-tooltip pay__tooltip__link">?<span class="nb-tooltip__content">Подоходный налог, взимаемый государством, составляет 13%. Стоит учитывать, что сумма в 4 947 руб. налогом не облагается. Уплату налога следует производить самостоятельно.</span></span>
+                                </div>
+                                <div class="nb-create-fund__final-sum">
+                                    <strong class="nb-create-fund__value nb-create-fund__value--final">≈ <span class="js-create-final-sum">0</span> руб.</strong>
+                                    <span class="nb-tooltip pay__tooltip__link">?<span class="nb-tooltip__content">Данный подсчет является приблизительным. Итоговая сумма может отличаться от указанной.</span></span>
+                                </div>
+                            </div>
+                            <hr class="nb-create-media-divider">
+                            <p class="nb-create-desc">Мы рекомендуем указывать минимальную сумму, необходимую для реализации проекта. Улей использует модель «все или ничего», а это значит, что для получение средств вам обязательно необходимо собрать от 100% и выше.<br><br>Обращаем ваше внимание на то, что Улей берет комиссию только с успешных проектов.</p>
+                        </div>
+                    </section>
+                </div>
+                <div class="new-project__right col-md-4">
+                    <section class="nb-create">
+                        <div class="nb-create__head">
+                            <p class="nb-create-status">
+                                Последнее сохранение
+                                <time class="js-date-temp-version" datetime="08.12.2016 15:35:10">
+                                    08 декабря 2016 в 15:35:10
+                                </time>
+                            </p>
+                        </div>
+                        <div class="nb-create__body cf">
+                            <a href="javascript:void(0);" class="edit__btn--save js-save-project-info">Сохранить</a><a href="javascript:void(0);" class="edit__btn--preview js-save-project-info-and-preview">Предпросмотр</a>
+                        </div>
+                    </section>	<section class="nb-create create--project">
+                        <div class="nb-create__head nb-create-project__head">
+                        </div>
+                        <div class="nb-create__body nb-create-project__body">
+                            <div class="nb-card__preview">
+                                <img width="300" height="225" class="nb-card__img" src="/assets/img/card_tmp_bg.jpg" alt="daw">
+                            </div>
+                            <div class="nb-card__content">
+                                <div class="nb-card__body">
+                                    <h3 class="nb-card__head" id="js-cart-tmp-project-name">daw</h3>
+                                    <p class="nb-card__text">
+                                        <span class="nb-card__text__tmp" id="js-cart-tmp-description">dwdawa</span>
+                                    </p>
+                                </div>
+                                <div class="nb-card__author"><a href="/client?id=" class="nb-card__author-name">Евгений Обуховский</a><span class="nb-card__author-location" id="js-card-tmp-location">Локация проекта</span></div>
+                                <div class="nb-card__foot">
+                                    <progress class="nb-progress" value="0" max="">
+                                        <!-- fallback for progressbar, use if ie-->
+                                    </progress>		<div class="nb-card__res cf">
+                                        <div class="nb-card__res__compl">
+                                            <strong class="nb-card__res__strong">0 руб.</strong>
+                                            <div class="nb-card__res__txt">Собрано (0%)</div>
+                                        </div>
+                                        <div class="nb-card__res__left">
+                                            <strong class="nb-card__res__strong"><span class="js-card-left-days" id="js-card-tmp-left-days">0</span> дней</strong>
+                                            <div class="nb-card__res__txt">Осталось</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="nb-create__foot nb-create-project__foot">
+                        </div>
+                    </section>
+
+                    <section class="nb-create create--help">
+                        <div class="nb-create__head">
+                            <h2 class="nb-heading--small create__heading--small">Помощь</h2>
+                        </div>
+
+                        <div class="nb-create__body">
+                            <details class="nb-details nb-details--small">
+                                <summary class="nb-summary nb-summary--small">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" class="nb-summary-icon nb-summary-icon--small" preserveAspectRatio="xMidYMid" viewBox="0 0 8 14">
+                                        <path fill-rule="evenodd" d="M1 1l5.398 5.714L1 12.429" class="cls-arrow-aquarium--round"></path>
+                                    </svg>
+                                    Как мне создать хороший проект?
+                                </summary>
+                                <div class="nb-details-content">
+                                    <div class="nb-details-content-txt">
+                                        Мы подготовили для вас курс «Обучение краудфандингу», изучив который, вы
+                                        без проблем сможете привлечь финансирование с помощью «Улья».
+                                        <a href="/project/create/info?page=main" target="_blank" class="nb-link nb-create__link">Перейти к обучению</a>.
+                                    </div>
+                                </div>
+                            </details>
+                            <details class="nb-details nb-details--small">
+                                <summary class="nb-summary nb-summary--small">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" class="nb-summary-icon nb-summary-icon--small" preserveAspectRatio="xMidYMid" viewBox="0 0 8 14">
+                                        <path fill-rule="evenodd" d="M1 1l5.398 5.714L1 12.429" class="cls-arrow-aquarium--round"></path>
+                                    </svg>
+                                    Зачем записывать видео?
+                                </summary>
+                                <div class="nb-details-content">
+                                    <div class="nb-details-content-txt">
+                                        Видео-обращение значительно повысит ваши шансы на успех. Это эффективный
+                                        инструмент, который позволит лично обратиться к потенциальным спонсорам,
+                                        рассказать о проекте и призвать к действию.
+                                    </div>
+                                </div>
+                            </details>
+                        </div>
+
+                        <div class="nb-create__foot">
+                            <hr class="nb-create-status-divider">
+                            <div class="nb-create-question">
+                                <a href="javascript:void(0)" class="nb-link nb-create__link js-open-feedback-popup">Задать вопрос</a>
+                            </div>
+                        </div>
+                    </section>
+                </div>
             </div>
-        </div>
+            <div role="tabpanel" class="tab-pane fade" id="gifts">
+                <h2>Добавление подарков</h2>
+                <ul id="giftsList"></ul>
+                <div class="new-project__left col-md-8">
+                    <div class="new-project__temp-gift js-project-temp-gift">
+                        <section class="nb-section pay-gifts__section js-temp-gift">
+
+                            <div class="nb-create__head">
+                                <h2 class="nb-heading--small create__heading--small">Новый подарок</h2>
+                            </div>
+                            <div class="nb-create__body">
+                                <div class="nb-create__gift-sum">
+                                    <div class="nb-input-wrap create__gift-sum__input-wrap">
+                                        <input type="text" class="nb-input nb-input--with-postfix" id="js-gift-sum-input" alt="money" placeholder="Сумма вознаграждения" value="">
+                                        <span class="nb-input-postfix">руб.</span>
+                                    </div>
+                                    <span class="nb-tooltip create__gift-sum__tooltip__link">?<span class="nb-tooltip__content">Здесь необходимо ввести сумму, которой будет соответствовать ваш подарок.</span></span>
+                                </div>
+                                <div class="nb-create__gift-description">
+                                    <div class="nb-textarea-wrap">
+                                        <textarea class="nb-textarea" id="js-gift-description-textarea" placeholder="Описание подарка"></textarea>
+                                    </div>
+                                </div>
+                                <div class="nb-input-check-wrap donate__input-wrap nb-input-check-wrap">
+                                    <input id="js-gift-count-limit-input" class="nb-input-check" type="checkbox" name="view_flag" onclick="show_hideGiftCountInput(this);" value="1">
+                                    <label for="js-gift-count-limit-input" class="nb-input-check-txt">Ограничить количество подарков</label>
+                                </div>
+                                <div class="nb-create__gift-limit" @*style="display: none"*@>
+                                    <div class="nb-input-wrap create__gift-limit__input-wrap">
+                                        <input type="text" class="nb-input nb-input--with-postfix" id="js-gift-count-input" alt="integer" placeholder="Лимит подарков" value="">
+                                    </div>
+                                </div>
+                                <button id="addNewGift" type="button" class="nb-btn nb-btn--add-media create-gift__btn--add-media">Добавить подарок</button>
+                            </div>
+
+                        </section>
+                        <div class="new-project__gifts js-project-gifts">
+                        </div>
+                        <input type="hidden" id="js-hidden-input-gifts-count" name="all-gifts-count" value="0" aria-required="true">
+                    </div>
+                </div>
+                <div class="new-project__right col-md-4">
+                    <section class="nb-create">
+                        <div class="nb-create__head">
+                            <p class="nb-create-status">
+                                Последнее сохранение
+                                <time class="js-date-temp-version" datetime="08.12.2016 16:35:36">
+                                    08 декабря 2016 в 16:35:36
+                                </time>
+                            </p>
+                        </div>
+                        <div class="nb-create__body cf">
+                            <a href="javascript:void(0);" class="edit__btn--save js-save-project-info">Сохранить</a><a href="javascript:void(0);" class="edit__btn--preview js-save-project-info-and-preview">Предпросмотр</a>
+                        </div>
+                    </section>	    <section class="nb-create create--help">
+                        <div class="nb-create__head">
+                            <h2 class="nb-heading--small create__heading--small">Помощь</h2>
+                        </div>
+
+                        <div class="nb-create__body">
+                            <details class="nb-details nb-details--small">
+                                <summary class="nb-summary nb-summary--small">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" class="nb-summary-icon nb-summary-icon--small" preserveAspectRatio="xMidYMid" viewBox="0 0 8 14">
+                                        <path fill-rule="evenodd" d="M1 1l5.398 5.714L1 12.429" class="cls-arrow-aquarium--round"></path>
+                                    </svg>
+                                    Зачем нужны подарки?
+                                </summary>
+                                <div class="nb-details-content">
+                                    <div class="nb-details-content-txt">
+                                        Подарки являются очень важной составляющей краудфандинга. В большинстве
+                                        случаев именно ради подарков спонсоры будут перечислять вам средства.
+                                    </div>
+                                </div>
+                            </details>
+                            <details class="nb-details nb-details--small">
+                                <summary class="nb-summary nb-summary--small">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" class="nb-summary-icon nb-summary-icon--small" preserveAspectRatio="xMidYMid" viewBox="0 0 8 14">
+                                        <path fill-rule="evenodd" d="M1 1l5.398 5.714L1 12.429" class="cls-arrow-aquarium--round"></path>
+                                    </svg>
+                                    Какие подарки лучше указывать?
+                                </summary>
+                                <div class="nb-details-content">
+                                    <div class="nb-details-content-txt">
+                                        Специально для вас мы подготовили рекомендации для составления
+                                        списка интересных и востребованных подарков.
+                                        <a href="/project/create/info?page=3" target="_blank" class="nb-link nb-create__link">Перейти к рекомендациям</a>.
+                                    </div>
+                                </div>
+                            </details>
+                        </div>
+
+                        <div class="nb-create__foot">
+                            <hr class="nb-create-status-divider">
+                            <div class="nb-create-question">
+                                <a href="javascript:void(0)" class="nb-link nb-create__link js-open-feedback-popup">Задать вопрос</a>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane fade in" id="description">
+                <h2>Подробное описание проекта</h2>
+                <div class="new-project__left col-md-8">
+                    <section class="nb-create create--full-description project-edit-form">
+                        <div class="nb-create__head">
+                            <h2 class="nb-heading--small create__heading--small">Описание проекта</h2>
+                        </div>
+                        <h1>пока что нету нихуя тут</h1>
+                        <div class="nb-create__body section__body--full-description">
+                            <div class="nb-textarea-wrap">
+                                <div class="redactor-box"><ul class="redactor-toolbar" id="redactor-toolbar-0" style="position: relative; width: auto; top: 0px; left: 0px; visibility: visible;"><li><a href="#" class="re-icon re-bold" rel="bold" tabindex="-1"></a></li><li><a href="#" class="re-icon re-italic" rel="italic" tabindex="-1"></a></li><li><a href="#" class="re-icon re-heading3 html-redactor-btn" rel="heading3" tabindex="-1"><span>Заголовок</span></a></li><li><a href="#" class="re-icon re-link" rel="link" tabindex="-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 18"><path class="cls-6" fill-rule="evenodd" d="M22.725 8.788l-6.437 6.6c-.647.665-1.496.996-2.346.996-.85 0-1.7-.33-2.346-.994l-2.9-2.976c-.627-.642-.972-1.497-.972-2.406 0-.908.345-1.763.972-2.406l.716-.887L10.94 8.02l-.78.956c-.31.326-.45.668-.45 1.032 0 .365.14.707.39.964l2.902 2.976c.52.532 1.363.532 1.88 0l6.438-6.6c.518-.533.518-1.398 0-1.93l-2.9-2.975c-.504-.515-1.38-.516-1.882 0l-1.088.952-1.287-1.553 1.03-.896c.566-.587 1.4-.94 2.285-.94.886 0 1.72.353 2.346.996l2.9 2.975c1.294 1.326 1.294 3.485 0 4.81zm-6.747-.822c0 .908-.345 1.763-.972 2.405l-1.11.95-1.267-1.57 1.04-.88c.18-.193.32-.536.32-.9 0-.365-.14-.707-.39-.965L10.7 4.03c-.52-.533-1.364-.533-1.88 0l-6.44 6.6c-.25.257-.39.6-.39.964 0 .366.14.708.39.966l2.9 2.975c.51.52 1.33.53 1.85.03l.727-.92L9.4 15.928l-.764.968c-.022.028-.046.054-.07.08-.647.663-1.497.994-2.346.994-.85 0-1.7-.33-2.345-.994L.975 14c-.625-.645-.97-1.5-.97-2.41 0-.907.344-1.76.97-2.404l6.438-6.6c1.293-1.328 3.397-1.327 4.69-.002l2.902 2.976c.627.642.972 1.497.972 2.406z"></path></svg></a></li><li><a href="#" class="re-icon re-orderedlist" rel="orderedlist" tabindex="-1"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="14" viewBox="0 0 22 14"><path class="cls-6" fill-rule="evenodd" d="M5 14v-2h17v2H5zm0-7h17v2H5V7zm0-5h17v2H5V2zM0 14v-1h2v-1h1v2H0zm1-3H0v-1h3v1H2v1H1v-1zm0-2H0V8h1V7h1v1h1v1H1zM0 6V5h3v2H2V6H0zm1-2H0V3h1V2H0V1h1V0h1v3h1v1H1z"></path></svg></a></li><li><a href="#" class="re-icon re-unorderedlist" rel="unorderedlist" tabindex="-1"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="13" viewBox="0 0 22 13"><path class="cls-6" fill-rule="evenodd" d="M5 13v-2h17v2H5zm0-7h17v2H5V6zm0-5h17v2H5V1zm-5 9h3v3H0v-3zm0-5h3v3H0V5zm0-5h3v3H0V0z"></path></svg></a></li><li><a href="#" class="re-icon re-image" rel="image" tabindex="-1"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" viewBox="0 0 20 16"><path class="cls-6" fill-rule="evenodd" d="M17.876 16H2.124C.95 16 0 15.05 0 13.876V2.124C0 .95.95 0 2.124 0h15.752C19.05 0 20 .95 20 2.124v11.752C20 15.05 19.05 16 17.876 16zM18 2.124c0-.07-.055-.124-.124-.124H2.124C2.056 2 2 2.055 2 2.124v11.752c0 .068.056.124.124.124h1.644l10.267-8.397L18 8.57V2.123zm0 8.943l-3.91-2.925L6.927 14h10.95c.068 0 .123-.056.123-.124v-2.81zM6.035 8.047c-1.11 0-2.012-.9-2.012-2.012 0-1.11.9-2.012 2.012-2.012 1.11 0 2.012.9 2.012 2.012 0 1.11-.9 2.012-2.012 2.012z"></path></svg></a></li><li><a href="#" class="re-icon re-video" rel="video" tabindex="-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="16" viewBox="0 0 24 16"><path class="cls-6" fill-rule="evenodd" d="M24 1.118l-7 3.24V2.123C17 .95 16.05 0 14.876 0H2.124C.95 0 0 .95 0 2.124v11.752C0 15.05.95 16 2.124 16h12.752C16.05 16 17 15.05 17 13.876V11.76L24 15V1.118zm-9 12.758c0 .068-.055.124-.124.124H2.124C2.056 14 2 13.944 2 13.876V2.124c0-.07.056-.124.124-.124h12.752c.07 0 .124.055.124.124v11.752zm7-2.005l-5-2.31v-3l5-2.31v7.623z"></path></svg></a></li><li><a href="#" class="re-icon re-iframe" rel="iframe" tabindex="-1"><span>Issuu iframe</span></a></li></ul><div class="redactor-editor" contenteditable="true" dir="ltr" placeholder="Пара сотен слов о вашем проекте" style="min-height: 480px;"><p>&#8203;</p></div><textarea id="editor" class="nb-textarea create-full-description__textarea js-ajax-project-update-info" name="project[description_full]" placeholder="Пара сотен слов о вашем проекте" aria-required="true" dir="ltr" style="display: none;"></textarea></div>
+                            </div>
+                            <p class="nb-create-desc">Используйте описание проекта для того, чтобы подробнее рассказать о том, что и как вы собираетесь сделать. Добавьте картинки, фотографии и видео, чтобы более наглядно представить проект.</p>
+                        </div>
+                    </section>
+                    <section class="nb-create create--faq">
+                        <div class="nb-create__head">
+                            <h2 class="nb-heading--small create__heading--small">Частые вопросы</h2>
+                        </div>
+                        <div class="nb-create__body nb-create__faq">
+                            <div class="nb-input-wrap nb-create__input-wrap_faq create-full-description__question">
+                                <input id="js-full-desc-question" type="text" class="nb-input" placeholder="Введите вопрос">
+                            </div>
+                            <div class="nb-textarea-wrap nb-create-full-description__answer" style="bottom: 10px">
+                                <textarea id="js-full-desc-answer" class="nb-textarea" placeholder="Введите ответ"></textarea>
+                            </div>
+                            <button type="button" onclick="addFAQ();" class="nb-btn nb-btn--add-media create-full-description__btn--add-media add-faq-btn">Добавить вопрос</button>
+                            <hr class="nb-create-media-divider nb-create-media-summary-divider" style="display: none">
+                        </div>
+                        <div class="nb-create__foot">
+
+                        </div>
+                    </section>
+                </div>
+                <div class="new-project__right col-md-4">
+                    <section class="nb-create">
+                        <div class="nb-create__head">
+                            <p class="nb-create-status">
+                                Последнее сохранение
+                                <time class="js-date-temp-version" datetime="08.12.2016 16:36:47">
+                                    08 декабря 2016 в 16:36:47
+                                </time>
+                            </p>
+                        </div>
+                        <div class="nb-create__body cf">
+                            <a href="javascript:void(0);" class="edit__btn--save js-save-project-info">Сохранить</a><a href="javascript:void(0);" class="edit__btn--preview js-save-project-info-and-preview">Предпросмотр</a>
+                        </div>
+                    </section>	    <section class="nb-create create--help">
+                        <div class="nb-create__head">
+                            <h2 class="nb-heading--small create__heading--small">Помощь</h2>
+                        </div>
+
+                        <div class="nb-create__body">
+                            <details class="nb-details nb-details--small">
+                                <summary class="nb-summary nb-summary--small">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" class="nb-summary-icon nb-summary-icon--small" preserveAspectRatio="xMidYMid" viewBox="0 0 8 14">
+                                        <path fill-rule="evenodd" d="M1 1l5.398 5.714L1 12.429" class="cls-arrow-aquarium--round"></path>
+                                    </svg>
+                                    Что должно быть в описании?
+                                </summary>
+                                <div class="nb-details-content">
+                                    <div class="nb-details-content-txt">
+                                        Специально для вас мы подготовили рекомендации для написания грамотного
+                                        и эффективного описания.
+                                        <a href="/project/create/info?page=2" target="_blank" class="nb-link nb-create__link">Перейти к рекомендациям</a>.
+                                    </div>
+                                </div>
+                            </details>
+                            <details class="nb-details nb-details--small">
+                                <summary class="nb-summary nb-summary--small">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" class="nb-summary-icon nb-summary-icon--small" preserveAspectRatio="xMidYMid" viewBox="0 0 8 14">
+                                        <path fill-rule="evenodd" d="M1 1l5.398 5.714L1 12.429" class="cls-arrow-aquarium--round"></path>
+                                    </svg>
+                                    Что такое «Частые вопросы»?
+                                </summary>
+                                <div class="nb-details-content">
+                                    <div class="nb-details-content-txt">
+                                        «Частые вопросы» – это блок, в котором вы можете заранее ответить на
+                                        наиболее очевидные вопросы, которые могут возникнуть у потенциальных спонсоров в процессе знакомства с вашим проектом.
+                                    </div>
+                                </div>
+                            </details>
+                        </div>
+
+                        <div class="nb-create__foot">
+                            <hr class="nb-create-status-divider">
+                            <div class="nb-create-question">
+                                <a href="javascript:void(0)" class="nb-link nb-create__link js-open-feedback-popup">Задать вопрос</a>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane fade in" id="personal">
+                <h2>Личные данные организатора</h2>
+                <div class="new-project__left col-md-8">
+                    <section class="nb-create create--personal project-edit-form ">
+                        <div class="nb-create__head">
+                            <h2 class="nb-heading--small section__heading--small">Личные данные</h2>
+                            <p class="nb-create-desc create__head__desc">Чтобы Улей мог заключить с вами договор, необходимо заполнить паспортные данные. Информация, которую вы передаете в Улей, является конфиденциальной и не подлежит разглашению.</p>
+                        </div>
+                        <div class="nb-create__body">
+                            <hr class="popup__divider settings__divider">
+                            <div class="nb-section__field">
+                                <div class="nb-input-wrap nb-section__field">
+                                    @Html.TextBoxFor(m => m.Surname, new { @placeholder = "Фамилия" })
+                                    @*<input id="js-settings-surname" type="text" name="user[last_name]" param="last_name" class="nb-input js-ajax-client-update-info" placeholder="Фамилия" value="Обуховский" aria-required="true">*@
+                                </div>
+                            </div>
+                            <div class="nb-section__field cf">
+                                <div class="nb-input-wrap settings__input-wrap--name">
+                                    @Html.TextBoxFor(m => m.Name, new { @placeholder = "Имя" })
+                                    @*<input id="js-settings-name" type="text" name="user[first_name]" param="first_name" class="nb-input js-ajax-client-update-info" placeholder="Имя" value="Евгений" aria-required="true">*@
+                                </div>
+                                <div class="nb-input-wrap settings__input-wrap--fname">
+                                    @Html.TextBoxFor(m => m.MiddleName, new { @placeholder = "Отчество" })
+                                    @*<input id="js-settings-fname" type="text" name="user[patronymic]" param="patronymic" class="nb-input js-ajax-client-update-info" placeholder="Отчество" value="" aria-required="true">*@
+                                </div>
+                            </div>
+                            <div class="nb-section__field">
+                                <div class="nb-input-wrap nb-input-wrap-date js-get-dob-wrap">
+                                    @Html.TextBoxFor(m => m.DateOfBirth, new { @placeholder = "Дата рождения" })
+                                    @*<input required="" id="datetimepicker" type="text" name="user[dt_birth]" param="dt_birth" placeholder="Дата рождения" class="nb-input nb-input-date js-ajax-client-update-info" value="" aria-required="true">*@
+                                    <svg class="nb-input__icon-date" xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path class="cls-calendar" fill-rule="evenodd" d="M20 17H0V1h2V0h2v1h12V0h2v1h2v16zM18 3H2v12h16V3zM7 8H5V6h2v2zm0 4H5v-2h2v2zm4-4H9V6h2v2zm0 4H9v-2h2v2zm4-4h-2V6h2v2zm0 4h-2v-2h2v2z"></path></svg>
+                                </div>
+                            </div>
+                            <hr class="popup__divider settings__divider">
+                            <div class="nb-section__field">
+                                <div class="nb-dd-toggle-wrap js-dd-select-box">
+
+                                    <div class="nb-dd-toggle js-toggle-dd">
+                                        <span class="nb-dd-toggle-txt js-toggle-dd-txt nb-dd-toggle-txt--default">Выберите тип документа</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="9" class="nb-dd-arrow-icon" preserveAspectRatio="xMidYMid" viewBox="0 0 13 9"><path fill-rule="evenodd" d="M12.003 1L6.502 6.592 1 1" class="cls-dd-arrow-Aqua"></path></svg>
+                                    </div>
+
+                                    @Html.DropDownListFor(m => m.DocumentType, new List<SelectListItem>()
+                                    {
+                                        new SelectListItem() { Text = "Паспорт" },
+                                        new SelectListItem() { Text = "Вид на жительство" },
+                                        new SelectListItem() { Text = "Удостоверение беженца" },
+                                    })
+                                    @*<select id="js-type-docs-client-info" class="nb-dd-default js-dd-select js-ajax-client-update-info" name="user[type_doc_id]" param="type_doc_id" aria-required="true">
+                                        <option class="js-dd-option" selected="" value="">Выберите тип документа</option>
+                                        <option class="js-dd-option" value="35">ПАСПОРТ</option>
+                                        <option class="js-dd-option" value="36">ВИД НА ЖИТЕЛЬСТВО</option>
+                                        <option class="js-dd-option" value="37">УДОСТОВЕРЕНИЕ БЕЖЕНЦА</option>
+                                    </select>*@
+
+                                    <ul class="nb-dd nb-dd--hidden js-dd-menu">
+                                        <li class="nb-dd-item">
+                                            <div data-value="" class="dd-item-link js-dd-menu-item dd-item-link--default dd-item-link--selected js-default-select-in-many-input-block">
+                                                <span class="">Выберите тип документа</span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="9" class="nb-dd-arrow-icon" preserveAspectRatio="xMidYMid" viewBox="0 0 13 9"><path fill-rule="evenodd" d="M.992 6.606l5.501-5.592 5.502 5.592" class="cls-dd-arrow-Aqua"></path></svg>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="nb-section__field">
+                                <div class="nb-input-wrap">
+                                    @Html.TextBoxFor(m => m.PasspotNumberSeries, new { @id = "js-settings-series-and-number-doc", @placeholder = "Серия и номер" })
+                                    @*<input id="js-settings-series-and-number-doc" type="text" name="user[doc_series]" param="doc_series" class="nb-input js-ajax-client-update-info" placeholder="Серия и номер" value="" aria-required="true">*@
+                                    <label for="js-settings-series-and-number-doc" class="nb-input-label">Пример: MР1234567</label>
+                                </div>
+                            </div>
+                            <div class="nb-section__field">
+                                <div class="nb-input-wrap">
+                                    @Html.TextBoxFor(m => m.PersonalPassportNumber, new { @id = "js-settings-personal-num", @placeholder = "Личный номер" })
+                                    @*<input id="js-settings-personal-num" type="text" name="user[personal_num]" param="personal_num" class="nb-input js-ajax-client-update-info" placeholder="Личный номер" value="" aria-required="true">*@
+                                    <label for="js-settings-personal-num" class="nb-input-label">Пример: 1234567A002PB9</label>
+                                </div>
+                            </div>
+                            <div class="nb-section__field">
+                                <div class="nb-input-wrap nb-create__input-wrap">
+                                    @Html.TextBoxFor(m => m.WhoAndWhereIssued, new { @id = "js-settings-document-issued", @placeholder = "Кем и когда выдан" })
+                                    @*<input id="js-settings-document-issued" type="text" name="user[doc_who_issued]" param="doc_who_issued" class="nb-input js-ajax-client-update-info" placeholder="Кем и когда выдан" value="" aria-required="true">*@
+                                    <label for="js-settings-document-issued" class="nb-input-label">Пример: Советское РУВД г.Минска, выдан 22.04.2015</label>
+                                </div>
+                            </div>
+                            <div class="nb-section__field">
+                                <div class="nb-input-wrap nb-create__input-wrap">
+                                    @Html.TextBoxFor(m => m.Adress, new { @id = "js-settings-passport-address", @placeholder = "Адрес регистрации" })
+                                    @*<input id="js-settings-passport-address" type="text" name="user[registration]" param="registration" class="nb-input js-ajax-client-update-info" placeholder="Адрес регистрации" value="" aria-required="true">*@
+                                    <label for="js-settings-passport-address" class="nb-input-label">Пример: г.Минск, ул. Е. Полоцкой, д.3, кв. 16</label>
+                                </div>
+                            </div>
+                            <div class="nb-section__field">
+                                <div class="nb-input-wrap nb-create__input-wrap">
+                                    @Html.TextBoxFor(m => m.PhoneNumber, new { @id = "js-settings-phone", @placeholder = "Контактный номер" })
+                                    @*<input id="js-settings-phone" type="text" name="user[phone]" param="phone" class="nb-input js-ajax-client-update-info" placeholder="Контактный номер" value="" aria-required="true">*@
+                                    <label for="js-settings-phone" class="nb-input-label">Пример: +375 (29) 123 45 67</label>
+                                </div>
+
+                            </div>
+                            <div class="nb-section__field">
+                                <div class="nb-input-wrap nb-create__input-wrap">
+                                    @Html.TextBoxFor(m => m.AccountNumber, new { @placeholder = "Номер счёта" })
+                                </div>
+
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="new-project__right col-md-4">
+                    <section class="nb-create">
+                        <div class="nb-create__head">
+                            <p class="nb-create-status">
+                                Последнее сохранение
+                                <time class="js-date-temp-version" datetime="08.12.2016 16:36:47">
+                                    08 декабря 2016 в 16:36:47
+                                </time>
+                            </p>
+                        </div>
+                        <div class="nb-create__body cf">
+                            <a href="javascript:void(0);" class="edit__btn--save js-save-project-info">Сохранить</a><a href="javascript:void(0);" class="edit__btn--preview js-save-project-info-and-preview">Предпросмотр</a>
+                        </div>
+                    </section>	    <section class="nb-create create--help">
+                        <div class="nb-create__head">
+                            <h2 class="nb-heading--small create__heading--small">Помощь</h2>
+                        </div>
+
+                        <div class="nb-create__body">
+                            <details class="nb-details nb-details--small">
+                                <summary class="nb-summary nb-summary--small">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" class="nb-summary-icon nb-summary-icon--small" preserveAspectRatio="xMidYMid" viewBox="0 0 8 14">
+                                        <path fill-rule="evenodd" d="M1 1l5.398 5.714L1 12.429" class="cls-arrow-aquarium--round"></path>
+                                    </svg>
+                                    Зачем вводить номер счета?
+                                </summary>
+                                <div class="nb-details-content">
+                                    <div class="nb-details-content-txt">
+                                        Номер счета необходим для перечисления средств в случае успеха вашей
+                                        краудфандинговой кампании.
+                                    </div>
+                                </div>
+                            </details>
+                            <details class="nb-details nb-details--small">
+                                <summary class="nb-summary nb-summary--small">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" class="nb-summary-icon nb-summary-icon--small" preserveAspectRatio="xMidYMid" viewBox="0 0 8 14">
+                                        <path fill-rule="evenodd" d="M1 1l5.398 5.714L1 12.429" class="cls-arrow-aquarium--round"></path>
+                                    </svg>
+                                    Зачем вводить паспортные данные?
+                                </summary>
+                                <div class="nb-details-content">
+                                    <div class="nb-details-content-txt">
+                                        Для публикации проекта и сбора средств вам необходимо заключить
+                                        договоры с «Ульем» и ОАО «Белгазпромбанком». Ваши данные необходимы
+                                        для формирования договоров.
+                                    </div>
+                                </div>
+                            </details>
+                            <details class="nb-details nb-details--small">
+                                <summary class="nb-summary nb-summary--small">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" class="nb-summary-icon nb-summary-icon--small" preserveAspectRatio="xMidYMid" viewBox="0 0 8 14">
+                                        <path fill-rule="evenodd" d="M1 1l5.398 5.714L1 12.429" class="cls-arrow-aquarium--round"></path>
+                                    </svg>
+                                    Кому доступны мои данные?
+                                </summary>
+                                <div class="nb-details-content">
+                                    <div class="nb-details-content-txt">
+                                        Ваши данные будут использоваться исключительно для вашей идентификации и
+                                        формирования договоров. Доступ третьих лиц к вашим данным исключен.
+                                    </div>
+                                </div>
+                            </details>
+                        </div>
+
+                        <div class="nb-create__foot">
+                            <hr class="nb-create-status-divider">
+                            <div class="nb-create-question">
+                                <a href="javascript:void(0)" class="nb-link nb-create__link js-open-feedback-popup">Задать вопрос</a>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        
     </div>
+}
 </div>
 
 <script src="https://code.jquery.com/jquery.min.js"></script>
@@ -1013,3 +783,14 @@
 
 <script src="js/main.js"></script>
 
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#addNewGift').click(function () {
+            var amount = $('#js-gift-sum-input').val();
+            var description = $('#js-gift-description-textarea').val();
+            var count = $('#js-gift-count-input').val();
+            $('#giftsList').append('<li><p>Сумма: ' + amount + ';</p><p> Описание: ' + description + ';</p><p> Количество: ' + count + '</p></li>');
+            //alert("Amount:"+amount+" Description: "+description+" Count: "+count);
+        });
+    });
+</script>

@@ -24,7 +24,8 @@ namespace ArtUp.WebApi.Services.Instances
                 {
                     MoneyAmount = g.MoneyAmount,
                     Description = g.Description,
-                    TotalCount = g.Number,
+                    TotalCount = g.AvailableCount,
+                    
                     //AvailableCount = g.Number
                 });
 

@@ -2,8 +2,8 @@
 {
     public enum ProjectState
     {
-        Draft,
         PendingApproval,
+        Draft,
         Approved,
         Rejected
     }

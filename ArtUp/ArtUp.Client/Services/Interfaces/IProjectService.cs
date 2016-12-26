@@ -24,5 +24,7 @@ namespace ArtUp.Client.Services
         void ApproveProject(int id);
 
         void RejectProject(int id);
+
+        void CreateProject(ProjectViewModel model);
     }
 }

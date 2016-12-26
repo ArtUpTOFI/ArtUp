@@ -142,9 +142,19 @@ namespace ArtUp.Client.Controllers
         }
 
         [Authorize]
+        [HttpGet]
         public ActionResult CreateProject()
         {
+            ViewBag.UserId = _userManagementService.GetCurrentUser(User.Identity.Name);
             return View();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult CreateProject(ProjectViewModel model)
+        {
+            _projectService.CreateProject(model);            
+            return RedirectToAction("Index");
         }
 
         [Authorize]

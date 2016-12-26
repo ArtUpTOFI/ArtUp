@@ -25,6 +25,7 @@ namespace ArtUp.Client.Services
                 Id = project.Id,
                 Title = project.Title,
                 Avatar = project.Avatar,
+                Location = project.Location,
                 CreationDate = project.CreationDate,
                 CurrentMoney = project.CurrentMoney,
                 Duration = project.Duration,
@@ -49,6 +50,7 @@ namespace ArtUp.Client.Services
                 FullDescription = p.FullDescription,
                 Id = p.Id,
                 Name = p.Name,
+                Location = p.Location,
                 RequiredMoney = p.RequiredMoney,
                 ShortDescription = p.ShortDescription,
                 Surname = p.Surname,
@@ -187,6 +189,71 @@ namespace ArtUp.Client.Services
                     return GetBySuccess(true);
             }
 
+            return null;
+        }
+
+        public void CreateProject(ProjectViewModel model)
+        {
+            string category = model.Category.ToEngName();
+            data.Projects.Create(new Project()
+            {
+                Adress = model.Adress,
+                Avatar = "/Content/img/nophoto.jpg",//model.Avatar,
+                CreationDate = DateTime.Now,
+                CurrentMoney = 0,
+                DateOfBirth = model.DateOfBirth,
+                DocumentType = model.DocumentType,
+                Duration = model.Duration,
+                FullDescription = model.FullDescription,
+                MiddleName = model.MiddleName,
+                Name = model.Name,
+                PasspotNumberSeries = model.PasspotNumberSeries,
+                PersonalPassportNumber = model.PersonalPassportNumber,
+                PhoneNumber = model.PhoneNumber,
+                ProjectState = DataAccess.Entities.Enums.ProjectState.PendingApproval,
+                RequiredMoney = model.RequiredMoney,
+                ShortDescription = model.ShortDescription,
+                Surname = model.Surname,
+                Title = model.Title,
+                WhoAndWhereIssued = model.WhoAndWhereIssued,
+                Location = model.Location,
+                AccountNumber = model.AccountNumber,
+                UserId = model.UserId,
+                CategoryId = data.Categories.Find(c => c.Title == category).FirstOrDefault().Id, 
+            });
+            //var lastProjectId = data.Projects.GetAll().Last().Id;
+            //foreach (var gift in model.Gifts)
+            //{
+            //    data.Gifts.Create(new Gift()
+            //    {
+            //        AvailableCount = gift.AvailableCount,
+            //        CurrentCount = 0,
+            //        Description = gift.Description,
+            //        MoneyAmount = gift.MoneyAmount,
+            //        ProjectId = lastProjectId
+            //    });
+            //}
+            data.SaveAll();
+        }
+    }
+
+    public static class AnotherHelper
+    {
+        public static string ToEngName(this string category)
+        {
+            switch (category)
+            {
+                case "Музыка":
+                    return "music";
+                case "Литература":
+                    return "literature";
+                case "Кино и видео":
+                    return "movie";
+                case "Фотография":
+                    return "photo";
+                case "Живопись":
+                    return "art";
+            }
             return null;
         }
     }
