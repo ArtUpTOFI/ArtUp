@@ -168,9 +168,5 @@ namespace ArtUp.Client.Controllers
             ViewBag.RejectedProjects = _projectService.GetByState(ProjectState.Rejected, userId);
             return View();
         }
-        //public ActionResult Comments()
-        //{
-        //    return PartialView();
-        //}
     }
 }

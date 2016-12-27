@@ -223,18 +223,19 @@ namespace ArtUp.Client.Services
                 UserId = model.UserId,
                 CategoryId = data.Categories.Find(c => c.Title == category).FirstOrDefault().Id, 
             });
-            //var lastProjectId = data.Projects.GetAll().Last().Id;
-            //foreach (var gift in model.Gifts)
-            //{
-            //    data.Gifts.Create(new Gift()
-            //    {
-            //        AvailableCount = gift.AvailableCount,
-            //        CurrentCount = 0,
-            //        Description = gift.Description,
-            //        MoneyAmount = gift.MoneyAmount,
-            //        ProjectId = lastProjectId
-            //    });
-            //}
+            data.SaveAll();
+            var lastProjectId = data.Projects.Find(p => p.Title == model.Title).FirstOrDefault().Id;
+            foreach (var gift in model.Gifts)
+            {
+                data.Gifts.Create(new Gift()
+                {
+                    AvailableCount = gift.AvailableCount,
+                    CurrentCount = 0,
+                    Description = gift.Description,
+                    MoneyAmount = gift.MoneyAmount,
+                    ProjectId = lastProjectId
+                });
+            }
             data.SaveAll();
         }
 

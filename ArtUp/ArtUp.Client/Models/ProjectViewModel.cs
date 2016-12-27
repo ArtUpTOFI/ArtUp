@@ -74,6 +74,6 @@ namespace ArtUp.Client.Models
 
         public string AccountNumber { get; set; }
 
-        public IEnumerable<GiftViewModel> Gifts { get; set; }
+        public GiftViewModel[] Gifts { get; set; }
     }
 }
