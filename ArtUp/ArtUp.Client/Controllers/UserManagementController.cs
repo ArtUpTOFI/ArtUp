@@ -18,12 +18,14 @@ namespace ArtUp.Client.Controllers
         IProjectService _projectService;
         IUserManagementService _userManagementService;
         IPlatformDetailsService _platformService;
+        IUserDonationService _donationService;
         IUserApiService _bankApi;
         public UserManagementController()
         {
             _projectService = new ProjectService();
             _userManagementService = new UserManagementService();
             _platformService = new PlatformDetailsService();
+            _donationService = new UserDonationService();
             _bankApi = new UserApiService();
         }
 
@@ -125,15 +127,29 @@ namespace ArtUp.Client.Controllers
 
         public ActionResult TransferMoney(int projectId)
         {
-            var answer = _bankApi.CardTransaction("", _projectService.Get(projectId).);
+            var currentProject = _projectService.Get(projectId);
+            var comissionPercents = _platformService.GetSettings().PlatformComission;
+            var comission = currentProject.CurrentMoney * (comissionPercents / 100);
+            var transferAmount = currentProject.CurrentMoney - comissionPercents;
+            var answer = _bankApi.CreateTransaction("9999999999999", currentProject.AccountNumber, (float)transferAmount);
+            var answer2 = _bankApi.CreateTransaction("9999999999999", "9999999999991", (float)transferAmount);
+            currentProject.AccountNumber = null;
+            ViewBag.Answer = "Деньги переведены пользователю";
 
             return View();
         }
 
         public ActionResult ReturnMoney(int projectId)
         {
+            var currentProject = _projectService.Get(projectId);
+            var res = _donationService.GetDonations(projectId);
 
-
+            foreach(var d in res)
+            {
+                _bankApi.CardTransaction("9999999999999", d.CardNumber, (float)d.Amount);
+            }
+            ViewBag.Answer = "Деньги возвращены пользователям";
+            currentProject.ShortDescription = "Проваленный";
             return View();
         }
     }
