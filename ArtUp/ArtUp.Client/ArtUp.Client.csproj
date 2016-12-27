@@ -322,6 +322,10 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ArtUp.BankMockServer\ArtUp.BankMockServer.csproj">
+      <Project>{1e440e32-8cf7-4657-9406-78469badd5a9}</Project>
+      <Name>ArtUp.BankMockServer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ArtUp.DataAccess\ArtUp.DataAccess.csproj">
       <Project>{214694ba-0299-4448-9a88-85795219f48f}</Project>
       <Name>ArtUp.DataAccess</Name>

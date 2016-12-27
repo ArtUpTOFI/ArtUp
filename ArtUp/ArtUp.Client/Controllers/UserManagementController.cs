@@ -1,4 +1,6 @@
-﻿using ArtUp.Client.Models;
+﻿using ArtUp.BankMockServer.Services.Concrete;
+using ArtUp.BankMockServer.Services.Intarfaces;
+using ArtUp.Client.Models;
 using ArtUp.Client.Services;
 using ArtUp.Client.Services.Instances;
 using ArtUp.Client.Services.Interfaces;
@@ -16,11 +18,13 @@ namespace ArtUp.Client.Controllers
         IProjectService _projectService;
         IUserManagementService _userManagementService;
         IPlatformDetailsService _platformService;
+        IUserApiService _bankApi;
         public UserManagementController()
         {
             _projectService = new ProjectService();
             _userManagementService = new UserManagementService();
             _platformService = new PlatformDetailsService();
+            _bankApi = new UserApiService();
         }
 
         // GET: UserManagement
@@ -116,6 +120,20 @@ namespace ArtUp.Client.Controllers
             }
 
             _platformService.SetSetting(model);
+            return View();
+        }
+
+        public ActionResult TransferMoney(int projectId)
+        {
+            var answer = _bankApi.CardTransaction("", _projectService.Get(projectId).);
+
+            return View();
+        }
+
+        public ActionResult ReturnMoney(int projectId)
+        {
+
+
             return View();
         }
     }

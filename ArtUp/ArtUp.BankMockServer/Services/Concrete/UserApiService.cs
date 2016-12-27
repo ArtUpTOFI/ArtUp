@@ -99,6 +99,52 @@ namespace ArtUp.BankMockServer.Services.Concrete
             return new Tuple<bool, string>(false, "Incorrect card attributes");
         }
 
+        public Tuple<bool, string> CardTransaction(string accountNumber, string targetCardNumber, float amount)
+        {
+            var account = database.Accounts.GetByNumber(accountNumber);
+            if(account == null)
+            {
+                return new Tuple<bool, string>(false, "Неверно указан счет");
+            }
+            bool withdrowResult = false, transferResult = false;
+            if (account != null && CheckAmount(account, amount))
+            {
+                var targetCard = database.Cards.GetcardByNumber(targetCardNumber);
+                if (targetCard == null)
+                {
+                    return new Tuple<bool, string>(false, "Неверно указана карта");
+                }
+                var targetAccount = database.Accounts.Get(targetCard.AccountId.Value);
+                if (targetCard != null)
+                {
+                    lock (mainLock)
+                    {
+                        withdrowResult = database.Accounts.ToWithdrawMoneyFromAccount(account, amount);
+                        transferResult = database.Accounts.TransferMoneyToAccount(targetAccount, amount);
+                    }
+                    if (withdrowResult == true && transferResult == true)
+                    {
+                        var transaction = new Transaction
+                        {
+                            Money = amount,
+                            TargetAccountId = targetAccount.Id.ToString(),
+                            AccountId = account.Id,
+                            TransactionDate = DateTime.Now
+                        };
+
+                        database.Transactions.Create(transaction);
+                        return new Tuple<bool, string>(true, "OK");
+                    }
+                    return new Tuple<bool, string>(false, "Error with transaction");
+                }
+                return new Tuple<bool, string>(false, "Incorrect target account");
+            }
+            else
+            {
+                return new Tuple<bool, string>(false, "Malo deneg!!!");
+            }
+        }
+
 
         public Account GetAccount(int id)
         {

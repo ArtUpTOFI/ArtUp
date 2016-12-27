@@ -21,6 +21,8 @@ namespace ArtUp.BankMockServer.Services.Intarfaces
 
         Tuple<bool, string> CreateTransaction(string cardNumber, string targetAccountNumber, int CVV2, string EndDate, string FirstName, string LastName, float amount);
 
+        Tuple<bool, string> CardTransaction(string accountNumber, string targetCardNumber, float amount);
+
         IEnumerable<Transaction> GetAllTransactions();
     }
 }

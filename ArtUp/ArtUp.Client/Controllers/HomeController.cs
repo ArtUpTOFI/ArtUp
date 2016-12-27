@@ -9,6 +9,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ArtUp.BankMockServer.Services.Intarfaces;
+using ArtUp.BankMockServer.Services.Concrete;
 
 namespace ArtUp.Client.Controllers
 {
@@ -21,6 +23,7 @@ namespace ArtUp.Client.Controllers
         IUserManagementService _userManagementService;
         ICommentService _commentService;
         ISearchService _searchService;
+        IUserApiService _bankApi;
 
         public HomeController()
         {
@@ -31,6 +34,7 @@ namespace ArtUp.Client.Controllers
             _userManagementService = new UserManagementService();
             _commentService = new CommentService();
             _searchService = new SearchService();
+            _bankApi = new UserApiService();
         }
 
         public ActionResult Index()
@@ -104,8 +108,19 @@ namespace ArtUp.Client.Controllers
         [Authorize]
         public ActionResult Donate(UserDonationViewModel model)
         {
-            _userDonationService.CreateDonation(model);
-            return RedirectToAction("SuccessfulDonation");
+            var name = model.CardHolder.Split();
+
+            var answer = _bankApi.CreateTransaction(model.CardNumber, "9999999999999", model.CVV, model.CardDate, name[0], name[1], (float)model.Amount);
+            if (answer.Item1)
+            {
+                _userDonationService.CreateDonation(model);
+                return RedirectToAction("SuccessfulDonation");
+            }
+            else
+            {
+                //вернуть сообщение с текстом из answer.Item2
+                return View();
+            }
         }
 
         [HttpPost]

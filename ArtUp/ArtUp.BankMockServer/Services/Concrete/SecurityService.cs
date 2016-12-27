@@ -21,7 +21,7 @@ namespace ArtUp.BankMockServer.Services.Concrete
 
         public string DecryptData(byte[] data, byte[] key)
         {
-            SymmetricAlgorithm Algorithm = SymmetricAlgorithm.Create(AlgorithmName);
+            SymmetricAlgorithm Algorithm = SymmetricAlgorithm.Create("DES");
             Algorithm.Key = key;
             MemoryStream Target = new MemoryStream();
 

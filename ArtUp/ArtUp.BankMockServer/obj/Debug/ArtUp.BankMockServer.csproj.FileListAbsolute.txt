@@ -8,3 +8,13 @@ D:\Download\Android example\ArtUp\ArtUp\ArtUp.BankMockServer\bin\Debug\EntityFra
 D:\Download\Android example\ArtUp\ArtUp\ArtUp.BankMockServer\obj\Debug\ArtUp.BankMockServer.csprojResolveAssemblyReference.cache
 D:\Download\Android example\ArtUp\ArtUp\ArtUp.BankMockServer\obj\Debug\ArtUp.BankMockServer.dll
 D:\Download\Android example\ArtUp\ArtUp\ArtUp.BankMockServer\obj\Debug\ArtUp.BankMockServer.pdb
+C:\Users\Администратор\Source\Repos\ArtUp2\ArtUp\ArtUp.BankMockServer\bin\Debug\ArtUp.BankMockServer.dll.config
+C:\Users\Администратор\Source\Repos\ArtUp2\ArtUp\ArtUp.BankMockServer\bin\Debug\ArtUp.BankMockServer.dll
+C:\Users\Администратор\Source\Repos\ArtUp2\ArtUp\ArtUp.BankMockServer\bin\Debug\ArtUp.BankMockServer.pdb
+C:\Users\Администратор\Source\Repos\ArtUp2\ArtUp\ArtUp.BankMockServer\bin\Debug\EntityFramework.dll
+C:\Users\Администратор\Source\Repos\ArtUp2\ArtUp\ArtUp.BankMockServer\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Администратор\Source\Repos\ArtUp2\ArtUp\ArtUp.BankMockServer\bin\Debug\EntityFramework.xml
+C:\Users\Администратор\Source\Repos\ArtUp2\ArtUp\ArtUp.BankMockServer\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Администратор\Source\Repos\ArtUp2\ArtUp\ArtUp.BankMockServer\obj\Debug\ArtUp.BankMockServer.csprojResolveAssemblyReference.cache
+C:\Users\Администратор\Source\Repos\ArtUp2\ArtUp\ArtUp.BankMockServer\obj\Debug\ArtUp.BankMockServer.dll
+C:\Users\Администратор\Source\Repos\ArtUp2\ArtUp\ArtUp.BankMockServer\obj\Debug\ArtUp.BankMockServer.pdb
