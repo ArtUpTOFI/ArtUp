@@ -43,6 +43,10 @@ namespace ArtUp.DataAccess.Entities
         /// </summary>
         public string ShortDescription { get; set; }
 
+        public bool IsSuccessful { get; set; }
+
+        public bool WasPaid { get; set; }
+
         /// <summary>
         /// Full description of the project
         /// </summary>
