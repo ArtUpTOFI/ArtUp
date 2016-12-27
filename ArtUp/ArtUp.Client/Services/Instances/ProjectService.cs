@@ -5,6 +5,7 @@ using System.Web;
 using ArtUp.DataAccess.Entities;
 using ArtUp.DataAccess.DataContext;
 using ArtUp.Client.Models;
+using ArtUp.DataAccess.Entities.Enums;
 
 namespace ArtUp.Client.Services
 {
@@ -195,10 +196,11 @@ namespace ArtUp.Client.Services
         public void CreateProject(ProjectViewModel model)
         {
             string category = model.Category.ToEngName();
+            model.Duration = TimeSpan.FromDays(model.Duration).Ticks;
             data.Projects.Create(new Project()
             {
                 Adress = model.Adress,
-                Avatar = "/Content/img/nophoto.jpg",//model.Avatar,
+                Avatar = "nophoto.jpg",//model.Avatar,
                 CreationDate = DateTime.Now,
                 CurrentMoney = 0,
                 DateOfBirth = model.DateOfBirth,
@@ -221,19 +223,39 @@ namespace ArtUp.Client.Services
                 UserId = model.UserId,
                 CategoryId = data.Categories.Find(c => c.Title == category).FirstOrDefault().Id, 
             });
-            //var lastProjectId = data.Projects.GetAll().Last().Id;
-            //foreach (var gift in model.Gifts)
-            //{
-            //    data.Gifts.Create(new Gift()
-            //    {
-            //        AvailableCount = gift.AvailableCount,
-            //        CurrentCount = 0,
-            //        Description = gift.Description,
-            //        MoneyAmount = gift.MoneyAmount,
-            //        ProjectId = lastProjectId
-            //    });
-            //}
             data.SaveAll();
+            var lastProjectId = data.Projects.Find(p => p.Title == model.Title).FirstOrDefault().Id;
+            foreach (var gift in model.Gifts)
+            {
+                data.Gifts.Create(new Gift()
+                {
+                    AvailableCount = gift.AvailableCount,
+                    CurrentCount = 0,
+                    Description = gift.Description,
+                    MoneyAmount = gift.MoneyAmount,
+                    ProjectId = lastProjectId
+                });
+            }
+            data.SaveAll();
+        }
+
+        public IEnumerable<ProjectViewModel> GetByState(ProjectState state, int userId)
+        {
+            return data.Projects.Find(p => p.ProjectState == state && userId == p.UserId)
+                .Select(p => new ProjectViewModel()
+                {
+                    Avatar = p.Avatar,
+                    CurrentMoney = p.CurrentMoney,
+                    CreationDate = p.CreationDate,
+                    Duration = p.Duration,
+                    FullDescription = p.FullDescription,
+                    Id = p.Id,
+                    Name = p.Name,
+                    RequiredMoney = p.RequiredMoney,
+                    ShortDescription = p.ShortDescription,
+                    Surname = p.Surname,
+                    Title = p.Title
+                });
         }
     }
 
