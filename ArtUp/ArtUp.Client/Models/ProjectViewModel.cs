@@ -32,7 +32,7 @@ namespace ArtUp.Client.Models
         /// <summary>
         /// Duration of campaign to collect money
         /// </summary>
-        public TimeSpan Duration { get; set; }
+        public long Duration { get; set; }
 
         /// <summary>
         /// Short description of the project
@@ -54,5 +54,26 @@ namespace ArtUp.Client.Models
 
         public ProjectState ProjectState { get; set; }
 
+        public string MiddleName { get; set; }
+
+        public DateTime DateOfBirth { get; set; }
+
+        public DocumentType DocumentType { get; set; }
+
+        public string PasspotNumberSeries { get; set; }
+
+        public string PersonalPassportNumber { get; set; }
+
+        public string WhoAndWhereIssued { get; set; }
+
+        public string Adress { get; set; }
+
+        public string PhoneNumber { get; set; }
+
+        public string Location { get; set; }
+
+        public string AccountNumber { get; set; }
+
+        public IEnumerable<GiftViewModel> Gifts { get; set; }
     }
 }

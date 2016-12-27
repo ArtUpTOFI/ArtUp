@@ -26,6 +26,8 @@ namespace ArtUp.DataAccess.Entities
         /// </summary>
         public DateTime CreationDate { get; set; }
 
+        public string Location { get; set; }
+
         /// <summary>
         /// Required amount of money for success
         /// </summary>
@@ -34,7 +36,7 @@ namespace ArtUp.DataAccess.Entities
         /// <summary>
         /// Duration of campaign to collect money
         /// </summary>
-        public TimeSpan Duration { get; set; }
+        public long Duration { get; set; }
 
         /// <summary>
         /// Short description of the project
@@ -98,6 +100,8 @@ namespace ArtUp.DataAccess.Entities
         public string Adress { get; set; }
 
         public string PhoneNumber { get; set; }
+
+        public string AccountNumber { get; set; }
         #endregion
     }
 }
