@@ -90,6 +90,8 @@ namespace ArtUp.Client.Controllers
             ViewBag.Donations = _userDonationService.GetDonations(id);
             ViewBag.Comments = _commentService.GetComments(id);
             if (project.ProjectState == ProjectState.PendingApproval)
+                ViewBag.IsPending = true;
+            if (project.ProjectState == ProjectState.Approved)
                 ViewBag.IsApproved = true;
             return View();
         }
