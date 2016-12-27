@@ -160,9 +160,12 @@ namespace ArtUp.Client.Controllers
         [Authorize]
         public ActionResult MyProjects()
         {
-            var donationProjects = _userDonationService.GetProjectsWithDonations(
-                _userManagementService.GetCurrentUser(User.Identity.Name));
+            var userId = _userManagementService.GetCurrentUser(User.Identity.Name);
+            var donationProjects = _userDonationService.GetProjectsWithDonations(userId);
             ViewBag.MyDonationProjects = donationProjects.Any() ? donationProjects : null;
+            ViewBag.PendingProjects = _projectService.GetByState(ProjectState.PendingApproval, userId);
+            ViewBag.ApprovedProjects = _projectService.GetByState(ProjectState.Approved, userId);
+            ViewBag.RejectedProjects = _projectService.GetByState(ProjectState.Rejected, userId);
             return View();
         }
         //public ActionResult Comments()

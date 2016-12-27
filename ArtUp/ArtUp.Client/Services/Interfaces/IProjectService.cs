@@ -1,4 +1,5 @@
 ﻿using ArtUp.Client.Models;
+using ArtUp.DataAccess.Entities.Enums;
 using System.Collections.Generic;
 
 namespace ArtUp.Client.Services
@@ -26,5 +27,7 @@ namespace ArtUp.Client.Services
         void RejectProject(int id);
 
         void CreateProject(ProjectViewModel model);
+
+        IEnumerable<ProjectViewModel> GetByState(ProjectState state, int userId);
     }
 }
