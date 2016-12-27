@@ -310,6 +310,7 @@
     <Content Include="Views\UserManagement\Index.cshtml" />
     <Content Include="Views\UserManagement\GetSettings.cshtml" />
     <Content Include="Views\UserManagement\GetProjects.cshtml" />
+    <Content Include="Views\Home\DonationError.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

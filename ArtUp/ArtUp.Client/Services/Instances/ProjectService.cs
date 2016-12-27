@@ -257,6 +257,20 @@ namespace ArtUp.Client.Services
                     Title = p.Title
                 });
         }
+
+        public void UpdateProject(ProjectViewModel model)
+        {
+            var project = data.Projects.Get(model.Id);
+            project.Avatar = model.Avatar;
+            project.Duration = model.Duration;
+            project.FullDescription = model.FullDescription;
+            project.IsSuccessful = model.IsSuccessful;
+            project.ShortDescription = model.ShortDescription;
+            project.WasPaid = project.WasPaid;
+
+            data.Projects.Update(project);
+            data.SaveAll();
+        }
     }
 
     public static class AnotherHelper

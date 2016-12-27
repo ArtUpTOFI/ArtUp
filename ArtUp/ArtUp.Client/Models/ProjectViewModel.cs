@@ -44,6 +44,10 @@ namespace ArtUp.Client.Models
         /// </summary>
         public string FullDescription { get; set; }
 
+        public bool IsSuccessful { get; set; }
+
+        public bool WasPaid { get; set; }
+
         public string Name { get; set; }
 
         public string Surname { get; set; }

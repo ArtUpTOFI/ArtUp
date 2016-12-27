@@ -93,6 +93,8 @@ namespace ArtUp.Client.Controllers
                 ViewBag.IsPending = true;
             if (project.ProjectState == ProjectState.Approved)
                 ViewBag.IsApproved = true;
+            if (project.CreationDate.Day + project.Duration > DateTime.Now.Day)
+                ViewBag.IsEnbleButton = true;
             return View();
         }
 
@@ -110,18 +112,48 @@ namespace ArtUp.Client.Controllers
         [Authorize]
         public ActionResult Donate(UserDonationViewModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Message = "Очень кривые данные";
+                return View("DonationError");
+            }
+            if (model.Amount < 0)
+            {
+                ViewBag.Message = "Неверно введена сумма";
+                return View("DonationError");
+            }
+            if (model.CardNumber.Count() != 16)
+            {
+                ViewBag.Message = "Некорректный номер карты";
+                return View("DonationError");
+            }
+            if (model.CVV<100 || model.CVV>999 )
+            {
+                ViewBag.Message = "Некорректный код CVV2";
+                return View("DonationError");
+            }
             var name = model.CardHolder.Split();
-
+            if (name.Count() != 2)
+            {
+                ViewBag.Message = "Некоректное имя";
+                return View("DonationError");
+            }
             var answer = _bankApi.CreateTransaction(model.CardNumber, "9999999999999", model.CVV, model.CardDate, name[0], name[1], (float)model.Amount);
             if (answer.Item1)
             {
                 _userDonationService.CreateDonation(model);
+                var currentProject = _projectService.Get(model.ProjectId);
+                if (currentProject.CurrentMoney >= currentProject.RequiredMoney)
+                {
+                    currentProject.IsSuccessful = true;
+                    _projectService.UpdateProject(currentProject);
+                }
                 return RedirectToAction("SuccessfulDonation");
             }
             else
             {
-                //вернуть сообщение с текстом из answer.Item2
-                return View();
+                ViewBag.Message = answer.Item2;
+                return View("DonationError");
             }
         }
 

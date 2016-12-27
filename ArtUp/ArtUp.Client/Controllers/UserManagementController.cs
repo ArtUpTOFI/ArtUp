@@ -133,7 +133,8 @@ namespace ArtUp.Client.Controllers
             var transferAmount = currentProject.CurrentMoney - comissionPercents;
             var answer = _bankApi.CreateTransaction("9999999999999", currentProject.AccountNumber, (float)transferAmount);
             var answer2 = _bankApi.CreateTransaction("9999999999999", "9999999999991", (float)transferAmount);
-            //currentProject. = null;
+            currentProject.WasPaid = true;
+            _projectService.UpdateProject(currentProject);
             ViewBag.Answer = "Деньги переведены пользователю";
 
             return View();
@@ -149,7 +150,8 @@ namespace ArtUp.Client.Controllers
                 _bankApi.CardTransaction("9999999999999", d.CardNumber, (float)d.Amount);
             }
             ViewBag.Answer = "Деньги возвращены пользователям";
-            currentProject.ShortDescription = "Проваленный";
+            currentProject.WasPaid = true;
+            _projectService.UpdateProject(currentProject);
             return View();
         }
     }

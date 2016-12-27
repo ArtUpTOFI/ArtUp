@@ -29,5 +29,7 @@ namespace ArtUp.Client.Services
         void CreateProject(ProjectViewModel model);
 
         IEnumerable<ProjectViewModel> GetByState(ProjectState state, int userId);
+
+        void UpdateProject(ProjectViewModel model);
     }
 }

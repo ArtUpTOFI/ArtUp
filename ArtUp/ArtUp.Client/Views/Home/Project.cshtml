@@ -44,10 +44,16 @@
                                     <p><a href="/UserManagement/ApproveProject">Аппрувнуть проект</a></p>
                                     <p><a href="/UserManagement/RejectProject">Откинуть проект</a></p>
                                 }
-                                @if (User.IsInRole("Admin") && ViewBag.IsPending)
+                                @if (User.IsInRole("Admin") && ViewBag.IsApproved && ViewBag.IsEnbleButton)
                                 {
-                                    <p><a href="/UserManagement/ApproveProject">Аппрувнуть проект</a></p>
-                                    <p><a href="/UserManagement/RejectProject">Откинуть проект</a></p>
+                                    if (@ViewBag.Project.IsSeccesfull && !@ViewBag.Project.WasPaid)
+                                    {
+                                        <p><a href="/UserManagement/TransferMoney/@ViewBag.Project.Id">Выплатить деньги</a></p>
+                                    }
+                                    if (!@ViewBag.Project.IsSeccesfull && !@ViewBag.Project.WasPaid)
+                                    {
+                                        <p><a href="/UserManagement/ReturnMoney/@ViewBag.Project.Id">Вернуть деньги пользователям</a></p>
+                                    }
                                 }
 
                                 <h4>Подарки поддержавшим:</h4>
