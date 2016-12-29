@@ -33,7 +33,10 @@
                                 </div>
                                 @if (Request.IsAuthenticated)
                                 {
-                                    <a href="/Home/Donate/@ViewBag.Project.Id"><input type="submit" value="Поддержать"></a>
+                                    if (ViewBag.IsApproved)
+                                    {
+                                        <a href="/Home/Donate/@ViewBag.Project.Id"><input type="submit" value="Поддержать"></a>
+                                    }
                                 }
                                 else
                                 {
@@ -42,8 +45,14 @@
                                 @if (User.IsInRole("Admin") && ViewBag.IsPending)
                                 {
                                     <p><a href="/UserManagement/ApproveProject">Аппрувнуть проект</a></p>
-                                    <p><a href="/UserManagement/RejectProject">Откинуть проект</a></p>
+                                    using (Html.BeginForm("RejectProject", "UserManagement", new { id = @ViewBag.Project.Id }, FormMethod.Post))
+                                    {
+                                        @Html.TextBox("Comment", "Введиите причину отказа")
+                                        <p><input type="submit" value="Откинуть проект"/></p>
+                                        
+                                    }
                                 }
+
                                 @if (User.IsInRole("Admin") && ViewBag.IsApproved && ViewBag.IsEnbleButton)
                                 {
                                     if (@ViewBag.Project.IsSeccesfull && !@ViewBag.Project.WasPaid)
@@ -53,8 +62,8 @@
                                     if (!@ViewBag.Project.IsSeccesfull && !@ViewBag.Project.WasPaid)
                                     {
                                         <p><a href="/UserManagement/ReturnMoney/@ViewBag.Project.Id">Вернуть деньги пользователям</a></p>
+                                        }
                                     }
-                                }
 
                                 <h4>Подарки поддержавшим:</h4>
                                 @foreach (var gift in ViewBag.Gifts)
