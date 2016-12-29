@@ -94,15 +94,14 @@
                 </div>
                 <div class="col-sm-6">
                     <div class="single-sidebar">
-                        <form class="search" action="">
+                        <div style="margin-top: 40px">
                             <div class="col-sm-10">
                                 <input type="text" placeholder="Найти проект" id="search-query">
                             </div>
                             <div class="col-sm-2">
-                                <a href="" id="find-link"><input type="submit" value="Найти" id="find-projects"></a>
+                                <a href="/Home/SearchResults?query=" id="find-link"><input type="submit" value="Найти" id="find-projects"></a>
                             </div>
-                        </form>
-                        @*@Html.Partial("~/Views/Shared/_Search.cshtml", ViewBag.)*@
+                        </div>
                     </div>
                 </div>
             </div>
@@ -227,5 +226,15 @@
 
     <!-- Main Script -->
     <script src="~/Scripts/main.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#find-projects').on('click', function () {
+                var query = $('#search-query').val();
+                var searchLink = $('#find-link');
+                searchLink.attr('href', '/Home/SearchResults?query=' + query);
+            });
+        });
+    </script>
 </body>
 </html>

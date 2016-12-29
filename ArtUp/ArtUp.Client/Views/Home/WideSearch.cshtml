@@ -1,0 +1,61 @@
+﻿@model ArtUp.Client.Models.WideSearchViewModel
+@{
+    ViewBag.Title = "WideSearch";
+}
+
+<div class="product-big-title-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-bit-title text-center">
+                    <h2>Расширенный поиск</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="single-project-area">
+    <div class="container">
+        <div class="row">
+            @using (Html.BeginForm("WideSearch", "Home", FormMethod.Post))
+            {
+                <div>
+                    @Html.LabelFor(m => m.Category, "Категория")
+                    @Html.DropDownListFor(m => m.Category, new List<SelectListItem>()
+                    {
+                        new SelectListItem() { Text = "Любая"},
+                        new SelectListItem() { Text = "Музыка"},
+                        new SelectListItem() { Text = "Литература"},
+                        new SelectListItem() { Text = "Кино и видео"},
+                        new SelectListItem() { Text = "Фотография"},
+                        new SelectListItem() { Text = "Живопись"},
+                    })
+                </div>
+                <div>
+                    @Html.LabelFor(m => m.Location, "Локация проекта")
+                    @Html.DropDownListFor(m => m.Location, new List<SelectListItem>()
+                    {
+                        #region Cities
+                        new SelectListItem() { Text = "Любая"},
+                        new SelectListItem() { Text = "Минск"},
+                        new SelectListItem() { Text = "Магилеу"}
+                        #endregion
+                    })
+                </div>
+                <div>
+                    @Html.LabelFor(m => m.IsSuccessful, "Успешность проекта")
+                    @Html.DropDownListFor(m => m.IsSuccessful, new List<SelectListItem>()
+                    {
+                        new SelectListItem() { Text = "Не важно"},
+                        new SelectListItem() { Text = "Успешный"},
+                        new SelectListItem() { Text = "Неуспешный"}
+                    })
+                </div>
+                <div>
+                    <input type="submit" value="Найти" />
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -10,5 +10,7 @@ namespace ArtUp.Client.Services.Interfaces
     public interface ISearchService
     {
         IEnumerable<ProjectViewModel> SearchFromMain(string model);
+
+        IEnumerable<ProjectViewModel> WideSearch(WideSearchViewModel model);
     }
 }

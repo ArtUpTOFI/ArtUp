@@ -75,6 +75,7 @@
                             <div role="tabpanel" class="tab-pane fade in active" id="home">
                                 <h2>Описание</h2>
                                 <p>@ViewBag.Project.FullDescription</p>
+                                <p>Локация проекта: @ViewBag.Project.Location</p>
                                 <p>Mauris placerat vitae lorem gravida viverra. Mauris in fringilla ex. Nulla facilisi. Etiam scelerisque tincidunt quam facilisis lobortis. In malesuada pulvinar neque a consectetur. Nunc aliquam gravida purus, non malesuada sem accumsan in. Morbi vel sodales libero.</p>
                             </div>
                             <div role="tabpanel" class="tab-pane fade" id="profile">
@@ -84,20 +85,6 @@
                                     <p>@comment.Date, @comment.Text, @comment.Author</p>
                                 }
                                 <div class="submit-review">
-                                    @*<p><label for="name">Имя</label> <input name="name" type="text"></p>
-                                        <p><label for="email">Адрес почты</label> <input name="email" type="email"></p>*@
-                                    <div class="rating-chooser">
-                                        <p>Оценить</p>
-                                        <div class="rating-wrap-post">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                    </div>
-                                    @*<div id="comments"></div>*@
-
                                     @if (Request.IsAuthenticated)
                                     {
                                         using (Ajax.BeginForm("LeaveComment", "Home", new AjaxOptions() { UpdateTargetId = "comments" }))
@@ -107,7 +94,6 @@
                                                 @Html.Hidden("UserId", (int)ViewBag.UserId)
                                                 <label for="review">Текст комментария</label>
                                                 @Html.TextAreaFor(m => m.Text, new { @cols = "30", @rows = "10" })
-                                                @*<textarea name="review" id="" cols="30" rows="10"></textarea>*@
                                             </p>
                                             <p><input type="submit" value="Оставить"></p>
                                         }

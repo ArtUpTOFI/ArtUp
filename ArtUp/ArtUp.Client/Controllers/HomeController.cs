@@ -171,10 +171,17 @@ namespace ArtUp.Client.Controllers
             return PartialView("_Search");
         }
 
-        [HttpPost]
-        public ActionResult SearchResults(MainSearchViewModel model)
+        [HttpGet]
+        public ViewResult WideSearch()
         {
-            return RedirectToAction("SearchResults", "Home", new { @query = model.Query });
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult WideSearch(WideSearchViewModel model)
+        {
+            var searchResult = _searchService.WideSearch(model);
+            return View("WideSearchResults", searchResult);
         }
 
         [HttpGet]

@@ -191,6 +191,7 @@
     <Compile Include="Models\ProjectViewModel.cs" />
     <Compile Include="Models\UserDonationViewModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />
+    <Compile Include="Models\WideSearchViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\SecurityDataService.cs" />
     <Compile Include="Services\Instances\CategoryService.cs" />
@@ -311,6 +312,8 @@
     <Content Include="Views\UserManagement\GetSettings.cshtml" />
     <Content Include="Views\UserManagement\GetProjects.cshtml" />
     <Content Include="Views\Home\DonationError.cshtml" />
+    <Content Include="Views\Home\WideSearch.cshtml" />
+    <Content Include="Views\Home\WideSearchResults.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

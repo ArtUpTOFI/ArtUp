@@ -1,6 +1,6 @@
-﻿
+﻿@model IEnumerable<ArtUp.Client.Models.ProjectViewModel>
 @{
-    ViewBag.Title = "SearchResults";
+    ViewBag.Title = "WideSearchResults";
 }
 
 <div class="product-big-title-area">
@@ -18,15 +18,15 @@
 <div class="single-project-area">
     <div class="zigzag-bottom"></div>
     <div class="container">
-        <a href="/Home/WideSearch">Расширенный поиск</a>
+        <a href="/Home/WideSearch">Назад к поиску</a>
         <div class="row">
-            @if (ViewBag.Results == null)
+            @if (!Model.Any())
             {
                 <p>По вашему критерию ничего не найдено</p>
             }
             else
             {
-                foreach (var project in ViewBag.Results)
+                foreach (var project in Model)
                 {
                     <div class="col-md-3 col-sm-6">
                         <div class="single-shop-product">
@@ -44,7 +44,7 @@
                         </div>
                     </div>
                 }
-            }            
+            }
         </div>
 
         <div class="row">
