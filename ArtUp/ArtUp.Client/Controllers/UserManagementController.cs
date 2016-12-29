@@ -35,14 +35,14 @@ namespace ArtUp.Client.Controllers
             return View();
         }
 
-        //[Authorize (Roles = "Admin")]
+        [Authorize (Roles = "admin")]
         public ActionResult Users()
         {
             var res = _userManagementService.GetAllUsers();
             return View(res);
         }
 
-        //[Authorize (Roles = "Admin")]
+        [Authorize (Roles = "admin")]
         public ActionResult GetUser(int id)
         {
             var User = _userManagementService.GetUser(id);
@@ -50,7 +50,7 @@ namespace ArtUp.Client.Controllers
             return View(User);
         }
 
-        //[Authorize (Roles = "Admin")]
+        [Authorize (Roles = "admin")]
         public ActionResult DeactiveUser(int id)
         {
             _userManagementService.DeactiveUser(id);
@@ -58,7 +58,7 @@ namespace ArtUp.Client.Controllers
             return RedirectToAction("GetUser", "UserManagement", new { id = id });
         }
 
-        //[Authorize (Roles = "Admin")]
+        [Authorize (Roles = "admin")]
         public ActionResult GetProjects()
         {
             var allProjects = _projectService.GetAllProjects();
@@ -73,7 +73,7 @@ namespace ArtUp.Client.Controllers
             return View();
         }
 
-        //[Authorize (Roles = "Admin")]
+        [Authorize (Roles = "admin")]
         public ActionResult ApproveProject(int id)
         {
             _projectService.ApproveProject(id);
@@ -81,7 +81,7 @@ namespace ArtUp.Client.Controllers
             return RedirectToAction("Project", "Home", new { id = id });
         }
 
-        //[Authorize (Roles = "Admin")]
+        [Authorize (Roles = "admin")]
         [HttpPost]
         public ActionResult RejectProject(int id)
         {
@@ -91,7 +91,7 @@ namespace ArtUp.Client.Controllers
             return RedirectToAction("Project", "Home", new { id = id });
         }
 
-        //[Authorize (Roles = "Admin")]
+        [Authorize (Roles = "admin")]
         public ActionResult GetSettings()
         {
             var data = _platformService.GetSettings();
@@ -99,6 +99,7 @@ namespace ArtUp.Client.Controllers
             return View(data);
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public ActionResult GetSettings(PlatformDetailsViewModel model)
         {
@@ -127,14 +128,30 @@ namespace ArtUp.Client.Controllers
             return View();
         }
 
+        [Authorize(Roles = "admin")]
         public ActionResult TransferMoney(int projectId)
         {
+            decimal transferAmount, taxSum = 0;
+
             var currentProject = _projectService.Get(projectId);
-            var comissionPercents = _platformService.GetSettings().PlatformComission;
+            var settings = _platformService.GetSettings();
+            var comissionPercents = settings.PlatformComission;
+            var tax = settings.IncomeTax;
+            var maxSum = settings.MaxFreeAmount;
+            
             var comission = currentProject.CurrentMoney * (comissionPercents / 100);
-            var transferAmount = currentProject.CurrentMoney - comissionPercents;
+
+            
+
+            transferAmount = currentProject.CurrentMoney - comissionPercents;
+
+            if (transferAmount > maxSum)
+                taxSum = (transferAmount - maxSum) * tax / 100;
+
+            transferAmount = transferAmount - taxSum;
+
             var answer = _bankApi.CreateTransaction("9999999999999", currentProject.AccountNumber, (float)transferAmount);
-            var answer2 = _bankApi.CreateTransaction("9999999999999", "9999999999991", (float)transferAmount);
+            var answer2 = _bankApi.CreateTransaction("9999999999999", "9999999999991", (float)comission);
             currentProject.WasPaid = true;
             _projectService.UpdateProject(currentProject);
             ViewBag.Answer = "Деньги переведены пользователю";
@@ -142,6 +159,7 @@ namespace ArtUp.Client.Controllers
             return View();
         }
 
+        [Authorize(Roles = "admin")]
         public ActionResult ReturnMoney(int projectId)
         {
             var currentProject = _projectService.Get(projectId);

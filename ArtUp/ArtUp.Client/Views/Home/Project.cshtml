@@ -31,9 +31,9 @@
                                 <div class="product-inner-price">
                                     <ins>надо @ViewBag.Project.RequiredMoney</ins> <del>собрали @ViewBag.Project.CurrentMoney, потрачено</del>
                                 </div>
-                                @if (Request.IsAuthenticated)
+                                @if (Request.IsAuthenticated )
                                 {
-                                    if (ViewBag.IsApproved)
+                                    if (ViewBag.IsApproved && !User.IsInRole("admin"))
                                     {
                                         <a href="/Home/Donate/@ViewBag.Project.Id"><input type="submit" value="Поддержать"></a>
                                     }
@@ -42,9 +42,9 @@
                                 {
                                     <p><a href="/Account/Login">Войдите</a> или <a href="/Account/Register">Зарегистрируйтесь</a>, чтобы поддержать проект</p>
                                 }
-                                @if (User.IsInRole("Admin") && ViewBag.IsPending)
+                                @if (User.IsInRole("admin") && ViewBag.IsPending)
                                 {
-                                    <p><a href="/UserManagement/ApproveProject">Аппрувнуть проект</a></p>
+                                    <p><a href="/UserManagement/ApproveProject/@ViewBag.Project.Id">Аппрувнуть проект</a></p>
                                     using (Html.BeginForm("RejectProject", "UserManagement", new { id = @ViewBag.Project.Id }, FormMethod.Post))
                                     {
                                         @Html.TextBox("Comment", "Введиите причину отказа")
@@ -53,13 +53,13 @@
                                     }
                                 }
 
-                                @if (User.IsInRole("Admin") && ViewBag.IsApproved && ViewBag.IsEnbleButton)
+                                @if (User.IsInRole("admin") && ViewBag.IsApproved && ViewBag.IsEnbleButton)
                                 {
-                                    if (@ViewBag.Project.IsSeccesfull && !@ViewBag.Project.WasPaid)
+                                    if (@ViewBag.Project.IsSuccessful && !@ViewBag.Project.WasPaid)
                                     {
                                         <p><a href="/UserManagement/TransferMoney/@ViewBag.Project.Id">Выплатить деньги</a></p>
                                     }
-                                    if (!@ViewBag.Project.IsSeccesfull && !@ViewBag.Project.WasPaid)
+                                    if (!@ViewBag.Project.IsSuccessful && !@ViewBag.Project.WasPaid)
                                     {
                                         <p><a href="/UserManagement/ReturnMoney/@ViewBag.Project.Id">Вернуть деньги пользователям</a></p>
                                         }
