@@ -166,6 +166,7 @@ namespace ArtUp.Client.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    await UserManager.AddToRoleAsync(user.Id, "user");
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     _userManagementService.CreateUser(model.Email, model.Password);
 

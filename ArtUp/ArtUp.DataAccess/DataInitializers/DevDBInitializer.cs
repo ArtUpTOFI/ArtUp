@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ArtUp.DataAccess.DataInitializers
 {
-    public class DevDBInitializer: DropCreateDatabaseIfModelChanges<ArtUpDataContextEF>
+    public class DevDBInitializer: DropCreateDatabaseAlways<ArtUpDataContextEF>
     {
         protected override void Seed(ArtUpDataContextEF context)
         {
@@ -73,15 +73,16 @@ namespace ArtUp.DataAccess.DataInitializers
                 new User()
                 {
                     Id = 4,
-                    Email = "admin@mail.com",
-                    Password = "123Aaa!",
+                    Email = "admin@admin.com",
+                    Password = "_Aadmin666",
                     About = "Main odmen!",
                     Avatar = "Odmen.png",
                     Location = "New york",
                     Name = "Big",
                     RegistrationDate = DateTime.Today,
                     RoleId = 1,
-                    Surname = "Brother"
+                    Surname = "Brother",
+                    IsActive = true
                 }
             });
 

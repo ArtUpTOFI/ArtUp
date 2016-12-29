@@ -1,4 +1,6 @@
-﻿using ArtUp.DataAccess.DataInitializers;
+﻿using ArtUp.Client.Models;
+using ArtUp.Client.Services;
+using ArtUp.DataAccess.DataInitializers;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -14,7 +16,8 @@ namespace ArtUp.Client
     {
         protected void Application_Start()
         {
-            //Database.SetInitializer(new DevDBInitializer());
+            Database.SetInitializer(new DevDBInitializer());
+            Database.SetInitializer(new IdentityDBInitializer());
 
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

@@ -40,27 +40,30 @@
                 <div class="col-md-8">
                     <div class="user-menu">
                         <ul>
-                            @if (Request.IsAuthenticated)
+                            @if (User.IsInRole("user"))
                             {
-                                <li><a href="#"><i class="fa fa-user"></i>Здравствуйте, @User.Identity.GetUserName()</a></li>
-                                <li><a href="/Home/MyProjects"><i class="fa fa-heart"></i>Мои проекты</a></li>
-                                <li><a href="/Home/CreateProject"><i class="fa fa-heart"></i>Cоздать проект</a></li>
-                                <li><a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-user"></i>Выйти</a></li>
                                 using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
                                 {
                                     @Html.AntiForgeryToken()
                                 }
-                                @*@if (User.IsInRole("Admin"))*@
-                                @* { *@
-                                @*<li><a href="/UserManagement/Index"><i class="fa fa-user"></i>Кабинет администратора</a></li>*@
-                                @* } *@
+                                <li><a href="#"><i class="fa fa-user"></i>Здравствуйте, @User.Identity.GetUserName()</a></li>                               
+                                if (User.IsInRole("admin"))
+                                {
+                                   <li><a href="/UserManagement/Index"><i class="fa fa-user"></i>Кабинет администратора</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="/Home/MyProjects"><i class="fa fa-heart"></i>Мои проекты</a></li>
+                                    <li><a href="/Home/CreateProject"><i class="fa fa-heart"></i>Cоздать проект</a></li>
+                                }
+                                <li><a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-user"></i>Выйти</a></li>
                             }
                             else
                             {
                                 <li><a href="~/Account/Login"><i class="fa fa-user"></i>Войти</a></li>
                                 <li><a href="~/Account/Register"><i class="fa fa-heart"></i>Зарегистрироваться</a></li>
                             }                            
-                            <li><a href="/UserManagement/Index"><i class="fa fa-user"></i>Кабинет администратора</a></li>                            
+                            @*<li><a href="/UserManagement/Index"><i class="fa fa-user"></i>Кабинет администратора</a></li>*@                            
                         </ul>
                     </div>
                 </div>
