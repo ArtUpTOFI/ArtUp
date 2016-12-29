@@ -82,10 +82,12 @@ namespace ArtUp.Client.Controllers
         }
 
         //[Authorize (Roles = "Admin")]
+        [HttpPost]
         public ActionResult RejectProject(int id)
         {
-            _projectService.RejectProject(id);
-
+            var comment = Request.Form["Comment"];
+            _projectService.RejectProject(id, comment);
+            
             return RedirectToAction("Project", "Home", new { id = id });
         }
 

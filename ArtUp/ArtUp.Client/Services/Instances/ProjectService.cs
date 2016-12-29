@@ -36,7 +36,8 @@ namespace ArtUp.Client.Services
                 ShortDescription = project.ShortDescription,
                 Surname = project.Surname,
                 Category = data.Categories.Get(project.CategoryId.Value).Title,
-                UserId = project.UserId.Value
+                UserId = project.UserId.Value,
+                ProjectState = project.ProjectState
             };
         }
 
@@ -62,7 +63,7 @@ namespace ArtUp.Client.Services
 
         public IEnumerable<ProjectViewModel> GetByCategory(string categoty)
         {
-            return data.Projects.Find(p => p.Category.Title == categoty)
+            return data.Projects.Find(p => p.Category.Title == categoty && p.ProjectState == ProjectState.Approved)
                 .Select(p => new ProjectViewModel()
             {
                 Avatar = p.Avatar,
@@ -143,7 +144,7 @@ namespace ArtUp.Client.Services
         public IEnumerable<ProjectViewModel> GetNewProjects()
         {
             var bound = DateTime.Now.Date - TimeSpan.FromDays(7);
-            return data.Projects.Find(p => p.CreationDate > bound)
+            return data.Projects.Find(p => p.CreationDate > bound && p.ProjectState == ProjectState.Approved)
                 .Select(p => new ProjectViewModel()
                 {
                     Avatar = p.Avatar,
@@ -169,10 +170,11 @@ namespace ArtUp.Client.Services
             data.SaveAll();
         }
 
-        public void RejectProject(int id)
+        public void RejectProject(int id, string comment)
         {
             var project = data.Projects.Get(id);
             project.ProjectState = DataAccess.Entities.Enums.ProjectState.Rejected;
+            project.ShortDescription = comment;
 
             data.Projects.Update(project);
             data.SaveAll();
