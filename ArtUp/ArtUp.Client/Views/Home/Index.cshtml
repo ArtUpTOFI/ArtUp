@@ -128,6 +128,7 @@
                             <div class="single-project">
                                 <div class="product-f-image">
                                     <img src="/Content/img/@project.Avatar" alt="">
+                                    @*@Html.Raw("<img style='width:263px; height:263px;' src=\"data:image/jpeg;base64," + Convert.ToBase64String(project.Image) + "\" />")*@
                                     <div class="product-hover">
                                         <a href="/Home/Project/@project.Id" class="add-to-cart-link"><i class="fa fa-link"></i> Подробнее</a>
                                     </div>
@@ -180,7 +181,9 @@
                     @foreach (var project in ViewBag.NewProjects)
                     {
                         <div class="single-wid-product">
-                            <a href="single-project.html"><img src="/Content/img/@project.Avatar" alt="" class="product-thumb"></a>
+                            <a href="single-project.html"><img src="/Content/img/@project.Avatar" alt="" class="product-thumb">
+                                @*@Html.Raw("<img style='width:263px; height:263px;' class='product-thumb' src=\"data:image/jpeg;base64," + Convert.ToBase64String(project.Image) + "\" />")*@
+                            </a>
                             <h2><a href="/Home/Project/@project.Id">@project.Title</a></h2>
                             <div class="product-wid-rating">
                                 <i class="fa fa-star"></i>
@@ -203,7 +206,9 @@
                     @foreach (var project in ViewBag.BestProjectsBottom)
                     {
                         <div class="single-wid-product">
-                            <a href="single-project.html"><img src="/Content/img/@project.Avatar" alt="" class="product-thumb"></a>
+                            <a href="single-project.html"><img src="/Content/img/@project.Avatar" alt="" class="product-thumb">
+                                @*@Html.Raw("<img style='width:263px; height:263px;' class='product-thumb' src=\"data:image/jpeg;base64," + Convert.ToBase64String(project.Image) + "\" />")*@
+                            </a>
                             <h2><a href="/Home/Project/@project.Id">@project.Title</a></h2>
                             <div class="product-wid-rating">
                                 <i class="fa fa-star"></i>
@@ -226,7 +231,9 @@
                     @foreach (var project in ViewBag.AllProjects)
                     {
                         <div class="single-wid-product">
-                            <a href="single-project.html"><img src="/Content/img/@project.Avatar" alt="" class="product-thumb"></a>
+                            <a href="single-project.html"><img src="/Content/img/@project.Avatar" alt="" class="product-thumb">
+                            @*@Html.Raw("<img style='width:263px; height:263px;' class='product-thumb' src=\"data:image/jpeg;base64," + Convert.ToBase64String(project.Image) + "\" />")*@
+                            </a>
                             <h2><a href="/Home/Project/@project.Id">@project.Title</a></h2>
                             <div class="product-wid-rating">
                                 <i class="fa fa-star"></i>

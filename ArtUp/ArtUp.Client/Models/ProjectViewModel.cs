@@ -24,6 +24,8 @@ namespace ArtUp.Client.Models
         /// </summary>
         public decimal CurrentMoney { get; set; }
 
+        public byte[] Image { get; set; }
+
         /// <summary>
         /// Required amount of money for success
         /// </summary>

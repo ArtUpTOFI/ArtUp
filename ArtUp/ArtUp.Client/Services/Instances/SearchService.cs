@@ -19,7 +19,7 @@ namespace ArtUp.Client.Services.Instances
 
         public IEnumerable<ProjectViewModel> SearchFromMain(string model)
         {
-            var results = data.Projects.Find(p => p.Title.Contains(model));
+            var results = data.Projects.Find(p => p.Title.Contains(model) && p.ProjectState == DataAccess.Entities.Enums.ProjectState.Approved);
             return results.Any() ? 
                 results.Select(p => new ProjectViewModel()
                 {

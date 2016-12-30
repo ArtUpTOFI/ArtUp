@@ -32,6 +32,7 @@ namespace ArtUp.Client.Services
                 Duration = project.Duration,
                 FullDescription = project.FullDescription,
                 Name = project.Name,
+                Image = project.Image,
                 RequiredMoney = project.RequiredMoney,
                 ShortDescription = project.ShortDescription,
                 Surname = project.Surname,
@@ -52,6 +53,7 @@ namespace ArtUp.Client.Services
                 FullDescription = p.FullDescription,
                 Id = p.Id,
                 Name = p.Name,
+                Image = p.Image,
                 Location = p.Location,
                 RequiredMoney = p.RequiredMoney,
                 ShortDescription = p.ShortDescription,
@@ -76,7 +78,8 @@ namespace ArtUp.Client.Services
                 RequiredMoney = p.RequiredMoney,
                 ShortDescription = p.ShortDescription,
                 Surname = p.Surname,
-                Title = p.Title
+                Title = p.Title,
+                Image = p.Image
             }).ToList();
         }
 
@@ -97,7 +100,8 @@ namespace ArtUp.Client.Services
                 RequiredMoney = p.RequiredMoney,
                 ShortDescription = p.ShortDescription,
                 Surname = p.Surname,
-                Title = p.Title
+                Title = p.Title,
+                Image = p.Image,
             }).ToList();
         }
 
@@ -116,7 +120,8 @@ namespace ArtUp.Client.Services
                 RequiredMoney = p.RequiredMoney,
                 ShortDescription = p.ShortDescription,
                 Surname = p.Surname,
-                Title = p.Title
+                Title = p.Title,
+                Image = p.Image
             }).ToList(); ;
         }
 
@@ -137,7 +142,8 @@ namespace ArtUp.Client.Services
                         RequiredMoney = p.RequiredMoney,
                         ShortDescription = p.ShortDescription,
                         Surname = p.Surname,
-                        Title = p.Title
+                        Title = p.Title,
+                        Image = p.Image,
                     }).ToList();
         }
 
@@ -157,7 +163,8 @@ namespace ArtUp.Client.Services
                     RequiredMoney = p.RequiredMoney,
                     ShortDescription = p.ShortDescription,
                     Surname = p.Surname,
-                    Title = p.Title
+                    Title = p.Title,
+                    Image = p.Image,
                 });
         }
 
@@ -202,7 +209,7 @@ namespace ArtUp.Client.Services
             data.Projects.Create(new Project()
             {
                 Adress = model.Adress,
-                Avatar = "nophoto.jpg",//model.Avatar,
+                Avatar = model.Avatar,
                 CreationDate = DateTime.Now,
                 CurrentMoney = 0,
                 DateOfBirth = model.DateOfBirth,
@@ -221,6 +228,7 @@ namespace ArtUp.Client.Services
                 Title = model.Title,
                 WhoAndWhereIssued = model.WhoAndWhereIssued,
                 Location = model.Location,
+                Image = model.Image,
                 AccountNumber = model.AccountNumber,
                 UserId = model.UserId,
                 CategoryId = data.Categories.Find(c => c.Title == category).FirstOrDefault().Id, 
@@ -252,6 +260,7 @@ namespace ArtUp.Client.Services
                     Duration = p.Duration,
                     FullDescription = p.FullDescription,
                     Id = p.Id,
+                    Image = p.Image,
                     Name = p.Name,
                     RequiredMoney = p.RequiredMoney,
                     ShortDescription = p.ShortDescription,

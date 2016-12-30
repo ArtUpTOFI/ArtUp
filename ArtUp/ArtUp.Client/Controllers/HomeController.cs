@@ -11,6 +11,7 @@ using System.Web;
 using System.Web.Mvc;
 using ArtUp.BankMockServer.Services.Intarfaces;
 using ArtUp.BankMockServer.Services.Concrete;
+using System.IO;
 
 namespace ArtUp.Client.Controllers
 {
@@ -213,8 +214,11 @@ namespace ArtUp.Client.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult CreateProject(ProjectViewModel model)
+        public ActionResult CreateProject(ProjectViewModel model, HttpPostedFileBase uploadImage)
         {
+            string fileName = Path.GetFileName(uploadImage.FileName);
+            uploadImage.SaveAs(Server.MapPath("~/Content/img/" + fileName));
+            model.Avatar = fileName;
             _projectService.CreateProject(model);            
             return RedirectToAction("Index");
         }

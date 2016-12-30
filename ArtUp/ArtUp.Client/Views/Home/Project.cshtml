@@ -20,7 +20,7 @@
                         <div class="col-sm-8">
                             <div class="product-images">
                                 <div class="product-main-img">
-                                    <img style="width:100%" src="/Content/img/@ViewBag.Project.Avatar" alt="">
+                                    <img style="width:100%;height:600px" src="/Content/img/@ViewBag.Project.Avatar" alt="">
                                 </div>
                             </div>
                         </div>
@@ -83,7 +83,7 @@
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane fade in active" id="home">
                                 <h2>Описание</h2>
-                                <p>@ViewBag.Project.ShortDescription/p>
+                                <p>@ViewBag.Project.ShortDescription</p>
                                 <p>Локация проекта: @ViewBag.Project.Location</p>
                                 <p>Mauris placerat vitae lorem gravida viverra. Mauris in fringilla ex. Nulla facilisi. Etiam scelerisque tincidunt quam facilisis lobortis. In malesuada pulvinar neque a consectetur. Nunc aliquam gravida purus, non malesuada sem accumsan in. Morbi vel sodales libero.</p>
                             </div>
@@ -131,7 +131,7 @@
                             {
                                 <div class="single-project">
                                     <div class="product-f-image">
-                                        <img src="/Content/img/@project.Avatar" alt="">
+                                        <img src="/Content/img/@project.Avatar" alt="" style='width:366px; height:366px;'>
                                         <div class="product-hover">
                                             <a href="/Home/Project/@project.Id" class="add-to-cart-link"><i class="fa fa-link"></i> Подробнее</a>
                                         </div>

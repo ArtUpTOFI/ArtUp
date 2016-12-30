@@ -38,6 +38,8 @@ namespace ArtUp.DataAccess.Entities
         /// </summary>
         public long Duration { get; set; }
 
+        public byte[] Image { get; set; }
+
         /// <summary>
         /// Short description of the project
         /// </summary>

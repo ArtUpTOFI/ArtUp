@@ -95,6 +95,7 @@ namespace ArtUp.DataAccess.DataInitializers
                     RequiredMoney = 10000,
                     Adress = "Minsk, 666",
                     Avatar = "project-1.jpg",
+                    //Image = ,
                     Location = "Выхино",
                     CreationDate = new DateTime(2016, 12, 1),
                     CategoryId = 1,

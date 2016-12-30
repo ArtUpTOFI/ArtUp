@@ -103,7 +103,7 @@
 
 
 <div role="tabpanel">
-@using (Html.BeginForm("CreateProject", "Home", FormMethod.Post))
+@using (Html.BeginForm("CreateProject", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <ul class="product-tab" role="tablist">
         <li role="presentation" class="active"><a href="#general" aria-controls="general" role="tab" data-toggle="tab">Оcновное</a></li>
@@ -205,7 +205,13 @@
                             </div>
                         </div>
                     </section>
-                    <section class="nb-create create--media project-edit-form">
+
+                    <div class="editor-label">Файл изображения</div>
+                    <div class="editor-field">
+                        <input type="file" name="uploadImage" />
+                    </div>
+
+                    @*<section class="nb-create create--media project-edit-form">
                         <div class="nb-create__head">
                             <h2 class="nb-heading--small create__heading--small">Обложка проекта и видео</h2>
                         </div>
@@ -242,7 +248,7 @@
                                 <a class="nb-link nb-create__link js-open-video js-open-video-popup" data-src="https://www.youtube.com/embed/wgEzP6uUvco" data-show="#view-video" data-video-name="Как снять видео" style="cursor:pointer">Как записать хорошее видео?</a>
                             </div>
                         </div>
-                    </section>
+                    </section>*@
                     <section class="nb-create create--fund project-edit-form">
                         <div class="nb-create__head">
                             <h2 class="nb-heading--small create__heading--small">Бюджет и продолжительность кампании</h2>
