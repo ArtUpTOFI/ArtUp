@@ -114,6 +114,8 @@
     </ul>
     <div class="tab-content">
             <div role="tabpanel" class="tab-pane fade in active" id="general">
+                @Html.AntiForgeryToken()
+                @*@Html.ValidationSummary("", new { @class = "text-danger" })*@
                 <h2>Основная информация о проекте</h2>
                 <div class="new-project__left col-md-8">
                     <section class="nb-create create--title project-edit-form nb-create--valid">
@@ -124,7 +126,7 @@
                             <div class="nb-input-wrap nb-create__input-wrap">
                                 @Html.Hidden("UserId", (int)ViewBag.UserId)
                                 @Html.TextBoxFor(m => m.Title, new { @placeholder = "Введите название проекта" })
-                                @*<input id="js-project-title" type="text" name="project[name]" param="name" maxlength="60" class="nb-input js-ajax-project-update-info" placeholder="Введите название проекта" value="daw" aria-required="true" aria-invalid="false">*@
+                                @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger"})
                             </div>
                             <p class="nb-create-desc">Название должно быть лаконичным, уникальным и запоминающимся. Будьте уверены в том, что название проекта отражает его суть.</p>
                         </div>
@@ -136,7 +138,7 @@
                         <div class="nb-create__body">
                             <div class="nb-textarea-wrap">
                                 @Html.TextAreaFor(m => m.ShortDescription, new { @placeholder = "Коротко расскажите о проекте" })
-                                @*<textarea id="js-description-text" class="nb-textarea" placeholder="Коротко расскажите о проекте" name="project[description_short]" param="description_short" aria-required="true">dwdawa</textarea>*@
+                                @Html.ValidationMessageFor(m => m.ShortDescription, "", new { @class = "text-danger" })
                                 <span class="nb-textarea-count"><span class="js-description-entered">6</span> / 160 символов</span>
                             </div>
                             <p class="nb-create-desc">Опишите в одном предложении цель вашего проекта.</p>
@@ -210,45 +212,6 @@
                     <div class="editor-field">
                         <input type="file" name="uploadImage" />
                     </div>
-
-                    @*<section class="nb-create create--media project-edit-form">
-                        <div class="nb-create__head">
-                            <h2 class="nb-heading--small create__heading--small">Обложка проекта и видео</h2>
-                        </div>
-                        <div class="nb-create__body nb-create-media__body">
-                            <div class="nb-create__media--img js-create-media">
-                                <div class="nb-create__media__img-wrap_project_image">
-                                    <img src="~/Content/img/nophoto.jpg" width="620" height="467" alt="placeholder image" class="nb-create__media__img">
-                                </div>
-                                <p id="status-upload-image"></p>
-                                <div class="nb-create__media__caption--bottom">
-                                    <div class="nb-create__media__caption__btn-wrap">
-                                        <button class="nb-btn nb-btn--add-media create__btn--add-media">Добавить обложку</button>
-                                    </div>
-                                    <div class="nb-create__media__caption__txt--img">Это основное изображение вашего проекта.<br>JPG, PNG, GIF, BMP / Формат: 4х3 / Лимит: 5 Мб</div>
-                                </div>
-                                <input id="js-image-link-hidden" class="js-ajax-project-update-info" type="hidden" name="project[image]" param="image" value="" aria-required="true">
-                            </div>
-                            <div class="nb-create__media--video">
-                                <div class="nb-create__media__video-preview">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="44" height="26" class="video-icon--create" preserveAspectRatio="xMidYMid" viewBox="0 0 44 26"><path fill-rule="evenodd" d="M4.15 1h35.7C41.58985 1 43 2.4650909 43 4.27272727V21.7272727C43 23.5349091 41.58985 25 39.85 25H4.15C2.41015 25 1 23.5349091 1 21.7272727V4.27272727C1 2.4650909 2.41015 1 4.15 1z" class="cls-border-gray9"></path><path fill-rule="evenodd" d="M27 13l-8 4V9l8 4z" class="cls-triangle-gray9"></path></svg>
-                                    <img class="video-preview" src="/assets/img/create_img_bg.jpg" alt="">
-                                </div>
-                                <div class="nb-create__media__caption">
-                                    <button type="button" data-show="#add-video" class="nb-btn nb-btn--add-media js-open-video js-video-button">Добавить видео</button>
-                                    <div class="nb-create__media__caption__txt--video">Проекты с видео имеют больше шансов на успех!<br>Добавьте ссылку с YouTube или Vimeo.</div>
-                                    <input id="js-preview-video-image" class="js-ajax-project-update-info" type="hidden" name="project[preview_url]" param="preview_url" value="">
-                                    <input id="js-video-link" class="js-ajax-project-update-info" type="hidden" name="project[video_url]" param="video_url" value="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="nb-create__foot">
-                            <hr class="nb-create-media-divider">
-                            <div class="nb-create-question">
-                                <a class="nb-link nb-create__link js-open-video js-open-video-popup" data-src="https://www.youtube.com/embed/wgEzP6uUvco" data-show="#view-video" data-video-name="Как снять видео" style="cursor:pointer">Как записать хорошее видео?</a>
-                            </div>
-                        </div>
-                    </section>*@
                     <section class="nb-create create--fund project-edit-form">
                         <div class="nb-create__head">
                             <h2 class="nb-heading--small create__heading--small">Бюджет и продолжительность кампании</h2>
@@ -258,14 +221,14 @@
                                 <div class="nb-create__money">
                                     <div class="nb-input-wrap">
                                         @Html.TextBoxFor(m => m.RequiredMoney)
-                                        @*<input type="text" id="js-project-money" name="project[needed_sum]" param="needed_sum" class="nb-input nb-input--with-postfix" placeholder="Введите сумму" value="" aria-required="true">*@
+                                        @Html.ValidationMessageFor(m => m.RequiredMoney, "", new { @class = "text-danger" })
                                         <span class="nb-input-postfix">руб.</span>
                                     </div>
                                 </div>
                                 <div class="nb-create__time">
                                     <div class="nb-input-wrap">
                                         @Html.TextBoxFor(m => m.Duration)
-                                        @*<input type="text" id="js-dd-time-proj" name="project[days_count]" param="days_count" alt="integer" class="nb-input js-ajax-project-update-info" placeholder="Дней" value="" aria-required="true">*@
+                                        @Html.ValidationMessageFor(m => m.Duration, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
                                 <div class="nb-create__time-caption">
@@ -386,22 +349,26 @@
                             <div class="nb-section__field">
                                 <div class="nb-input-wrap nb-section__field">
                                     @Html.TextBoxFor(m => m.Surname, new { @placeholder = "Фамилия" })
+                                    @Html.ValidationMessageFor(m => m.Surname, "", new { @class = "text-danger" })
                                     @*<input id="js-settings-surname" type="text" name="user[last_name]" param="last_name" class="nb-input js-ajax-client-update-info" placeholder="Фамилия" value="Обуховский" aria-required="true">*@
                                 </div>
                             </div>
                             <div class="nb-section__field cf">
                                 <div class="nb-input-wrap settings__input-wrap--name">
                                     @Html.TextBoxFor(m => m.Name, new { @placeholder = "Имя" })
+                                    @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
                                     @*<input id="js-settings-name" type="text" name="user[first_name]" param="first_name" class="nb-input js-ajax-client-update-info" placeholder="Имя" value="Евгений" aria-required="true">*@
                                 </div>
                                 <div class="nb-input-wrap settings__input-wrap--fname">
                                     @Html.TextBoxFor(m => m.MiddleName, new { @placeholder = "Отчество" })
+                                    @Html.ValidationMessageFor(m => m.MiddleName, "", new { @class = "text-danger" })
                                     @*<input id="js-settings-fname" type="text" name="user[patronymic]" param="patronymic" class="nb-input js-ajax-client-update-info" placeholder="Отчество" value="" aria-required="true">*@
                                 </div>
                             </div>
                             <div class="nb-section__field">
                                 <div class="nb-input-wrap nb-input-wrap-date js-get-dob-wrap">
-                                    @Html.TextBoxFor(m => m.DateOfBirth, new { @placeholder = "Дата рождения" })
+                                    @Html.TextBoxFor(m => m.DateOfBirth, new { @placeholder = "Дата рождения", @type = "date" })
+                                    @Html.ValidationMessageFor(m => m.DateOfBirth, "", new { @class = "text-danger" })
                                     @*<input required="" id="datetimepicker" type="text" name="user[dt_birth]" param="dt_birth" placeholder="Дата рождения" class="nb-input nb-input-date js-ajax-client-update-info" value="" aria-required="true">*@
                                     <svg class="nb-input__icon-date" xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path class="cls-calendar" fill-rule="evenodd" d="M20 17H0V1h2V0h2v1h12V0h2v1h2v16zM18 3H2v12h16V3zM7 8H5V6h2v2zm0 4H5v-2h2v2zm4-4H9V6h2v2zm0 4H9v-2h2v2zm4-4h-2V6h2v2zm0 4h-2v-2h2v2z"></path></svg>
                                 </div>
@@ -435,6 +402,7 @@
                             <div class="nb-section__field">
                                 <div class="nb-input-wrap">
                                     @Html.TextBoxFor(m => m.PasspotNumberSeries, new { @id = "js-settings-series-and-number-doc", @placeholder = "Серия и номер" })
+                                    @Html.ValidationMessageFor(m => m.PasspotNumberSeries, "", new { @class = "text-danger" })
                                     @*<input id="js-settings-series-and-number-doc" type="text" name="user[doc_series]" param="doc_series" class="nb-input js-ajax-client-update-info" placeholder="Серия и номер" value="" aria-required="true">*@
                                     <label for="js-settings-series-and-number-doc" class="nb-input-label">Пример: MР1234567</label>
                                 </div>
@@ -442,6 +410,7 @@
                             <div class="nb-section__field">
                                 <div class="nb-input-wrap">
                                     @Html.TextBoxFor(m => m.PersonalPassportNumber, new { @id = "js-settings-personal-num", @placeholder = "Личный номер" })
+                                    @Html.ValidationMessageFor(m => m.PersonalPassportNumber, "", new { @class = "text-danger" })
                                     @*<input id="js-settings-personal-num" type="text" name="user[personal_num]" param="personal_num" class="nb-input js-ajax-client-update-info" placeholder="Личный номер" value="" aria-required="true">*@
                                     <label for="js-settings-personal-num" class="nb-input-label">Пример: 1234567A002PB9</label>
                                 </div>
@@ -449,6 +418,7 @@
                             <div class="nb-section__field">
                                 <div class="nb-input-wrap nb-create__input-wrap">
                                     @Html.TextBoxFor(m => m.WhoAndWhereIssued, new { @id = "js-settings-document-issued", @placeholder = "Кем и когда выдан" })
+                                    @Html.ValidationMessageFor(m => m.WhoAndWhereIssued, "", new { @class = "text-danger" })
                                     @*<input id="js-settings-document-issued" type="text" name="user[doc_who_issued]" param="doc_who_issued" class="nb-input js-ajax-client-update-info" placeholder="Кем и когда выдан" value="" aria-required="true">*@
                                     <label for="js-settings-document-issued" class="nb-input-label">Пример: Советское РУВД г.Минска, выдан 22.04.2015</label>
                                 </div>
@@ -456,6 +426,7 @@
                             <div class="nb-section__field">
                                 <div class="nb-input-wrap nb-create__input-wrap">
                                     @Html.TextBoxFor(m => m.Adress, new { @id = "js-settings-passport-address", @placeholder = "Адрес регистрации" })
+                                    @Html.ValidationMessageFor(m => m.Adress, "", new { @class = "text-danger" })
                                     @*<input id="js-settings-passport-address" type="text" name="user[registration]" param="registration" class="nb-input js-ajax-client-update-info" placeholder="Адрес регистрации" value="" aria-required="true">*@
                                     <label for="js-settings-passport-address" class="nb-input-label">Пример: г.Минск, ул. Е. Полоцкой, д.3, кв. 16</label>
                                 </div>
@@ -463,6 +434,7 @@
                             <div class="nb-section__field">
                                 <div class="nb-input-wrap nb-create__input-wrap">
                                     @Html.TextBoxFor(m => m.PhoneNumber, new { @id = "js-settings-phone", @placeholder = "Контактный номер" })
+                                    @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })
                                     @*<input id="js-settings-phone" type="text" name="user[phone]" param="phone" class="nb-input js-ajax-client-update-info" placeholder="Контактный номер" value="" aria-required="true">*@
                                     <label for="js-settings-phone" class="nb-input-label">Пример: +375 (29) 123 45 67</label>
                                 </div>
@@ -471,6 +443,7 @@
                             <div class="nb-section__field">
                                 <div class="nb-input-wrap nb-create__input-wrap">
                                     @Html.TextBoxFor(m => m.AccountNumber, new { @placeholder = "Номер счёта" })
+                                    @Html.ValidationMessageFor(m => m.AccountNumber, "", new { @class = "text-danger" })
                                 </div>
 
                             </div>

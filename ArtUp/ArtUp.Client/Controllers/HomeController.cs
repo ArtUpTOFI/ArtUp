@@ -86,7 +86,7 @@ namespace ArtUp.Client.Controllers
             {
                 ViewBag.UserId = _userManagementService.GetCurrentUser(User.Identity.Name);
             }
-            ViewBag.SimilarProjects = _projectService.GetByCategory(project.Category).Take(6);
+            ViewBag.SimilarProjects = _projectService.GetByCategory(project.Category).Take(6).Where(p => p.Id != id);
             ViewBag.Gifts = _giftService.GetGifts(id);
             ViewBag.Donations = _userDonationService.GetDonations(id);
             ViewBag.Comments = _commentService.GetComments(id);
@@ -214,8 +214,15 @@ namespace ArtUp.Client.Controllers
 
         [Authorize]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult CreateProject(ProjectViewModel model, HttpPostedFileBase uploadImage)
         {
+            if (uploadImage == null)
+            {
+                ViewBag.Message = "Обложку не добавили";
+                return View("DonationError");
+            }
+
             string fileName = Path.GetFileName(uploadImage.FileName);
             uploadImage.SaveAs(Server.MapPath("~/Content/img/" + fileName));
             model.Avatar = fileName;
