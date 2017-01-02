@@ -46,10 +46,10 @@
                                 {
                                     @Html.AntiForgeryToken()
                                 }
-                                <li><a href="#"><i class="fa fa-user"></i>Здравствуйте, @User.Identity.GetUserName()</a></li>                               
+                                <li><a href="#"><i class="fa fa-user"></i>Здравствуйте, @User.Identity.GetUserName()</a></li>
                                 if (User.IsInRole("admin"))
                                 {
-                                   <li><a href="/UserManagement/Index"><i class="fa fa-user"></i>Кабинет администратора</a></li>
+                                   <li><a href="/UserManagement/Users"><i class="fa fa-user"></i>Кабинет администратора</a></li>
                                 }
                                 else
                                 {
@@ -63,24 +63,7 @@
                                 <li><a href="~/Account/Login"><i class="fa fa-user"></i>Войти</a></li>
                                 <li><a href="~/Account/Register"><i class="fa fa-heart"></i>Зарегистрироваться</a></li>
                             }                            
-                            @*<li><a href="/UserManagement/Index"><i class="fa fa-user"></i>Кабинет администратора</a></li>*@                            
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="header-right">
-                        <ul class="list-unstyled list-inline">
-                            <li class="dropdown dropdown-small">
-                                <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#">
-                                    <span class="key">Язык :</span>
-                                    <span class="value">Русский </span><b class="caret"></b>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Русский</a></li>
-                                    <li><a href="#">English</a></li>
-                                    <li><a href="#">中国</a></li>
-                                </ul>
-                            </li>
+                            @*<li><a href="/UserManagement/Users"><i class="fa fa-user"></i>Кабинет администратора</a></li>*@
                         </ul>
                     </div>
                 </div>
@@ -139,7 +122,7 @@
         <div class="zigzag-bottom"></div>
         <div class="container">
             <div class="row">
-                <div class="col-md-3 col-sm-6">
+                <div class="col-md-4 col-sm-6">
                     <div class="footer-about-us">
                         <h2>A<span>rt Up</span></h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis sunt id doloribus vero quam laborum quas alias dolores blanditiis iusto consequatur, modi aliquid eveniet eligendi iure eaque ipsam iste, pariatur omnis sint! Suscipit, debitis, quisquam. Laborum commodi veritatis magni at?</p>
@@ -153,7 +136,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-3 col-sm-6">
+                <div class="col-md-4 col-sm-6">
                     <div class="footer-menu">
                         <h2 class="footer-wid-title">Полезные ссылки</h2>
                         <ul>
@@ -165,7 +148,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-3 col-sm-6">
+                <div class="col-md-4 col-sm-6">
                     <div class="footer-menu">
                         <h2 class="footer-wid-title">Категории</h2>
                         <ul>
@@ -175,19 +158,6 @@
                             <li><a href="/Home/Category?category=photo">Фотография</a></li>
                             <li><a href="/Home/Category?category=art">Живопись</a></li>
                         </ul>
-                    </div>
-                </div>
-
-                <div class="col-md-3 col-sm-6">
-                    <div class="footer-newsletter">
-                        <h2 class="footer-wid-title">Подписаться</h2>
-                        <p>Подписаться на рассылку новостей от Art Up</p>
-                        <div class="newsletter-form">
-                            <form action="#">
-                                <input type="email" placeholder="Введите адрес почты >_<">
-                                <input type="submit" value="Подписаться">
-                            </form>
-                        </div>
                     </div>
                 </div>
             </div>

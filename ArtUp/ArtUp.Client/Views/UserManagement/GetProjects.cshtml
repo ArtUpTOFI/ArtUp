@@ -4,85 +4,89 @@
     ViewBag.Title = "GetProjects";
 }
 
-<h2>Проекты</h2>
-
-<div role="tabpanel">
-    <ul class="product-tab" role="tablist">
-        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Одобренные</a></li>
-        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Ожидающие</a></li>
-        <li role="presentation"><a href="#sponsors" aria-controls="sponsors" role="tab" data-toggle="tab">Отвергнутые</a></li>
-    </ul>
-    <div class="tab-content">
-        <div role="tabpanel" class="tab-pane fade in active" id="home">
-            <h2>Проектики</h2>
-            <div class="row">
-                @foreach (var project in ViewBag.AllProjects.ApprovedProjects)
-            {
-                    <div class="col-md-3 col-sm-6">
-                        <div class="single-shop-product">
-                            <div class="product-upper">
-                                <img src="/Content/img/@project.Avatar" alt="" style='width:263px; height:263px;'>
-                            </div>
-                            <h2><a href="/Home/Project/@project.Id">@project.Title</a></h2>
-                            <div class="product-carousel-price">
-                                <ins>надо @project.RequiredMoney</ins>
-                            </div>
-
-                            <div class="product-option-shop">
-                                <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/Home/Project/@project.Id">Подробнее</a>
-                            </div>
-                        </div>
-                    </div>
-                }
-            </div>
+<div class="main-container admin-main">
+    <div class="col-md-2 col-sm-2 col-lg-2">
+        <div class="navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/UserManagement/Users">Пользователи</a></li>
+                <li><a href="/UserManagement/GetProjects" class="active">Проекты</a></li>
+                <li><a href="/UserManagement/GetSettings">Настройки</a></li>
+            </ul>
         </div>
-        <div role="tabpanel" class="tab-pane fade" id="profile">
-            <div class="row">
-                @foreach (var project in ViewBag.AllProjects.PendingProjects)
-            {
-                    <div class="col-md-3 col-sm-6">
-                        <div class="single-shop-product">
-                            <div class="product-upper">
-                                <img src="/Content/img/@project.Avatar" alt="" style='width:263px; height:263px;'>
+    </div>
+    <div class="col-md-10 col-sm-10 col-lg-10">
+        <div role="tabpanel">
+            <ul class="product-tab" role="tablist">
+                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Одобренные</a></li>
+                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Ожидающие</a></li>
+                <li role="presentation"><a href="#sponsors" aria-controls="sponsors" role="tab" data-toggle="tab">Отвергнутые</a></li>
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="home">
+                    <div class="row">
+                        @foreach (var project in ViewBag.AllProjects.ApprovedProjects)
+                        {
+                            <div class="col-md-3 col-sm-6">
+                                <div class="single-shop-product">
+                                    <div class="product-upper">
+                                        <img src="/Content/img/@project.Avatar" alt="" style='width:263px; height:263px;'>
+                                    </div>
+                                    <h2><a href="/Home/Project/@project.Id">@project.Title</a></h2>
+                                    <div class="product-carousel-price">
+                                        <ins>надо @project.RequiredMoney</ins>
+                                    </div>
+                                    <div class="product-option-shop">
+                                        <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/Home/Project/@project.Id">Подробнее</a>
+                                    </div>
+                                </div>
                             </div>
-                            <h2><a href="/Home/Project/@project.Id">@project.Title</a></h2>
-                            <div class="product-carousel-price">
-                                <ins>надо @project.RequiredMoney</ins>
-                            </div>
-
-                            <div class="product-option-shop">
-                                <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/Home/Project/@project.Id">Подробнее</a>
-                                <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/UserManagement/ApproveProject/@project.Id">Апрувнуть ето</a>
-                            </div>
-                        </div>
+                        }
                     </div>
-                }
-            </div>
-
-        </div>
-        <div role="tabpanel" class="tab-pane fade in" id="sponsors">
-            <div class="row">
-                @foreach (var project in ViewBag.AllProjects.RejectProjects)
-            {
-                    <div class="col-md-3 col-sm-6">
-                        <div class="single-shop-product">
-                            <div class="product-upper">
-                                <img src="/Content/img/@project.Avatar" alt="" style='width:263px; height:263px;'>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="profile">
+                    <div class="row">
+                        @foreach (var project in ViewBag.AllProjects.PendingProjects)
+                        {
+                            <div class="col-md-3 col-sm-6">
+                                <div class="single-shop-product">
+                                    <div class="product-upper">
+                                        <img src="/Content/img/@project.Avatar" alt="" style='width:263px; height:263px;'>
+                                    </div>
+                                    <h2><a href="/Home/Project/@project.Id">@project.Title</a></h2>
+                                    <div class="product-carousel-price">
+                                        <ins>надо @project.RequiredMoney</ins>
+                                    </div>
+                                    <div class="product-option-shop">
+                                        <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/Home/Project/@project.Id">Подробнее</a>
+                                        <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/UserManagement/ApproveProject/@project.Id">Апрувнуть ето</a>
+                                    </div>
+                                </div>
                             </div>
-                            <h2><a href="/Home/Project/@project.Id">@project.Title</a></h2>
-                            <div class="product-carousel-price">
-                                <ins>надо @project.RequiredMoney</ins>
-                            </div>
-
-                            <div class="product-option-shop">
-                                <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/Home/Project/@project.Id">Подробнее</a>
-                            </div>
-                        </div>
+                        }
                     </div>
-                }
+                </div>
+                <div role="tabpanel" class="tab-pane fade in" id="sponsors">
+                    <div class="row">
+                        @foreach (var project in ViewBag.AllProjects.RejectProjects)
+                        {
+                            <div class="col-md-3 col-sm-6">
+                                <div class="single-shop-product">
+                                    <div class="product-upper">
+                                        <img src="/Content/img/@project.Avatar" alt="" style='width:263px; height:263px;'>
+                                    </div>
+                                    <h2><a href="/Home/Project/@project.Id">@project.Title</a></h2>
+                                    <div class="product-carousel-price">
+                                        <ins>надо @project.RequiredMoney</ins>
+                                    </div>
+                                    <div class="product-option-shop">
+                                        <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/Home/Project/@project.Id">Подробнее</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
             </div>
-
         </div>
     </div>
 </div>
-

@@ -1,4 +1,4 @@
-﻿.floatleft { float: left }
+.floatleft { float: left }
 .floatright { float: right }
 .alignleft {
     float: left;
@@ -1078,11 +1078,28 @@ label.required em, span.required em, p.required {
     padding-left: 0;
 }
 .pay-main hr {
-    border-topg: 1px solid #8a9;
+    border-top: 1px solid #8a9;
 }
 .pay-main .donate__status {
     margin-top: -15px;
 }
 .pay-main .section__body__left {
     display: inline-block;
+}
+.admin-main ul.nav.navbar-nav{
+   list-style-type: none;
+   margin: 0;
+   padding: 0;
+   height: 100%;
+}
+.admin-main ul.nav.navbar-nav>li{
+   width: 100%;
+}
+.admin-main ul.nav.navbar-nav>li a.active{
+   text-decoration: underline;
+   font-weight: bold;
+}
+.admin-main .add_to_cart_button {
+  padding: 5px;
+  width: 49%;
 }
