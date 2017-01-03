@@ -331,14 +331,14 @@ new SelectListItem() { Text = "Щучин" }
                             <div class="nb-create__fund cf">
                                 <div class="nb-create__money">
                                     <div class="nb-input-wrap">
-                                        @Html.TextBoxFor(m => m.RequiredMoney, new { @id = "money-amount"})
+                                        @Html.TextBoxFor(m => m.RequiredMoney, new { @id = "money-amount", @type = "number"})
                                         @Html.ValidationMessageFor(m => m.RequiredMoney, "", new { @class = "text-danger" })
                                         <span class="nb-input-postfix">руб.</span>
                                     </div>
                                 </div>
                                 <div class="nb-create__time">
                                     <div class="nb-input-wrap">
-                                        @Html.TextBoxFor(m => m.Duration)
+                                        @Html.TextBoxFor(m => m.Duration, new { @type = "number"})
                                         @Html.ValidationMessageFor(m => m.Duration, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
@@ -383,7 +383,7 @@ new SelectListItem() { Text = "Щучин" }
                             <div class="nb-create__body">
                                 <div class="nb-create__gift-sum">
                                     <div class="nb-input-wrap create__gift-sum__input-wrap">
-                                        <input type="text" class="nb-input nb-input--with-postfix" id="js-gift-sum-input" alt="money" placeholder="Сумма вознаграждения" value="">
+                                        <input type="number" class="nb-input nb-input--with-postfix" id="js-gift-sum-input" alt="money" placeholder="Сумма вознаграждения" value="">
                                         <span class="nb-input-postfix">руб.</span>
                                     </div>
                                     <span class="nb-tooltip create__gift-sum__tooltip__link">?<span class="nb-tooltip__content">Здесь необходимо ввести сумму, которой будет соответствовать ваш подарок.</span></span>
@@ -393,13 +393,9 @@ new SelectListItem() { Text = "Щучин" }
                                         <textarea class="nb-textarea" id="js-gift-description-textarea" placeholder="Описание подарка"></textarea>
                                     </div>
                                 </div>
-                                <div class="nb-input-check-wrap donate__input-wrap nb-input-check-wrap">
-                                    <input id="js-gift-count-limit-input" class="nb-input-check" type="checkbox" name="view_flag" onclick="show_hideGiftCountInput(this);" value="1">
-                                    <label for="js-gift-count-limit-input" class="nb-input-check-txt">Ограничить количество подарков</label>
-                                </div>
                                 <div class="nb-create__gift-limit">
                                     <div class="nb-input-wrap create__gift-limit__input-wrap">
-                                        <input type="text" class="nb-input nb-input--with-postfix" id="js-gift-count-input" alt="integer" placeholder="Лимит подарков" value="">
+                                        <input type="number" class="nb-input nb-input--with-postfix" id="js-gift-count-input" alt="integer" placeholder="Лимит подарков" value="">
                                     </div>
                                 </div>
                                 <button id="addNewGift" type="button" class="nb-btn nb-btn--add-media create-gift__btn--add-media">Добавить подарок</button>
