@@ -110,12 +110,11 @@
         <li role="presentation"><a href="#gifts" aria-controls="gifts" role="tab" data-toggle="tab">Подарки</a></li>
         <li role="presentation"><a href="#description" aria-controls="description" role="tab" data-toggle="tab">Описание</a></li>
         <li role="presentation"><a href="#personal" aria-controls="personal" role="tab" data-toggle="tab">Контакты</a></li>
-        <li style="width:230px"><input type="submit" class="nb-btn create__nav__btn create__nav__btn-more--inactive" value="Отправить на модерацию"/></li>
+        <li style="width:230px"><input type="submit" class="nb-btn create__nav__btn create__nav__btn-more--inactive" value="Отправить на модерацию" id="send-project" disabled="disabled"/></li>
     </ul>
     <div class="tab-content">
             <div role="tabpanel" class="tab-pane fade in active" id="general">
                 @Html.AntiForgeryToken()
-                @*@Html.ValidationSummary("", new { @class = "text-danger" })*@
                 <h2>Основная информация о проекте</h2>
                 <div class="new-project__left col-md-8">
                     <section class="nb-create create--title project-edit-form nb-create--valid">
@@ -528,8 +527,8 @@ new SelectListItem() { Text = "Щучин" }
                                     @Html.TextBoxFor(m => m.AccountNumber, new { @placeholder = "Номер счёта" })
                                     @Html.ValidationMessageFor(m => m.AccountNumber, "", new { @class = "text-danger" })
                                 </div>
-
                             </div>
+                            <input type="checkbox" id="rules" /><p>Подтвердите, что вы ознакомлены с <a href="/Home/Rules">соглашением</a> краудфандинговой платформы ArtUp и принимаете его</p>
                         </div>
                     </section>
                 </div>
@@ -585,6 +584,12 @@ new SelectListItem() { Text = "Щучин" }
                 $('#income').html("0 BYN")
                 $('#total-sum').html(Math.round(budget * (1 - comission)) + " BYN");
             }
+        });
+        $('#rules').click(function(){
+            if (this.checked)
+                $('#send-project').removeAttr('disabled');
+            else
+                $('#send-project').attr('disabled', 'disabled');
         });
     });
 </script>

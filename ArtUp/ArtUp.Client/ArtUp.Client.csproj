@@ -315,6 +315,7 @@
     <Content Include="Views\Home\DonationError.cshtml" />
     <Content Include="Views\Home\WideSearch.cshtml" />
     <Content Include="Views\Home\WideSearchResults.cshtml" />
+    <Content Include="Views\Home\Rules.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

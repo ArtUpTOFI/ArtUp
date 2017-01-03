@@ -89,16 +89,12 @@ label.required em, span.required em, p.required {
             </ul>
             <div class="pay__body cf">
                 <div class="pay__left col-md-8">
-                    
-                    @*<form method="post" action="/pay-step2?type=pay-step2" id="form-pay-step1" class="js-payment-form" novalidate="novalidate">*@
                     @using (Html.BeginForm("Donate", "Home", FormMethod.Post, new { @id = "form-pay-step1", @class = "js-payment-form", @novalidate = "novalidate" }))
                     {
+                        @Html.AntiForgeryToken()
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane fade in active" id="gift">
                                 <input id="js-payment-type" type="hidden" name="type" value="mpi">
-                                @*<input type="hidden" name="project_id" value="86006">*@
-                                @*<input type="hidden" name="compensation_id" value="">*@
-                                @*@Html.HiddenFor(m => m.ProjectId, new { @value = ViewBag.Project.Id})*@
                                 @Html.Hidden("ProjectId", (int)ViewBag.Project.Id)
                                 @Html.Hidden("UserId", (int)ViewBag.UserId)
                                 <section class="inner_section">
@@ -107,9 +103,9 @@ label.required em, span.required em, p.required {
                                     </div>
                                     <div class="section__body">
                                         <div class="input-wrap invalid-hide-triangle">
-                                            @*<input type="text" alt="money" name="sum" class="input input--with-postfix" id="sum-block-update" placeholder="Сумма" value="">*@
-                                            @Html.TextBoxFor(m => m.Amount, new { @alt = "money", @name = "sum", @class = "input input--with-postfix", @id = "sum-block-update", @placeholder = "Сумма", @value = "" })
+                                            @Html.TextBoxFor(m => m.Amount, new { @alt = "money", @name = "sum", @class = "input input--with-postfix", @id = "sum-block-update", @placeholder = "Сумма", @value = "", @type = "number" })
                                             <span class="input-postfix">руб.</span>
+                                            @Html.ValidationMessageFor(m => m.Amount, "", new { @class = "text-danger" })
                                         </div>
                                         <p class="create-desc">Минимальная сумма взноса – 1 руб. Автор проекта приложит максимум усилий для предоставления подарков. Подарки могут быть предоставлены третьими лицами.</p>
                                     </div>
@@ -119,26 +115,20 @@ label.required em, span.required em, p.required {
                                             <label for="js-donate-list-input" class="input-check-txt">Отказаться от подарка</label>
                                             <span class="tooltip pay__tooltip__link">?<span class="tooltip__content">Речь идет о публичном списке спонсоров, который выводится на странице проекта. Нажмите на «галочку», чтобы ваше имя не выводилось в этом списке. Обратите внимание на то, что автор проекта в любом случае будет знать, кто поддержал его проект.</span></span>
                                         </div>
-                                        @*<div class="input-check-wrap donate__input-wrap input-check-wrap tooltip__wrap">
-                                                <input id="js-no-gift-input" class="input-check" type="checkbox" name="no_gift" value="1">
-                                                <label for="js-no-gift-input" class="input-check-txt">Отказаться от подарка</label>
-                                            </div>*@
                                     </div>
                                 </section>
-                                <section class="inner_section">
+                                <section class="inner_section" id="gifts-section">
                                     <div class="inner_section__head">
                                         <h3 class="pay__gifts__heading">Выберите подарок</h3>
                                     </div>
 
                                     @foreach (var gift in ViewBag.Gifts)
                                     {
-                                        <section class="pay-gifts">
+                                        <section class="pay-gifts" style="opacity: 1">
                                             <div class="inner_section__head">
                                                 <div class="section__body__left">
                                                     <div class="input-radio-wrap hide-label">
-                                                        @*<input id="GiftId" type="radio" name="donate" class="input-radio" data-gift-cost="2" value="@gift.Id">*@
-                                                        @*@Html.RadioButtonFor(m => m.GiftId , new { @id = "js-radio-86007", @class = "input-radio", @value = gift.Id })*@
-                                                        @Html.RadioButton("GiftId", (int)gift.Id)
+                                                        @Html.RadioButton("GiftId", (int)gift.Id, new { @class = "gift-ids"})
                                                         <label for="js-radio-86007" class="input-radio-txt"></label>
                                                     </div>
                                                 </div>
@@ -161,16 +151,15 @@ label.required em, span.required em, p.required {
                                 </section>
                             </div>
                             <div role="tabpanel" class="tab-pane fade" id="creds">
-                                <p>test</p>
-                                @*<input type="text" placeholder="Номер карты"/>
-                                    <input type="text" placeholder="Имя на карте"/>
-                                    <input type="text" placeholder="Срок действия" />
-                                    <input type="text" placeholder="CVV код"/>*@
-                                
+                                <h3>Данные платежа</h3>
                                 @Html.TextBoxFor(m => m.CardNumber, new { @placeholder = "Номер карты" })
+                                @Html.ValidationMessageFor(m => m.CardNumber, "", new { @class = "text-danger" })
                                 @Html.TextBoxFor(m => m.CardHolder, new { @placeholder = "Имя на карте" })
+                                @Html.ValidationMessageFor(m => m.CardHolder, "", new { @class = "text-danger" })
                                 @Html.TextBoxFor(m => m.CardDate, new { @placeholder = "Срок действия" })
+                                @Html.ValidationMessageFor(m => m.CardDate, "", new { @class = "text-danger" })
                                 @Html.TextBoxFor(m => m.CVV, new { @placeholder = "Cvv код" })
+                                @Html.ValidationMessageFor(m => m.CVV, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
@@ -182,21 +171,9 @@ label.required em, span.required em, p.required {
                                 <p class="section__txt">Нажимая “Поддержать”, вы принимаете <a href="#">условия дарения</a>.</p>
                             </div>
                         </section>
-                    }
-                        
-                    @*</form>*@
-                    
+                    }                  
                 </div>
                 <div class="pay__right col-md-4" style="margin-bottom: 20px;">
-                    <section class="inner_section">
-                        <div class="buttons-set">
-                            <a href="#creds" aria-controls="creds" role="tab" data-toggle="tab"><button type="submit" class="button" title="Продолжить" name="send" id="send3"><span><span>Данные платежа</span></span></button></a>
-                        </div>
-                        <div class="section__field">
-                            <p class="section__txt">Нажимая “Продолжить”, вы принимаете <a href="#" class="link info__link js-open-donation-contract">условия дарения</a>.</p>
-                        </div>
-                    </section>
-
                     <section class="inner_section">
                         <div class="create__head">
                             <h2 class="heading--small create__heading--small">Помощь</h2>
@@ -213,12 +190,6 @@ label.required em, span.required em, p.required {
                                 <div class="details-content">
                                     <div class="details-content-txt">
                                         Деньги можно перечислить, используя платежные карты белорусских и иностранных банков.
-                                        Вы также можете воспользоваться платежной системой ЕРИП, которая позволяет перечислить
-                                        деньги с помощью Инфокиосков, банковских касс, Интернет-банкинга, SMS-банкинга, электронных денег
-                                        <a class="link" target="_blank" href="http://wmtransfer.by/default.asp">WebMoney</a>,
-                                        <a class="link" target="_blank" href="https://ssl.easypay.by/">EasyPay</a>,
-                                        <a class="link" target="_blank" href="https://www.belqi.by/belqi/!iSOU.StaticPage?name=agreement">belqi</a>,
-                                        <a class="link" target="_blank" href="http://www.ipay.by/">iPay</a>.
                                     </div>
                                 </div>
                             </details>
@@ -241,7 +212,7 @@ label.required em, span.required em, p.required {
                         <div class="create__foot">
                             <hr class="create-status-divider">
                             <div class="create-question">
-                                <a href="javascript:void(0)" class="link create__link js-open-feedback-popup">Задать вопрос</a>
+                                <a href="/Home/Rules" class="link create__link js-open-feedback-popup">Соглашение</a>
                             </div>
                         </div>
                     </section>
@@ -251,3 +222,20 @@ label.required em, span.required em, p.required {
         </div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#js-donate-list-input').change(function () {
+            if (this.checked)
+            {
+                $('.pay-gifts').attr('opacity', 0.5);
+                $('.gift-ids').attr('disabled', 'disabled');
+            }  
+            else
+            {
+                $('.pay-gifts').attr('opacity', 1);
+                $('.gift-ids').removeAttr('disabled');
+            }
+        });
+    });
+</script>

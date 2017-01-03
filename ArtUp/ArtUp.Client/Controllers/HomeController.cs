@@ -119,12 +119,16 @@ namespace ArtUp.Client.Controllers
 
         [HttpPost]
         [Authorize]
+        [ValidateAntiForgeryToken]
         public ActionResult Donate(UserDonationViewModel model)
         {
             if (!ModelState.IsValid)
             {
-                ViewBag.Message = "Очень кривые данные";
-                return View("DonationError");
+                var id = Convert.ToInt32(Request.RequestContext.RouteData.Values["id"]);
+                ViewBag.Gifts = _giftService.GetGifts(id);
+                ViewBag.Project = _projectService.Get(id);
+                ViewBag.UserId = _userManagementService.GetCurrentUser(User.Identity.Name);
+                return View();
             }
             if (model.Amount < 0)
             {
@@ -262,6 +266,11 @@ namespace ArtUp.Client.Controllers
             ViewBag.PendingProjects = _projectService.GetByState(ProjectState.PendingApproval, userId);
             ViewBag.ApprovedProjects = _projectService.GetByState(ProjectState.Approved, userId);
             ViewBag.RejectedProjects = _projectService.GetByState(ProjectState.Rejected, userId);
+            return View();
+        }
+
+        public ViewResult Rules()
+        {
             return View();
         }
     }
