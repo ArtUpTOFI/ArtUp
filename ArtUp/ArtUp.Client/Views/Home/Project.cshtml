@@ -29,7 +29,8 @@
                             <div class="product-inner">
                                 <h2 class="product-name">@ViewBag.Project.Title</h2>
                                 <div class="product-inner-price">
-                                    <ins>надо @ViewBag.Project.RequiredMoney</ins> <del>собрали @ViewBag.Project.CurrentMoney, потрачено</del>
+                                    <ins>надо @ViewBag.Project.RequiredMoney, собрали @ViewBag.Project.CurrentMoney</ins> 
+                                    <p>осталось @(((TimeSpan)(ViewBag.Project.CreationDate + TimeSpan.FromTicks(ViewBag.Project.Duration) - DateTime.Now)).Days) дня(ей)</p>
                                 </div>
                                 @if (Request.IsAuthenticated )
                                 {
@@ -77,50 +78,56 @@
                     <div role="tabpanel">
                         <ul class="product-tab" role="tablist">
                             <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Описание</a></li>
-                            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Комментарии</a></li>
-                            <li role="presentation"><a href="#sponsors" aria-controls="sponsors" role="tab" data-toggle="tab">Спонсоры</a></li>
+                            @if (ViewBag.Project.ProjectState == ArtUp.DataAccess.Entities.Enums.ProjectState.Approved)
+                            {
+                                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Комментарии</a></li>
+                                <li role="presentation"><a href="#sponsors" aria-controls="sponsors" role="tab" data-toggle="tab">Спонсоры</a></li>
+                            }
                         </ul>
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane fade in active" id="home">
                                 <h2>Описание</h2>
                                 <p>@ViewBag.Project.ShortDescription</p>
                                 <p>Локация проекта: @ViewBag.Project.Location</p>
-                                <p>Mauris placerat vitae lorem gravida viverra. Mauris in fringilla ex. Nulla facilisi. Etiam scelerisque tincidunt quam facilisis lobortis. In malesuada pulvinar neque a consectetur. Nunc aliquam gravida purus, non malesuada sem accumsan in. Morbi vel sodales libero.</p>
+                                <p>@ViewBag.Project.FullDescription</p>
                             </div>
-                            <div role="tabpanel" class="tab-pane fade" id="profile">
-                                <h2>Комментарии</h2>
-                                @foreach (var comment in ViewBag.Comments)
-                                {
-                                    <p>@comment.Date, @comment.Text, @comment.Author</p>
-                                }
-                                <div class="submit-review">
-                                    @if (Request.IsAuthenticated)
+                            @if (ViewBag.Project.ProjectState == ArtUp.DataAccess.Entities.Enums.ProjectState.Approved)
+                            {
+                                <div role="tabpanel" class="tab-pane fade" id="profile">
+                                    <h2>Комментарии</h2>
+                                    @foreach (var comment in ViewBag.Comments)
                                     {
-                                        using (Ajax.BeginForm("LeaveComment", "Home", new AjaxOptions() { UpdateTargetId = "comments" }))
+                                        <p>@comment.Date, @comment.Text, @comment.Author</p>
+                                    }
+                                    <div class="submit-review">
+                                        @if (Request.IsAuthenticated)
                                         {
-                                            <p>
-                                                @Html.Hidden("ProjectId", (int)ViewBag.Project.Id)
-                                                @Html.Hidden("UserId", (int)ViewBag.UserId)
-                                                <label for="review">Текст комментария</label>
-                                                @Html.TextAreaFor(m => m.Text, new { @cols = "30", @rows = "10" })
-                                            </p>
-                                            <p><input type="submit" value="Оставить"></p>
+                                            using (Ajax.BeginForm("LeaveComment", "Home", new AjaxOptions() { UpdateTargetId = "comments" }))
+                                            {
+                                                <p>
+                                                    @Html.Hidden("ProjectId", (int)ViewBag.Project.Id)
+                                                    @Html.Hidden("UserId", (int)ViewBag.UserId)
+                                                    <label for="review">Текст комментария</label>
+                                                    @Html.TextAreaFor(m => m.Text, new { @cols = "30", @rows = "10" })
+                                                </p>
+                                                <p><input type="submit" value="Оставить"></p>
+                                            }
                                         }
-                                    }
-                                    else
-                                    {
-                                        <p><a href="/Account/Login">Войдите</a> или <a href="/Account/Register">зарегистрируйтесь</a>, чтобы оставлять комментарии</p>
-                                    }
+                                        else
+                                        {
+                                            <p><a href="/Account/Login">Войдите</a> или <a href="/Account/Register">зарегистрируйтесь</a>, чтобы оставлять комментарии</p>
+                                        }
 
+                                    </div>
                                 </div>
-                            </div>
-                            <div role="tabpanel" class="tab-pane fade in" id="sponsors">
-                                <h2>Спонсоры</h2>
-                                @foreach (var donation in ViewBag.Donations)
-                                {
-                                    <p>@donation.DonationDate, @donation.Amount, @donation.Email</p>
-                                }
-                            </div>
+                                <div role="tabpanel" class="tab-pane fade in" id="sponsors">
+                                    <h2>Спонсоры</h2>
+                                    @foreach (var donation in ViewBag.Donations)
+                                    {
+                                        <p>@donation.DonationDate, @donation.Amount, @donation.Email</p>
+                                    }
+                                </div>
+                            }
                         </div>
                     </div>
 

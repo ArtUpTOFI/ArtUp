@@ -25,6 +25,7 @@ namespace ArtUp.Client.Controllers
         ICommentService _commentService;
         ISearchService _searchService;
         IUserApiService _bankApi;
+        IPlatformDetailsService _platformDetailsService;
 
         public HomeController()
         {
@@ -36,6 +37,7 @@ namespace ArtUp.Client.Controllers
             _commentService = new CommentService();
             _searchService = new SearchService();
             _bankApi = new UserApiService();
+            _platformDetailsService = new PlatformDetailsService();
         }
 
         public ActionResult Index()
@@ -208,6 +210,7 @@ namespace ArtUp.Client.Controllers
         [HttpGet]
         public ActionResult CreateProject()
         {
+            ViewBag.Settings = _platformDetailsService.GetSettings();
             ViewBag.UserId = _userManagementService.GetCurrentUser(User.Identity.Name);
             return View();
         }
@@ -217,17 +220,37 @@ namespace ArtUp.Client.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CreateProject(ProjectViewModel model, HttpPostedFileBase uploadImage)
         {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.UserId = _userManagementService.GetCurrentUser(User.Identity.Name);
+                ViewBag.Settings = _platformDetailsService.GetSettings();
+                return View();
+            }
             if (uploadImage == null)
             {
-                ViewBag.Message = "Обложку не добавили";
+                ViewBag.Message = "Обложка проекта не была добавлена";
                 return View("DonationError");
             }
 
             string fileName = Path.GetFileName(uploadImage.FileName);
             uploadImage.SaveAs(Server.MapPath("~/Content/img/" + fileName));
             model.Avatar = fileName;
-            _projectService.CreateProject(model);            
-            return RedirectToAction("Index");
+
+            var settings = _platformDetailsService.GetSettings();
+            ViewBag.Settings = _platformDetailsService.GetSettings();
+
+            if (model.RequiredMoney > settings.MaxFreeAmount)
+            {
+                model.RequiredMoney = Math.Round((model.RequiredMoney - (model.RequiredMoney - settings.MaxFreeAmount - model.RequiredMoney * settings.PlatformComission / 100) * settings.IncomeTax / 100 - model.RequiredMoney * settings.PlatformComission / 100));
+            }
+            else
+            {
+                model.RequiredMoney = Math.Round(model.RequiredMoney * (1 - settings.PlatformComission / 100));
+            }
+
+            _projectService.CreateProject(model);
+            ViewBag.Message = "Отправка проекта на модерацию администратору прошла успешно!";            
+            return View("DonationError");
         }
 
         [Authorize]

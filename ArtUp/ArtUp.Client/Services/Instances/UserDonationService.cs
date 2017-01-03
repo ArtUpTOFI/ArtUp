@@ -63,6 +63,7 @@ namespace ArtUp.Client.Services.Instances
                     {
                         Project = new ProjectViewModel()
                         {
+                            Id = project.Id,
                             Avatar = project.Avatar,
                             Title = project.Title,
                             CreationDate = project.CreationDate,

@@ -95,7 +95,7 @@ namespace ArtUp.DataAccess.Entities
 
         public DateTime DateOfBirth { get; set; }
 
-        public DocumentType DocumentType { get; set; }
+        public string DocumentType { get; set; }
 
         public string PasspotNumberSeries { get; set; }
 

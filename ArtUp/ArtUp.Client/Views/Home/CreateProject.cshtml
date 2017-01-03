@@ -190,9 +190,120 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" width="13" height="9" class="nb-dd-arrow-icon" preserveAspectRatio="xMidYMid" viewBox="0 0 13 9"><path fill-rule="evenodd" d="M12.003 1L6.502 6.592 1 1" class="cls-dd-arrow-Aqua"></path></svg>
                                 </div>
                                 @Html.DropDownListFor(m => m.Location, new List<SelectListItem>() {
+                               #region Cities
                                     new SelectListItem() { Text = "Минск" },
-                                    new SelectListItem() { Text = "Магилеу" }
-                                })
+new SelectListItem() { Text = "Брест" },
+new SelectListItem() { Text = "Витебск" },
+new SelectListItem() { Text = "Гомель" },
+new SelectListItem() { Text = "Гродно" },
+new SelectListItem() { Text = "Могилев" },
+new SelectListItem() { Text = "Барановичи" },
+new SelectListItem() { Text = "Барань" },
+new SelectListItem() { Text = "Белоозёрск" },
+new SelectListItem() { Text = "Берёза" },
+new SelectListItem() { Text = "Березино" },
+new SelectListItem() { Text = "Берёзовка" },
+new SelectListItem() { Text = "Бобруйск" },
+new SelectListItem() { Text = "Борисов" },
+new SelectListItem() { Text = "Буда-Кошелёво" },
+new SelectListItem() { Text = "Быхов" },
+new SelectListItem() { Text = "Василевичи" },
+new SelectListItem() { Text = "Верхнедвинск" },
+new SelectListItem() { Text = "Ветка" },
+new SelectListItem() { Text = "Вилейка" },
+new SelectListItem() { Text = "Волковыск" },
+new SelectListItem() { Text = "Воложин" },
+new SelectListItem() { Text = "Высокое" },
+new SelectListItem() { Text = "Ганцевичи" },
+new SelectListItem() { Text = "Глубокое" },
+new SelectListItem() { Text = "Горки" },
+new SelectListItem() { Text = "Городок" },
+new SelectListItem() { Text = "Давид-Городок" },
+new SelectListItem() { Text = "Дзержинск" },
+new SelectListItem() { Text = "Дисна" },
+new SelectListItem() { Text = "Добруш" },
+new SelectListItem() { Text = "Докшицы" },
+new SelectListItem() { Text = "Дрогичин" },
+new SelectListItem() { Text = "Дубровно" },
+new SelectListItem() { Text = "Дятлово" },
+new SelectListItem() { Text = "Ельск" },
+new SelectListItem() { Text = "Жабинка" },
+new SelectListItem() { Text = "Житковичи" },
+new SelectListItem() { Text = "Жлобин" },
+new SelectListItem() { Text = "Жодино" },
+new SelectListItem() { Text = "Заславль" },
+new SelectListItem() { Text = "Иваново" },
+new SelectListItem() { Text = "Ивацевичи" },
+new SelectListItem() { Text = "Ивье" },
+new SelectListItem() { Text = "Калинковичи" },
+new SelectListItem() { Text = "Каменец" },
+new SelectListItem() { Text = "Кировск" },
+new SelectListItem() { Text = "Клецк" },
+new SelectListItem() { Text = "Климовичи" },
+new SelectListItem() { Text = "Кличев" },
+new SelectListItem() { Text = "Кобрин" },
+new SelectListItem() { Text = "Копыль" },
+new SelectListItem() { Text = "Коссово" },
+new SelectListItem() { Text = "Костюковичи" },
+new SelectListItem() { Text = "Кричев" },
+new SelectListItem() { Text = "Крупки" },
+new SelectListItem() { Text = "Лепель" },
+new SelectListItem() { Text = "Лида" },
+new SelectListItem() { Text = "Логойск" },
+new SelectListItem() { Text = "Лунинец" },
+new SelectListItem() { Text = "Любань" },
+new SelectListItem() { Text = "Ляховичи" },
+new SelectListItem() { Text = "Малорита" },
+new SelectListItem() { Text = "Марьина Горка" },
+new SelectListItem() { Text = "Микашевичи" },
+new SelectListItem() { Text = "Миоры" },
+new SelectListItem() { Text = "Молодечно" },
+new SelectListItem() { Text = "Мосты" },
+new SelectListItem() { Text = "Мстиславль" },
+new SelectListItem() { Text = "Мядель" },
+new SelectListItem() { Text = "Наровля" },
+new SelectListItem() { Text = "Несвиж" },
+new SelectListItem() { Text = "Новогрудок" },
+new SelectListItem() { Text = "Новолукомль" },
+new SelectListItem() { Text = "Новополоцк" },
+new SelectListItem() { Text = "Орша" },
+new SelectListItem() { Text = "Осиповичи" },
+new SelectListItem() { Text = "Ошмяны" },
+new SelectListItem() { Text = "Петриков" },
+new SelectListItem() { Text = "Пинск" },
+new SelectListItem() { Text = "Полоцк" },
+new SelectListItem() { Text = "Поставы" },
+new SelectListItem() { Text = "Пружаны" },
+new SelectListItem() { Text = "Речица" },
+new SelectListItem() { Text = "Рогачёв" },
+new SelectListItem() { Text = "Санкт-Петербург" },
+new SelectListItem() { Text = "Светлогорск" },
+new SelectListItem() { Text = "Свислочь" },
+new SelectListItem() { Text = "Сенно" },
+new SelectListItem() { Text = "Скидель" },
+new SelectListItem() { Text = "Славгород" },
+new SelectListItem() { Text = "Слоним" },
+new SelectListItem() { Text = "Слуцк" },
+new SelectListItem() { Text = "Смолевичи" },
+new SelectListItem() { Text = "Сморгонь" },
+new SelectListItem() { Text = "Солигорск" },
+new SelectListItem() { Text = "Старые Дороги" },
+new SelectListItem() { Text = "Столбцы" },
+new SelectListItem() { Text = "Столин" },
+new SelectListItem() { Text = "Толочин" },
+new SelectListItem() { Text = "Туров" },
+new SelectListItem() { Text = "Узда" },
+new SelectListItem() { Text = "Фаниполь" },
+new SelectListItem() { Text = "Хойники" },
+new SelectListItem() { Text = "Чаусы" },
+new SelectListItem() { Text = "Чашники" },
+new SelectListItem() { Text = "Червень" },
+new SelectListItem() { Text = "Чериков" },
+new SelectListItem() { Text = "Чечерск" },
+new SelectListItem() { Text = "Шклов" },
+new SelectListItem() { Text = "Щучин" }
+                                #endregion
+                           })
                                 
 
                                 <ul class="nb-dd nb-dd--hidden js-dd-menu">
@@ -220,7 +331,7 @@
                             <div class="nb-create__fund cf">
                                 <div class="nb-create__money">
                                     <div class="nb-input-wrap">
-                                        @Html.TextBoxFor(m => m.RequiredMoney)
+                                        @Html.TextBoxFor(m => m.RequiredMoney, new { @id = "money-amount"})
                                         @Html.ValidationMessageFor(m => m.RequiredMoney, "", new { @class = "text-danger" })
                                         <span class="nb-input-postfix">руб.</span>
                                     </div>
@@ -239,17 +350,17 @@
                         <div class="nb-create__foot">
                             <div class="nb-create-fund__info cf">
                                 <div class="nb-create-fund__commission">
-                                    <strong class="nb-create-fund__value">0 руб.</strong>
-                                    <span class="nb-create-fund__txt">Комиссионный сбор (12%)</span>
+                                    <strong class="nb-create-fund__value" id="comission">0 руб.</strong>
+                                    <span class="nb-create-fund__txt">Комиссионный сбор (@ViewBag.Settings.PlatformComission%)</span>
                                     <span class="nb-tooltip pay__tooltip__link">?<span class="nb-tooltip__content">Комиссионный сбор включает общую комиссию ArtUp, банка и платежной системы. Комиссия взимается со всей собранной суммы ТОЛЬКО в случае успешного окончания краудфандинговой кампании.</span></span>
                                 </div>
                                 <div class="nb-create-fund__income-tax">
-                                    <strong class="nb-create-fund__value">0 руб.</strong>
-                                    <span class="nb-create-fund__txt">Подоходный налог (13%)</span>
-                                    <span class="nb-tooltip pay__tooltip__link">?<span class="nb-tooltip__content">Подоходный налог, взимаемый государством, составляет 13%. Стоит учитывать, что сумма в 4 947 руб. налогом не облагается. Уплату налога следует производить самостоятельно.</span></span>
+                                    <strong class="nb-create-fund__value" id="income">0 руб.</strong>
+                                    <span class="nb-create-fund__txt">Подоходный налог (@ViewBag.Settings.IncomeTax%)</span>
+                                    <span class="nb-tooltip pay__tooltip__link">?<span class="nb-tooltip__content">Подоходный налог, взимаемый государством, составляет @ViewBag.Settings.IncomeTax%. Стоит учитывать, что сумма в @ViewBag.Settings.MaxFreeAmount руб. налогом не облагается. Уплату налога следует производить самостоятельно.</span></span>
                                 </div>
                                 <div class="nb-create-fund__final-sum">
-                                    <strong class="nb-create-fund__value nb-create-fund__value--final">≈ <span class="js-create-final-sum">0</span> руб.</strong>
+                                    <strong class="nb-create-fund__value nb-create-fund__value--final">≈ <span class="js-create-final-sum" id="total-sum">0</span> руб.</strong>
                                     <span class="nb-tooltip pay__tooltip__link">?<span class="nb-tooltip__content">Данный подсчет является приблизительным. Итоговая сумма может отличаться от указанной.</span></span>
                                 </div>
                             </div>
@@ -308,31 +419,7 @@
                         <div class="nb-create__head">
                             <h2 class="nb-heading--small create__heading--small">Описание проекта</h2>
                         </div>
-                        <h1>пока что нету нихуя тут</h1>
-                        <div class="nb-create__body section__body--full-description">
-                            <div class="nb-textarea-wrap">
-                                <div class="redactor-box"><ul class="redactor-toolbar" id="redactor-toolbar-0" style="position: relative; width: auto; top: 0px; left: 0px; visibility: visible;"><li><a href="#" class="re-icon re-bold" rel="bold" tabindex="-1"></a></li><li><a href="#" class="re-icon re-italic" rel="italic" tabindex="-1"></a></li><li><a href="#" class="re-icon re-heading3 html-redactor-btn" rel="heading3" tabindex="-1"><span>Заголовок</span></a></li><li><a href="#" class="re-icon re-link" rel="link" tabindex="-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 18"><path class="cls-6" fill-rule="evenodd" d="M22.725 8.788l-6.437 6.6c-.647.665-1.496.996-2.346.996-.85 0-1.7-.33-2.346-.994l-2.9-2.976c-.627-.642-.972-1.497-.972-2.406 0-.908.345-1.763.972-2.406l.716-.887L10.94 8.02l-.78.956c-.31.326-.45.668-.45 1.032 0 .365.14.707.39.964l2.902 2.976c.52.532 1.363.532 1.88 0l6.438-6.6c.518-.533.518-1.398 0-1.93l-2.9-2.975c-.504-.515-1.38-.516-1.882 0l-1.088.952-1.287-1.553 1.03-.896c.566-.587 1.4-.94 2.285-.94.886 0 1.72.353 2.346.996l2.9 2.975c1.294 1.326 1.294 3.485 0 4.81zm-6.747-.822c0 .908-.345 1.763-.972 2.405l-1.11.95-1.267-1.57 1.04-.88c.18-.193.32-.536.32-.9 0-.365-.14-.707-.39-.965L10.7 4.03c-.52-.533-1.364-.533-1.88 0l-6.44 6.6c-.25.257-.39.6-.39.964 0 .366.14.708.39.966l2.9 2.975c.51.52 1.33.53 1.85.03l.727-.92L9.4 15.928l-.764.968c-.022.028-.046.054-.07.08-.647.663-1.497.994-2.346.994-.85 0-1.7-.33-2.345-.994L.975 14c-.625-.645-.97-1.5-.97-2.41 0-.907.344-1.76.97-2.404l6.438-6.6c1.293-1.328 3.397-1.327 4.69-.002l2.902 2.976c.627.642.972 1.497.972 2.406z"></path></svg></a></li><li><a href="#" class="re-icon re-orderedlist" rel="orderedlist" tabindex="-1"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="14" viewBox="0 0 22 14"><path class="cls-6" fill-rule="evenodd" d="M5 14v-2h17v2H5zm0-7h17v2H5V7zm0-5h17v2H5V2zM0 14v-1h2v-1h1v2H0zm1-3H0v-1h3v1H2v1H1v-1zm0-2H0V8h1V7h1v1h1v1H1zM0 6V5h3v2H2V6H0zm1-2H0V3h1V2H0V1h1V0h1v3h1v1H1z"></path></svg></a></li><li><a href="#" class="re-icon re-unorderedlist" rel="unorderedlist" tabindex="-1"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="13" viewBox="0 0 22 13"><path class="cls-6" fill-rule="evenodd" d="M5 13v-2h17v2H5zm0-7h17v2H5V6zm0-5h17v2H5V1zm-5 9h3v3H0v-3zm0-5h3v3H0V5zm0-5h3v3H0V0z"></path></svg></a></li><li><a href="#" class="re-icon re-image" rel="image" tabindex="-1"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" viewBox="0 0 20 16"><path class="cls-6" fill-rule="evenodd" d="M17.876 16H2.124C.95 16 0 15.05 0 13.876V2.124C0 .95.95 0 2.124 0h15.752C19.05 0 20 .95 20 2.124v11.752C20 15.05 19.05 16 17.876 16zM18 2.124c0-.07-.055-.124-.124-.124H2.124C2.056 2 2 2.055 2 2.124v11.752c0 .068.056.124.124.124h1.644l10.267-8.397L18 8.57V2.123zm0 8.943l-3.91-2.925L6.927 14h10.95c.068 0 .123-.056.123-.124v-2.81zM6.035 8.047c-1.11 0-2.012-.9-2.012-2.012 0-1.11.9-2.012 2.012-2.012 1.11 0 2.012.9 2.012 2.012 0 1.11-.9 2.012-2.012 2.012z"></path></svg></a></li><li><a href="#" class="re-icon re-video" rel="video" tabindex="-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="16" viewBox="0 0 24 16"><path class="cls-6" fill-rule="evenodd" d="M24 1.118l-7 3.24V2.123C17 .95 16.05 0 14.876 0H2.124C.95 0 0 .95 0 2.124v11.752C0 15.05.95 16 2.124 16h12.752C16.05 16 17 15.05 17 13.876V11.76L24 15V1.118zm-9 12.758c0 .068-.055.124-.124.124H2.124C2.056 14 2 13.944 2 13.876V2.124c0-.07.056-.124.124-.124h12.752c.07 0 .124.055.124.124v11.752zm7-2.005l-5-2.31v-3l5-2.31v7.623z"></path></svg></a></li><li><a href="#" class="re-icon re-iframe" rel="iframe" tabindex="-1"><span>Issuu iframe</span></a></li></ul><div class="redactor-editor" contenteditable="true" dir="ltr" placeholder="Пара сотен слов о вашем проекте" style="min-height: 480px;"><p>&#8203;</p></div><textarea id="editor" class="nb-textarea create-full-description__textarea js-ajax-project-update-info" name="project[description_full]" placeholder="Пара сотен слов о вашем проекте" aria-required="true" dir="ltr" style="display: none;"></textarea></div>
-                            </div>
-                            <p class="nb-create-desc">Используйте описание проекта для того, чтобы подробнее рассказать о том, что и как вы собираетесь сделать. Добавьте картинки, фотографии и видео, чтобы более наглядно представить проект.</p>
-                        </div>
-                    </section>
-                    <section class="nb-create create--faq">
-                        <div class="nb-create__head">
-                            <h2 class="nb-heading--small create__heading--small">Частые вопросы</h2>
-                        </div>
-                        <div class="nb-create__body nb-create__faq">
-                            <div class="nb-input-wrap nb-create__input-wrap_faq create-full-description__question">
-                                <input id="js-full-desc-question" type="text" class="nb-input" placeholder="Введите вопрос">
-                            </div>
-                            <div class="nb-textarea-wrap nb-create-full-description__answer" style="bottom: 10px">
-                                <textarea id="js-full-desc-answer" class="nb-textarea" placeholder="Введите ответ"></textarea>
-                            </div>
-                            <button type="button" onclick="addFAQ();" class="nb-btn nb-btn--add-media create-full-description__btn--add-media add-faq-btn">Добавить вопрос</button>
-                            <hr class="nb-create-media-divider nb-create-media-summary-divider" style="display: none">
-                        </div>
-                        <div class="nb-create__foot">
-
-                        </div>
+                        @Html.TextAreaFor(m => m.FullDescription, new { @placeholder = "Подробное описание проекта" })
                     </section>
                 </div>
             </div>
@@ -489,6 +576,19 @@
         });
         $('#giftsList').on('click', '.remove-gift', function () {
             $(this).parent().remove();
+        });
+        $('#money-amount').blur(function () {
+            var comission = @ViewBag.Settings.PlatformComission / 100;
+            var budget = $(this).val();
+            $('#comission').html(budget * comission + "BYN; ");
+            if (@ViewBag.Settings.MaxFreeAmount < budget) {
+                $('#income').html(Math.round((budget - @ViewBag.Settings.MaxFreeAmount - budget * comission) * @ViewBag.Settings.IncomeTax / 100) + " BYN");
+                $('#total-sum').html(Math.round((budget - (budget - @ViewBag.Settings.MaxFreeAmount - budget * comission) * @ViewBag.Settings.IncomeTax / 100 - budget * comission)) + " BYN");
+            }
+            else {
+                $('#income').html("0 BYN")
+                $('#total-sum').html(Math.round(budget * (1 - comission)) + " BYN");
+            }
         });
     });
 </script>

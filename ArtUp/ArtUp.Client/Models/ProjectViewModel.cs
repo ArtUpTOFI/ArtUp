@@ -35,7 +35,7 @@ namespace ArtUp.Client.Models
         /// </summary>
         [Required(ErrorMessage = "Требуемая сумма является обязательным полем")]
         [Display(Name = "Требуемая сумма")]
-        [Range(typeof(decimal), "20.00", "10000000000000.00", ErrorMessage = "Требуемая сумма должна быть в пределах от {1} до {2}")]
+        [Range(10, 100000000, ErrorMessage = "Требуемая сумма должна быть в пределах от {1} до {2}")]
         public decimal RequiredMoney { get; set; }
 
         /// <summary>
@@ -57,6 +57,9 @@ namespace ArtUp.Client.Models
         /// <summary>
         /// Full description of the project
         /// </summary>
+        [Required(ErrorMessage = "Подробное описание проекта является обязательным полем")]
+        [Display(Name = "Подробное описание проекта")]
+        [StringLength(50000, ErrorMessage = "{0} должно быть длиной как минимум {2} символов и {1} символов максимум", MinimumLength = 20)]
         public string FullDescription { get; set; }
 
         public bool IsSuccessful { get; set; }
@@ -88,7 +91,7 @@ namespace ArtUp.Client.Models
         [Display(Name = "Дата рождения")]
         public DateTime DateOfBirth { get; set; }
 
-        public DocumentType DocumentType { get; set; }
+        public string DocumentType { get; set; }
 
         [Required(ErrorMessage = "Серия и номер паспорта являются обязательным полем")]
         [Display(Name = "Серия и номер паспорта")]
