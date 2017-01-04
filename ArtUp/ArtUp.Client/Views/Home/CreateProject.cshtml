@@ -339,10 +339,8 @@ new SelectListItem() { Text = "Щучин" }
                                     <div class="nb-input-wrap">
                                         @Html.TextBoxFor(m => m.Duration, new { @type = "number"})
                                         @Html.ValidationMessageFor(m => m.Duration, "", new { @class = "text-danger" })
+                                        <span class="nb-create__time-txt">дней (от 1 до 180)</span>
                                     </div>
-                                </div>
-                                <div class="nb-create__time-caption">
-                                    <span class="nb-create__time-txt">от 1 до 180 дней</span>
                                 </div>
                             </div>
                         </div>
