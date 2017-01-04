@@ -270,5 +270,22 @@ namespace ArtUp.Client.Controllers
         {
             return View();
         }
+
+        [Authorize]
+        [HttpGet]
+        public ActionResult EditProject(int id)
+        {
+            ViewBag.Project = _projectService.Get(id);
+            ViewBag.Settings = _platformDetailsService.GetSettings();
+            ViewBag.UserId = _userManagementService.GetCurrentUser(User.Identity.Name);
+            return View();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult EditProject(ProjectViewModel model, HttpPostedFileBase uploadImage)
+        {
+            return View();
+        }
     }
 }

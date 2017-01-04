@@ -27,7 +27,7 @@
 
                         <div class="col-sm-4">
                             <div class="product-inner">
-                                <h2 class="product-name">@ViewBag.Project.Title</h2>
+                                <h2 class="product-name">@ViewBag.Project.Title</h2>@if (Request.IsAuthenticated && !User.IsInRole("admin") && ViewBag.Project.ProjectState == ArtUp.DataAccess.Entities.Enums.ProjectState.Rejected) { <a href="/Home/EditProject/@ViewBag.Project.Id">Редактировать проект</a> }
                                 <div class="product-inner-price">
                                     <ins>надо @ViewBag.Project.RequiredMoney, собрали @ViewBag.Project.CurrentMoney</ins> 
                                     <p>осталось @(((TimeSpan)(ViewBag.Project.CreationDate + TimeSpan.FromTicks(ViewBag.Project.Duration) - DateTime.Now + TimeSpan.FromDays(1))).Days) дня(ей)</p>
