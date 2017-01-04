@@ -258,7 +258,7 @@ label.required em, span.required em, p.required {
             }
         });
         $('#sum-block-update').blur(function () {
-            var amount = $(this).val();
+            var amount = +$(this).val();
             var giftCount = $('.pay-gifts').length;
             for (var i = 1; i <= giftCount; i++)
             {
@@ -268,9 +268,9 @@ label.required em, span.required em, p.required {
                     $('.gift-ids').attr('disabled', 'disabled');
                 }
                 else {
-                    var giftAmount = $('#' + i).html();
+                    var giftAmount = parseFloat($('#' + i).html());
                     var giftRadioButton = $('input.gift-ids[value="' + i + '"]');
-                    if (+amount + 0.000000001 <= giftAmount) {
+                    if (amount + 0.000001 <= giftAmount) {
                         giftRadioButton.attr('disabled', 'disabled');
                         giftRadioButton.removeAttr('checked');
                     }
