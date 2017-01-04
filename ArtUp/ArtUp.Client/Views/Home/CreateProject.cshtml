@@ -576,9 +576,9 @@ new SelectListItem() { Text = "Щучин" }
             var comission = @ViewBag.Settings.PlatformComission / 100;
             var budget = $(this).val();
             $('#comission').html(Math.round(budget * comission) + "BYN; ");
-            if (@ViewBag.Settings.MaxFreeAmount < budget) {
-                $('#income').html(Math.round((budget - @ViewBag.Settings.MaxFreeAmount - budget * comission) * @ViewBag.Settings.IncomeTax / 100) + " BYN");
-                $('#total-sum').html(Math.round((budget - (budget - @ViewBag.Settings.MaxFreeAmount - budget * comission) * @ViewBag.Settings.IncomeTax / 100 - budget * comission)) + " BYN");
+            if (@ViewBag.Settings.MaxFreeAmount < budget - Math.round(budget * comission)) {
+                $('#income').html(Math.round((budget - budget * comission - @ViewBag.Settings.MaxFreeAmount ) * @ViewBag.Settings.IncomeTax / 100) + " BYN");
+                $('#total-sum').html(Math.round(budget * (1 - comission) - (budget - budget * comission - @ViewBag.Settings.MaxFreeAmount ) * @ViewBag.Settings.IncomeTax / 100) + " BYN");
             }
             else {
                 $('#income').html("0 BYN")
