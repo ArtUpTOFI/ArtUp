@@ -236,6 +236,12 @@ namespace ArtUp.Client.Controllers
                 return View("DonationError");
             }
 
+            if(!_bankApi.CheckAccount( model.AccountNumber))
+            {
+                ViewBag.Message = "BANK answer:Банковский счет указан неверно!";
+                return View("DonationError");
+            }
+
             string fileName = Path.GetFileName(uploadImage.FileName);
             uploadImage.SaveAs(Server.MapPath("~/Content/img/" + fileName));
             model.Avatar = fileName;
