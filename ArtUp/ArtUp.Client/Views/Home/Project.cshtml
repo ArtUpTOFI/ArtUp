@@ -32,7 +32,7 @@
                                     <ins>надо @ViewBag.Project.RequiredMoney, собрали @ViewBag.Project.CurrentMoney</ins> 
                                     <p>осталось @(((TimeSpan)(ViewBag.Project.CreationDate + TimeSpan.FromTicks(ViewBag.Project.Duration) - DateTime.Now)).Days) дня(ей)</p>
                                 </div>
-                                @if (Request.IsAuthenticated )
+                                @if (Request.IsAuthenticated)
                                 {
                                     if (ViewBag.IsApproved && !User.IsInRole("admin"))
                                     {
@@ -45,12 +45,14 @@
                                 }
                                 @if (User.IsInRole("admin") && ViewBag.IsPending)
                                 {
-                                    <p><a href="/UserManagement/ApproveProject/@ViewBag.Project.Id">Аппрувнуть проект</a></p>
-                                    using (Html.BeginForm("RejectProject", "UserManagement", new { id = @ViewBag.Project.Id }, FormMethod.Post))
-                                    {
+                                using (Html.BeginForm("ApproveProject", "UserManagement", new { id = @ViewBag.Project.Id }, FormMethod.Get))
+                                {
+                                    <p><input type="submit" value="Принять проект" /></p>
+                                }
+                                using (Html.BeginForm("RejectProject", "UserManagement", new { id = @ViewBag.Project.Id }, FormMethod.Post))
+                                {
                                         @Html.TextBox("Comment", "Введиите причину отказа")
-                                        <p><input type="submit" value="Откинуть проект"/></p>
-                                        
+                                        <p><input type="submit" value="Отклонить проект"/></p>
                                     }
                                 }
 
@@ -63,8 +65,8 @@
                                     if (!@ViewBag.Project.IsSuccessful && !@ViewBag.Project.WasPaid)
                                     {
                                         <p><a href="/UserManagement/ReturnMoney/@ViewBag.Project.Id">Вернуть деньги пользователям</a></p>
-                                        }
                                     }
+                                }
 
                                 <h4>Подарки поддержавшим:</h4>
                                 @foreach (var gift in ViewBag.Gifts)
@@ -78,6 +80,10 @@
                     <div role="tabpanel">
                         <ul class="product-tab" role="tablist">
                             <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Описание</a></li>
+                            @if (User.IsInRole("admin"))
+                            {
+                                <li role="presentation"><a href="#userdata" aria-controls="profile" role="tab" data-toggle="tab">Информация создателя</a></li>
+                            }
                             @if (ViewBag.Project.ProjectState == ArtUp.DataAccess.Entities.Enums.ProjectState.Approved)
                             {
                                 <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Комментарии</a></li>
@@ -91,6 +97,20 @@
                                 <p>Локация проекта: @ViewBag.Project.Location</p>
                                 <p>@ViewBag.Project.FullDescription</p>
                             </div>
+
+                            @if (User.IsInRole("admin"))
+                            {
+                                <div role="tabpanel" class="tab-pane fade" id="userdata">
+                                    <h2>Данные создателя</h2>
+                                    <p>Имя организатора: @ViewBag.Project.Name @ViewBag.Project.Surname</p>
+                                    <p>Дата рождения: @ViewBag.Project.DateOfBirth</p>
+                                    <p>Номер паспорта: @ViewBag.Project.PasspotNumberSeries</p>
+                                    <p>Идентификацинный номер: @ViewBag.Project.PersonalPassportNumber</p>
+                                    <p>Выдан: @ViewBag.Project.WhoAndWhereIssued</p>
+                                    <p>Номер тлефона: @ViewBag.Project.PhoneNumber</p>
+                                    <p>Номер счета: @ViewBag.Project.AccountNumber</p>
+                                </div>
+                            }
                             @if (ViewBag.Project.ProjectState == ArtUp.DataAccess.Entities.Enums.ProjectState.Approved)
                             {
                                 <div role="tabpanel" class="tab-pane fade" id="profile">
