@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -19,6 +20,7 @@ namespace ArtUp.Client.Models
         /// <summary>
         /// Flag of this user's account status
         /// </summary>
+        [Display(Name = "Active user")]
         public bool IsActive { get; set; }
 
         /// <summary>

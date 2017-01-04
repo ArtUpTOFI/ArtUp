@@ -63,8 +63,17 @@
             </dl>
         </div>
         <p>
-            @Html.ActionLink("Deactive", "DeactiveUser", new { id = Model.Id }) |
-            @Html.ActionLink("Back to List", "Users")
+            @if (Model.IsActive)
+            {
+                @Html.ActionLink("Deactive", "DeactiveUser", new { id = Model.Id })
+                
+            }
+            else
+            {
+                @Html.ActionLink("Active", "DeactiveUser", new { id = Model.Id })
+            }
+
+             | @Html.ActionLink("Back to List", "Users")
         </p>
     </div>
 </div>

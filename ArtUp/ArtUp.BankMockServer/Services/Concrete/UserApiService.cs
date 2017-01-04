@@ -181,5 +181,12 @@ namespace ArtUp.BankMockServer.Services.Concrete
         {
             return account.Money > amount;
         }
+
+        public bool CheckAccount(string account)
+        {
+            if (database.Accounts.GetByNumber(account) != null)
+                return true;
+            return false;
+        }
     }
 }

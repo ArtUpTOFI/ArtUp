@@ -172,6 +172,7 @@ namespace ArtUp.Client.Services
         {
             var project = data.Projects.Get(id);
             project.ProjectState = DataAccess.Entities.Enums.ProjectState.Approved;
+            project.CreationDate = DateTime.Now;
 
             data.Projects.Update(project);
             data.SaveAll();
@@ -235,16 +236,19 @@ namespace ArtUp.Client.Services
             });
             data.SaveAll();
             var lastProjectId = data.Projects.Find(p => p.Title == model.Title).FirstOrDefault().Id;
-            foreach (var gift in model.Gifts)
+            if (model.Gifts != null)
             {
-                data.Gifts.Create(new Gift()
+                foreach (var gift in model.Gifts)
                 {
-                    AvailableCount = gift.AvailableCount,
-                    CurrentCount = 0,
-                    Description = gift.Description,
-                    MoneyAmount = gift.MoneyAmount,
-                    ProjectId = lastProjectId
-                });
+                    data.Gifts.Create(new Gift()
+                    {
+                        AvailableCount = gift.AvailableCount,
+                        CurrentCount = 0,
+                        Description = gift.Description,
+                        MoneyAmount = gift.MoneyAmount,
+                        ProjectId = lastProjectId
+                    });
+                }
             }
             data.SaveAll();
         }
