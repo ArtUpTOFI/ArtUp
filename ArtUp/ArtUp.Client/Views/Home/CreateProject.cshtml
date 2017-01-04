@@ -563,9 +563,9 @@ new SelectListItem() { Text = "Щучин" }
             var amount = $('#js-gift-sum-input').val();
             var description = $('#js-gift-description-textarea').val();
             var count = $('#js-gift-count-input').val();
-            $('#giftsList').append('<div id="gift-' + i + '"><h3>Подарок:</h3><input type="button" id="' + i + '" class="remove-gift" value="Удалить"><input type="text" placeholder="Сумма" name="Gifts[' + i + '].MoneyAmount" value="' +
+            $('#giftsList').append('<div id="gift-' + i + '"><h3>Подарок:</h3><input type="button" id="' + i + '" class="remove-gift" value="Удалить"><input type="number" placeholder="Сумма" name="Gifts[' + i + '].MoneyAmount" value="' +
                 amount + '"/><input type="text" placeholder="Описание" name="Gifts[' + i + '].Description" value="' +
-                description + '"/><input type="text" placeholder="Количество" name="Gifts[' + i + '].AvailableCount" value="' +
+                description + '"/><input type="number" placeholder="Количество" name="Gifts[' + i + '].AvailableCount" value="' +
                 count + '"/></div>');
             i++;
         });
@@ -575,7 +575,7 @@ new SelectListItem() { Text = "Щучин" }
         $('#money-amount').blur(function () {
             var comission = @ViewBag.Settings.PlatformComission / 100;
             var budget = $(this).val();
-            $('#comission').html(budget * comission + "BYN; ");
+            $('#comission').html(Math.round(budget * comission) + "BYN; ");
             if (@ViewBag.Settings.MaxFreeAmount < budget) {
                 $('#income').html(Math.round((budget - @ViewBag.Settings.MaxFreeAmount - budget * comission) * @ViewBag.Settings.IncomeTax / 100) + " BYN");
                 $('#total-sum').html(Math.round((budget - (budget - @ViewBag.Settings.MaxFreeAmount - budget * comission) * @ViewBag.Settings.IncomeTax / 100 - budget * comission)) + " BYN");

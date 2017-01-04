@@ -134,7 +134,7 @@ label.required em, span.required em, p.required {
                                                 </div>
                                                 <div class="section__body__left">
                                                     <div class="donate__value">
-                                                        <strong class="donate__strong">@gift.MoneyAmount</strong>
+                                                        <strong class="donate__strong" id="@((int)gift.Id)">@gift.MoneyAmount</strong>
                                                         <span class="donate__txt">руб.</span>
                                                     </div>
                                                 </div>
@@ -230,11 +230,54 @@ label.required em, span.required em, p.required {
             {
                 $('.pay-gifts').attr('opacity', 0.5);
                 $('.gift-ids').attr('disabled', 'disabled');
+                var giftCount = $('.pay-gifts').length;
+                for (var i = 1; i <= giftCount; i++) {
+                    var giftRadioButton = $('input.gift-ids[value="' + i + '"]');
+                    giftRadioButton.attr('disabled', 'disabled');
+                    giftRadioButton.removeAttr('checked');
+                }
             }  
             else
             {
                 $('.pay-gifts').attr('opacity', 1);
                 $('.gift-ids').removeAttr('disabled');
+
+                var amount = $('#sum-block-update').val();
+                var giftCount = $('.pay-gifts').length;
+                for (var i = 1; i <= giftCount; i++) {
+                    var giftAmount = $('#' + i).html();
+                    var giftRadioButton = $('input.gift-ids[value="' + i + '"]');
+                    if (+amount + 0.000000001 <= giftAmount) {
+                        giftRadioButton.attr('disabled', 'disabled');
+                        giftRadioButton.removeAttr('checked');
+                    }
+                    else {
+                        giftRadioButton.removeAttr('disabled');
+                    }
+                }
+            }
+        });
+        $('#sum-block-update').blur(function () {
+            var amount = $(this).val();
+            var giftCount = $('.pay-gifts').length;
+            for (var i = 1; i <= giftCount; i++)
+            {
+                if ($('#js-donate-list-input').is(':checked'))
+                {
+                    $('.pay-gifts').attr('opacity', 0.5);
+                    $('.gift-ids').attr('disabled', 'disabled');
+                }
+                else {
+                    var giftAmount = $('#' + i).html();
+                    var giftRadioButton = $('input.gift-ids[value="' + i + '"]');
+                    if (+amount + 0.000000001 <= giftAmount) {
+                        giftRadioButton.attr('disabled', 'disabled');
+                        giftRadioButton.removeAttr('checked');
+                    }
+                    else {
+                        giftRadioButton.removeAttr('disabled');
+                    }
+                }
             }
         });
     });

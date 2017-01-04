@@ -243,15 +243,6 @@ namespace ArtUp.Client.Controllers
             var settings = _platformDetailsService.GetSettings();
             ViewBag.Settings = _platformDetailsService.GetSettings();
 
-            if (model.RequiredMoney > settings.MaxFreeAmount)
-            {
-                model.RequiredMoney = Math.Round((model.RequiredMoney - (model.RequiredMoney - settings.MaxFreeAmount - model.RequiredMoney * settings.PlatformComission / 100) * settings.IncomeTax / 100 - model.RequiredMoney * settings.PlatformComission / 100));
-            }
-            else
-            {
-                model.RequiredMoney = Math.Round(model.RequiredMoney * (1 - settings.PlatformComission / 100));
-            }
-
             _projectService.CreateProject(model);
             ViewBag.Message = "Отправка проекта на модерацию администратору прошла успешно!";            
             return View("DonationError");
