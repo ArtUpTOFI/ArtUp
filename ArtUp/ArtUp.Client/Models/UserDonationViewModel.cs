@@ -37,7 +37,7 @@ namespace ArtUp.Client.Models
 
         [Required(ErrorMessage = "Срок действия является обязательным полем")]
         [Display(Name = "Срок действия")]
-        [StringLength(5, MinimumLength = 5, ErrorMessage = "Некорректный срок действия карты")]
+        [StringLength(5, MinimumLength = 5, ErrorMessage = "Некорректный срок действия карты, пример: 09/20")]
         [RegularExpression(@"([0-1]{1}[0-9]{1})/([1-9]{1}[0-9]{1})", ErrorMessage = "Некорректная дата (пример: 09/20)")]
         public string CardDate { get; set; }
 
