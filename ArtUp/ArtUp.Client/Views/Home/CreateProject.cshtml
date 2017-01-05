@@ -482,7 +482,7 @@
                             <div class="nb-section__field">
                                 <h5>Контактный номер</h5>
                                 <div class="nb-input-wrap nb-create__input-wrap">
-                                    @Html.TextBoxFor(m => m.PhoneNumber, new { @id = "js-settings-phone", @placeholder = "Пример: +375 (29) 123 45 67" })
+                                    @Html.TextBoxFor(m => m.PhoneNumber, new { @id = "js-settings-phone", @placeholder = "Пример: 29 123 4567" })
                                     @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })
                                     @*<input id="js-settings-phone" type="text" name="user[phone]" param="phone" class="nb-input js-ajax-client-update-info" placeholder="Контактный номер" value="" aria-required="true">*@
                                     <label for="js-settings-phone" class="nb-input-label"></label>
