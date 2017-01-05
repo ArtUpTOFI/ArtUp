@@ -316,6 +316,7 @@
     <Content Include="Views\Home\WideSearch.cshtml" />
     <Content Include="Views\Home\WideSearchResults.cshtml" />
     <Content Include="Views\Home\Rules.cshtml" />
+    <Content Include="Views\Home\EditProject.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -29,9 +29,12 @@
                 foreach (var project in ViewBag.Results)
                 {
                     <div class="col-md-3 col-sm-6">
-                        <div class="single-shop-product">
+                        <div class="single-project">
                             <div class="product-upper">
                                 <img src="/Content/img/@project.Avatar" alt="" style='width:263px; height:263px;'>
+                                <div class="product-hover">
+                                    <a href="/Home/Project/@project.Id" class="add-to-cart-link"><i class="fa fa-link"></i> Подробнее</a>
+                                </div>
                             </div>
                             <h2><a href="/Home/Project/@project.Id">@project.Title</a></h2>
                             <div class="product-carousel-price">

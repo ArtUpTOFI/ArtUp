@@ -151,8 +151,8 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="brand-wrapper">
-                    <h2 class="section-title">Это можно выпилить</h2>
-                    <h4>Но пока пусть повисит</h4>
+                    <h2 class="section-title">Спонсоры проекта</h2>
+                    <h4>Спонсоры проектов платформы ArtUp</h4>
                     <div class="brand-list">
                         <img src="/Content/img/services_logo__1.jpg" alt="">
                         <img src="/Content/img/services_logo__2.jpg" alt="">
@@ -173,33 +173,9 @@
     <div class="zigzag-bottom"></div>
     <div class="container">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <div class="single-project-widget">
-                    <h2 class="product-wid-title">Новые проекты</h2>
-                    <a href="/Home/Filter?filter=new" class="wid-view-more">Смотреть Все</a>
-                    @foreach (var project in ViewBag.NewProjects)
-                    {
-                        <div class="single-wid-product">
-                            <a href="single-project.html"><img src="/Content/img/@project.Avatar" alt="" class="product-thumb">
-                            </a>
-                            <h2><a href="/Home/Project/@project.Id">@project.Title</a></h2>
-                            <div class="product-wid-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="product-wid-price">
-                                <ins>цель @project.RequiredMoney</ins> <del>собрано @project.CurrentMoney</del>
-                            </div>
-                        </div>
-                    }
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="single-project-widget">
-                    <h2 class="product-wid-title">Успешные</h2>
+                    <h2 class="product-wid-title">Завершённые проекты</h2>
                     <a href="/Home/Filter?filter=best" class="wid-view-more">Смотреть Все</a>
                     @foreach (var project in ViewBag.BestProjectsBottom)
                     {
@@ -221,7 +197,7 @@
                     }
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6" style="border-left: 1px solid #333;">
                 <div class="single-project-widget">
                     <h2 class="product-wid-title">Все проекты</h2>
                     <a href="/Home/Filter?filter=all" class="wid-view-more">Смотреть Все</a>

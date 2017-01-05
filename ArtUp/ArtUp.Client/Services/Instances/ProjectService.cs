@@ -38,7 +38,16 @@ namespace ArtUp.Client.Services
                 Surname = project.Surname,
                 Category = data.Categories.Get(project.CategoryId.Value).Title,
                 UserId = project.UserId.Value,
-                ProjectState = project.ProjectState
+                ProjectState = project.ProjectState,
+                AccountNumber = project.AccountNumber,
+                Adress = project.Adress,
+                DateOfBirth = project.DateOfBirth,
+                DocumentType = project.DocumentType,
+                MiddleName = project.MiddleName,
+                PasspotNumberSeries = project.PasspotNumberSeries,
+                PersonalPassportNumber = project.PersonalPassportNumber,
+                PhoneNumber = project.PhoneNumber,
+                WhoAndWhereIssued = project.WhoAndWhereIssued
             };
         }
 
@@ -86,8 +95,8 @@ namespace ArtUp.Client.Services
         public IEnumerable<ProjectViewModel> GetBySuccess(bool isSuccess)
         {
             var projs = isSuccess
-                ? data.Projects.Find(p => p.RequiredMoney <= p.CurrentMoney)
-                : data.Projects.Find(p => p.RequiredMoney > p.CurrentMoney);
+                ? data.Projects.Find(p => p.RequiredMoney <= p.CurrentMoney && p.ProjectState == ProjectState.Approved)
+                : data.Projects.Find(p => p.RequiredMoney > p.CurrentMoney && p.ProjectState == ProjectState.Approved);
             return projs.Select(p => new ProjectViewModel()
             {
                 Avatar = p.Avatar,
@@ -128,7 +137,7 @@ namespace ArtUp.Client.Services
         public IEnumerable<ProjectViewModel> GetProjectsOnMainPaige()
         {
             return
-                data.Projects.Find(p => p.CurrentMoney > p.RequiredMoney)
+                data.Projects.Find(p => p.CurrentMoney > p.RequiredMoney && p.ProjectState == ProjectState.Approved)
                     .Take(6)
                     .Select(p => new ProjectViewModel()
                     {

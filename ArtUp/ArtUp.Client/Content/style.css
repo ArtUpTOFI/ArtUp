@@ -594,7 +594,7 @@ width: 10px;
     text-transform: uppercase;
 }
 .single-sidebar {
-    margin-bottom: 50px;
+    margin-bottom: 62px;
 }
 .search {
     margin-top: 40px;
@@ -614,7 +614,7 @@ input[type="submit"], button[type=submit], .artup-button {
 }
 input[type="submit"]:hover, button[type=submit]:hover {background-color: #222}
 .single-sidebar input[type="text"] {
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
     width: 100%;
 }
 .thubmnail-recent {
@@ -1002,7 +1002,7 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button{background
 
 
 
-.single-shop-product h2 {
+.single-project h2 {
     font-size: 20px;
     margin: 10px 0;
 }
@@ -1010,10 +1010,13 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button{background
     margin-top: 15px;
 }
 
-.single-shop-product {margin-bottom: 50px}
+.single-project {margin-bottom: 50px}
 
 .pagination > li > a, .pagination > li > span {
   color: #1abc9c;
+}
+.product-upper {
+    position: relative;
 }
 
 
@@ -1080,7 +1083,7 @@ label.required em, span.required em, p.required {
     border-radius: 4px;
     background-color: #e7f9f5;
     -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 .pay-main .pay__left, .pay-main .pay__right {
     padding-left: 0;
@@ -1117,7 +1120,7 @@ label.required em, span.required em, p.required {
   padding: 5px;
   width: 49%;
 }
-.form-control, input#money-amount, input#Duration {
+.form-control, input#money-amount, input#Duration, input#js-gift-count-input, .main-newproject input[type="number"] {
   max-width: 180px;
   display: block;
   width: 100%;
@@ -1139,7 +1142,7 @@ label.required em, span.required em, p.required {
 div.main-newproject {
   padding-top: 0;
 }
-.main-newproject .nb-create__body input, .main-newproject .nb-create__body textarea {
+.main-newproject input, .main-newproject textarea {
   max-width: 500px;
   display: block;
 }
@@ -1152,4 +1155,10 @@ div.main-newproject {
 }
 select#Location:hover, select#Category:hover {
     cursor: pointer;
+}
+.pay-gifts__section .nb-input-wrap,.pay-gifts__section .nb-textarea-wrap {
+  margin-bottom: 10px;
+}
+hr {
+  border-color: #ccc;
 }

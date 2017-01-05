@@ -103,14 +103,14 @@
 
 
 <div role="tabpanel">
-@using (Html.BeginForm("CreateProject", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("CreateProject", "Home", FormMethod.Post, new { enctype = "multipart/form-data", @id="create-form"}))
 {
     <ul class="product-tab" role="tablist">
         <li role="presentation" class="active"><a href="#general" aria-controls="general" role="tab" data-toggle="tab">Оcновное</a></li>
         <li role="presentation"><a href="#gifts" aria-controls="gifts" role="tab" data-toggle="tab">Подарки</a></li>
         <li role="presentation"><a href="#description" aria-controls="description" role="tab" data-toggle="tab">Описание</a></li>
         <li role="presentation"><a href="#personal" aria-controls="personal" role="tab" data-toggle="tab">Контакты</a></li>
-        <li style="width:230px"><input type="submit" class="nb-btn create__nav__btn create__nav__btn-more--inactive" value="Отправить на модерацию" id="send-project" disabled="disabled"/></li>
+        <li style="width:230px"><input type="submit" class="nb-btn create__nav__btn create__nav__btn-more--inactive art-disabled" value="Отправить на модерацию" id="send-project" /></li>
     </ul>
     <div class="tab-content  main-container main-newproject">
             <div role="tabpanel" class="tab-pane fade in active" id="general">
@@ -302,9 +302,8 @@
                             <div class="nb-create__fund cf">
                                 <div class="nb-create__money">
                                     <div class="nb-input-wrap">
-                                        @Html.TextBoxFor(m => m.RequiredMoney, new { @id = "money-amount", @type = "number"})
+                                        @Html.TextBoxFor(m => m.RequiredMoney, new { @id = "money-amount", @type = "number", @placeholder = "руб."})
                                         @Html.ValidationMessageFor(m => m.RequiredMoney, "", new { @class = "text-danger" })
-                                        <span class="nb-input-postfix">руб.</span>
                                     </div>
                                 </div>
                             </div>
@@ -318,10 +317,8 @@
                                     <div class="nb-input-wrap">
                                         @Html.TextBoxFor(m => m.Duration, new { @type = "number"})
                                         @Html.ValidationMessageFor(m => m.Duration, "", new { @class = "text-danger" })
+                                        <span class="nb-create__time-txt">дней (от 1 до 180)</span>
                                     </div>
-                                </div>
-                                <div class="nb-create__time-caption">
-                                    <span class="nb-create__time-txt">от 1 до 180 дней</span>
                                 </div>
                             </div>
                         </div>
@@ -349,34 +346,33 @@
                 </div>
             </div>
             <div role="tabpanel" class="tab-pane fade" id="gifts">
-                <h5>Добавление подарков</h5>
-                <div id="giftsList"></div>
                 <div class="new-project__left col-md-12">
+                    <div id="giftsList"></div>
                     <div class="new-project__temp-gift js-project-temp-gift">
                         <section class="nb-section pay-gifts__section js-temp-gift">
 
                             <div class="nb-create__head">
-                                <h5 class="nb-heading--small create__heading--small">Новый подарок</h5>
+                                <h5 class="nb-heading--small create__heading--small">Cумма, которой будет соответствовать ваш подарок.</h5>
                             </div>
                             <div class="nb-create__body">
                                 <div class="nb-create__gift-sum">
                                     <div class="nb-input-wrap create__gift-sum__input-wrap">
-                                        <input type="number" placeholder="руб."class="nb-input nb-input--with-postfix from-control" id="js-gift-sum-input" alt="money" placeholder="Сумма вознаграждения" value="">
-                                        <div><span class="nb-input-postfix">руб.</span></div>
+                                        <input type="number" placeholder="руб."class="form-control nb-input nb-input--with-postfix from-control" id="js-gift-sum-input" alt="money" value="">
                                     </div>
-                                    <span class="nb-tooltip create__gift-sum__tooltip__link">?<span class="nb-tooltip__content">Здесь необходимо ввести сумму, которой будет соответствовать ваш подарок.</span></span>
-                                </div>
+                                 </div>
                                 <div class="nb-create__gift-description">
+                                    <h5>Описание подарка</h5>
                                     <div class="nb-textarea-wrap">
-                                        <textarea class="nb-textarea" id="js-gift-description-textarea" placeholder="Описание подарка"></textarea>
+                                        <textarea class="nb-textarea" id="js-gift-description-textarea" placeholder="краткое описание подарка"></textarea>
                                     </div>
                                 </div>
                                 <div class="nb-create__gift-limit">
+                                    <h5>Лимит подарков</h5>
                                     <div class="nb-input-wrap create__gift-limit__input-wrap">
-                                        <input type="number" class="nb-input nb-input--with-postfix" id="js-gift-count-input" alt="integer" placeholder="Лимит подарков" value="">
+                                        <input type="number" class="nb-input nb-input--with-postfix" id="js-gift-count-input" alt="integer" value="">
                                     </div>
                                 </div>
-                                <button id="addNewGift" type="button" class="nb-btn nb-btn--add-media create-gift__btn--add-media">Добавить подарок</button>
+                                <button id="addNewGift" type="button" class="artup-button nb-btn nb-btn--add-media create-gift__btn--add-media">Добавить подарок</button>
                             </div>
 
                         </section>
@@ -438,7 +434,7 @@
                                 <div class="nb-dd-toggle-wrap js-dd-select-box">
 
                                     <div class="nb-dd-toggle js-toggle-dd">
-                                        <span class="nb-dd-toggle-txt js-toggle-dd-txt nb-dd-toggle-txt--default">Выберите тип документа</span>
+                                        <h5><span class="nb-dd-toggle-txt js-toggle-dd-txt nb-dd-toggle-txt--default">Выберите тип документа</span></h5>
                                     </div>
 
                                     @Html.DropDownListFor(m => m.DocumentType, new List<SelectListItem>()
@@ -449,60 +445,54 @@
                                         },
                                         new {@class = "form-control"}
                                     )
-
-                                    <ul class="nb-dd nb-dd--hidden js-dd-menu">
-                                        <li class="nb-dd-item">
-                                            <div data-value="" class="dd-item-link js-dd-menu-item dd-item-link--default dd-item-link--selected js-default-select-in-many-input-block">
-                                                <span class="">Выберите тип документа</span>
-                                            </div>
-                                        </li>
-                                    </ul>
                                 </div>
                             </div>
                             <div class="nb-section__field">
+                                <h5>Серия и номер пасспорта</h5>
                                 <div class="nb-input-wrap">
-                                    @Html.TextBoxFor(m => m.PasspotNumberSeries, new { @id = "js-settings-series-and-number-doc", @placeholder = "Серия и номер" })
+                                    @Html.TextBoxFor(m => m.PasspotNumberSeries, new { @id = "js-settings-series-and-number-doc", @placeholder = "Пример: MР1234567"})
                                     @Html.ValidationMessageFor(m => m.PasspotNumberSeries, "", new { @class = "text-danger" })
                                     @*<input id="js-settings-series-and-number-doc" type="text" name="user[doc_series]" param="doc_series" class="nb-input js-ajax-client-update-info" placeholder="Серия и номер" value="" aria-required="true">*@
-                                    <label for="js-settings-series-and-number-doc" class="nb-input-label">Пример: MР1234567</label>
                                 </div>
                             </div>
                             <div class="nb-section__field">
+                                <h5>Личный номер</h5>
                                 <div class="nb-input-wrap">
-                                    @Html.TextBoxFor(m => m.PersonalPassportNumber, new { @id = "js-settings-personal-num", @placeholder = "Личный номер" })
+                                    @Html.TextBoxFor(m => m.PersonalPassportNumber, new { @id = "js-settings-personal-num", @placeholder = "Пример: 1234567A002PB9" })
                                     @Html.ValidationMessageFor(m => m.PersonalPassportNumber, "", new { @class = "text-danger" })
                                     @*<input id="js-settings-personal-num" type="text" name="user[personal_num]" param="personal_num" class="nb-input js-ajax-client-update-info" placeholder="Личный номер" value="" aria-required="true">*@
-                                    <label for="js-settings-personal-num" class="nb-input-label">Пример: 1234567A002PB9</label>
                                 </div>
                             </div>
                             <div class="nb-section__field">
+                                <h5>Кем и когда выдан</h5>
                                 <div class="nb-input-wrap nb-create__input-wrap">
-                                    @Html.TextBoxFor(m => m.WhoAndWhereIssued, new { @id = "js-settings-document-issued", @placeholder = "Кем и когда выдан" })
+                                    @Html.TextBoxFor(m => m.WhoAndWhereIssued, new { @id = "js-settings-document-issued", @placeholder = ">Пример: Советское РУВД г.Минска, выдан 22.04.2015" })
                                     @Html.ValidationMessageFor(m => m.WhoAndWhereIssued, "", new { @class = "text-danger" })
                                     @*<input id="js-settings-document-issued" type="text" name="user[doc_who_issued]" param="doc_who_issued" class="nb-input js-ajax-client-update-info" placeholder="Кем и когда выдан" value="" aria-required="true">*@
-                                    <label for="js-settings-document-issued" class="nb-input-label">Пример: Советское РУВД г.Минска, выдан 22.04.2015</label>
                                 </div>
                             </div>
                             <div class="nb-section__field">
+                                <h5>Адрес регистрации</h5>
                                 <div class="nb-input-wrap nb-create__input-wrap">
-                                    @Html.TextBoxFor(m => m.Adress, new { @id = "js-settings-passport-address", @placeholder = "Адрес регистрации" })
+                                    @Html.TextBoxFor(m => m.Adress, new { @id = "js-settings-passport-address", @placeholder = "Пример: г. Минск, ул. Епамовская, д.14, кв. 88" })
                                     @Html.ValidationMessageFor(m => m.Adress, "", new { @class = "text-danger" })
                                     @*<input id="js-settings-passport-address" type="text" name="user[registration]" param="registration" class="nb-input js-ajax-client-update-info" placeholder="Адрес регистрации" value="" aria-required="true">*@
-                                    <label for="js-settings-passport-address" class="nb-input-label">Пример: г. Минск, ул. Епамовская, д.14, кв. 88</label>
                                 </div>
                             </div>
                             <div class="nb-section__field">
+                                <h5>Контактный номер</h5>
                                 <div class="nb-input-wrap nb-create__input-wrap">
-                                    @Html.TextBoxFor(m => m.PhoneNumber, new { @id = "js-settings-phone", @placeholder = "Контактный номер" })
+                                    @Html.TextBoxFor(m => m.PhoneNumber, new { @id = "js-settings-phone", @placeholder = "Пример: +375 (29) 123 45 67" })
                                     @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })
                                     @*<input id="js-settings-phone" type="text" name="user[phone]" param="phone" class="nb-input js-ajax-client-update-info" placeholder="Контактный номер" value="" aria-required="true">*@
-                                    <label for="js-settings-phone" class="nb-input-label">Пример: +375 (29) 123 45 67</label>
+                                    <label for="js-settings-phone" class="nb-input-label"></label>
                                 </div>
 
                             </div>
                             <div class="nb-section__field">
+                                <h5>Номер счёта</h5>
                                 <div class="nb-input-wrap nb-create__input-wrap">
-                                    @Html.TextBoxFor(m => m.AccountNumber, new { @placeholder = "Номер счёта" })
+                                    @Html.TextBoxFor(m => m.AccountNumber, new { @placeholder = "" })
                                     @Html.ValidationMessageFor(m => m.AccountNumber, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -542,11 +532,18 @@
             var amount = $('#js-gift-sum-input').val();
             var description = $('#js-gift-description-textarea').val();
             var count = $('#js-gift-count-input').val();
-            $('#giftsList').append('<div id="gift-' + i + '"><h3>Подарок:</h3><input type="button" id="' + i + '" class="remove-gift" value="Удалить"><input type="number" placeholder="Сумма" name="Gifts[' + i + '].MoneyAmount" value="' +
-                amount + '"/><input type="text" placeholder="Описание" name="Gifts[' + i + '].Description" value="' +
-                description + '"/><input type="number" placeholder="Количество" name="Gifts[' + i + '].AvailableCount" value="' +
-                count + '"/></div>');
-            i++;
+            if (amount > 0 && description.length > 0 && count > 0) {
+                $('#giftsList').append('<div id="gift-' + i + '"><h5>Прикреплённый подарок:</h5><p><h5>Необходимая сумма</h5></p><input type="number" name="Gifts[' + i + '].MoneyAmount" value="' +
+                    amount + '" class="form-control" margin-bottom: 10px;" /><h5>Описание</h5><input type="text"  name="Gifts[' + i + '].Description" value="' +
+                    description + '" style="min-height: 50px; margin-bottom: 10px;"/><h5>Количество</h5><input type="number" name="Gifts[' + i + '].AvailableCount" value="' +
+                    count + '"/><input type="button" id="' + i + '" class="artup-button remove-gift" value="Удалить"><hr></div>');
+                i++;
+                $('#js-gift-sum-input').val('');
+                var description = $('#js-gift-description-textarea').val('');
+                var count = $('#js-gift-count-input').val('');
+            } else {
+                alert('Поля cуммы, описания и лимита должны быть корректны.');
+            }
         });
         $('#giftsList').on('click', '.remove-gift', function () {
             $(this).parent().remove();
@@ -555,9 +552,9 @@
             var comission = @ViewBag.Settings.PlatformComission / 100;
             var budget = $(this).val();
             $('#comission').html(Math.round(budget * comission) + "BYN; ");
-            if (@ViewBag.Settings.MaxFreeAmount < budget) {
-                $('#income').html(Math.round((budget - @ViewBag.Settings.MaxFreeAmount - budget * comission) * @ViewBag.Settings.IncomeTax / 100) + " BYN");
-                $('#total-sum').html(Math.round((budget - (budget - @ViewBag.Settings.MaxFreeAmount - budget * comission) * @ViewBag.Settings.IncomeTax / 100 - budget * comission)) + " BYN");
+            if (@ViewBag.Settings.MaxFreeAmount < budget - Math.round(budget * comission)) {
+                $('#income').html(Math.round((budget - budget * comission - @ViewBag.Settings.MaxFreeAmount ) * @ViewBag.Settings.IncomeTax / 100) + " BYN");
+                $('#total-sum').html(Math.round(budget * (1 - comission) - (budget - budget * comission - @ViewBag.Settings.MaxFreeAmount ) * @ViewBag.Settings.IncomeTax / 100) + " BYN");
             }
             else {
                 $('#income').html("0 BYN")
@@ -566,9 +563,15 @@
         });
         $('#rules').click(function(){
             if (this.checked)
-                $('#send-project').removeAttr('disabled');
+                $('#send-project').removeClass('art-disabled');
             else
-                $('#send-project').attr('disabled', 'disabled');
+                $('#send-project').addClass('art-disabled');
+        });
+        $("#create-form").submit(function(e){
+            if ($('#send-project').hasClass('art-disabled')) {
+                alert('Вначале необходимо принять пользовательское соглашение!');
+                return false;
+            }
         });
     });
 </script>
