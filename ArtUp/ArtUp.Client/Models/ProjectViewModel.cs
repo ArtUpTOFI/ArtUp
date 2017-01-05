@@ -95,7 +95,8 @@ namespace ArtUp.Client.Models
 
         [Required(ErrorMessage = "Серия и номер паспорта являются обязательным полем")]
         [Display(Name = "Серия и номер паспорта")]
-        [StringLength(9, ErrorMessage = "Серия и номер паспорта должны быть {2} символов длиной", MinimumLength = 9)]
+        //[StringLength(9, ErrorMessage = "Серия и номер паспорта должны быть {2} символов длиной", MinimumLength = 9)]
+        [RegularExpression(@"^([A-Za-zА-Яа-я]{2})([1-9]{1})([0-9]{6})$", ErrorMessage = "Некорректный номер паспорта")]
         public string PasspotNumberSeries { get; set; }
 
         [Required(ErrorMessage = "Личный номер является обязательным полем")]
@@ -116,13 +117,15 @@ namespace ArtUp.Client.Models
         [Required(ErrorMessage = "Номер телефона является обязательным полем")]
         [Display(Name = "Номер телефона")]
         //[RegularExpression(@"^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$", ErrorMessage = "Некорректный номер телефона")]
+        [RegularExpression(@" ?([1-9]{2}) ?([1-9]{1})([0-9]{2}) ?([0-9]{2}) ?([0-9]{2}) ?", ErrorMessage = "Некорректный номер телефона")]
+        //[RegularExpression(@"^([1-9]{2} ?([1-9]){1}(0-9){6})", ErrorMessage = "Некорректный номер паспорта")]
         public string PhoneNumber { get; set; }
 
         public string Location { get; set; }
 
         [Required(ErrorMessage = "Номер счёта является обязательным полем")]
         [Display(Name = "Номер счёта")]
-        [StringLength(13, ErrorMessage = "{0} должен быть длиной в {2} символов", MinimumLength = 13)]
+        [RegularExpression(@"([0-9]{13})", ErrorMessage = "Некорректный номер. Счет должен содержать 13 символом и содержать только цифры")]
         //[RegularExpression(@"/^\d+$/", ErrorMessage = "Некорректный номер счёта")]
         public string AccountNumber { get; set; }
 

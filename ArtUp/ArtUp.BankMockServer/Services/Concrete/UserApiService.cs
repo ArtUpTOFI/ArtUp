@@ -47,13 +47,13 @@ namespace ArtUp.BankMockServer.Services.Concrete
                         database.Transactions.Create(transaction);
                         return new Tuple<bool, string>(true, "OK");
                     }
-                    return new Tuple<bool, string>(false, "Error with transaction");
+                    return new Tuple<bool, string>(false, "Банк: Error with transaction");
                 }
-                return new Tuple<bool, string>(false, "Incorrect target account");
+                return new Tuple<bool, string>(false, "Банк: Некорректный номер счета");
             }
             else
             {
-                return new Tuple<bool, string>(false, "Malo deneg!!!");
+                return new Tuple<bool, string>(false, "Банк: недостаточно средств для проведения операции");
             }
         }
         public Tuple<bool, string> CreateTransaction(string cardNumber, string targetAccountNumber, int CVV2, string EndDate, string FirstName, string LastName, float amount)
@@ -87,16 +87,16 @@ namespace ArtUp.BankMockServer.Services.Concrete
                             database.Transactions.Create(transaction);
                             return new Tuple<bool, string>(true, "OK");
                         }
-                        return new Tuple<bool, string>(false, "Error with transaction");
+                        return new Tuple<bool, string>(false, "Банк: Error with transaction");
             }
-                    return new Tuple<bool, string>(false, "iNCORRECT TARGET ACCOUNT");
+                    return new Tuple<bool, string>(false, "Банк: Некорректный номер счета");
         }
                 else
         {
-                    return new Tuple<bool, string>(false, "Malo deneg!!!");
+                    return new Tuple<bool, string>(false, "Банк: недостаточно средств для проведения операции");
                 }
             }
-            return new Tuple<bool, string>(false, "Incorrect card attributes");
+            return new Tuple<bool, string>(false, "Банк: неверные аттрибуты карты");
         }
 
         public Tuple<bool, string> CardTransaction(string accountNumber, string targetCardNumber, float amount)
@@ -104,7 +104,7 @@ namespace ArtUp.BankMockServer.Services.Concrete
             var account = database.Accounts.GetByNumber(accountNumber);
             if(account == null)
             {
-                return new Tuple<bool, string>(false, "Неверно указан счет");
+                return new Tuple<bool, string>(false, "Банк: Неверно указан счет");
             }
             bool withdrowResult = false, transferResult = false;
             if (account != null && CheckAmount(account, amount))
@@ -112,7 +112,7 @@ namespace ArtUp.BankMockServer.Services.Concrete
                 var targetCard = database.Cards.GetcardByNumber(targetCardNumber);
                 if (targetCard == null)
                 {
-                    return new Tuple<bool, string>(false, "Неверно указана карта");
+                    return new Tuple<bool, string>(false, "Банк: Неверно указана карта");
                 }
                 var targetAccount = database.Accounts.Get(targetCard.AccountId.Value);
                 if (targetCard != null)
@@ -135,13 +135,13 @@ namespace ArtUp.BankMockServer.Services.Concrete
                         database.Transactions.Create(transaction);
                         return new Tuple<bool, string>(true, "OK");
                     }
-                    return new Tuple<bool, string>(false, "Error with transaction");
+                    return new Tuple<bool, string>(false, "Банк: Error with transaction");
                 }
-                return new Tuple<bool, string>(false, "Incorrect target account");
+                return new Tuple<bool, string>(false, "Банк: Некорректный номер счета");
             }
             else
             {
-                return new Tuple<bool, string>(false, "Malo deneg!!!");
+                return new Tuple<bool, string>(false, "Банк: недостаточно средств для проведения операции");
             }
         }
 

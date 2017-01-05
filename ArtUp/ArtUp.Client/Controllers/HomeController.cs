@@ -145,7 +145,7 @@ namespace ArtUp.Client.Controllers
                 ViewBag.Message = "Некорректный код CVV2";
                 return View("DonationError");
             }
-            var name = model.CardHolder.Split();
+            var name = model.CardHolder.Trim().Split();
             if (name.Count() != 2)
             {
                 ViewBag.Message = "Некоректное имя";
