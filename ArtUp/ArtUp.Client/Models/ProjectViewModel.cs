@@ -96,12 +96,13 @@ namespace ArtUp.Client.Models
         [Required(ErrorMessage = "Серия и номер паспорта являются обязательным полем")]
         [Display(Name = "Серия и номер паспорта")]
         //[StringLength(9, ErrorMessage = "Серия и номер паспорта должны быть {2} символов длиной", MinimumLength = 9)]
-        [RegularExpression(@"^([A-Za-zА-Яа-я]{2})([1-9]{1})([0-9]{6})$", ErrorMessage = "Некорректный номер паспорта")]
+        [RegularExpression(@"^([A-Za-z]{2})([1-9]{1})([0-9]{6})$", ErrorMessage = "Некорректный номер паспорта")]
         public string PasspotNumberSeries { get; set; }
 
         [Required(ErrorMessage = "Личный номер является обязательным полем")]
         [Display(Name = "Личный")]
         [StringLength(14, ErrorMessage = "Личный номер паспорта должен быть {2} символов длиной", MinimumLength = 14)]
+        [RegularExpression(@"([0-9]{7})([A-Za-z]{1})([0-9]{3})([A-Za-z]{2})([0-9]{1})", ErrorMessage = "Некорректный идентификационный номер. Верный формат ЦЦЦЦЦЦЦБЦЦЦББЦ")]
         public string PersonalPassportNumber { get; set; }
 
         [Required(ErrorMessage = "Место и дата выдачи являются обязательным полем")]
