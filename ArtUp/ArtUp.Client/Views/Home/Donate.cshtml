@@ -143,14 +143,14 @@ label.required em, span.required em, p.required {
                                                         @gift.Description
                                                     </p>
                                                     <hr class="section__divider">
-                                                    <div class="donate__status"><svg xmlns="http://www.w3.org/2000/svg" class="project__gift-icon-wrap" width="22" height="24" viewBox="0 0 22 24"><path fill="none" class="project__gift-icon" stroke-width="2" d="M2.0015 8.0185c0 .7436.487 1.43085 1.277 1.80305l6.445 3.0323c.79.3722 1.764.3722 2.554 0l6.445-3.0323c.79-.3722 1.276-1.05946 1.276-1.80305m-7.721-5.658c-.79-.456-1.764-.456-2.554 0l-6.445 3.716c-.79.455-1.277 1.297-1.277 2.208v7.431c0 .911.487 1.753 1.277 2.209l6.445 3.715c.79.456 1.764.456 2.554 0l6.445-3.715c.79-.456 1.276-1.298 1.276-2.209v-7.431c0-.911-.486-1.753-1.276-2.208l-6.445-3.716z"></path></svg><span class="gift__available">осталось <span class="js-available-gifts">@(gift.AvailableCount - gift.CurrentCount)</span> из <span class="js-all-gifts">@gift.AvailableCount</span> подарков</span></div>
+                                                    <div class="donate__status"><span class="gift__available">осталось <span class="js-available-gifts">@(gift.AvailableCount - gift.CurrentCount)</span> из <span class="js-all-gifts">@gift.AvailableCount</span> подарков</span></div>
                                                 </div>
                                             </div>
                                         </section>
                                     }
                                 </section>
                             </div>
-                            <div role="tabpanel" class="tab-pane fade" id="creds">
+                            <div role="tabpanel" class="tab-pane fade inner_section" id="creds">
                                 <h3>Данные платежа</h3>
                                 @Html.TextBoxFor(m => m.CardNumber, new { @placeholder = "Номер карты" })
                                 @Html.ValidationMessageFor(m => m.CardNumber, "", new { @class = "text-danger" })
@@ -168,7 +168,7 @@ label.required em, span.required em, p.required {
                                 <button type="submit" class="button" title="Продолжить" name="send" id="send2"><span><span>Поддержать</span></span></button>
                             </div>
                             <div class="section__field--bottom">
-                                <p class="section__txt">Нажимая “Поддержать”, вы принимаете <a href="#">условия дарения</a>.</p>
+                                <p class="section__txt">Нажимая “Поддержать”, вы принимаете <a target="_blank" href="/Home/Rules">соглашение</p>
                             </div>
                         </section>
                     }                  
@@ -180,24 +180,18 @@ label.required em, span.required em, p.required {
                         </div>
 
                         <div class="create__body">
-                            <details class="details details--small">
-                                <summary class="summary summary--small">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" class="summary-icon summary-icon--small" preserveAspectRatio="xMidYMid" viewBox="0 0 8 14">
-                                        <path fill-rule="evenodd" d="M1 1l5.398 5.714L1 12.429" class="cls-arrow-aquarium--round"></path>
-                                    </svg>
-                                    Как мне перечислить деньги
+                            <details class="details details--small" >
+                                <summary class="summary summary--small" style="font-weight: bold;">
+                                    Как мне перечислить деньги?
                                 </summary>
                                 <div class="details-content">
                                     <div class="details-content-txt">
-                                        Деньги можно перечислить, используя платежные карты белорусских и иностранных банков.
+                                        Деньги можно перечислить, используя платежные карты МокБанка.
                                     </div>
                                 </div>
                             </details>
                             <details class="details details--small">
-                                <summary class="summary summary--small">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" class="summary-icon summary-icon--small" preserveAspectRatio="xMidYMid" viewBox="0 0 8 14">
-                                        <path fill-rule="evenodd" d="M1 1l5.398 5.714L1 12.429" class="cls-arrow-aquarium--round"></path>
-                                    </svg>
+                                <summary class="summary summary--small" style="font-weight: bold;">
                                     Когда и как я получу подарок?
                                 </summary>
                                 <div class="details-content">
@@ -207,13 +201,6 @@ label.required em, span.required em, p.required {
                                     </div>
                                 </div>
                             </details>
-                        </div>
-
-                        <div class="create__foot">
-                            <hr class="create-status-divider">
-                            <div class="create-question">
-                                <a href="/Home/Rules" class="link create__link js-open-feedback-popup">Соглашение</a>
-                            </div>
                         </div>
                     </section>
 

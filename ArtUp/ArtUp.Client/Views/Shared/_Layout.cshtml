@@ -106,13 +106,13 @@
                     </button>
                 </div>
                 <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="/Home/Index">Поддержать:</a></li>
-                        <li><a href="/Home/Category?category=music">Музыка</a></li>
-                        <li><a href="/Home/Category?category=literature">Литература</a></li>
-                        <li><a href="/Home/Category?category=movie">Кино и видео</a></li>
-                        <li><a href="/Home/Category?category=photo">Фотография</a></li>
-                        <li><a href="/Home/Category?category=art">Живопись</a></li>
+                    <ul class="nav navbar-nav categories">
+                        <li style="background-color: #999999"><a href="/Home/Index">Поддержать:</a></li>
+                        <li class="music"><a href="/Home/Category?category=music">Музыка</a></li>
+                        <li class="literature"><a href="/Home/Category?category=literature">Литература</a></li>
+                        <li class="movie"><a href="/Home/Category?category=movie">Кино и видео</a></li>
+                        <li class="photo"><a href="/Home/Category?category=photo">Фотография</a></li>
+                        <li class="art"><a href="/Home/Category?category=art">Живопись</a></li>
                 </div>
             </div>
         </div>
@@ -207,6 +207,9 @@
                 var searchLink = $('#find-link');
                 searchLink.attr('href', '/Home/SearchResults?query=' + query);
             });
+            if ($(".categories .@Html.ViewBag.Category").length) {
+                $(".categories .@Html.ViewBag.Category").addClass('active');
+            }
         });
     </script>
 </body>

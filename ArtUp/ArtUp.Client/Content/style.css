@@ -27,6 +27,10 @@ h6 {
     font-weight: 700;
     margin: 0 0 15px;
 }
+h5 {
+  margin-bottom: 5px;
+  margin-top: 20px;
+}
 body { font-family: 'Titillium Web', sans-serif; }
 
 
@@ -569,7 +573,8 @@ width: 10px;
   font-size: 50px;
   font-weight: 200;
   margin: 0;
-  padding: 50px 0;color: #fff;
+  padding: 25px 0;
+  color: #fff;
 }
 
 .single-project-area .zigzag-bottom {background-color: #333333}
@@ -599,12 +604,13 @@ input[type="text"], input[type="password"], input[type="email"], textarea {
     padding: 10px;
     width: 100%;
 }
-input[type="submit"], button[type=submit] {
+input[type="submit"], button[type=submit], .artup-button {
     background: none repeat scroll 0 0 #1abc9c;
     border: medium none;
     color: #fff;
     padding: 11px 20px;
     text-transform: uppercase;
+    margin-top: 15px;
 }
 input[type="submit"]:hover, button[type=submit]:hover {background-color: #222}
 .single-sidebar input[type="text"] {
@@ -723,10 +729,10 @@ form.cart {
 .product-tab li.active {
     background: none repeat scroll 0 0 #1abc9c;
 }
-.product-tab li.active a {
-    color: #fff;
+.product-tab li.active a, .product-tab li input {
+    color: #fff !important;
 }
-.product-tab li a {
+.product-tab li a, .product-tab li input {
     color: #222;
     display: block;
     font-size: 16px;
@@ -1060,10 +1066,12 @@ label.required em, span.required em, p.required {
     padding: 3px 5px;
     width: 400px;
 }
-
+.create-main .validation-summary-errors {
+  padding-bottom: 10px;
+}
 
 /* pay*/
-.pay-main .inner_section {
+.pay-main .inner_section, .new-project__left {
     position: relative;
     margin-bottom: 20px;
     padding: 20px;
@@ -1086,6 +1094,12 @@ label.required em, span.required em, p.required {
 .pay-main .section__body__left {
     display: inline-block;
 }
+.pay-main .field-validation-error {
+  display: block;
+}
+.pay-main input {
+  margin-top: 10px;
+}
 .admin-main ul.nav.navbar-nav{
    list-style-type: none;
    margin: 0;
@@ -1102,4 +1116,40 @@ label.required em, span.required em, p.required {
 .admin-main .add_to_cart_button {
   padding: 5px;
   width: 49%;
+}
+.form-control, input#money-amount, input#Duration {
+  max-width: 180px;
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+  -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+div.main-newproject {
+  padding-top: 0;
+}
+.main-newproject .nb-create__body input, .main-newproject .nb-create__body textarea {
+  max-width: 500px;
+  display: block;
+}
+.main-newproject textarea {
+  max-width: 500px;
+  min-height: 100px;
+}
+.product-tab li a, .product-tab li input:hover {
+  cursor: pointer;
+}
+select#Location:hover, select#Category:hover {
+    cursor: pointer;
 }

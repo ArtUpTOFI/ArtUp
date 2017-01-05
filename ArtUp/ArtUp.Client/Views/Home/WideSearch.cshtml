@@ -29,8 +29,9 @@
                         new SelectListItem() { Text = "Литература"},
                         new SelectListItem() { Text = "Кино и видео"},
                         new SelectListItem() { Text = "Фотография"},
-                        new SelectListItem() { Text = "Живопись"},
-                    })
+                        new SelectListItem() { Text = "Живопись"}
+                    },
+                    new {@class = "form-control"})
                 </div>
                 <div>
                     @Html.LabelFor(m => m.Location, "Локация проекта")
@@ -150,7 +151,8 @@ new SelectListItem() { Text = "Чечерск" },
 new SelectListItem() { Text = "Шклов" },
 new SelectListItem() { Text = "Щучин" }
                                 #endregion
-                    })
+                    },
+                    new {@class = "form-control"})
                 </div>
                 <div>
                     @Html.LabelFor(m => m.IsSuccessful, "Успешность проекта")
@@ -159,7 +161,8 @@ new SelectListItem() { Text = "Щучин" }
                         new SelectListItem() { Text = "Не важно"},
                         new SelectListItem() { Text = "Успешный"},
                         new SelectListItem() { Text = "Неуспешный"}
-                    })
+                    },
+                    new {@class = "form-control"})
                 </div>
                 <div>
                     <input type="submit" value="Найти" />
