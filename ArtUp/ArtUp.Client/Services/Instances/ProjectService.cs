@@ -202,9 +202,9 @@ namespace ArtUp.Client.Services
             switch (filter)
             {
                 case "new":
-                    return GetNewProjects();
+                    return GetNewProjects().Where(p => p.ProjectState == ProjectState.Approved);
                 case "all":
-                    return GetAllProjects();
+                    return GetAllProjects().Where(p => p.ProjectState == ProjectState.Approved);
                 case "best":
                     return GetBySuccess(true);
             }
