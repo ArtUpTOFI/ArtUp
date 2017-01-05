@@ -33,11 +33,11 @@
                         <div class="product-carousel-price">
                             @if (project.RequiredMoney - project.CurrentMoney > 0)
                             {
-                                <ins>осталось @(project.RequiredMoney - project.CurrentMoney) рублей</ins>
+                                <ins>собрано @project.CurrentMoney из @project.RequiredMoney</ins>
                             }
                             else
                             {
-                                <ins>собрано @(project.CurrentMoney) рублей</ins>
+                                <ins>собрано @project.CurrentMoney из @project.RequiredMoney</ins>
                             }
                         </div>
 

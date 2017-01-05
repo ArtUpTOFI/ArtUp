@@ -40,9 +40,9 @@ namespace ArtUp.Client.Services.Instances
         public IEnumerable<ProjectViewModel> WideSearch(WideSearchViewModel model)
         {
             string category = model.Category.ToEngName();
-            IEnumerable<DataAccess.Entities.Project> fromCategory = model.Category == "Любая" ? data.Projects.GetAll() : data.Projects.Find(p => p.Category.Title == category);
-            IEnumerable<DataAccess.Entities.Project> fromLocation = model.Location == "Любая" ? data.Projects.GetAll() : data.Projects.Find(p => p.Location == model.Location);
-            IEnumerable<DataAccess.Entities.Project> fromSuccess = model.IsSuccessful == "Не важно" ? data.Projects.GetAll() : data.Projects.Find(p => p.IsSuccessful == (model.IsSuccessful == "Успешный"));
+            IEnumerable<DataAccess.Entities.Project> fromCategory = model.Category == "Любая" ? data.Projects.GetAll() : data.Projects.Find(p => p.Category.Title == category && p.ProjectState == DataAccess.Entities.Enums.ProjectState.Approved);
+            IEnumerable<DataAccess.Entities.Project> fromLocation = model.Location == "Любая" ? data.Projects.GetAll() : data.Projects.Find(p => p.Location == model.Location && p.ProjectState == DataAccess.Entities.Enums.ProjectState.Approved);
+            IEnumerable<DataAccess.Entities.Project> fromSuccess = model.IsSuccessful == "Не важно" ? data.Projects.GetAll() : data.Projects.Find(p => p.IsSuccessful == (model.IsSuccessful == "Успешный") && p.ProjectState == DataAccess.Entities.Enums.ProjectState.Approved);
 
             var searchResults = fromCategory.Intersect(fromLocation.Intersect(fromSuccess));
 
