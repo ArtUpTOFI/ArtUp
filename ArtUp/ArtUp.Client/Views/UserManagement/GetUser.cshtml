@@ -65,15 +65,15 @@
         <p>
             @if (Model.IsActive)
             {
-                @Html.ActionLink("Deactive", "DeactiveUser", new { id = Model.Id })
+                @Html.ActionLink("Заблокировать пользователя", "DeactiveUser", new { id = Model.Id })
                 
             }
             else
             {
-                @Html.ActionLink("Active", "DeactiveUser", new { id = Model.Id })
+                @Html.ActionLink("Активировать пользователя", "DeactiveUser", new { id = Model.Id })
             }
 
-             | @Html.ActionLink("Back to List", "Users")
+             | @Html.ActionLink("Назад к списку", "Users")
         </p>
     </div>
 </div>

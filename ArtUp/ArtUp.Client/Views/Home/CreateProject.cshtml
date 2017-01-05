@@ -466,7 +466,7 @@
                             <div class="nb-section__field">
                                 <h5>Кем и когда выдан</h5>
                                 <div class="nb-input-wrap nb-create__input-wrap">
-                                    @Html.TextBoxFor(m => m.WhoAndWhereIssued, new { @id = "js-settings-document-issued", @placeholder = ">Пример: Советское РУВД г.Минска, выдан 22.04.2015" })
+                                    @Html.TextBoxFor(m => m.WhoAndWhereIssued, new { @id = "js-settings-document-issued", @placeholder = "Пример: Советское РУВД г.Минска, выдан 22.04.2015" })
                                     @Html.ValidationMessageFor(m => m.WhoAndWhereIssued, "", new { @class = "text-danger" })
                                     @*<input id="js-settings-document-issued" type="text" name="user[doc_who_issued]" param="doc_who_issued" class="nb-input js-ajax-client-update-info" placeholder="Кем и когда выдан" value="" aria-required="true">*@
                                 </div>

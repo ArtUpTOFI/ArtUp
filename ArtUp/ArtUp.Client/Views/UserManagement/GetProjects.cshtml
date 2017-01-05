@@ -26,10 +26,10 @@
                     <div class="row">
                         @foreach (var project in ViewBag.AllProjects.ApprovedProjects)
                         {
-                            <div class="col-md-3 col-sm-6">
+                            <div class="col-md-4 col-sm-6">
                                 <div class="single-project">
                                     <div class="product-upper">
-                                        <img src="/Content/img/@project.Avatar" alt="" style='width:220px; height:220px;'>
+                                        <img src="/Content/img/@project.Avatar" alt="" >
                                         <div class="product-hover">
                                             <a href="/Home/Project/@project.Id" class="add-to-cart-link"><i class="fa fa-link"></i> Подробнее</a>
                                         </div>
@@ -50,21 +50,17 @@
                     <div class="row">
                         @foreach (var project in ViewBag.AllProjects.PendingProjects)
                         {
-                            <div class="col-md-3 col-sm-6">
+                            <div class="col-md-4 col-sm-6">
                                 <div class="single-project">
                                     <div class="product-upper">
-                                        <img src="/Content/img/@project.Avatar" alt="" style='width:220px; height:220px;'>
+                                        <img src="/Content/img/@project.Avatar" alt="" >
                                         <div class="product-hover">
                                             <a href="/Home/Project/@project.Id" class="add-to-cart-link"><i class="fa fa-link"></i> Подробнее</a>
                                         </div>
                                     </div>
                                     <h2><a href="/Home/Project/@project.Id">@project.Title</a></h2>
-                                    <div class="product-carousel-price">
-                                        <ins>осталось @(project.RequiredMoney - project.CurrentMoney)</ins>
-                                    </div>
                                     <div class="product-option-shop">
-
-                                        <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/UserManagement/ApproveProject/@project.Id">Апрувнуть ето</a>
+                                        <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/UserManagement/ApproveProject/@project.Id">Одобрить</a>
                                     </div>
                                 </div>
                             </div>
@@ -75,10 +71,10 @@
                     <div class="row">
                         @foreach (var project in ViewBag.AllProjects.RejectProjects)
                         {
-                            <div class="col-md-3 col-sm-6">
+                            <div class="col-md-4 col-sm-6">
                                 <div class="single-project">
                                     <div class="product-upper">
-                                        <img src="/Content/img/@project.Avatar" alt="" style='width:220px; height:220px;'>
+                                        <img src="/Content/img/@project.Avatar" alt="" >
                                         <div class="product-hover">
                                             <a href="/Home/Project/@project.Id" class="add-to-cart-link"><i class="fa fa-link"></i> Подробнее</a>
                                         </div>
