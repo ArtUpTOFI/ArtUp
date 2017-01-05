@@ -4,10 +4,10 @@
     ViewBag.Title = "Bank account page";
 }
 
-<h2>Account № @Model.Nubmer</h2>
+<h2>Счет № @Model.Nubmer</h2>
 
 <div>
-    <h4>User: @Model.FirstName @Model.LastName</h4>
+    <h4>Пользователь: @Model.FirstName @Model.LastName</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -69,6 +69,5 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Вернуться", "Index")
 </p>
