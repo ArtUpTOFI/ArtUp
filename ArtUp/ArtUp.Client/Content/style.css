@@ -612,6 +612,9 @@ input[type="submit"], button[type=submit], .artup-button {
     text-transform: uppercase;
     margin-top: 15px;
 }
+.artup-button:hover {
+  background-color: #222;
+}
 input[type="submit"]:hover, button[type=submit]:hover {background-color: #222}
 .single-sidebar input[type="text"] {
     /* margin-bottom: 10px; */
@@ -1074,7 +1077,7 @@ label.required em, span.required em, p.required {
 }
 
 /* pay*/
-.pay-main .inner_section, .new-project__left {
+.pay-main .inner_section, .new-project__left, .project-left {
     position: relative;
     margin-bottom: 20px;
     padding: 20px;
@@ -1169,4 +1172,7 @@ hr {
 }
 .artup-hidden {
     display: none;
+}
+.product-inner-price > p {
+  font-size: 16px;
 }

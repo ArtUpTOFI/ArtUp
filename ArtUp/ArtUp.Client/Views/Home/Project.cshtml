@@ -25,12 +25,13 @@
                             </div>
                         </div>
 
-                        <div class="col-sm-4">
+                        <div class="col-sm-4 project-left">
                             <div class="product-inner">
                                 <h2 class="product-name">@ViewBag.Project.Title</h2>@if (Request.IsAuthenticated && !User.IsInRole("admin") && ViewBag.Project.ProjectState == ArtUp.DataAccess.Entities.Enums.ProjectState.Rejected) { <a href="/Home/EditProject/@ViewBag.Project.Id">Редактировать проект</a> }
                                 <div class="product-inner-price">
-                                    <ins>надо @ViewBag.Project.RequiredMoney, собрали @ViewBag.Project.CurrentMoney</ins> 
-                                    <p>осталось @(((TimeSpan)(ViewBag.Project.CreationDate + TimeSpan.FromTicks(ViewBag.Project.Duration) - DateTime.Now + TimeSpan.FromDays(1))).Days) дня(ей)</p>
+                                    <p class="goal">Цель: @ViewBag.Project.RequiredMoney</p>
+                                    <p class="collected">Уже собрано: @ViewBag.Project.CurrentMoney</p>
+                                    <p class="remined">До завершения проекта: @(((TimeSpan)(ViewBag.Project.CreationDate + TimeSpan.FromTicks(ViewBag.Project.Duration) - DateTime.Now + TimeSpan.FromDays(1))).Days) дня(ей)</p>
                                 </div>
                                 @if (Request.IsAuthenticated)
                                 {
@@ -67,7 +68,7 @@
                                         <p><a href="/UserManagement/ReturnMoney/@ViewBag.Project.Id">Вернуть деньги пользователям</a></p>
                                     }
                                 }
-
+                                <hr>
                                 <h4>Подарки поддержавшим:</h4>
                                 @foreach (var gift in ViewBag.Gifts)
                                 {
@@ -92,10 +93,16 @@
                         </ul>
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane fade in active" id="home">
-                                <h2>Описание</h2>
-                                <p>@ViewBag.Project.ShortDescription</p>
-                                <p>Локация проекта: @ViewBag.Project.Location</p>
-                                <p>@ViewBag.Project.FullDescription</p>
+                                <div class="project-left">
+                                    <h4>Краткие сведения:</h4>
+                                    <p>@ViewBag.Project.ShortDescription</p>
+                                    <hr>
+                                    <p>Локация проекта: @ViewBag.Project.Location</p>
+                                </div>
+                                <div class="project-left">
+                                    <h4>Описание:</h4>
+                                    <p>@ViewBag.Project.FullDescription</p>
+                                </div>
                             </div>
 
                             @if (User.IsInRole("admin"))
@@ -114,10 +121,14 @@
                             @if (ViewBag.Project.ProjectState == ArtUp.DataAccess.Entities.Enums.ProjectState.Approved)
                             {
                                 <div role="tabpanel" class="tab-pane fade" id="profile">
-                                    <h2>Комментарии</h2>
+                                    <h2>Комментарии:</h2>
                                     @foreach (var comment in ViewBag.Comments)
                                     {
-                                        <p>@comment.Date, @comment.Text, @comment.Author</p>
+                                        <div class="project-left">
+                                            <p><span style="color:#44c">@comment.Author</span> написал(а):</p>
+                                            <p style="font-style: italic;">@comment.Text</p>
+                                            <p style="float:right;">@comment.Date</p>
+                                        </div>
                                     }
                                     <div class="submit-review">
                                         @if (Request.IsAuthenticated)
@@ -127,8 +138,8 @@
                                                 <p>
                                                     @Html.Hidden("ProjectId", (int)ViewBag.Project.Id)
                                                     @Html.Hidden("UserId", (int)ViewBag.UserId)
-                                                    <label for="review">Текст комментария</label>
-                                                    @Html.TextAreaFor(m => m.Text, new { @cols = "30", @rows = "10" })
+                                                    <h2><label for="review">Оставьте ваш комментарий:</label></h2>
+                                                    @Html.TextAreaFor(m => m.Text, new { @cols = "30", @rows = "10", @placeholder="Ваше мнение очень важно."})
                                                 </p>
                                                 <p><input type="submit" value="Оставить"></p>
                                             }
@@ -144,7 +155,10 @@
                                     <h2>Спонсоры</h2>
                                     @foreach (var donation in ViewBag.Donations)
                                     {
-                                        <p>@donation.DonationDate, @donation.Amount, @donation.Email</p>
+                                        <div class="project-left project-sponsors">
+                                            <p><span style="color:#44c">@donation.Email</span> перечислил<span style="font-size: 16px;"> @donation.Amount</span> рублей на счёт проекта.</p>
+                                            <p style="float:right">@donation.DonationDate</p>
+                                        </div>
                                     }
                                 </div>
                             }
