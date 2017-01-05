@@ -1,8 +1,7 @@
 ﻿@model ArtUp.Client.Models.ProjectViewModel
 @{
-    ViewBag.Title = "EditProject";
+ViewBag.Title = "EditProject";
 }
-
 
 <style>
     ol, ul {
@@ -32,22 +31,22 @@
         font-family: "Helvetica Neue", Verdana, Arial, sans-serif;
     }
 
-        .main-container h1 {
-            font-size: 24px;
-        }
+    .main-container h1 {
+        font-size: 24px;
+    }
 
-        .main-container h2 {
-            font-size: 20px;
-        }
+    .main-container h2 {
+        font-size: 20px;
+    }
 
-        .main-container .page-title {
-            text-transform: uppercase;
-            font-weight: 600;
-            border-bottom: 1px solid #ededed;
-            padding-bottom: 3px;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-        }
+    .main-container .page-title {
+        text-transform: uppercase;
+        font-weight: 600;
+        border-bottom: 1px solid #ededed;
+        padding-bottom: 3px;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+    }
 
     .form-list .field, .form-list .wide, .form-list .control {
         margin-bottom: 10px;
@@ -94,463 +93,417 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="product-bit-title text-center">
-                    <h2>Редактирование проекта</h2>
+                    <h2>Редактирование проекта @ViewBag.Project.Title</h2>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<div class="pay__head">
-    <h1 class="heading pay__heading">Редактировать проект «<a class="pay__heading__link" href="/Home/Project/@ViewBag.Project.Id">@ViewBag.Project.Title</a>»</h1>
-</div>
+
 
 <div role="tabpanel">
-    @using (Html.BeginForm("CreateProject", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("CreateProject", "Home", FormMethod.Post, new { enctype = "multipart/form-data", @id="create-form"}))
     {
-        <ul class="product-tab" role="tablist">
-            <li role="presentation" class="active"><a href="#general" aria-controls="general" role="tab" data-toggle="tab">Оcновное</a></li>
-            <li role="presentation"><a href="#gifts" aria-controls="gifts" role="tab" data-toggle="tab">Подарки</a></li>
-            <li role="presentation"><a href="#description" aria-controls="description" role="tab" data-toggle="tab">Описание</a></li>
-            <li role="presentation"><a href="#personal" aria-controls="personal" role="tab" data-toggle="tab">Контакты</a></li>
-            <li style="width:230px"><input type="submit" class="nb-btn create__nav__btn create__nav__btn-more--inactive" value="Отправить снова" id="send-project" disabled="disabled" /></li>
-        </ul>
-        <div class="tab-content">
-            <div role="tabpanel" class="tab-pane fade in active" id="general">
-                @Html.AntiForgeryToken()
-                <h2>Основная информация о проекте</h2>
-                <div class="new-project__left col-md-8">
-                    <section class="nb-create create--title project-edit-form nb-create--valid">
-                        <div class="nb-create__head">
-                            <h2 class="nb-heading--small create__heading--small">Название проекта</h2>
-                        </div>
-                        <div class="nb-create__body">
-                            <div class="nb-input-wrap nb-create__input-wrap">
-                                @Html.Hidden("UserId", (int)ViewBag.UserId)
-                                @*@Html.TextBoxFor(m => m.Title, new { @value = (string)ViewBag.Project.Title })*@
-                                @Html.TextBox("Title", (string)ViewBag.Project.Title)
-                                @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
-                            </div>
-                            <p class="nb-create-desc">Название должно быть лаконичным, уникальным и запоминающимся. Будьте уверены в том, что название проекта отражает его суть.</p>
-                        </div>
-                    </section>
-                    <section class="nb-create create--description project-edit-form nb-create--valid">
-                        <div class="nb-create__head">
-                            <h2 class="nb-heading--small create__heading--small">Краткое описание проекта</h2>
-                        </div>
-                        <div class="nb-create__body">
-                            <div class="nb-textarea-wrap">
-                                @*@Html.TextAreaFor(m => m.ShortDescription, new { @placeholder = "Коротко расскажите о проекте" })*@
-                                @Html.TextArea("ShortDescription", "Причина отклонения: " + (string)ViewBag.Project.ShortDescription)
-                                @Html.ValidationMessageFor(m => m.ShortDescription, "", new { @class = "text-danger" })
-                                <span class="nb-textarea-count"><span class="js-description-entered">6</span> / 160 символов</span>
-                            </div>
-                            <p class="nb-create-desc">Опишите в одном предложении цель вашего проекта.</p>
-                        </div>
-                    </section>
-                    <section class="nb-create create--category project-edit-form">
-                        <div class="nb-create__head">
-                            <h2 class="nb-heading--small create__heading--small">Категория проекта</h2>
-                        </div>
-                        <div class="nb-create__body">
-                            <div class="nb-dd-toggle-wrap js-dd-select-box">
-
-                                <div class="nb-dd-toggle js-toggle-dd">
-                                    <span class="nb-dd-toggle-txt js-toggle-dd-txt nb-dd-toggle-txt--default">Выберите категорию</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="9" class="nb-dd-arrow-icon" preserveAspectRatio="xMidYMid" viewBox="0 0 13 9"><path fill-rule="evenodd" d="M12.003 1L6.502 6.592 1 1" class="cls-dd-arrow-Aqua"></path></svg>
-                                </div>
-
-                                @Html.DropDownListFor(m => m.Category, new List<SelectListItem>()
-                                {
-                                    new SelectListItem() { Text = "Музыка"},
-                                    new SelectListItem() { Text = "Литература"},
-                                    new SelectListItem() { Text = "Кино и видео"},
-                                    new SelectListItem() { Text = "Фотография"},
-                                    new SelectListItem() { Text = "Живопись"},
-                                })
-
-                                <ul class="nb-dd nb-dd--hidden js-dd-menu">
-                                    <li class="nb-dd-item">
-                                        <div data-value="" class="dd-item-link js-dd-menu-item dd-item-link--default dd-item-link--selected js-default-select-value">
-                                            <span class="">Выберите категорию</span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="9" class="nb-dd-arrow-icon" preserveAspectRatio="xMidYMid" viewBox="0 0 13 9"><path fill-rule="evenodd" d="M.992 6.606l5.501-5.592 5.502 5.592" class="cls-dd-arrow-Aqua"></path></svg>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </section>
-                    <section class="nb-create create--location js-section-location project-edit-form">
-                        <div id="js-create-map" class="nb-create__map-bg" style="display: none;">
-
-                        </div>
-                        <div class="nb-create__head nb-create-location__head">
-                            <h2 class="nb-heading--small create__heading--small">Локация проекта</h2>
-                        </div>
-                        <div class="nb-create__body">
-                            <div class="nb-dd-toggle-wrap js-dd-select-box">
-                                <div class="nb-dd-toggle js-toggle-dd">
-                                    <span class="nb-dd-toggle-txt js-toggle-dd-txt nb-dd-toggle-txt--default">Выберите город</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="9" class="nb-dd-arrow-icon" preserveAspectRatio="xMidYMid" viewBox="0 0 13 9"><path fill-rule="evenodd" d="M12.003 1L6.502 6.592 1 1" class="cls-dd-arrow-Aqua"></path></svg>
-                                </div>
-                                @Html.DropDownListFor(m => m.Location, new List<SelectListItem>() {
-                               #region Cities
-                                    new SelectListItem() { Text = "Минск" },
-new SelectListItem() { Text = "Брест" },
-new SelectListItem() { Text = "Витебск" },
-new SelectListItem() { Text = "Гомель" },
-new SelectListItem() { Text = "Гродно" },
-new SelectListItem() { Text = "Могилев" },
-new SelectListItem() { Text = "Барановичи" },
-new SelectListItem() { Text = "Барань" },
-new SelectListItem() { Text = "Белоозёрск" },
-new SelectListItem() { Text = "Берёза" },
-new SelectListItem() { Text = "Березино" },
-new SelectListItem() { Text = "Берёзовка" },
-new SelectListItem() { Text = "Бобруйск" },
-new SelectListItem() { Text = "Борисов" },
-new SelectListItem() { Text = "Буда-Кошелёво" },
-new SelectListItem() { Text = "Быхов" },
-new SelectListItem() { Text = "Василевичи" },
-new SelectListItem() { Text = "Верхнедвинск" },
-new SelectListItem() { Text = "Ветка" },
-new SelectListItem() { Text = "Вилейка" },
-new SelectListItem() { Text = "Волковыск" },
-new SelectListItem() { Text = "Воложин" },
-new SelectListItem() { Text = "Высокое" },
-new SelectListItem() { Text = "Ганцевичи" },
-new SelectListItem() { Text = "Глубокое" },
-new SelectListItem() { Text = "Горки" },
-new SelectListItem() { Text = "Городок" },
-new SelectListItem() { Text = "Давид-Городок" },
-new SelectListItem() { Text = "Дзержинск" },
-new SelectListItem() { Text = "Дисна" },
-new SelectListItem() { Text = "Добруш" },
-new SelectListItem() { Text = "Докшицы" },
-new SelectListItem() { Text = "Дрогичин" },
-new SelectListItem() { Text = "Дубровно" },
-new SelectListItem() { Text = "Дятлово" },
-new SelectListItem() { Text = "Ельск" },
-new SelectListItem() { Text = "Жабинка" },
-new SelectListItem() { Text = "Житковичи" },
-new SelectListItem() { Text = "Жлобин" },
-new SelectListItem() { Text = "Жодино" },
-new SelectListItem() { Text = "Заславль" },
-new SelectListItem() { Text = "Иваново" },
-new SelectListItem() { Text = "Ивацевичи" },
-new SelectListItem() { Text = "Ивье" },
-new SelectListItem() { Text = "Калинковичи" },
-new SelectListItem() { Text = "Каменец" },
-new SelectListItem() { Text = "Кировск" },
-new SelectListItem() { Text = "Клецк" },
-new SelectListItem() { Text = "Климовичи" },
-new SelectListItem() { Text = "Кличев" },
-new SelectListItem() { Text = "Кобрин" },
-new SelectListItem() { Text = "Копыль" },
-new SelectListItem() { Text = "Коссово" },
-new SelectListItem() { Text = "Костюковичи" },
-new SelectListItem() { Text = "Кричев" },
-new SelectListItem() { Text = "Крупки" },
-new SelectListItem() { Text = "Лепель" },
-new SelectListItem() { Text = "Лида" },
-new SelectListItem() { Text = "Логойск" },
-new SelectListItem() { Text = "Лунинец" },
-new SelectListItem() { Text = "Любань" },
-new SelectListItem() { Text = "Ляховичи" },
-new SelectListItem() { Text = "Малорита" },
-new SelectListItem() { Text = "Марьина Горка" },
-new SelectListItem() { Text = "Микашевичи" },
-new SelectListItem() { Text = "Миоры" },
-new SelectListItem() { Text = "Молодечно" },
-new SelectListItem() { Text = "Мосты" },
-new SelectListItem() { Text = "Мстиславль" },
-new SelectListItem() { Text = "Мядель" },
-new SelectListItem() { Text = "Наровля" },
-new SelectListItem() { Text = "Несвиж" },
-new SelectListItem() { Text = "Новогрудок" },
-new SelectListItem() { Text = "Новолукомль" },
-new SelectListItem() { Text = "Новополоцк" },
-new SelectListItem() { Text = "Орша" },
-new SelectListItem() { Text = "Осиповичи" },
-new SelectListItem() { Text = "Ошмяны" },
-new SelectListItem() { Text = "Петриков" },
-new SelectListItem() { Text = "Пинск" },
-new SelectListItem() { Text = "Полоцк" },
-new SelectListItem() { Text = "Поставы" },
-new SelectListItem() { Text = "Пружаны" },
-new SelectListItem() { Text = "Речица" },
-new SelectListItem() { Text = "Рогачёв" },
-new SelectListItem() { Text = "Санкт-Петербург" },
-new SelectListItem() { Text = "Светлогорск" },
-new SelectListItem() { Text = "Свислочь" },
-new SelectListItem() { Text = "Сенно" },
-new SelectListItem() { Text = "Скидель" },
-new SelectListItem() { Text = "Славгород" },
-new SelectListItem() { Text = "Слоним" },
-new SelectListItem() { Text = "Слуцк" },
-new SelectListItem() { Text = "Смолевичи" },
-new SelectListItem() { Text = "Сморгонь" },
-new SelectListItem() { Text = "Солигорск" },
-new SelectListItem() { Text = "Старые Дороги" },
-new SelectListItem() { Text = "Столбцы" },
-new SelectListItem() { Text = "Столин" },
-new SelectListItem() { Text = "Толочин" },
-new SelectListItem() { Text = "Туров" },
-new SelectListItem() { Text = "Узда" },
-new SelectListItem() { Text = "Фаниполь" },
-new SelectListItem() { Text = "Хойники" },
-new SelectListItem() { Text = "Чаусы" },
-new SelectListItem() { Text = "Чашники" },
-new SelectListItem() { Text = "Червень" },
-new SelectListItem() { Text = "Чериков" },
-new SelectListItem() { Text = "Чечерск" },
-new SelectListItem() { Text = "Шклов" },
-new SelectListItem() { Text = "Щучин" }
-                                #endregion
-                           })
-
-
-                                <ul class="nb-dd nb-dd--hidden js-dd-menu">
-                                    <li class="nb-dd-item">
-                                        <div data-value="" class="dd-item-link js-dd-menu-item dd-item-link--default dd-item-link--selected js-default-select-value">
-                                            <span class="">Выберите город</span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="9" class="nb-dd-arrow-icon" preserveAspectRatio="xMidYMid" viewBox="0 0 13 9"><path fill-rule="evenodd" d="M.992 6.606l5.501-5.592 5.502 5.592" class="cls-dd-arrow-Aqua"></path></svg>
-                                        </div>
-                                    </li>
-
-                                </ul>
-                            </div>
-                        </div>
-                    </section>
-
-                    <div class="editor-label">Файл изображения</div>
-                    <div class="editor-field">
-                        <input type="file" name="uploadImage" />
+    <ul class="product-tab" role="tablist">
+        <li role="presentation" class="active"><a href="#general" aria-controls="general" role="tab" data-toggle="tab">Оcновное</a></li>
+        <li role="presentation"><a href="#gifts" aria-controls="gifts" role="tab" data-toggle="tab">Подарки</a></li>
+        <li role="presentation"><a href="#description" aria-controls="description" role="tab" data-toggle="tab">Описание</a></li>
+        <li role="presentation"><a href="#personal" aria-controls="personal" role="tab" data-toggle="tab">Контакты</a></li>
+        <li style="width:230px"><input type="submit" class="nb-btn create__nav__btn create__nav__btn-more--inactive art-disabled" value="Отправить на модерацию" id="send-project" /></li>
+    </ul>
+    <div class="tab-content  main-container main-newproject">
+        <div role="tabpanel" class="tab-pane fade in active" id="general">
+            @Html.AntiForgeryToken()
+            <div class="new-project__left col-md-12">
+                <section class="nb-create create--title project-edit-form nb-create--valid">
+                    <div class="nb-create__head">
+                        <h5 class="nb-heading--small create__heading--small">Название проекта</h5>
                     </div>
-                    <section class="nb-create create--fund project-edit-form">
-                        <div class="nb-create__head">
-                            <h2 class="nb-heading--small create__heading--small">Бюджет и продолжительность кампании</h2>
+                    <div class="nb-create__body">
+                        <div class="nb-input-wrap nb-create__input-wrap">
+                            @Html.Hidden("UserId", (int)ViewBag.UserId)
+                            @Html.TextBoxFor(m => m.Title, new { @placeholder = "Введите название проекта" })
+                            @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger"})
                         </div>
-                        <div class="nb-create__body">
-                            <div class="nb-create__fund cf">
-                                <div class="nb-create__money">
-                                    <div class="nb-input-wrap">
-                                        @*@Html.TextBoxFor(m => m.RequiredMoney, new { @id = "money-amount", @type = "number" })*@
-                                        @Html.TextBox("RequiredMoney", (long)ViewBag.Project.RequiredMoney, new { @id = "money-amount", @type = "number" })
-                                        @Html.ValidationMessageFor(m => m.RequiredMoney, "", new { @class = "text-danger" })
-                                        <span class="nb-input-postfix">руб.</span>
-                                    </div>
-                                </div>
-                                <div class="nb-create__time">
-                                    <div class="nb-input-wrap">
-                                        @*@Html.TextBoxFor(m => m.Duration, new { @type = "number" })*@
-                                        @Html.TextBox("Duration", TimeSpan.FromTicks((long)ViewBag.Project.Duration), new { @type = "number" })
-                                        @Html.ValidationMessageFor(m => m.Duration, "", new { @class = "text-danger" })
-                                        <span class="nb-create__time-txt">дней (от 1 до 180)</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="nb-create__foot">
-                            <div class="nb-create-fund__info cf">
-                                <div class="nb-create-fund__commission">
-                                    <strong class="nb-create-fund__value" id="comission">0 руб.</strong>
-                                    <span class="nb-create-fund__txt">Комиссионный сбор (@ViewBag.Settings.PlatformComission%)</span>
-                                    <span class="nb-tooltip pay__tooltip__link">?<span class="nb-tooltip__content">Комиссионный сбор включает общую комиссию ArtUp, банка и платежной системы. Комиссия взимается со всей собранной суммы ТОЛЬКО в случае успешного окончания краудфандинговой кампании.</span></span>
-                                </div>
-                                <div class="nb-create-fund__income-tax">
-                                    <strong class="nb-create-fund__value" id="income">0 руб.</strong>
-                                    <span class="nb-create-fund__txt">Подоходный налог (@ViewBag.Settings.IncomeTax%)</span>
-                                    <span class="nb-tooltip pay__tooltip__link">?<span class="nb-tooltip__content">Подоходный налог, взимаемый государством, составляет @ViewBag.Settings.IncomeTax%. Стоит учитывать, что сумма в @ViewBag.Settings.MaxFreeAmount руб. налогом не облагается. Уплату налога следует производить самостоятельно.</span></span>
-                                </div>
-                                <div class="nb-create-fund__final-sum">
-                                    <strong class="nb-create-fund__value nb-create-fund__value--final">≈ <span class="js-create-final-sum" id="total-sum">0</span> руб.</strong>
-                                    <span class="nb-tooltip pay__tooltip__link">?<span class="nb-tooltip__content">Данный подсчет является приблизительным. Итоговая сумма может отличаться от указанной.</span></span>
-                                </div>
-                            </div>
-                            <hr class="nb-create-media-divider">
-                            <p class="nb-create-desc">Мы рекомендуем указывать минимальную сумму, необходимую для реализации проекта. ArtUp использует модель «все или ничего», а это значит, что для получение средств вам обязательно необходимо собрать от 100% и выше.<br><br>Обращаем ваше внимание на то, что ArtUp берет комиссию только с успешных проектов.</p>
-                        </div>
-                    </section>
-                </div>
-            </div>
-            <div role="tabpanel" class="tab-pane fade" id="gifts">
-                <h2>Добавление подарков</h2>
-                <div id="giftsList"></div>
-                <div class="new-project__left col-md-8">
-                    <div class="new-project__temp-gift js-project-temp-gift">
-                        <section class="nb-section pay-gifts__section js-temp-gift">
-
-                            <div class="nb-create__head">
-                                <h2 class="nb-heading--small create__heading--small">Новый подарок</h2>
-                            </div>
-                            <div class="nb-create__body">
-                                <div class="nb-create__gift-sum">
-                                    <div class="nb-input-wrap create__gift-sum__input-wrap">
-                                        <input type="number" class="nb-input nb-input--with-postfix" id="js-gift-sum-input" alt="money" placeholder="Сумма вознаграждения" value="">
-                                        <span class="nb-input-postfix">руб.</span>
-                                    </div>
-                                    <span class="nb-tooltip create__gift-sum__tooltip__link">?<span class="nb-tooltip__content">Здесь необходимо ввести сумму, которой будет соответствовать ваш подарок.</span></span>
-                                </div>
-                                <div class="nb-create__gift-description">
-                                    <div class="nb-textarea-wrap">
-                                        <textarea class="nb-textarea" id="js-gift-description-textarea" placeholder="Описание подарка"></textarea>
-                                    </div>
-                                </div>
-                                <div class="nb-create__gift-limit">
-                                    <div class="nb-input-wrap create__gift-limit__input-wrap">
-                                        <input type="number" class="nb-input nb-input--with-postfix" id="js-gift-count-input" alt="integer" placeholder="Лимит подарков" value="">
-                                    </div>
-                                </div>
-                                <button id="addNewGift" type="button" class="nb-btn nb-btn--add-media create-gift__btn--add-media">Добавить подарок</button>
-                            </div>
-
-                        </section>
-                        <div class="new-project__gifts js-project-gifts">
-                        </div>
-                        <input type="hidden" id="js-hidden-input-gifts-count" name="all-gifts-count" value="0" aria-required="true">
+                        <p class="nb-create-desc">Название должно быть лаконичным, уникальным и запоминающимся. Будьте уверены в том, что название проекта отражает его суть.</p>
                     </div>
-                </div>
-            </div>
-            <div role="tabpanel" class="tab-pane fade in" id="description">
-                <h2>Подробное описание проекта</h2>
-                <div class="new-project__left col-md-8">
-                    <section class="nb-create create--full-description project-edit-form">
-                        <div class="nb-create__head">
-                            <h2 class="nb-heading--small create__heading--small">Описание проекта</h2>
+                </section>
+                <section class="nb-create create--description project-edit-form nb-create--valid">
+                    <div class="nb-create__head">
+                        <h5 class="nb-heading--small create__heading--small">Краткое описание проекта</h5>
+                    </div>
+                    <div class="nb-create__body">
+                        <div class="nb-textarea-wrap">
+                            @Html.TextAreaFor(m => m.ShortDescription, new { @placeholder = "Коротко расскажите о проекте" })
+                            @Html.ValidationMessageFor(m => m.ShortDescription, "", new { @class = "text-danger" })
                         </div>
-                        @*@Html.TextAreaFor(m => m.FullDescription, new { @placeholder = "Подробное описание проекта" })*@
-                        @Html.TextArea("FullDescription", (string)ViewBag.Project.FullDescription, new { @placeholder = "Подробное описание проекта" })
-                    </section>
-                </div>
-            </div>
-            <div role="tabpanel" class="tab-pane fade in" id="personal">
-                <h2>Личные данные организатора</h2>
-                <div class="new-project__left col-md-8">
-                    <section class="nb-create create--personal project-edit-form ">
-                        <div class="nb-create__head">
-                            <h2 class="nb-heading--small section__heading--small">Личные данные</h2>
-                            <p class="nb-create-desc create__head__desc">Чтобы Улей мог заключить с вами договор, необходимо заполнить паспортные данные. Информация, которую вы передаете в Улей, является конфиденциальной и не подлежит разглашению.</p>
+                        <p class="nb-create-desc">Опишите в одном предложении цель вашего проекта.</p>
+                    </div>
+                </section>
+                <section class="nb-create create--category project-edit-form">
+                    <div class="nb-create__head">
+                        <h5 class="nb-heading--small create__heading--small">Категория проекта</h5>
+                    </div>
+                    <div class="nb-create__body">
+                        <div class="nb-dd-toggle-wrap js-dd-select-box">
+                            @Html.DropDownListFor(m => m.Category, new List<SelectListItem>()
+                            {
+                            new SelectListItem() { Text = "Музыка"},
+                            new SelectListItem() { Text = "Литература"},
+                            new SelectListItem() { Text = "Кино и видео"},
+                            new SelectListItem() { Text = "Фотография"},
+                            new SelectListItem() { Text = "Живопись"},
+                            },
+                            new {@class = "form-control"}
+                            )
                         </div>
-                        <div class="nb-create__body">
-                            <hr class="popup__divider settings__divider">
-                            <div class="nb-section__field">
-                                <div class="nb-input-wrap nb-section__field">
-                                    @*@Html.TextBoxFor(m => m.Surname, new { @placeholder = "Фамилия" })*@
-                                    @Html.TextBox("Surname", (string)ViewBag.Project.Surname, new { @placeholder = "Фамилия" })
-                                    @Html.ValidationMessageFor(m => m.Surname, "", new { @class = "text-danger" })
-                                    @*<input id="js-settings-surname" type="text" name="user[last_name]" param="last_name" class="nb-input js-ajax-client-update-info" placeholder="Фамилия" value="Обуховский" aria-required="true">*@
-                                </div>
-                            </div>
-                            <div class="nb-section__field cf">
-                                <div class="nb-input-wrap settings__input-wrap--name">
-                                    @*@Html.TextBoxFor(m => m.Name, new { @placeholder = "Имя" })*@
-                                    @Html.TextBox("Name", (string)ViewBag.Project.Name, new { @placeholder = "Имя" })
-                                    @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
-                                    @*<input id="js-settings-name" type="text" name="user[first_name]" param="first_name" class="nb-input js-ajax-client-update-info" placeholder="Имя" value="Евгений" aria-required="true">*@
-                                </div>
-                                <div class="nb-input-wrap settings__input-wrap--fname">
-                                    @*@Html.TextBoxFor(m => m.MiddleName, new { @placeholder = "Отчество" })*@
-                                    @Html.TextBox("MiddleName", (string)ViewBag.Project.MiddleName, new { @placeholder = "Отчество" })
-                                    @Html.ValidationMessageFor(m => m.MiddleName, "", new { @class = "text-danger" })
-                                    @*<input id="js-settings-fname" type="text" name="user[patronymic]" param="patronymic" class="nb-input js-ajax-client-update-info" placeholder="Отчество" value="" aria-required="true">*@
-                                </div>
-                            </div>
-                            <div class="nb-section__field">
-                                <div class="nb-input-wrap nb-input-wrap-date js-get-dob-wrap">
-                                    @*@Html.TextBoxFor(m => m.DateOfBirth, new { @placeholder = "Дата рождения", @type = "date" })*@
-                                    @Html.TextBox("DateOfBirth", (DateTime)ViewBag.Project.DateOfBirth, new { @placeholder = "Дата рождения", @type = "date" })
-                                    @Html.ValidationMessageFor(m => m.DateOfBirth, "", new { @class = "text-danger" })
-                                    @*<input required="" id="datetimepicker" type="text" name="user[dt_birth]" param="dt_birth" placeholder="Дата рождения" class="nb-input nb-input-date js-ajax-client-update-info" value="" aria-required="true">*@
-                                    <svg class="nb-input__icon-date" xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path class="cls-calendar" fill-rule="evenodd" d="M20 17H0V1h2V0h2v1h12V0h2v1h2v16zM18 3H2v12h16V3zM7 8H5V6h2v2zm0 4H5v-2h2v2zm4-4H9V6h2v2zm0 4H9v-2h2v2zm4-4h-2V6h2v2zm0 4h-2v-2h2v2z"></path></svg>
-                                </div>
-                            </div>
-                            <hr class="popup__divider settings__divider">
-                            <div class="nb-section__field">
-                                <div class="nb-dd-toggle-wrap js-dd-select-box">
+                    </div>
+                </section>
+                <section class="nb-create create--location js-section-location project-edit-form">
+                    <div id="js-create-map" class="nb-create__map-bg" style="display: none;">
 
-                                    <div class="nb-dd-toggle js-toggle-dd">
-                                        <span class="nb-dd-toggle-txt js-toggle-dd-txt nb-dd-toggle-txt--default">Выберите тип документа</span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="9" class="nb-dd-arrow-icon" preserveAspectRatio="xMidYMid" viewBox="0 0 13 9"><path fill-rule="evenodd" d="M12.003 1L6.502 6.592 1 1" class="cls-dd-arrow-Aqua"></path></svg>
-                                    </div>
+                    </div>
+                    <div class="nb-create__head nb-create-location__head">
+                        <h5 class="nb-heading--small create__heading--small">Локация проекта</h5>
+                    </div>
+                    <div class="nb-create__body">
+                        <div class="nb-dd-toggle-wrap js-dd-select-box">
+                            @Html.DropDownListFor(m => m.Location, new List<SelectListItem>() {
+                            #region Cities
+                            new SelectListItem() { Text = "Минск" },
+                            new SelectListItem() { Text = "Брест" },
+                            new SelectListItem() { Text = "Витебск" },
+                            new SelectListItem() { Text = "Гомель" },
+                            new SelectListItem() { Text = "Гродно" },
+                            new SelectListItem() { Text = "Могилев" },
+                            new SelectListItem() { Text = "Барановичи" },
+                            new SelectListItem() { Text = "Барань" },
+                            new SelectListItem() { Text = "Белоозёрск" },
+                            new SelectListItem() { Text = "Берёза" },
+                            new SelectListItem() { Text = "Березино" },
+                            new SelectListItem() { Text = "Берёзовка" },
+                            new SelectListItem() { Text = "Бобруйск" },
+                            new SelectListItem() { Text = "Борисов" },
+                            new SelectListItem() { Text = "Буда-Кошелёво" },
+                            new SelectListItem() { Text = "Быхов" },
+                            new SelectListItem() { Text = "Василевичи" },
+                            new SelectListItem() { Text = "Верхнедвинск" },
+                            new SelectListItem() { Text = "Ветка" },
+                            new SelectListItem() { Text = "Вилейка" },
+                            new SelectListItem() { Text = "Волковыск" },
+                            new SelectListItem() { Text = "Воложин" },
+                            new SelectListItem() { Text = "Высокое" },
+                            new SelectListItem() { Text = "Ганцевичи" },
+                            new SelectListItem() { Text = "Глубокое" },
+                            new SelectListItem() { Text = "Горки" },
+                            new SelectListItem() { Text = "Городок" },
+                            new SelectListItem() { Text = "Давид-Городок" },
+                            new SelectListItem() { Text = "Дзержинск" },
+                            new SelectListItem() { Text = "Дисна" },
+                            new SelectListItem() { Text = "Добруш" },
+                            new SelectListItem() { Text = "Докшицы" },
+                            new SelectListItem() { Text = "Дрогичин" },
+                            new SelectListItem() { Text = "Дубровно" },
+                            new SelectListItem() { Text = "Дятлово" },
+                            new SelectListItem() { Text = "Ельск" },
+                            new SelectListItem() { Text = "Жабинка" },
+                            new SelectListItem() { Text = "Житковичи" },
+                            new SelectListItem() { Text = "Жлобин" },
+                            new SelectListItem() { Text = "Жодино" },
+                            new SelectListItem() { Text = "Заславль" },
+                            new SelectListItem() { Text = "Иваново" },
+                            new SelectListItem() { Text = "Ивацевичи" },
+                            new SelectListItem() { Text = "Ивье" },
+                            new SelectListItem() { Text = "Калинковичи" },
+                            new SelectListItem() { Text = "Каменец" },
+                            new SelectListItem() { Text = "Кировск" },
+                            new SelectListItem() { Text = "Клецк" },
+                            new SelectListItem() { Text = "Климовичи" },
+                            new SelectListItem() { Text = "Кличев" },
+                            new SelectListItem() { Text = "Кобрин" },
+                            new SelectListItem() { Text = "Копыль" },
+                            new SelectListItem() { Text = "Коссово" },
+                            new SelectListItem() { Text = "Костюковичи" },
+                            new SelectListItem() { Text = "Кричев" },
+                            new SelectListItem() { Text = "Крупки" },
+                            new SelectListItem() { Text = "Лепель" },
+                            new SelectListItem() { Text = "Лида" },
+                            new SelectListItem() { Text = "Логойск" },
+                            new SelectListItem() { Text = "Лунинец" },
+                            new SelectListItem() { Text = "Любань" },
+                            new SelectListItem() { Text = "Ляховичи" },
+                            new SelectListItem() { Text = "Малорита" },
+                            new SelectListItem() { Text = "Марьина Горка" },
+                            new SelectListItem() { Text = "Микашевичи" },
+                            new SelectListItem() { Text = "Миоры" },
+                            new SelectListItem() { Text = "Молодечно" },
+                            new SelectListItem() { Text = "Мосты" },
+                            new SelectListItem() { Text = "Мстиславль" },
+                            new SelectListItem() { Text = "Мядель" },
+                            new SelectListItem() { Text = "Наровля" },
+                            new SelectListItem() { Text = "Несвиж" },
+                            new SelectListItem() { Text = "Новогрудок" },
+                            new SelectListItem() { Text = "Новолукомль" },
+                            new SelectListItem() { Text = "Новополоцк" },
+                            new SelectListItem() { Text = "Орша" },
+                            new SelectListItem() { Text = "Осиповичи" },
+                            new SelectListItem() { Text = "Ошмяны" },
+                            new SelectListItem() { Text = "Петриков" },
+                            new SelectListItem() { Text = "Пинск" },
+                            new SelectListItem() { Text = "Полоцк" },
+                            new SelectListItem() { Text = "Поставы" },
+                            new SelectListItem() { Text = "Пружаны" },
+                            new SelectListItem() { Text = "Речица" },
+                            new SelectListItem() { Text = "Рогачёв" },
+                            new SelectListItem() { Text = "Санкт-Петербург" },
+                            new SelectListItem() { Text = "Светлогорск" },
+                            new SelectListItem() { Text = "Свислочь" },
+                            new SelectListItem() { Text = "Сенно" },
+                            new SelectListItem() { Text = "Скидель" },
+                            new SelectListItem() { Text = "Славгород" },
+                            new SelectListItem() { Text = "Слоним" },
+                            new SelectListItem() { Text = "Слуцк" },
+                            new SelectListItem() { Text = "Смолевичи" },
+                            new SelectListItem() { Text = "Сморгонь" },
+                            new SelectListItem() { Text = "Солигорск" },
+                            new SelectListItem() { Text = "Старые Дороги" },
+                            new SelectListItem() { Text = "Столбцы" },
+                            new SelectListItem() { Text = "Столин" },
+                            new SelectListItem() { Text = "Толочин" },
+                            new SelectListItem() { Text = "Туров" },
+                            new SelectListItem() { Text = "Узда" },
+                            new SelectListItem() { Text = "Фаниполь" },
+                            new SelectListItem() { Text = "Хойники" },
+                            new SelectListItem() { Text = "Чаусы" },
+                            new SelectListItem() { Text = "Чашники" },
+                            new SelectListItem() { Text = "Червень" },
+                            new SelectListItem() { Text = "Чериков" },
+                            new SelectListItem() { Text = "Чечерск" },
+                            new SelectListItem() { Text = "Шклов" },
+                            new SelectListItem() { Text = "Щучин" }
+                            #endregion
+                            },
+                            new {@class = "form-control"}
+                            )
+                        </div>
+                    </div>
+                </section>
 
-                                    @Html.DropDownListFor(m => m.DocumentType, new List<SelectListItem>()
-                                    {
-                                        new SelectListItem() { Text = "Паспорт" },
-                                        new SelectListItem() { Text = "Вид на жительство" },
-                                        new SelectListItem() { Text = "Удостоверение беженца" },
-                                    })
-
-                                    <ul class="nb-dd nb-dd--hidden js-dd-menu">
-                                        <li class="nb-dd-item">
-                                            <div data-value="" class="dd-item-link js-dd-menu-item dd-item-link--default dd-item-link--selected js-default-select-in-many-input-block">
-                                                <span class="">Выберите тип документа</span>
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="9" class="nb-dd-arrow-icon" preserveAspectRatio="xMidYMid" viewBox="0 0 13 9"><path fill-rule="evenodd" d="M.992 6.606l5.501-5.592 5.502 5.592" class="cls-dd-arrow-Aqua"></path></svg>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="nb-section__field">
+                <div class="editor-label"><h5>Файл изображения</h5></div>
+                <div class="editor-field">
+                    <input type="file" name="uploadImage" />
+                </div>
+                <section class="nb-create create--fund project-edit-form">
+                    <div class="nb-create__head">
+                        <h5 class="nb-heading--small create__heading--small">Бюджет кампании</h5>
+                    </div>
+                    <div class="nb-create__body">
+                        <div class="nb-create__fund cf">
+                            <div class="nb-create__money">
                                 <div class="nb-input-wrap">
-                                    @*@Html.TextBoxFor(m => m.PasspotNumberSeries, new { @id = "js-settings-series-and-number-doc", @placeholder = "Серия и номер" })*@
-                                    @Html.TextBox("PasspotNumberSeries", (string)ViewBag.Project.PasspotNumberSeries, new { @id = "js-settings-series-and-number-doc", @placeholder = "Серия и номер" })
-                                    @Html.ValidationMessageFor(m => m.PasspotNumberSeries, "", new { @class = "text-danger" })
-                                    @*<input id="js-settings-series-and-number-doc" type="text" name="user[doc_series]" param="doc_series" class="nb-input js-ajax-client-update-info" placeholder="Серия и номер" value="" aria-required="true">*@
-                                    <label for="js-settings-series-and-number-doc" class="nb-input-label">Пример: MР1234567</label>
+                                    @Html.TextBoxFor(m => m.RequiredMoney, new { @id = "money-amount", @type = "number", @placeholder = "руб."})
+                                    @Html.ValidationMessageFor(m => m.RequiredMoney, "", new { @class = "text-danger" })
                                 </div>
                             </div>
-                            <div class="nb-section__field">
-                                <div class="nb-input-wrap">
-                                    @*@Html.TextBoxFor(m => m.PersonalPassportNumber, new { @id = "js-settings-personal-num", @placeholder = "Личный номер" })*@
-                                    @Html.TextBox("PersonalPassportNumber", (string)ViewBag.Project.PersonalPassportNumber, new { @id = "js-settings-personal-num", @placeholder = "Личный номер" })
-                                    @Html.ValidationMessageFor(m => m.PersonalPassportNumber, "", new { @class = "text-danger" })
-                                    @*<input id="js-settings-personal-num" type="text" name="user[personal_num]" param="personal_num" class="nb-input js-ajax-client-update-info" placeholder="Личный номер" value="" aria-required="true">*@
-                                    <label for="js-settings-personal-num" class="nb-input-label">Пример: 1234567A002PB9</label>
-                                </div>
-                            </div>
-                            <div class="nb-section__field">
-                                <div class="nb-input-wrap nb-create__input-wrap">
-                                    @*@Html.TextBoxFor(m => m.WhoAndWhereIssued, new { @id = "js-settings-document-issued", @placeholder = "Кем и когда выдан" })*@
-                                    @Html.TextBox("WhoAndWhereIssued", (string)ViewBag.Project.WhoAndWhereIssued, new { @id = "js-settings-document-issued", @placeholder = "Кем и когда выдан" })
-                                    @Html.ValidationMessageFor(m => m.WhoAndWhereIssued, "", new { @class = "text-danger" })
-                                    @*<input id="js-settings-document-issued" type="text" name="user[doc_who_issued]" param="doc_who_issued" class="nb-input js-ajax-client-update-info" placeholder="Кем и когда выдан" value="" aria-required="true">*@
-                                    <label for="js-settings-document-issued" class="nb-input-label">Пример: Советское РУВД г.Минска, выдан 22.04.2015</label>
-                                </div>
-                            </div>
-                            <div class="nb-section__field">
-                                <div class="nb-input-wrap nb-create__input-wrap">
-                                    @*@Html.TextBoxFor(m => m.Adress, new { @id = "js-settings-passport-address", @placeholder = "Адрес регистрации" })*@
-                                    @Html.TextBox("Adress", (string)ViewBag.Project.Adress, new { @id = "js-settings-passport-address", @placeholder = "Адрес регистрации" })
-                                    @Html.ValidationMessageFor(m => m.Adress, "", new { @class = "text-danger" })
-                                    @*<input id="js-settings-passport-address" type="text" name="user[registration]" param="registration" class="nb-input js-ajax-client-update-info" placeholder="Адрес регистрации" value="" aria-required="true">*@
-                                    <label for="js-settings-passport-address" class="nb-input-label">Пример: г.Минск, ул. Е. Полоцкой, д.3, кв. 16</label>
-                                </div>
-                            </div>
-                            <div class="nb-section__field">
-                                <div class="nb-input-wrap nb-create__input-wrap">
-                                    @*@Html.TextBoxFor(m => m.PhoneNumber, new { @id = "js-settings-phone", @placeholder = "Контактный номер" })*@
-                                    @Html.TextBox("PhoneNumber", (string)ViewBag.Project.PhoneNumber, new { @id = "js-settings-phone", @placeholder = "Контактный номер" })
-                                    @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })
-                                    @*<input id="js-settings-phone" type="text" name="user[phone]" param="phone" class="nb-input js-ajax-client-update-info" placeholder="Контактный номер" value="" aria-required="true">*@
-                                    <label for="js-settings-phone" class="nb-input-label">Пример: +375 (29) 123 45 67</label>
-                                </div>
-
-                            </div>
-                            <div class="nb-section__field">
-                                <div class="nb-input-wrap nb-create__input-wrap">
-                                    @*@Html.TextBoxFor(m => m.AccountNumber, new { @placeholder = "Номер счёта" })*@
-                                    @Html.TextBox("AccountNumber", (string)ViewBag.Project.AccountNumber, new { @placeholder = "Номер счёта" })
-                                    @Html.ValidationMessageFor(m => m.AccountNumber, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <input type="checkbox" id="rules" /><p>Подтвердите, что вы ознакомлены с <a href="/Home/Rules">соглашением</a> краудфандинговой платформы ArtUp и принимаете его</p>
                         </div>
-                    </section>
-                </div>
+                    </div>
+                    <div class="nb-create__head">
+                        <h5 class="nb-heading--small create__heading--small">Продолжительность кампании</h5>
+                    </div>
+                    <div class="nb-create__body">
+                        <div class="nb-create__fund cf">
+                            <div class="nb-create__time">
+                                <div class="nb-input-wrap">
+                                    @Html.TextBoxFor(m => m.Duration, new { @type = "number"})
+                                    @Html.ValidationMessageFor(m => m.Duration, "", new { @class = "text-danger" })
+                                    <span class="nb-create__time-txt">дней (от 1 до 180)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="nb-create__foot" style="padding-top:15px">
+                        <div class="nb-create-fund__info cf">
+                            <div class="nb-create-fund__commission">
+                                <strong class="nb-create-fund__value" id="comission">0 руб.</strong>
+                                <span class="nb-create-fund__txt">Комиссионный сбор (@ViewBag.Settings.PlatformComission%)</span>
+                                <span class="nb-tooltip pay__tooltip__link"><span class="nb-tooltip__content">Комиссионный сбор включает общую комиссию ArtUp, банка и платежной системы. Комиссия взимается со всей собранной суммы ТОЛЬКО в случае успешного окончания краудфандинговой кампании.</span></span>
+                            </div>
+                            <div class="nb-create-fund__income-tax">
+                                <strong class="nb-create-fund__value" id="income">0 руб.</strong>
+                                <span class="nb-create-fund__txt">Подоходный налог (@ViewBag.Settings.IncomeTax%)</span>
+                                <span class="nb-tooltip pay__tooltip__link"><span class="nb-tooltip__content">Подоходный налог, взимаемый государством, составляет @ViewBag.Settings.IncomeTax%. Стоит учитывать, что сумма в @ViewBag.Settings.MaxFreeAmount руб. налогом не облагается. Уплату налога следует производить самостоятельно.</span></span>
+                            </div>
+                            <div class="nb-create-fund__final-sum">
+                                <strong class="nb-create-fund__value nb-create-fund__value--final">≈ <span class="js-create-final-sum" id="total-sum">0</span> руб.</strong>
+                                <span class="nb-tooltip pay__tooltip__link"><span class="nb-tooltip__content">Данный подсчет является приблизительным. Итоговая сумма может отличаться от указанной.</span></span>
+                            </div>
+                        </div>
+                        <hr class="nb-create-media-divider">
+                        <p class="nb-create-desc">Мы рекомендуем указывать минимальную сумму, необходимую для реализации проекта. ArtUp использует модель «все или ничего», а это значит, что для получение средств вам обязательно необходимо собрать от 100% и выше.<br><br>Обращаем ваше внимание на то, что ArtUp берет комиссию только с успешных проектов.</p>
+                    </div>
+                </section>
             </div>
-
         </div>
+        <div role="tabpanel" class="tab-pane fade" id="gifts">
+            <div class="new-project__left col-md-12">
+                <div id="giftsList"></div>
+                <div class="new-project__temp-gift js-project-temp-gift">
+                    <section class="nb-section pay-gifts__section js-temp-gift">
+
+                        <div class="nb-create__head">
+                            <h5 class="nb-heading--small create__heading--small">Cумма, которой будет соответствовать ваш подарок.</h5>
+                        </div>
+                        <div class="nb-create__body">
+                            <div class="nb-create__gift-sum">
+                                <div class="nb-input-wrap create__gift-sum__input-wrap">
+                                    <input type="number" placeholder="руб."class="form-control nb-input nb-input--with-postfix from-control" id="js-gift-sum-input" alt="money" value="">
+                                </div>
+                            </div>
+                            <div class="nb-create__gift-description">
+                                <h5>Описание подарка</h5>
+                                <div class="nb-textarea-wrap">
+                                    <textarea class="nb-textarea" id="js-gift-description-textarea" placeholder="краткое описание подарка"></textarea>
+                                </div>
+                            </div>
+                            <div class="nb-create__gift-limit">
+                                <h5>Лимит подарков</h5>
+                                <div class="nb-input-wrap create__gift-limit__input-wrap">
+                                    <input type="number" class="nb-input nb-input--with-postfix" id="js-gift-count-input" alt="integer" value="">
+                                </div>
+                            </div>
+                            <button id="addNewGift" type="button" class="artup-button nb-btn nb-btn--add-media create-gift__btn--add-media">Добавить подарок</button>
+                        </div>
+
+                    </section>
+                    <div class="new-project__gifts js-project-gifts">
+                    </div>
+                    <input type="hidden" id="js-hidden-input-gifts-count" name="all-gifts-count" value="0" aria-required="true">
+                </div>
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane fade in" id="description">
+            <div class="new-project__left col-md-12">
+                <section class="nb-create create--full-description project-edit-form">
+                    <div class="nb-create__head">
+                        <h5 class="nb-heading--small create__heading--small">Подробное описание проекта</h5>
+                    </div>
+                    @Html.TextAreaFor(m => m.FullDescription, new { @placeholder = "Абзац или несколько, описывающие ваш проект." })
+                </section>
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane fade in" id="personal">
+            <div class="new-project__left col-md-12">
+                <section class="nb-create create--personal project-edit-form ">
+                    <div class="nb-create__head">
+                        <h5 class="nb-heading--small section__heading--small" style="font-size: 16px">Личные данные организатора</h5>
+                        <p class="nb-create-desc create__head__desc">Чтобы ArtUp мог заключить с вами договор, необходимо заполнить паспортные данные. Информация, которую вы передаете в ArtUp, является конфиденциальной и не подлежит разглашению.</p>
+                    </div>
+                    <div class="nb-create__body">
+                        <hr class="popup__divider settings__divider">
+                        <h5 class="nb-heading--small section__heading--small">Ваше имя</h5>
+                        <div class="nb-section__field" style="margin-bottom: 10px;">
+                            <div class="nb-input-wrap nb-section__field">
+                                @Html.TextBoxFor(m => m.Surname, new { @placeholder = "Фамилия" })
+                                @Html.ValidationMessageFor(m => m.Surname, "", new { @class = "text-danger" })
+                                @*<input id="js-settings-surname" type="text" name="user[last_name]" param="last_name" class="nb-input js-ajax-client-update-info" placeholder="Фамилия" value="Обуховский" aria-required="true">*@
+                            </div>
+                        </div>
+                        <div class="nb-section__field cf">
+                            <div class="nb-input-wrap settings__input-wrap--name" style="margin-bottom: 10px;">
+                                @Html.TextBoxFor(m => m.Name, new { @placeholder = "Имя" })
+                                @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                                @*<input id="js-settings-name" type="text" name="user[first_name]" param="first_name" class="nb-input js-ajax-client-update-info" placeholder="Имя" value="Евгений" aria-required="true">*@
+                            </div>
+                            <div class="nb-input-wrap settings__input-wrap--fname" style="margin-bottom: 10px;">
+                                @Html.TextBoxFor(m => m.MiddleName, new { @placeholder = "Отчество" })
+                                @Html.ValidationMessageFor(m => m.MiddleName, "", new { @class = "text-danger" })
+                                @*<input id="js-settings-fname" type="text" name="user[patronymic]" param="patronymic" class="nb-input js-ajax-client-update-info" placeholder="Отчество" value="" aria-required="true">*@
+                            </div>
+                        </div>
+                        <div class="nb-section__field">
+                            <h5 class="nb-heading--small section__heading--small">Дата рождения</h5>
+                            <div class="nb-input-wrap nb-input-wrap-date js-get-dob-wrap">
+                                @Html.TextBoxFor(m => m.DateOfBirth, new { @placeholder = "Дата рождения", @type = "date" })
+                                @Html.ValidationMessageFor(m => m.DateOfBirth, "", new { @class = "text-danger" })
+                                @*<input required="" id="datetimepicker" type="text" name="user[dt_birth]" param="dt_birth" placeholder="Дата рождения" class="nb-input nb-input-date js-ajax-client-update-info" value="" aria-required="true">*@
+                            </div>
+                        </div>
+                        <hr class="popup__divider settings__divider">
+                        <div class="nb-section__field">
+                            <div class="nb-dd-toggle-wrap js-dd-select-box">
+
+                                <div class="nb-dd-toggle js-toggle-dd">
+                                    <h5><span class="nb-dd-toggle-txt js-toggle-dd-txt nb-dd-toggle-txt--default">Выберите тип документа</span></h5>
+                                </div>
+
+                                @Html.DropDownListFor(m => m.DocumentType, new List<SelectListItem>()
+                                {
+                                new SelectListItem() { Text = "Паспорт" },
+                                new SelectListItem() { Text = "Вид на жительство" },
+                                new SelectListItem() { Text = "Удостоверение беженца" },
+                                },
+                                new {@class = "form-control"}
+                                )
+                            </div>
+                        </div>
+                        <div class="nb-section__field">
+                            <h5>Серия и номер пасспорта</h5>
+                            <div class="nb-input-wrap">
+                                @Html.TextBoxFor(m => m.PasspotNumberSeries, new { @id = "js-settings-series-and-number-doc", @placeholder = "Пример: MР1234567"})
+                                @Html.ValidationMessageFor(m => m.PasspotNumberSeries, "", new { @class = "text-danger" })
+                                @*<input id="js-settings-series-and-number-doc" type="text" name="user[doc_series]" param="doc_series" class="nb-input js-ajax-client-update-info" placeholder="Серия и номер" value="" aria-required="true">*@
+                            </div>
+                        </div>
+                        <div class="nb-section__field">
+                            <h5>Личный номер</h5>
+                            <div class="nb-input-wrap">
+                                @Html.TextBoxFor(m => m.PersonalPassportNumber, new { @id = "js-settings-personal-num", @placeholder = "Пример: 1234567A002PB9" })
+                                @Html.ValidationMessageFor(m => m.PersonalPassportNumber, "", new { @class = "text-danger" })
+                                @*<input id="js-settings-personal-num" type="text" name="user[personal_num]" param="personal_num" class="nb-input js-ajax-client-update-info" placeholder="Личный номер" value="" aria-required="true">*@
+                            </div>
+                        </div>
+                        <div class="nb-section__field">
+                            <h5>Кем и когда выдан</h5>
+                            <div class="nb-input-wrap nb-create__input-wrap">
+                                @Html.TextBoxFor(m => m.WhoAndWhereIssued, new { @id = "js-settings-document-issued", @placeholder = "Пример: Советское РУВД г.Минска, выдан 22.04.2015" })
+                                @Html.ValidationMessageFor(m => m.WhoAndWhereIssued, "", new { @class = "text-danger" })
+                                @*<input id="js-settings-document-issued" type="text" name="user[doc_who_issued]" param="doc_who_issued" class="nb-input js-ajax-client-update-info" placeholder="Кем и когда выдан" value="" aria-required="true">*@
+                            </div>
+                        </div>
+                        <div class="nb-section__field">
+                            <h5>Адрес регистрации</h5>
+                            <div class="nb-input-wrap nb-create__input-wrap">
+                                @Html.TextBoxFor(m => m.Adress, new { @id = "js-settings-passport-address", @placeholder = "Пример: г. Минск, ул. Епамовская, д.14, кв. 88" })
+                                @Html.ValidationMessageFor(m => m.Adress, "", new { @class = "text-danger" })
+                                @*<input id="js-settings-passport-address" type="text" name="user[registration]" param="registration" class="nb-input js-ajax-client-update-info" placeholder="Адрес регистрации" value="" aria-required="true">*@
+                            </div>
+                        </div>
+                        <div class="nb-section__field">
+                            <h5>Контактный номер</h5>
+                            <div class="nb-input-wrap nb-create__input-wrap">
+                                @Html.TextBoxFor(m => m.PhoneNumber, new { @id = "js-settings-phone", @placeholder = "Пример: +375 (29) 123 45 67" })
+                                @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })
+                                @*<input id="js-settings-phone" type="text" name="user[phone]" param="phone" class="nb-input js-ajax-client-update-info" placeholder="Контактный номер" value="" aria-required="true">*@
+                                <label for="js-settings-phone" class="nb-input-label"></label>
+                            </div>
+
+                        </div>
+                        <div class="nb-section__field">
+                            <h5>Номер счёта</h5>
+                            <div class="nb-input-wrap nb-create__input-wrap">
+                                @Html.TextBoxFor(m => m.AccountNumber, new { @placeholder = "" })
+                                @Html.ValidationMessageFor(m => m.AccountNumber, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <hr>
+                        <input style="display:inline;" type="checkbox" id="rules" /><span> Я ознакомлен с <a target="_blank" href="/Home/Rules">соглашением</a> краудфандинговой платформы ArtUp и принимаю его</span>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+    </div>
     }
 </div>
 
@@ -579,11 +532,18 @@ new SelectListItem() { Text = "Щучин" }
             var amount = $('#js-gift-sum-input').val();
             var description = $('#js-gift-description-textarea').val();
             var count = $('#js-gift-count-input').val();
-            $('#giftsList').append('<div id="gift-' + i + '"><h3>Подарок:</h3><input type="button" id="' + i + '" class="remove-gift" value="Удалить"><input type="number" placeholder="Сумма" name="Gifts[' + i + '].MoneyAmount" value="' +
-                amount + '"/><input type="text" placeholder="Описание" name="Gifts[' + i + '].Description" value="' +
-                description + '"/><input type="number" placeholder="Количество" name="Gifts[' + i + '].AvailableCount" value="' +
-                count + '"/></div>');
-            i++;
+            if (amount > 0 && description.length > 0 && count > 0) {
+                $('#giftsList').append('<div id="gift-' + i + '"><h5>Прикреплённый подарок:</h5><p><h5>Необходимая сумма</h5></p><input type="number" name="Gifts[' + i + '].MoneyAmount" value="' +
+                    amount + '" class="form-control" margin-bottom: 10px;" /><h5>Описание</h5><input type="text"  name="Gifts[' + i + '].Description" value="' +
+                    description + '" style="min-height: 50px; margin-bottom: 10px;"/><h5>Количество</h5><input type="number" name="Gifts[' + i + '].AvailableCount" value="' +
+                    count + '"/><input type="button" id="' + i + '" class="artup-button remove-gift" value="Удалить"><hr></div>');
+                i++;
+                $('#js-gift-sum-input').val('');
+                var description = $('#js-gift-description-textarea').val('');
+                var count = $('#js-gift-count-input').val('');
+            } else {
+                alert('Поля cуммы, описания и лимита должны быть корректны.');
+            }
         });
         $('#giftsList').on('click', '.remove-gift', function () {
             $(this).parent().remove();
@@ -603,10 +563,15 @@ new SelectListItem() { Text = "Щучин" }
         });
         $('#rules').click(function(){
             if (this.checked)
-                $('#send-project').removeAttr('disabled');
+                $('#send-project').removeClass('art-disabled');
             else
-                $('#send-project').attr('disabled', 'disabled');
+                $('#send-project').addClass('art-disabled');
+        });
+        $("#create-form").submit(function(e){
+            if ($('#send-project').hasClass('art-disabled')) {
+                alert('Вначале необходимо принять пользовательское соглашение!');
+                return false;
+            }
         });
     });
 </script>
-

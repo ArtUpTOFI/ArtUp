@@ -1167,3 +1167,6 @@ hr {
   height: 50px;
   padding: 5px 20px;
 }
+.artup-hidden {
+    display: none;
+}
