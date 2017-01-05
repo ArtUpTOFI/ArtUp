@@ -81,11 +81,14 @@
                 <div class="col-sm-6">
                     <div class="single-sidebar">
                         <div style="margin-top: 40px">
-                            <div class="col-sm-10">
-                                <input type="text" placeholder="Найти проект" id="search-query">
+                            <div class="col-sm-8">
+                                <input type="text" placeholder="Искать по имени проекта" id="search-query" style="height: 50px;">
                             </div>
                             <div class="col-sm-2">
-                                <a href="/Home/SearchResults?query=" id="find-link"><input type="submit" value="Найти" id="find-projects"></a>
+                                <a href="/Home/SearchResults?query=" id="find-link"><input class="button-search" type="submit" value="Найти" id="find-projects"></a>
+                            </div>
+                            <div class="col-sm-2">
+                                <a href="/Home/WideSearch"><button class="artup-button button-search">Расширенный поиск</button></a>
                             </div>
                         </div>
                     </div>
