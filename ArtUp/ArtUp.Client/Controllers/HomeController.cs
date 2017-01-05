@@ -285,7 +285,37 @@ namespace ArtUp.Client.Controllers
         [HttpPost]
         public ActionResult EditProject(ProjectViewModel model, HttpPostedFileBase uploadImage)
         {
-            return View();
+            if (!ModelState.IsValid)
+            {
+                ViewBag.UserId = _userManagementService.GetCurrentUser(User.Identity.Name);
+                ViewBag.Settings = _platformDetailsService.GetSettings();
+                return View();
+            }
+            if (uploadImage == null)
+            {
+                ViewBag.Message = "Обложка проекта не была добавлена";
+                return View("DonationError");
+            }
+
+            if (!_bankApi.CheckAccount(model.AccountNumber))
+            {
+                ViewBag.Message = "BANK answer:Банковский счет указан неверно!";
+                return View("DonationError");
+            }
+
+            string fileName = Path.GetFileName(uploadImage.FileName);
+            uploadImage.SaveAs(Server.MapPath("~/Content/img/" + fileName));
+            model.Avatar = fileName;
+
+            var settings = _platformDetailsService.GetSettings();
+            ViewBag.Settings = _platformDetailsService.GetSettings();
+
+            var id = Convert.ToInt32(Request.RequestContext.RouteData.Values["id"]);
+            _projectService.DeleteProject(id);
+
+            _projectService.CreateProject(model);
+            ViewBag.Message = "Отправка проекта на модерацию администратору прошла успешно!";
+            return View("DonationError"); ;
         }
     }
 }

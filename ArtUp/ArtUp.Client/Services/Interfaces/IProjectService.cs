@@ -31,5 +31,7 @@ namespace ArtUp.Client.Services
         IEnumerable<ProjectViewModel> GetByState(ProjectState state, int userId);
 
         void UpdateProject(ProjectViewModel model);
+
+        void DeleteProject(int projectId);
     }
 }

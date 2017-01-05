@@ -76,20 +76,20 @@ namespace ArtUp.Client.Services
         {
             return data.Projects.Find(p => p.Category.Title == categoty && p.ProjectState == ProjectState.Approved)
                 .Select(p => new ProjectViewModel()
-            {
-                Avatar = p.Avatar,
-                CurrentMoney = p.CurrentMoney,
-                CreationDate = p.CreationDate,
-                Duration = p.Duration,
-                FullDescription = p.FullDescription,
-                Id = p.Id,
-                Name = p.Name,
-                RequiredMoney = p.RequiredMoney,
-                ShortDescription = p.ShortDescription,
-                Surname = p.Surname,
-                Title = p.Title,
-                Image = p.Image
-            }).ToList();
+                {
+                    Avatar = p.Avatar,
+                    CurrentMoney = p.CurrentMoney,
+                    CreationDate = p.CreationDate,
+                    Duration = p.Duration,
+                    FullDescription = p.FullDescription,
+                    Id = p.Id,
+                    Name = p.Name,
+                    RequiredMoney = p.RequiredMoney,
+                    ShortDescription = p.ShortDescription,
+                    Surname = p.Surname,
+                    Title = p.Title,
+                    Image = p.Image
+                }).ToList();
         }
 
         public IEnumerable<ProjectViewModel> GetBySuccess(bool isSuccess)
@@ -118,20 +118,20 @@ namespace ArtUp.Client.Services
         {
             return data.Projects.Find(p => p.UserId == userId)
                 .Select(p => new ProjectViewModel()
-            {
-                Avatar = p.Avatar,
-                CurrentMoney = p.CurrentMoney,
-                CreationDate = p.CreationDate,
-                Duration = p.Duration,
-                FullDescription = p.FullDescription,
-                Id = p.Id,
-                Name = p.Name,
-                RequiredMoney = p.RequiredMoney,
-                ShortDescription = p.ShortDescription,
-                Surname = p.Surname,
-                Title = p.Title,
-                Image = p.Image
-            }).ToList(); ;
+                {
+                    Avatar = p.Avatar,
+                    CurrentMoney = p.CurrentMoney,
+                    CreationDate = p.CreationDate,
+                    Duration = p.Duration,
+                    FullDescription = p.FullDescription,
+                    Id = p.Id,
+                    Name = p.Name,
+                    RequiredMoney = p.RequiredMoney,
+                    ShortDescription = p.ShortDescription,
+                    Surname = p.Surname,
+                    Title = p.Title,
+                    Image = p.Image
+                }).ToList(); ;
         }
 
         public IEnumerable<ProjectViewModel> GetProjectsOnMainPaige()
@@ -241,7 +241,7 @@ namespace ArtUp.Client.Services
                 Image = model.Image,
                 AccountNumber = model.AccountNumber,
                 UserId = model.UserId,
-                CategoryId = data.Categories.Find(c => c.Title == category).FirstOrDefault().Id, 
+                CategoryId = data.Categories.Find(c => c.Title == category).FirstOrDefault().Id,
             });
             data.SaveAll();
             var lastProjectId = data.Projects.Find(p => p.Title == model.Title).FirstOrDefault().Id;
@@ -294,6 +294,23 @@ namespace ArtUp.Client.Services
 
             data.Projects.Update(project);
             data.SaveAll();
+        }
+
+        public void DeleteProject(int projectId)
+        {
+            if (data.Projects.Find(p => p.Id == projectId).Any())
+            {
+                var gifts = data.Gifts.Find(g => g.ProjectId == projectId);
+                if (gifts.Any())
+                {
+                    foreach (var gift in gifts)
+                    {
+                        data.Gifts.Delete(gift.Id);
+                    }
+                }
+                data.Projects.Delete(projectId);
+                data.SaveAll();
+            }
         }
     }
 

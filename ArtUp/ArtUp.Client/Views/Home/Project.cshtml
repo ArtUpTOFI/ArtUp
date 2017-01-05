@@ -154,7 +154,11 @@
                     @if (ViewBag.Project.ProjectState == ArtUp.DataAccess.Entities.Enums.ProjectState.Approved)
                     {
                         <div class="related-products-wrapper">
-                            <h2 class="related-products-title">Похожие проекты</h2>
+                            @foreach (var project in ViewBag.SimilarProjects)
+                            {
+                                <h2 class="related-products-title">Похожие проекты</h2>
+                                break;
+                            }
                             <div class="related-products-carousel">
                                 @foreach (var project in ViewBag.SimilarProjects)
                                 {
@@ -167,7 +171,7 @@
                                         </div>
                                         <h2><a href="/Home/Project/@project.Id">@project.Title</a></h2>
                                         <div class="product-carousel-price">
-                                            <ins>надо @project.RequiredMoney</ins> <del>собрали @project.CurrentMoney</del>
+                                            <ins>осталось @(project.RequiredMoney - project.CurrentMoney)</ins>
                                         </div>
                                     </div>
                                 }

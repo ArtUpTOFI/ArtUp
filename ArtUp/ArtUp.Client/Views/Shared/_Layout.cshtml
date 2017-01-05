@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Добро пожаловать на Art Up</title>
+    <title>Art Up</title>
 
     <!-- Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
@@ -81,11 +81,14 @@
                 <div class="col-sm-6">
                     <div class="single-sidebar">
                         <div style="margin-top: 40px">
-                            <div class="col-sm-10">
-                                <input type="text" placeholder="Найти проект" id="search-query">
+                            <div class="col-sm-8">
+                                <input type="text" placeholder="Искать по имени проекта" id="search-query" style="height: 50px;">
                             </div>
                             <div class="col-sm-2">
-                                <a href="/Home/SearchResults?query=" id="find-link"><input type="submit" value="Найти" id="find-projects"></a>
+                                <a href="/Home/SearchResults?query=" id="find-link"><input class="button-search" type="submit" value="Найти" id="find-projects"></a>
+                            </div>
+                            <div class="col-sm-2">
+                                <a href="/Home/WideSearch"><button class="artup-button button-search">Расширенный поиск</button></a>
                             </div>
                         </div>
                     </div>
@@ -106,13 +109,13 @@
                     </button>
                 </div>
                 <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="/Home/Index">Поддержать:</a></li>
-                        <li><a href="/Home/Category?category=music">Музыка</a></li>
-                        <li><a href="/Home/Category?category=literature">Литература</a></li>
-                        <li><a href="/Home/Category?category=movie">Кино и видео</a></li>
-                        <li><a href="/Home/Category?category=photo">Фотография</a></li>
-                        <li><a href="/Home/Category?category=art">Живопись</a></li>
+                    <ul class="nav navbar-nav categories">
+                        <li style="background-color: #999999"><a href="/Home/Index">Поддержать:</a></li>
+                        <li class="music"><a href="/Home/Category?category=music">Музыка</a></li>
+                        <li class="literature"><a href="/Home/Category?category=literature">Литература</a></li>
+                        <li class="movie"><a href="/Home/Category?category=movie">Кино и видео</a></li>
+                        <li class="photo"><a href="/Home/Category?category=photo">Фотография</a></li>
+                        <li class="art"><a href="/Home/Category?category=art">Живопись</a></li>
                 </div>
             </div>
         </div>
@@ -126,13 +129,6 @@
                     <div class="footer-about-us">
                         <h2>A<span>rt Up</span></h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis sunt id doloribus vero quam laborum quas alias dolores blanditiis iusto consequatur, modi aliquid eveniet eligendi iure eaque ipsam iste, pariatur omnis sint! Suscipit, debitis, quisquam. Laborum commodi veritatis magni at?</p>
-                        <div class="footer-social">
-                            <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
-                            <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
-                            <a href="#" target="_blank"><i class="fa fa-youtube"></i></a>
-                            <a href="#" target="_blank"><i class="fa fa-linkedin"></i></a>
-                            <a href="#" target="_blank"><i class="fa fa-pinterest"></i></a>
-                        </div>
                     </div>
                 </div>
 
@@ -140,10 +136,9 @@
                     <div class="footer-menu">
                         <h2 class="footer-wid-title">Полезные ссылки</h2>
                         <ul>
-                            <li><a href="#">О проекте</a></li>
-                            <li><a href="/Home/Rules">Соглашение</a></li>
-                            <li><a href="#">Правила</a></li>
-                            <li><a href="#">FAQ</a></li>
+                            <li><a target="_blank" href="/Home/Rules">Соглашение</a></li>
+                            <li><a target="_blank" href="https://ru.wikipedia.org/wiki/%D0%9A%D1%80%D0%B0%D1%83%D0%B4%D1%84%D0%B0%D0%BD%D0%B4%D0%B8%D0%BD%D0%B3">О краудфандинге</a></li>
+                            <li><a target="_blank" href="http://www.nalog.gov.by/ru/">Портал МНС Беларуси</a></li>
                         </ul>
                     </div>
                 </div>
@@ -207,6 +202,9 @@
                 var searchLink = $('#find-link');
                 searchLink.attr('href', '/Home/SearchResults?query=' + query);
             });
+            if ($(".categories .@Html.ViewBag.Category").length) {
+                $(".categories .@Html.ViewBag.Category").addClass('active');
+            }
         });
     </script>
 </body>
