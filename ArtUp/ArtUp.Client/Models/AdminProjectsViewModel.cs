@@ -8,6 +8,8 @@ namespace ArtUp.Client.Models
 {
     public class AdminProjectsViewModel
     {
+        public IEnumerable<ProjectViewModel> FinishedProject { get; set; }
+
         public IEnumerable<ProjectViewModel> ApprovedProjects { get; set; }
 
         public IEnumerable<ProjectViewModel> RejectProjects { get; set; }

@@ -31,7 +31,14 @@
                                 <div class="product-inner-price">
                                     <p class="goal">Цель: @ViewBag.Project.RequiredMoney</p>
                                     <p class="collected">Уже собрано: @ViewBag.Project.CurrentMoney</p>
-                                    <p class="remined">До завершения проекта: @(((TimeSpan)(ViewBag.Project.CreationDate + TimeSpan.FromTicks(ViewBag.Project.Duration) - DateTime.Now + TimeSpan.FromDays(1))).Days) дня(ей)</p>
+                                    @if ((ViewBag.Project.CreationDate + TimeSpan.FromTicks(ViewBag.Project.Duration) - DateTime.Now + TimeSpan.FromDays(1)).Days > 0)
+                                    {
+                                        <p class="remined">До завершения проекта: @(((TimeSpan)(ViewBag.Project.CreationDate + TimeSpan.FromTicks(ViewBag.Project.Duration) - DateTime.Now + TimeSpan.FromDays(1))).Days) дня(ей)</p>
+                                    }
+                                    else
+                                    {
+                                        <p class="remined">Проект завершен</p>
+                                    }
                                 </div>
                                 @if (Request.IsAuthenticated)
                                 {
