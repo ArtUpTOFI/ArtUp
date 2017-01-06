@@ -64,7 +64,7 @@ namespace ArtUp.Client.Controllers
             var allProjects = _projectService.GetAllProjects();
             var projectsViewModel = new AdminProjectsViewModel
             {
-                FinishedProject = allProjects.Where(p => p.CreationDate.Day + p.Duration > DateTime.Now.Day),
+                FinishedProject = allProjects.Where(p => p.CreationDate.Day + p.Duration > DateTime.Now.Day && p.ProjectState == ProjectState.Approved),
                 ApprovedProjects = allProjects.Where(p => p.ProjectState == ProjectState.Approved),
                 PendingProjects = allProjects.Where(p => p.ProjectState == ProjectState.PendingApproval),
                 RejectProjects = allProjects.Where(p => p.ProjectState == ProjectState.Rejected)
