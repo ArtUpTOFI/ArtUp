@@ -8,10 +8,10 @@ namespace ArtUp.DataAccess.DataContext
     {
         public ArtUpDataContextEF(): base("ArtUpConnection") { }
 
-        static ArtUpDataContextEF()
-        {
-            Database.SetInitializer<ArtUpDataContextEF>(new DevDBInitializer());
-        }
+        //static ArtUpDataContextEF()
+        //{
+        //    Database.SetInitializer<ArtUpDataContextEF>(new DevDBInitializer());
+        //}
 
         public DbSet<User> Users { get; set; }
 

@@ -11,6 +11,9 @@ namespace ArtUp.Client.Services.Interfaces
     {
         IEnumerable<UserDonationViewModel> GetDonations(int projectId);
 
+        IEnumerable<UserDonationViewModel> GetDetailsDonations(int projectId);
+
+
         IEnumerable<ProjectUserDonation> GetProjectsWithDonations(int userId);
 
         bool CreateDonation(UserDonationViewModel donation);

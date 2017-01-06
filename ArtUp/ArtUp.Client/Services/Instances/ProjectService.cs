@@ -88,7 +88,9 @@ namespace ArtUp.Client.Services
                     ShortDescription = p.ShortDescription,
                     Surname = p.Surname,
                     Title = p.Title,
-                    Image = p.Image
+                    Image = p.Image,
+                    WasPaid = p.WasPaid,
+                    IsSuccessful = p.IsSuccessful
                 }).ToList();
         }
 
@@ -290,7 +292,8 @@ namespace ArtUp.Client.Services
             project.FullDescription = model.FullDescription;
             project.IsSuccessful = model.IsSuccessful;
             project.ShortDescription = model.ShortDescription;
-            project.WasPaid = project.WasPaid;
+            project.WasPaid = model.WasPaid;
+            project.CurrentMoney = model.CurrentMoney;
 
             data.Projects.Update(project);
             data.SaveAll();

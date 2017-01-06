@@ -426,27 +426,12 @@
                                 <div class="nb-input-wrap nb-input-wrap-date js-get-dob-wrap">
                                     @Html.TextBoxFor(m => m.DateOfBirth, new { @placeholder = "Дата рождения", @type = "date" })
                                     @Html.ValidationMessageFor(m => m.DateOfBirth, "", new { @class = "text-danger" })
+                                    <p>@ViewBag.DateMessage</p>
                                     @*<input required="" id="datetimepicker" type="text" name="user[dt_birth]" param="dt_birth" placeholder="Дата рождения" class="nb-input nb-input-date js-ajax-client-update-info" value="" aria-required="true">*@
                                 </div>
                             </div>
                             <hr class="popup__divider settings__divider">
-                            <div class="nb-section__field">
-                                <div class="nb-dd-toggle-wrap js-dd-select-box">
-
-                                    <div class="nb-dd-toggle js-toggle-dd">
-                                        <h5><span class="nb-dd-toggle-txt js-toggle-dd-txt nb-dd-toggle-txt--default">Выберите тип документа</span></h5>
-                                    </div>
-
-                                    @Html.DropDownListFor(m => m.DocumentType, new List<SelectListItem>()
-                                        {
-                                            new SelectListItem() { Text = "Паспорт" },
-                                            new SelectListItem() { Text = "Вид на жительство" },
-                                            new SelectListItem() { Text = "Удостоверение беженца" },
-                                        },
-                                        new {@class = "form-control"}
-                                    )
-                                </div>
-                            </div>
+                            
                             <div class="nb-section__field">
                                 <h5>Серия и номер пасспорта</h5>
                                 <div class="nb-input-wrap">

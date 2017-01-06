@@ -52,6 +52,22 @@ namespace ArtUp.Client.Services.Instances
             return donations;
         }
 
+        public IEnumerable<UserDonationViewModel> GetDetailsDonations(int projectId)
+        {
+            var donations = data.UserDonations
+                .Find(d => d.ProjectId == projectId)
+                .Select(d => new UserDonationViewModel()
+                {
+                    DonationDate = d.DonationDate,
+                    Amount = d.Amount,
+                    Email = data.Users.Get(d.UserId ?? 0).Email,
+                    CardNumber = d.AccountNumber
+                    
+                });
+
+            return donations;
+        }
+
         public IEnumerable<ProjectUserDonation> GetProjectsWithDonations(int userId)
         {
             var donationProjects = data.UserDonations

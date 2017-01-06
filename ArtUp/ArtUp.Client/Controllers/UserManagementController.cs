@@ -64,8 +64,8 @@ namespace ArtUp.Client.Controllers
             var allProjects = _projectService.GetAllProjects();
             var projectsViewModel = new AdminProjectsViewModel
             {
-                FinishedProject = allProjects.Where(p => p.CreationDate.Day + p.Duration > DateTime.Now.Day && p.ProjectState == ProjectState.Approved),
-                ApprovedProjects = allProjects.Where(p => p.ProjectState == ProjectState.Approved),
+                FinishedProject = allProjects.Where(p => p.CreationDate.Day + p.Duration < DateTime.Now.Day && p.ProjectState == ProjectState.Approved).OrderByDescending(p=>p.IsSuccessful),
+                ApprovedProjects = allProjects.Where(p => p.ProjectState == ProjectState.Approved).OrderByDescending(p=>p.IsSuccessful),
                 PendingProjects = allProjects.Where(p => p.ProjectState == ProjectState.PendingApproval),
                 RejectProjects = allProjects.Where(p => p.ProjectState == ProjectState.Rejected)
             };
@@ -141,9 +141,7 @@ namespace ArtUp.Client.Controllers
             var maxSum = settings.MaxFreeAmount;
             
             var comission = currentProject.CurrentMoney * (comissionPercents / 100);
-
             
-
             transferAmount = currentProject.CurrentMoney - comissionPercents;
 
             if (transferAmount > maxSum)
@@ -161,18 +159,20 @@ namespace ArtUp.Client.Controllers
         }
 
         [Authorize(Roles = "admin")]
-        public ActionResult ReturnMoney(int projectId)
+        public ActionResult ReturnMoney(int id)
         {
-            var currentProject = _projectService.Get(projectId);
-            var res = _donationService.GetDonations(projectId);
+            var currentProject = _projectService.Get(id);
+            var res = _donationService.GetDetailsDonations(id);
 
             foreach(var d in res)
             {
-                _bankApi.CardTransaction("9999999999999", d.CardNumber, (float)d.Amount);
+                var message = _bankApi.CardTransaction("9999999999999", d.CardNumber, (float)d.Amount);
             }
             ViewBag.Answer = "Деньги возвращены пользователям";
             currentProject.WasPaid = true;
+            currentProject.CurrentMoney = 0;
             _projectService.UpdateProject(currentProject);
+
             return View();
         }
     }

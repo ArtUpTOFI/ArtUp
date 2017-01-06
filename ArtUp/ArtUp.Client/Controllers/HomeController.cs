@@ -100,7 +100,7 @@ namespace ArtUp.Client.Controllers
                 ViewBag.IsApproved = true;
             else
                 ViewBag.IsApproved = false;
-            if (project.CreationDate.Day + project.Duration > DateTime.Now.Day)
+            if (project.CreationDate.Day + project.Duration < DateTime.Now.Day)
                 ViewBag.IsEnbleButton = true;
             else
                 ViewBag.IsEnbleButton = false;
@@ -216,6 +216,7 @@ namespace ArtUp.Client.Controllers
         {
             ViewBag.Settings = _platformDetailsService.GetSettings();
             ViewBag.UserId = _userManagementService.GetCurrentUser(User.Identity.Name);
+            ViewBag.DateMessage = "";
             return View();
         }
 
@@ -224,6 +225,14 @@ namespace ArtUp.Client.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CreateProject(ProjectViewModel model, HttpPostedFileBase uploadImage)
         {
+            ViewBag.Message = "";
+            if(model.DateOfBirth > DateTime.Now)
+            {
+                ViewBag.DateMessage = "Некорректная дата";
+                ViewBag.Settings = _platformDetailsService.GetSettings();
+                ViewBag.UserId = _userManagementService.GetCurrentUser(User.Identity.Name);
+                return View(model);
+            }
             if (!ModelState.IsValid)
             {
                 ViewBag.UserId = _userManagementService.GetCurrentUser(User.Identity.Name);

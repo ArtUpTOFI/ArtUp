@@ -37,7 +37,7 @@
                                     }
                                     else
                                     {
-                                        <p class="remined">Проект завершен</p>
+                                        <p class="remined">Срок сбора средств завершен</p>
                                     }
                                 </div>
                                 @if (Request.IsAuthenticated)
@@ -64,6 +64,7 @@
                                     }
                                 }
 
+
                                 @if (User.IsInRole("admin") && ViewBag.IsApproved && ViewBag.IsEnbleButton)
                                 {
                                     if (@ViewBag.Project.IsSuccessful && !@ViewBag.Project.WasPaid)
@@ -74,7 +75,14 @@
                                     {
                                         <p><a href="/UserManagement/ReturnMoney/@ViewBag.Project.Id">Вернуть деньги пользователям</a></p>
                                     }
+                                    if (!@ViewBag.Project.IsSuccessful && !@ViewBag.Project.WasPaid)
+                                    {
+                                        <p>Проект завершен</p>
+                                    }
                                 }
+
+
+
                                 <hr>
                                 <h4>Подарки поддержавшим:</h4>
                                 @foreach (var gift in ViewBag.Gifts)

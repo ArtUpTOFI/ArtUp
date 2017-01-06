@@ -26,7 +26,7 @@ namespace ArtUp.Client.Models
         [Required(ErrorMessage = "Держатель карты является обязательным полем")]
         [Display(Name = "Держатель карты")]
         [StringLength(30, ErrorMessage = "{0} должен быть длинной в пределах от {1} до {2} символов", MinimumLength = 5)]
-        [RegularExpression(@"[A-Za-z]+ [A-Za-z]+", ErrorMessage = "Уберите цифры, знаки или лишние пробелы")]
+        [RegularExpression(@"[A-Za-z]+ [A-Za-z]+", ErrorMessage = "Некоректное имя. Заполните 'имя фалилия' как на карте и уберите цифры, знаки или лишние пробелы")]
         public string CardHolder { get; set; }
 
         [Required(ErrorMessage = "Номер карты является обязательным полем")]
