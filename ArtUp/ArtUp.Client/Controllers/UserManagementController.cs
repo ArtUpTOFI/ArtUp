@@ -155,7 +155,8 @@ namespace ArtUp.Client.Controllers
             _projectService.UpdateProject(currentProject);
             ViewBag.Answer = "Деньги переведены пользователю";
 
-            return View();
+            ViewBag.Message = "Деньги переведены пользователю" + currentProject.Name + " " + currentProject.Surname;
+            return View("DonationError");
         }
 
         [Authorize(Roles = "admin")]
@@ -168,12 +169,12 @@ namespace ArtUp.Client.Controllers
             {
                 var message = _bankApi.CardTransaction("9999999999999", d.CardNumber, (float)d.Amount);
             }
-            ViewBag.Answer = "Деньги возвращены пользователям";
             currentProject.WasPaid = true;
             currentProject.CurrentMoney = 0;
             _projectService.UpdateProject(currentProject);
 
-            return View();
+            ViewBag.Message = "Деньги возвращены пользователям. Вернули " + currentProject.CurrentMoney.ToString() + "BYN";
+            return View("DonationError");
         }
     }
 }
