@@ -157,7 +157,7 @@ namespace ArtUp.Client.Controllers
             ViewBag.Answer = "Деньги переведены пользователю";
 
             ViewBag.Message = "Деньги переведены пользователю" + currentProject.Name + " " + currentProject.Surname;
-            return View("DonationError");
+            return RedirectToAction("Project", "Home", new { id = projectId });
         }
 
         [Authorize(Roles = "admin")]
@@ -175,7 +175,7 @@ namespace ArtUp.Client.Controllers
             _projectService.UpdateProject(currentProject);
 
             ViewBag.Message = "Деньги возвращены пользователям. Вернули " + currentProject.CurrentMoney.ToString() + "BYN";
-            return View("DonationError");
+            return RedirectToAction("Project", "Home", new { id = id });
         }
     }
 }
