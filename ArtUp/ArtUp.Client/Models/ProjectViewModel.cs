@@ -59,7 +59,7 @@ namespace ArtUp.Client.Models
         /// </summary>
         [Required(ErrorMessage = "Подробное описание проекта является обязательным полем")]
         [Display(Name = "Подробное описание проекта")]
-        [StringLength(50000, ErrorMessage = "{0} должно быть длиной как минимум {2} символов и {1} символов максимум", MinimumLength = 20)]
+        [StringLength(50000, ErrorMessage = "{0} должно быть длиной как минимум {2} символов и {1} символов максимум", MinimumLength = 10)]
         public string FullDescription { get; set; }
 
         public bool IsSuccessful { get; set; }
@@ -112,7 +112,7 @@ namespace ArtUp.Client.Models
 
         [Required(ErrorMessage = "Адрес регистрации является обязательным полем")]
         [Display(Name = "Адрес регистрации")]
-        [StringLength(50, ErrorMessage = "Адрес регистрации должен быть не короче {2} символов", MinimumLength = 10)]
+        [StringLength(100, ErrorMessage = "Адрес регистрации должен быть не короче {2} символов", MinimumLength = 2)]
         public string Adress { get; set; }
 
         [Required(ErrorMessage = "Номер телефона является обязательным полем")]
