@@ -32,7 +32,9 @@ namespace ArtUp.Client.Services.Instances
                     FullDescription = p.FullDescription,
                     CreationDate = p.CreationDate,
                     Id = p.Id,
-                    UserId = p.UserId.Value
+                    UserId = p.UserId.Value,
+                    WasPaid = p.WasPaid,
+                    IsSuccessful = p.IsSuccessful
                 }) 
                 : null;
         }
@@ -65,7 +67,9 @@ namespace ArtUp.Client.Services.Instances
                 FullDescription = p.FullDescription,
                 CreationDate = p.CreationDate,
                 Id = p.Id,
-                UserId = p.UserId.Value
+                UserId = p.UserId.Value,
+                WasPaid = p.WasPaid,
+                IsSuccessful = p.IsSuccessful
             });
         }
     }
