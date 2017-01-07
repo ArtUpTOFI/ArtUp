@@ -15,5 +15,7 @@ namespace ArtUp.Client.Models
         public IEnumerable<ProjectViewModel> RejectProjects { get; set; }
 
         public IEnumerable<ProjectViewModel> PendingProjects { get; set; }
+
+        public IEnumerable<ProjectViewModel> InactiveProjects { get; set; }
     }
 }

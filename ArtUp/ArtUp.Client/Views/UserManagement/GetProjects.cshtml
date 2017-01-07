@@ -17,10 +17,11 @@
     <div class="col-md-10 col-sm-10 col-lg-10">
         <div role="tabpanel">
             <ul class="product-tab" role="tablist">
-                <li role="presentation"><a href="#finished" aria-controls="finished" role="tab" data-toggle="tab">Оконченные</a></li>
+                <li role="presentation"><a href="#finished" aria-controls="finished" role="tab" data-toggle="tab">Ожидающие выплат</a></li>
                 <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Одобренные</a></li>
                 <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Ожидающие</a></li>
                 <li role="presentation"><a href="#sponsors" aria-controls="sponsors" role="tab" data-toggle="tab">Отвергнутые</a></li>
+                <li role="presentation"><a href="#inactive" aria-controls="inactive" role="tab" data-toggle="tab">Неактивные</a></li>
             </ul>
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane fade in active" id="finished">
@@ -116,6 +117,39 @@
                         }
                     </div>
                 </div>
+
+                <div role="tabpanel" class="tab-pane fade in" id="inactive">
+                    <div class="row">
+                        @foreach (var project in ViewBag.AllProjects.InactiveProjects)
+                        {
+                            <div class="col-md-4 col-sm-6">
+                                <div class="single-project">
+                                    <div class="product-upper">
+                                        <img src="/Content/img/@project.Avatar" alt="">
+                                        <div class="product-hover">
+                                            <a href="/Home/Project/@project.Id" class="add-to-cart-link"><i class="fa fa-link"></i> Подробнее</a>
+                                        </div>
+                                    </div>
+                                    <h2><a href="/Home/Project/@project.Id">@project.Title</a></h2>
+                                    <div class="product-carousel-price">
+                                        @if (project.IsSuccessful)
+                                        {
+                                            <ins>Успешно завершенный проект</ins>
+                                        }
+                                        else
+                                        {
+                                            <ins>Провально завершенный проект</ins>
+                                        }
+                                    </div>
+                                    <div class="product-option-shop">
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

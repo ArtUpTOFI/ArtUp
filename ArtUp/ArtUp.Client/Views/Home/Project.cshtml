@@ -29,8 +29,11 @@
                             <div class="product-inner">
                                 <h2 class="product-name">@ViewBag.Project.Title</h2>@if (Request.IsAuthenticated && !User.IsInRole("admin") && ViewBag.Project.ProjectState == ArtUp.DataAccess.Entities.Enums.ProjectState.Rejected) { <a href="/Home/EditProject/@ViewBag.Project.Id">Редактировать проект</a> }
                                 <div class="product-inner-price">
-                                    <p class="goal">Цель: @ViewBag.Project.RequiredMoney</p>
-                                    <p class="collected">Уже собрано: @ViewBag.Project.CurrentMoney</p>
+                                    @if (ViewBag.IsApproved && !ViewBag.Project.WasPaid)
+                                    {
+                                        <p class="goal">Цель: @ViewBag.Project.RequiredMoney</p>
+                                        <p class="collected">Уже собрано: @ViewBag.Project.CurrentMoney</p>
+                                    }
                                     @if ((ViewBag.Project.CreationDate + TimeSpan.FromTicks(ViewBag.Project.Duration) - DateTime.Now + TimeSpan.FromDays(1)).Days > 0)
                                     {
                                         <p class="remined">До завершения проекта: @(((TimeSpan)(ViewBag.Project.CreationDate + TimeSpan.FromTicks(ViewBag.Project.Duration) - DateTime.Now + TimeSpan.FromDays(1))).Days) дня(ей)</p>

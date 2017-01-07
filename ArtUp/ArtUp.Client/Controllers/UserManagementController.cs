@@ -64,10 +64,11 @@ namespace ArtUp.Client.Controllers
             var allProjects = _projectService.GetAllProjects();
             var projectsViewModel = new AdminProjectsViewModel
             {
-                FinishedProject = allProjects.Where(p => p.CreationDate.Day + p.Duration < DateTime.Now.Day && p.ProjectState == ProjectState.Approved).OrderByDescending(p=>p.IsSuccessful),
+                FinishedProject = allProjects.Where(p => p.CreationDate.AddTicks(p.Duration) < DateTime.Now && p.ProjectState == ProjectState.Approved && !p.WasPaid),
                 ApprovedProjects = allProjects.Where(p => p.ProjectState == ProjectState.Approved).OrderByDescending(p=>p.IsSuccessful),
                 PendingProjects = allProjects.Where(p => p.ProjectState == ProjectState.PendingApproval),
-                RejectProjects = allProjects.Where(p => p.ProjectState == ProjectState.Rejected)
+                RejectProjects = allProjects.Where(p => p.ProjectState == ProjectState.Rejected),
+                InactiveProjects = allProjects.Where(p=>p.WasPaid)
             };
             ViewBag.allProjects = projectsViewModel;
 

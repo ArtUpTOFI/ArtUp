@@ -100,7 +100,8 @@ namespace ArtUp.Client.Controllers
                 ViewBag.IsApproved = true;
             else
                 ViewBag.IsApproved = false;
-            if (project.CreationDate.Day + project.Duration < DateTime.Now.Day)
+
+            if (project.CreationDate.AddTicks(project.Duration) < DateTime.Now )
                 ViewBag.IsEnbleButton = true;
             else
                 ViewBag.IsEnbleButton = false;

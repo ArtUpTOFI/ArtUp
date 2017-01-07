@@ -47,7 +47,9 @@ namespace ArtUp.Client.Services
                 PasspotNumberSeries = project.PasspotNumberSeries,
                 PersonalPassportNumber = project.PersonalPassportNumber,
                 PhoneNumber = project.PhoneNumber,
-                WhoAndWhereIssued = project.WhoAndWhereIssued
+                WhoAndWhereIssued = project.WhoAndWhereIssued,
+                IsSuccessful = project.IsSuccessful,
+                WasPaid = project.WasPaid
             };
         }
 
@@ -68,7 +70,9 @@ namespace ArtUp.Client.Services
                 ShortDescription = p.ShortDescription,
                 Surname = p.Surname,
                 Title = p.Title,
-                ProjectState = p.ProjectState
+                ProjectState = p.ProjectState,
+                WasPaid = p.WasPaid,
+                IsSuccessful = p.IsSuccessful
             }).ToList();
         }
 
