@@ -292,7 +292,7 @@
 
                     <div class="editor-label"><h5>Файл изображения</h5></div>
                     <div class="editor-field">
-                        <input type="file" name="uploadImage" />
+                        <input type="file" name="uploadImage" id="project-picture"/>
                     </div>
                     <section class="nb-create create--fund project-edit-form">
                         <div class="nb-create__head">
@@ -557,6 +557,10 @@
                 alert('Вначале необходимо принять пользовательское соглашение!');
                 return false;
             }
+            if ($('#project-picture').val() == "") {
+                alert('Обложка проекта не выбрана!');
+                return false;
+            }        
         });
     });
 </script>
