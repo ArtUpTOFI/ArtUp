@@ -210,7 +210,7 @@ namespace ArtUp.Client.Services
                 case "new":
                     return GetNewProjects().Where(p => p.ProjectState == ProjectState.Approved);
                 case "all":
-                    return GetAllProjects().Where(p => p.ProjectState == ProjectState.Approved);
+                    return GetAllProjects().Where(p => p.ProjectState == ProjectState.Approved && (p.CreationDate + TimeSpan.FromTicks(p.Duration) - DateTime.Now + TimeSpan.FromDays(1)).Days > 0);
                 case "best":
                     return GetBySuccess(true);
             }

@@ -521,7 +521,7 @@
                 $('#giftsList').append('<div id="gift-' + i + '"><h5>Прикреплённый подарок:</h5><p><h5>Необходимая сумма</h5></p><input type="number" name="Gifts[' + i + '].MoneyAmount" value="' +
                     amount + '" class="form-control" margin-bottom: 10px;" readonly/><h5>Описание</h5><input type="text"  name="Gifts[' + i + '].Description" value="' +
                     description + '" style="min-height: 50px; margin-bottom: 10px;" readonly/><h5>Количество</h5><input type="number" name="Gifts[' + i + '].AvailableCount" value="' +
-                    count + ' readonly"/><input type="button" id="' + i + '" class="artup-button remove-gift" value="Удалить"><hr></div>');
+                    count + '" readonly/><input type="button" id="' + i + '" class="artup-button remove-gift" value="Удалить"><hr></div>');
                 i++;
                 $('#js-gift-sum-input').val('');
                 var description = $('#js-gift-description-textarea').val('');
