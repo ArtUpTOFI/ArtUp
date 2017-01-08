@@ -35,7 +35,7 @@ namespace ArtUp.Client.Helpers
                     result = "Все проекты";
                     break;
                 case "best":
-                    result = "Успешные проекты";
+                    result = "Завершенные проекты";
                     break;
             }
             return new MvcHtmlString(result);

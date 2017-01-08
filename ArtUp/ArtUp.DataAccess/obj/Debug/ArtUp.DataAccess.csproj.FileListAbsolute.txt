@@ -34,3 +34,15 @@ C:\Users\Администратор\Source\Repos\ArtUp2\ArtUp\ArtUp.DataAccess\b
 C:\Users\Администратор\Source\Repos\ArtUp2\ArtUp\ArtUp.DataAccess\obj\Debug\ArtUp.DataAccess.csprojResolveAssemblyReference.cache
 C:\Users\Администратор\Source\Repos\ArtUp2\ArtUp\ArtUp.DataAccess\obj\Debug\ArtUp.DataAccess.dll
 C:\Users\Администратор\Source\Repos\ArtUp2\ArtUp\ArtUp.DataAccess\obj\Debug\ArtUp.DataAccess.pdb
+C:\Users\Антон\Source\Repos\ArtUp\ArtUp\ArtUp.DataAccess\bin\Debug\ArtUp.DataAccess.dll.config
+C:\Users\Антон\Source\Repos\ArtUp\ArtUp\ArtUp.DataAccess\bin\Debug\ArtUp.DataAccess.dll
+C:\Users\Антон\Source\Repos\ArtUp\ArtUp\ArtUp.DataAccess\bin\Debug\ArtUp.DataAccess.pdb
+C:\Users\Антон\Source\Repos\ArtUp\ArtUp\ArtUp.DataAccess\bin\Debug\EntityFramework.dll
+C:\Users\Антон\Source\Repos\ArtUp\ArtUp\ArtUp.DataAccess\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Антон\Source\Repos\ArtUp\ArtUp\ArtUp.DataAccess\bin\Debug\Ninject.dll
+C:\Users\Антон\Source\Repos\ArtUp\ArtUp\ArtUp.DataAccess\bin\Debug\EntityFramework.xml
+C:\Users\Антон\Source\Repos\ArtUp\ArtUp\ArtUp.DataAccess\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Антон\Source\Repos\ArtUp\ArtUp\ArtUp.DataAccess\bin\Debug\Ninject.xml
+C:\Users\Антон\Source\Repos\ArtUp\ArtUp\ArtUp.DataAccess\obj\Debug\ArtUp.DataAccess.csprojResolveAssemblyReference.cache
+C:\Users\Антон\Source\Repos\ArtUp\ArtUp\ArtUp.DataAccess\obj\Debug\ArtUp.DataAccess.dll
+C:\Users\Антон\Source\Repos\ArtUp\ArtUp\ArtUp.DataAccess\obj\Debug\ArtUp.DataAccess.pdb

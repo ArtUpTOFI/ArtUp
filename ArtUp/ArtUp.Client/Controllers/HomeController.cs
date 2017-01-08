@@ -45,7 +45,7 @@ namespace ArtUp.Client.Controllers
             ViewBag.BestProjects = _projectService.GetProjectsOnMainPaige();
             ViewBag.BestProjectsBottom = _projectService.GetBySuccess(true).Take(3);
             ViewBag.NewProjects = _projectService.GetNewProjects().Take(3);
-            ViewBag.AllProjects = _projectService.GetAllProjects().Take(3);
+            ViewBag.AllProjects = _projectService.GetAllProjects().Where(p => p.ProjectState == ProjectState.Approved).Take(3);
             return View();
         }
 
@@ -112,7 +112,7 @@ namespace ArtUp.Client.Controllers
         [Authorize]
         public ActionResult Donate(int id)
         {
-            ViewBag.Gifts = _giftService.GetGifts(id);
+            ViewBag.Gifts = _giftService.GetGifts(id).Where(g => g.CurrentCount < g.AvailableCount);
             ViewBag.Project = _projectService.Get(id);
             ViewBag.UserId = _userManagementService.GetCurrentUser(User.Identity.Name);
             return View();
@@ -126,7 +126,7 @@ namespace ArtUp.Client.Controllers
             if (!ModelState.IsValid)
             {
                 var id = Convert.ToInt32(Request.RequestContext.RouteData.Values["id"]);
-                ViewBag.Gifts = _giftService.GetGifts(id);
+                ViewBag.Gifts = _giftService.GetGifts(id).Where(g => g.CurrentCount < g.AvailableCount);
                 ViewBag.Project = _projectService.Get(id);
                 ViewBag.UserId = _userManagementService.GetCurrentUser(User.Identity.Name);
                 return View();

@@ -18,3 +18,13 @@ C:\Users\Администратор\Source\Repos\ArtUp2\ArtUp\ArtUp.BankMockServ
 C:\Users\Администратор\Source\Repos\ArtUp2\ArtUp\ArtUp.BankMockServer\obj\Debug\ArtUp.BankMockServer.csprojResolveAssemblyReference.cache
 C:\Users\Администратор\Source\Repos\ArtUp2\ArtUp\ArtUp.BankMockServer\obj\Debug\ArtUp.BankMockServer.dll
 C:\Users\Администратор\Source\Repos\ArtUp2\ArtUp\ArtUp.BankMockServer\obj\Debug\ArtUp.BankMockServer.pdb
+C:\Users\Антон\Source\Repos\ArtUp\ArtUp\ArtUp.BankMockServer\bin\Debug\ArtUp.BankMockServer.dll.config
+C:\Users\Антон\Source\Repos\ArtUp\ArtUp\ArtUp.BankMockServer\bin\Debug\ArtUp.BankMockServer.dll
+C:\Users\Антон\Source\Repos\ArtUp\ArtUp\ArtUp.BankMockServer\bin\Debug\ArtUp.BankMockServer.pdb
+C:\Users\Антон\Source\Repos\ArtUp\ArtUp\ArtUp.BankMockServer\bin\Debug\EntityFramework.dll
+C:\Users\Антон\Source\Repos\ArtUp\ArtUp\ArtUp.BankMockServer\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Антон\Source\Repos\ArtUp\ArtUp\ArtUp.BankMockServer\bin\Debug\EntityFramework.xml
+C:\Users\Антон\Source\Repos\ArtUp\ArtUp\ArtUp.BankMockServer\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Антон\Source\Repos\ArtUp\ArtUp\ArtUp.BankMockServer\obj\Debug\ArtUp.BankMockServer.csprojResolveAssemblyReference.cache
+C:\Users\Антон\Source\Repos\ArtUp\ArtUp\ArtUp.BankMockServer\obj\Debug\ArtUp.BankMockServer.dll
+C:\Users\Антон\Source\Repos\ArtUp\ArtUp\ArtUp.BankMockServer\obj\Debug\ArtUp.BankMockServer.pdb

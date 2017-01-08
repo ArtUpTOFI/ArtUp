@@ -103,7 +103,21 @@
                                 </div>
                                 <h2><a href="/Home/Project/@project.Id">@project.Title</a></h2>
                                 <div class="product-carousel-price">
-                                    <ins>собрано @project.CurrentMoney из @project.RequiredMoney</ins>
+                                    @if (!project.WasPaid)
+                                    {
+                                        <ins>собрано @project.CurrentMoney из @project.RequiredMoney</ins>
+                                    }
+                                    else
+                                    {
+                                        if (project.IsSuccessful)
+                                        {
+                                            <ins>проект завершен успешно</ins>
+                                        }
+                                        else
+                                        {
+                                            <ins>проект завершен безуспешно</ins>
+                                        }
+                                    }
                                 </div>
                             </div>
                         }
@@ -129,7 +143,21 @@
                             </a>
                             <h2><a href="/Home/Project/@project.Id">@project.Title</a></h2>
                             <div class="product-wid-price">
-                                <ins>собрано @project.CurrentMoney из @project.RequiredMoney</ins>
+                                @if (!project.WasPaid)
+                                {
+                                    <ins>собрано @project.CurrentMoney из @project.RequiredMoney</ins>
+                                }
+                                else
+                                {
+                                    if (project.IsSuccessful)
+                                    {
+                                        <ins>проект завершен успешно</ins>
+                                    }
+                                    else
+                                    {
+                                        <ins>проект завершен безуспешно</ins>
+                                    }
+                                }
                             </div>
                         </div>
                     }
@@ -146,7 +174,21 @@
                             </a>
                             <h2><a href="/Home/Project/@project.Id">@project.Title</a></h2>
                             <div class="product-wid-price">
-                                <ins>собрано @project.CurrentMoney из @project.RequiredMoney</ins>
+                                @if (!project.WasPaid)
+                                {
+                                    <ins>собрано @project.CurrentMoney из @project.RequiredMoney</ins>
+                                }
+                                else
+                                {
+                                    if (project.IsSuccessful)
+                                    {
+                                        <ins>проект завершен успешно</ins>
+                                    }
+                                    else
+                                    {
+                                        <ins>проект завершен безуспешно</ins>
+                                    }
+                                }
                             </div>
                         </div>
                     }
