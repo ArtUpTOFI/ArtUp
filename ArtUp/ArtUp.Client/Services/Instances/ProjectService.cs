@@ -103,7 +103,7 @@ namespace ArtUp.Client.Services
             var projs = isSuccess
                 ? data.Projects.Find(p => p.ProjectState == ProjectState.Approved)// && (p.CreationDate + TimeSpan.FromTicks(p.Duration) - DateTime.Now + TimeSpan.FromDays(1)).Days < 0)
                 : data.Projects.Find(p => p.RequiredMoney > p.CurrentMoney && p.ProjectState == ProjectState.Approved);
-            projs = projs.Where(p => (p.CreationDate + TimeSpan.FromTicks(p.Duration) - DateTime.Now + TimeSpan.FromDays(1)).Days < 0);
+            projs = projs.Where(p => p.WasPaid);
             return projs.Select(p => new ProjectViewModel()
             {
                 Avatar = p.Avatar,
@@ -167,7 +167,7 @@ namespace ArtUp.Client.Services
                         IsSuccessful = p.IsSuccessful,
                         WasPaid = p.WasPaid
                     }).ToList();
-            return projs.Where(p => (p.CreationDate + TimeSpan.FromTicks(p.Duration) - DateTime.Now + TimeSpan.FromDays(1)).Days < 0);
+            return projs.Where(p => p.WasPaid);
         }
 
         public IEnumerable<ProjectViewModel> GetNewProjects()
