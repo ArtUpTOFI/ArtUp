@@ -101,8 +101,9 @@ namespace ArtUp.Client.Services
         public IEnumerable<ProjectViewModel> GetBySuccess(bool isSuccess)
         {
             var projs = isSuccess
-                ? data.Projects.Find(p => p.ProjectState == ProjectState.Approved && (p.CreationDate + TimeSpan.FromTicks(p.Duration) - DateTime.Now + TimeSpan.FromDays(1)).Days < 0)
+                ? data.Projects.Find(p => p.ProjectState == ProjectState.Approved)// && (p.CreationDate + TimeSpan.FromTicks(p.Duration) - DateTime.Now + TimeSpan.FromDays(1)).Days < 0)
                 : data.Projects.Find(p => p.RequiredMoney > p.CurrentMoney && p.ProjectState == ProjectState.Approved);
+            projs = projs.Where(p => (p.CreationDate + TimeSpan.FromTicks(p.Duration) - DateTime.Now + TimeSpan.FromDays(1)).Days < 0);
             return projs.Select(p => new ProjectViewModel()
             {
                 Avatar = p.Avatar,
@@ -146,8 +147,8 @@ namespace ArtUp.Client.Services
 
         public IEnumerable<ProjectViewModel> GetProjectsOnMainPaige()
         {
-            return
-                data.Projects.Find(p => p.CurrentMoney > p.RequiredMoney && p.ProjectState == ProjectState.Approved && (p.CreationDate + TimeSpan.FromTicks(p.Duration) - DateTime.Now + TimeSpan.FromDays(1)).Days < 0)
+            var projs =
+                data.Projects.Find(p => p.CurrentMoney > p.RequiredMoney && p.ProjectState == ProjectState.Approved)// && (p.CreationDate + TimeSpan.FromTicks(p.Duration) - DateTime.Now + TimeSpan.FromDays(1)).Days < 0)
                     .Take(6)
                     .Select(p => new ProjectViewModel()
                     {
@@ -166,6 +167,7 @@ namespace ArtUp.Client.Services
                         IsSuccessful = p.IsSuccessful,
                         WasPaid = p.WasPaid
                     }).ToList();
+            return projs.Where(p => (p.CreationDate + TimeSpan.FromTicks(p.Duration) - DateTime.Now + TimeSpan.FromDays(1)).Days < 0);
         }
 
         public IEnumerable<ProjectViewModel> GetNewProjects()

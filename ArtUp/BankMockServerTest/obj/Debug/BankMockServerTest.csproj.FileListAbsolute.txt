@@ -10,3 +10,15 @@ D:\Download\Android example\ArtUp\ArtUp\BankMockServerTest\obj\Debug\BankMockSer
 D:\Download\Android example\ArtUp\ArtUp\BankMockServerTest\obj\Debug\BankMockServerTest.pdb
 D:\Download\Android example\ArtUp\ArtUp\BankMockServerTest\bin\Debug\EntityFramework.SqlServer.dll
 D:\Download\Android example\ArtUp\ArtUp\BankMockServerTest\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Антон\Source\Repos\ArtUp\ArtUp\BankMockServerTest\bin\Debug\BankMockServerTest.exe.config
+C:\Users\Антон\Source\Repos\ArtUp\ArtUp\BankMockServerTest\bin\Debug\BankMockServerTest.exe
+C:\Users\Антон\Source\Repos\ArtUp\ArtUp\BankMockServerTest\bin\Debug\BankMockServerTest.pdb
+C:\Users\Антон\Source\Repos\ArtUp\ArtUp\BankMockServerTest\bin\Debug\ArtUp.BankMockServer.dll
+C:\Users\Антон\Source\Repos\ArtUp\ArtUp\BankMockServerTest\bin\Debug\EntityFramework.dll
+C:\Users\Антон\Source\Repos\ArtUp\ArtUp\BankMockServerTest\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Антон\Source\Repos\ArtUp\ArtUp\BankMockServerTest\bin\Debug\ArtUp.BankMockServer.pdb
+C:\Users\Антон\Source\Repos\ArtUp\ArtUp\BankMockServerTest\bin\Debug\EntityFramework.xml
+C:\Users\Антон\Source\Repos\ArtUp\ArtUp\BankMockServerTest\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Антон\Source\Repos\ArtUp\ArtUp\BankMockServerTest\obj\Debug\BankMockServerTest.csprojResolveAssemblyReference.cache
+C:\Users\Антон\Source\Repos\ArtUp\ArtUp\BankMockServerTest\obj\Debug\BankMockServerTest.exe
+C:\Users\Антон\Source\Repos\ArtUp\ArtUp\BankMockServerTest\obj\Debug\BankMockServerTest.pdb
