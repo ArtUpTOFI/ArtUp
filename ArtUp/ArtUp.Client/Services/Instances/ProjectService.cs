@@ -101,7 +101,7 @@ namespace ArtUp.Client.Services
         public IEnumerable<ProjectViewModel> GetBySuccess(bool isSuccess)
         {
             var projs = isSuccess
-                ? data.Projects.Find(p => p.RequiredMoney <= p.CurrentMoney && p.ProjectState == ProjectState.Approved)
+                ? data.Projects.Find(p => p.ProjectState == ProjectState.Approved && (p.CreationDate + TimeSpan.FromTicks(p.Duration) - DateTime.Now + TimeSpan.FromDays(1)).Days < 0)
                 : data.Projects.Find(p => p.RequiredMoney > p.CurrentMoney && p.ProjectState == ProjectState.Approved);
             return projs.Select(p => new ProjectViewModel()
             {
@@ -117,6 +117,8 @@ namespace ArtUp.Client.Services
                 Surname = p.Surname,
                 Title = p.Title,
                 Image = p.Image,
+                WasPaid = p.WasPaid,
+                IsSuccessful = p.IsSuccessful
             }).ToList();
         }
 
@@ -136,14 +138,16 @@ namespace ArtUp.Client.Services
                     ShortDescription = p.ShortDescription,
                     Surname = p.Surname,
                     Title = p.Title,
-                    Image = p.Image
+                    Image = p.Image,
+                    WasPaid = p.WasPaid,
+                    IsSuccessful = p.IsSuccessful
                 }).ToList(); ;
         }
 
         public IEnumerable<ProjectViewModel> GetProjectsOnMainPaige()
         {
             return
-                data.Projects.Find(p => p.CurrentMoney > p.RequiredMoney && p.ProjectState == ProjectState.Approved)
+                data.Projects.Find(p => p.CurrentMoney > p.RequiredMoney && p.ProjectState == ProjectState.Approved && (p.CreationDate + TimeSpan.FromTicks(p.Duration) - DateTime.Now + TimeSpan.FromDays(1)).Days < 0)
                     .Take(6)
                     .Select(p => new ProjectViewModel()
                     {
@@ -159,6 +163,8 @@ namespace ArtUp.Client.Services
                         Surname = p.Surname,
                         Title = p.Title,
                         Image = p.Image,
+                        IsSuccessful = p.IsSuccessful,
+                        WasPaid = p.WasPaid
                     }).ToList();
         }
 
@@ -284,7 +290,9 @@ namespace ArtUp.Client.Services
                     RequiredMoney = p.RequiredMoney,
                     ShortDescription = p.ShortDescription,
                     Surname = p.Surname,
-                    Title = p.Title
+                    Title = p.Title,
+                    WasPaid = p.WasPaid,
+                    IsSuccessful = p.IsSuccessful
                 });
         }
 
