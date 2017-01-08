@@ -27,7 +27,8 @@
 
                         <div class="col-sm-4 project-left">
                             <div class="product-inner">
-                                <h2 class="product-name">@ViewBag.Project.Title</h2>@if (Request.IsAuthenticated && !User.IsInRole("admin") && ViewBag.Project.ProjectState == ArtUp.DataAccess.Entities.Enums.ProjectState.Rejected) { <a href="/Home/EditProject/@ViewBag.Project.Id">Редактировать проект</a> }
+                                <h2 class="product-name">@ViewBag.Project.Title</h2>@if (Request.IsAuthenticated && !User.IsInRole("admin") && ViewBag.Project.ProjectState == ArtUp.DataAccess.Entities.Enums.ProjectState.Rejected)
+                                { <a href="/Home/EditProject/@ViewBag.Project.Id">Редактировать проект</a> }
                                 <div class="product-inner-price">
                                     @if (ViewBag.IsApproved && !ViewBag.Project.WasPaid)
                                     {
@@ -56,14 +57,14 @@
                                 }
                                 @if (User.IsInRole("admin") && ViewBag.IsPending)
                                 {
-                                using (Html.BeginForm("ApproveProject", "UserManagement", new { id = @ViewBag.Project.Id }, FormMethod.Get))
-                                {
-                                    <p><input type="submit" value="Принять проект" /></p>
-                                }
-                                using (Html.BeginForm("RejectProject", "UserManagement", new { id = @ViewBag.Project.Id }, FormMethod.Post))
-                                {
+                                    using (Html.BeginForm("ApproveProject", "UserManagement", new { id = @ViewBag.Project.Id }, FormMethod.Get))
+                                    {
+                                        <p><input type="submit" value="Принять проект" /></p>
+                                    }
+                                    using (Html.BeginForm("RejectProject", "UserManagement", new { id = @ViewBag.Project.Id }, FormMethod.Post))
+                                    {
                                         @Html.TextBox("Comment", "Введиите причину отказа")
-                                        <p><input type="submit" value="Отклонить проект"/></p>
+                                        <p><input type="submit" value="Отклонить проект" /></p>
                                     }
                                 }
 
@@ -90,7 +91,14 @@
                                 <h4>Подарки поддержавшим:</h4>
                                 @foreach (var gift in ViewBag.Gifts)
                                 {
-                                    <p>@gift.Description: @gift.MoneyAmount, осталось @(gift.AvailableCount - gift.CurrentCount)</p>
+                                    if (gift.AvailableCount - gift.CurrentCount <= 0)
+                                    {
+                                        <p>@gift.Description: @gift.MoneyAmount, осталось @(gift.AvailableCount - gift.CurrentCount)</p>
+                                    }
+                                    else
+                                    {
+                                        <p>@gift.Description: @gift.MoneyAmount, закончились</p>
+                                    }
                                 }
 
                             </div>
@@ -157,7 +165,7 @@
                                                     @Html.Hidden("ProjectId", (int)ViewBag.Project.Id)
                                                     @Html.Hidden("UserId", (int)ViewBag.UserId)
                                                     <h2><label for="review">Оставьте ваш комментарий:</label></h2>
-                                                    @Html.TextAreaFor(m => m.Text, new { @cols = "30", @rows = "10", @placeholder="Ваше мнение очень важно."})
+                                                    @Html.TextAreaFor(m => m.Text, new { @cols = "30", @rows = "10", @placeholder = "Ваше мнение очень важно." })
                                                 </p>
                                                 <p><input type="submit" value="Оставить"></p>
                                             }
@@ -229,4 +237,3 @@
         </div>
     </div>
 </div>
-
