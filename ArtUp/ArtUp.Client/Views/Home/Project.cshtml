@@ -82,9 +82,15 @@
                                     {
                                         <p>Проект завершен</p>
                                     }
+                                    if (@ViewBag.Project.IsSuccessful && @ViewBag.Project.WasPaid)
+                                    {
+                                        <p>Деньги выплаены пользователю @ViewBag.Project.Name @ViewBag.Project.Name</p>
+                                    }
+                                    if (!@ViewBag.Project.IsSuccessful && @ViewBag.Project.WasPaid)
+                                    {
+                                        <p>Деньги возвращены</p>
+                                    }
                                 }
-
-
 
                                 <hr>
                                 <h4>Подарки поддержавшим:</h4>

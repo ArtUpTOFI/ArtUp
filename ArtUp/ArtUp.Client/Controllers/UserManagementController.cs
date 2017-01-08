@@ -65,7 +65,7 @@ namespace ArtUp.Client.Controllers
             var projectsViewModel = new AdminProjectsViewModel
             {
                 FinishedProject = allProjects.Where(p => p.CreationDate.AddTicks(p.Duration) < DateTime.Now && p.ProjectState == ProjectState.Approved && !p.WasPaid),
-                ApprovedProjects = allProjects.Where(p => p.ProjectState == ProjectState.Approved).OrderByDescending(p=>p.IsSuccessful),
+                ApprovedProjects = allProjects.Where(p => p.ProjectState == ProjectState.Approved && p.CreationDate.AddTicks(p.Duration) >= DateTime.Now),
                 PendingProjects = allProjects.Where(p => p.ProjectState == ProjectState.PendingApproval),
                 RejectProjects = allProjects.Where(p => p.ProjectState == ProjectState.Rejected),
                 InactiveProjects = allProjects.Where(p=>p.WasPaid)
@@ -131,19 +131,18 @@ namespace ArtUp.Client.Controllers
         }
 
         [Authorize(Roles = "admin")]
-        public ActionResult TransferMoney(int projectId)
+        public ActionResult TransferMoney(int id)
         {
             decimal transferAmount, taxSum = 0;
 
-            var currentProject = _projectService.Get(projectId);
+            var currentProject = _projectService.Get(id);
             var settings = _platformService.GetSettings();
             var comissionPercents = settings.PlatformComission;
             var tax = settings.IncomeTax;
             var maxSum = settings.MaxFreeAmount;
+            decimal comission = currentProject.CurrentMoney * ((decimal)(comissionPercents*0.01));
             
-            var comission = currentProject.CurrentMoney * (comissionPercents / 100);
-            
-            transferAmount = currentProject.CurrentMoney - comissionPercents;
+            transferAmount = currentProject.CurrentMoney - comission;
 
             if (transferAmount > maxSum)
                 taxSum = (transferAmount - maxSum) * tax / 100;
@@ -157,7 +156,7 @@ namespace ArtUp.Client.Controllers
             ViewBag.Answer = "Деньги переведены пользователю";
 
             ViewBag.Message = "Деньги переведены пользователю" + currentProject.Name + " " + currentProject.Surname;
-            return RedirectToAction("Project", "Home", new { id = projectId });
+            return RedirectToAction("Project", "Home", new { id = id});
         }
 
         [Authorize(Roles = "admin")]
