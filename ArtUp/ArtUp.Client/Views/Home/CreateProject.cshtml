@@ -103,7 +103,7 @@
 
 
 <div role="tabpanel">
-@using (Html.BeginForm("CreateProject", "Home", FormMethod.Post, new { enctype = "multipart/form-data", @id="create-form"}))
+@using (Html.BeginForm("CreateProject", "Home", FormMethod.Post, new { enctype = "multipart/form-data", @id="create-form", @accept="image/*"}))
 {
     <ul class="product-tab" role="tablist">
         <li role="presentation" class="active"><a href="#general" aria-controls="general" role="tab" data-toggle="tab">Оcновное</a></li>
